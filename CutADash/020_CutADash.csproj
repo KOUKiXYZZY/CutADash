@@ -98,6 +98,11 @@
     <None Update="Assets\AppIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <!-- About画面のアイコン表示(PreferenceWindow.xaml.cs LoadAboutAppIcon参照)で
+         ファイルとして読み込むため、ビルド出力にもコピーしておく必要がある -->
+    <None Update="Assets\AppIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <!-- システムトレイ用の単色アイコン(ライト/ダーク別)。生成方法は
          AssetsSrc\AppIcon\Source\build-tray-icon.ps1 を参照 -->
     <None Update="Assets\AppIconTray*.ico">

@@ -11,7 +11,7 @@ namespace Preferences.Utils
     /// 各パッケージのライセンス種別・著作権者は、NuGetの登録API
     /// (https://api.nuget.org/v3/registration5-semver1/{パッケージ名}/index.json の
     /// licenseExpression/licenseUrl)と、そこから辿った配布元リポジトリのLICENSEファイルを
-    /// 実際に確認して転記したもの(2026-09-19時点)。
+    /// 実際に確認して転記したもの(2026-09-21時点)。
     ///
     /// - Interop.UIAutomationClientは依存していたが、実体はUI Automation COM APIへの
     ///   薄いバインディングでしかなかったため、Common/Infra/Win32/UIAutomationInterop.cs に
@@ -62,6 +62,7 @@ namespace Preferences.Utils
             new("SQLCipher", "(SQLitePCLRaw.lib.e_sqlcipher 2.1.11 に同梱)", "BSD-3-Clause", "(c) Zetetic LLC", "https://github.com/sqlcipher/sqlcipher"),
             new("System.Drawing.Common", "8.0.10", "MIT", ".NET Foundation and Contributors", "https://github.com/dotnet/runtime"),
             new("System.Security.Cryptography.ProtectedData", "8.0.0", "MIT", ".NET Foundation and Contributors", "https://github.com/dotnet/runtime"),
+            new("Velopack", "0.0.1298", "MIT", "(c) Velopack Ltd", "https://github.com/velopack/velopack"),
             new("WinUIEx", "2.9.0", "MIT", "(c) 2021 Morten Nielsen", "https://github.com/dotmorten/WinUIEx"),
             new("ZXing.Net", "0.16.10", "Apache-2.0", "(c) 2007-2009 ZXing authors / Michael Jahn (ZXing.Net)", "https://github.com/micjahn/ZXing.Net"),
             new("ZXing.Net.Bindings.Windows.Compatibility", "0.16.12", "Apache-2.0", "(c) 2007-2009 ZXing authors / Michael Jahn (ZXing.Net)", "https://github.com/micjahn/ZXing.Net"),

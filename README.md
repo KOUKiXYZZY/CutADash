@@ -1,6 +1,14 @@
-# CutADash
+<p align="center">
+  <img src="docs/images/AppIcon.png" width="96" height="96" alt="CutADash icon">
+</p>
+
+# CutA'
 
 Windows向けの高機能クリップボードマネージャーです。コピーした履歴を自動で保存し、素早く検索・再利用できます。
+
+<p align="center">
+  <img src="docs/images/mainWindow.png" alt="CutADashのメイン画面(履歴タブ)">
+</p>
 
 > [!NOTE]
 > **このプロジェクトはほぼバイブコーディング(Vibe Coding)で開発されています。**
@@ -68,8 +76,29 @@ dotnet build CutADash.sln
 
 絵文字アセットはビルド前に `AssetsSrc/EmojiGenerateScript` 配下のスクリプトで生成する必要があります(詳細は同フォルダ内を参照)。
 
+## 使用しているオープンソースライブラリ
+
+| パッケージ | バージョン | ライセンス | 著作権者 |
+| --- | --- | --- | --- |
+| [Accessibility](https://github.com/dotnet/runtime) | 4.6.0-preview3-27504-2 | MIT | .NET Foundation and Contributors |
+| [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet) | 8.4.2 | MIT | .NET Foundation and Contributors |
+| [fluentui-emoji](https://github.com/microsoft/fluentui-emoji)(submodule、絵文字画像) | - | MIT | (c) Microsoft Corporation |
+| [Microsoft.Extensions.DependencyInjection](https://github.com/dotnet/runtime) | 10.0.9 | MIT | .NET Foundation and Contributors |
+| [Microsoft.Windows.SDK.BuildTools](https://www.nuget.org/packages/Microsoft.Windows.SDK.BuildTools) | 10.0.28000.1721 | Microsoft独自ライセンス | (c) Microsoft Corporation |
+| [Microsoft.WindowsAppSDK](https://github.com/microsoft/WindowsAppSDK) | 1.8.260416003 | Microsoft独自ライセンス(配布パッケージ) | (c) Microsoft Corporation |
+| [Microsoft.Xaml.Behaviors.WinUI.Managed](https://github.com/microsoft/XamlBehaviors) | 3.0.1 | MIT | (c) 2015 Microsoft |
+| [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) | 13.0.4 | MIT | (c) 2007 James Newton-King |
+| [SQLitePCLRaw](https://github.com/ericsink/SQLitePCL.raw)(bundle_e_sqlcipher / core / lib.e_sqlite3) | 2.1.11 / 2.1.11 / 2.1.13 | Apache-2.0 | (c) Eric Sink, Zumero, LLC and Contributors |
+| [SQLCipher](https://github.com/sqlcipher/sqlcipher)(SQLitePCLRaw.lib.e_sqlcipher同梱) | - | BSD-3-Clause | (c) Zetetic LLC |
+| [System.Drawing.Common](https://github.com/dotnet/runtime) | 8.0.10 | MIT | .NET Foundation and Contributors |
+| [System.Security.Cryptography.ProtectedData](https://github.com/dotnet/runtime) | 8.0.0 | MIT | .NET Foundation and Contributors |
+| [Velopack](https://github.com/velopack/velopack) | 0.0.1298 | MIT | (c) Velopack Contributors |
+| [WinUIEx](https://github.com/dotmorten/WinUIEx) | 2.9.0 | MIT | (c) 2021 Morten Nielsen |
+| [ZXing.Net](https://github.com/micjahn/ZXing.Net) / ZXing.Net.Bindings.Windows.Compatibility | 0.16.10 / 0.16.12 | Apache-2.0 | (c) 2007-2009 ZXing authors / Michael Jahn |
+| [sqlite-net-pcl](https://github.com/praeclarum/sqlite-net) | 1.9.172 | MIT | (c) Krueger Systems, Inc. |
+
+各ライブラリの詳細なライセンス全文は、アプリ内の設定画面(About)からも確認できます([Preferences/Utils/OpenSourceLicenses.cs](Preferences/Utils/OpenSourceLicenses.cs))。
+
 ## ライセンス
 
 [MIT License](LICENSE)
-
-絵文字画像はMicrosoft Fluent Emoji([microsoft/fluentui-emoji](https://github.com/microsoft/fluentui-emoji)、MITライセンス)を使用しています。

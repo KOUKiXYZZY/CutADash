@@ -310,7 +310,10 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12">
-                    <Image Source="ms-appx:///Assets/AppIcon.png" Width="64" Height="64" VerticalAlignment="Top"/>
+                    <!-- 非パッケージ(unpackaged)アプリではms-appx:///によるパッケージリソース解決が
+                         実行時に効かない(Emoji/Navアイコンで踏んだのと同じ制約)ため、
+                         Sourceはコードビハインド(実ファイルパスから読み込み)で設定する -->
+                    <Image x:Name="AboutAppIcon" Width="64" Height="64" VerticalAlignment="Top"/>
                     <StackPanel Spacing="8">
                         <TextBlock Text="CutADash" FontSize="22" FontWeight="Bold"/>
                         <TextBlock x:Name="VersionText" Text="{x:Bind ViewModel.VersionText, Mode=OneWay}" FontSize="14"/>

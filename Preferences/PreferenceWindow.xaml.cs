@@ -1,12 +1,14 @@
 using Common.Extension;
 using Common.Infra.Win32;
 using System;
+using System.IO;
 using Preferences.Utils;
 using Preferences.ViewModels;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Windowing;
 using System.Collections.Generic;
 using Windows.System;
@@ -140,6 +142,7 @@ namespace Preferences.Views
 
             AboutDescriptionText.Text = PreferencesStrings.Get("Pref_About_Description");
             LicensesText.Text = OpenSourceLicenses.BuildLicensesText();
+            LoadAboutAppIcon();
 
             // x:BindのSelectedValueは、InitializeComponent()の時点(=ComboBoxItemがまだ
             // Items未確定/Contentも未設定)で初回評価されるため、一致する項目が見つからず
@@ -199,6 +202,30 @@ namespace Preferences.Views
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// About画面のアプリアイコンを読み込む。非パッケージ(unpackaged)アプリでは
+        /// ms-appx:///によるパッケージリソース解決が実行時に効かないため
+        /// (Emoji/Navアイコンで踏んだのと同じ制約)、実行ファイルと同じ場所に
+        /// 配置されたAssetsを直接ファイルパスで参照する。
+        /// </summary>
+        private void LoadAboutAppIcon()
+        {
+            try
+            {
+                var path = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "AppIcon.png");
+                var bitmap = new BitmapImage();
+                using (var stream = System.IO.File.OpenRead(path))
+                {
+                    bitmap.SetSource(stream.AsRandomAccessStream());
+                }
+                AboutAppIcon.Source = bitmap;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[PreferenceWindow] About画面のアイコン読み込みに失敗: {ex}");
+            }
         }
 
         private void SectionSelector_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
