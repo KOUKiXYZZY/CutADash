@@ -140,8 +140,21 @@ namespace SelectionToolbar
         public void HideNoActivate()
         {
             _outsideClickWatcher.Stop();
-            _autoHideTimer.Stop();
-            _window.Hide();
+
+            // アプリ終了処理(AppDomain.CurrentDomain.ProcessExit)からここへ到達すると、
+            // その時点でUIスレッドのCOM apartmentが既に不安定になっており、
+            // DispatcherTimer.Stop()/Window.Hide()等のWinRT呼び出しがCOMException
+            // (0x8001010E、RPC_E_WRONG_THREAD)を投げることがある(実際に踏んだ不具合)。
+            // プロセスごと終了する間際のベストエフォート処理のため、失敗しても実害は無く握りつぶす
+            try
+            {
+                _autoHideTimer.Stop();
+                _window.Hide();
+            }
+            catch (System.Runtime.InteropServices.COMException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[ToolbarWindowHelper] HideNoActivate中にCOMExceptionを無視しました: {ex.Message}");
+            }
         }
     }
 }

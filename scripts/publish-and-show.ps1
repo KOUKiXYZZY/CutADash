@@ -1,4 +1,4 @@
-# CtrlVPlusをpublishし、生成されたCutADash.exeをExplorerで選択表示する。
+# CutADashをpublishし、生成されたCutADash.exeをExplorerで選択表示する。
 # 実行中のCutADash.exe/Migration.exeがあるとpublish先のファイルがロックされて
 # 失敗するため、事前に終了させてから行う。
 param(
@@ -10,13 +10,13 @@ param(
 $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$csproj = Join-Path $repoRoot "CtrlVPlus/020_CtrlVPlus.csproj"
+$csproj = Join-Path $repoRoot "CutADash/020_CutADash.csproj"
 
 foreach ($procName in @("CutADash", "Migration")) {
     Get-Process -Name $procName -ErrorAction SilentlyContinue | Stop-Process -Force
 }
 
-$publishDir = Join-Path $repoRoot "CtrlVPlus/bin/win-$Platform/publish/win-$Platform/win-$Platform/win-$Platform"
+$publishDir = Join-Path $repoRoot "CutADash/bin/win-$Platform/publish/win-$Platform/win-$Platform/win-$Platform"
 
 # 古いpublish結果を残したままだと、削除済みのDLL(例: 依存関係を外したパッケージのDLL)が
 # 消えずに残って混入してしまうため、publish前に一度フォルダごと消してから作り直す

@@ -87,8 +87,11 @@ namespace Preferences.ViewModels
             DisableImageHistory = PreferencesGateway.IsImageHistoryDisabled();
             ThumbnailMaxDimensionTag = PreferencesGateway.GetThumbnailMaxDimension().ToString();
 
+            // AssemblyVersionは既定でRevision(4桁目)が常に0になるため、
+            // 表示上はMajor.Minor.Buildの3桁("v1.0.0"形式)に揃える
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-            VersionText = string.Format(PreferencesStrings.Get("Pref_Version"), version);
+            var versionText = version is null ? "?" : $"v{version.ToString(3)}";
+            VersionText = string.Format(PreferencesStrings.Get("Pref_Version"), versionText);
 
             ExcludedAppNames.Clear();
             foreach (var name in PreferencesGateway.GetExcludedAppNames())

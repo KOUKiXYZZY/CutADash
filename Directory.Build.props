@@ -1,0 +1,8 @@
+<Project>
+  <!-- 全プロジェクト共通のバージョン設定。個別のcsprojでVersion系プロパティを
+       明示していない限りここが使われる。リリースごとにここだけ更新すればよい
+       (vpk packコマンドのpackVersion引数ともここで揃えること)。 -->
+  <PropertyGroup>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+</Project>

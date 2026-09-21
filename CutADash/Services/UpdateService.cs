@@ -16,9 +16,7 @@ namespace CutADash.Services
     /// </summary>
     public sealed class UpdateService
     {
-        // TODO: GitHubリポジトリを用意したら、実際の "owner/repo" のURLに差し替えること
-        // (現時点ではダミーのプレースホルダーで、実際には存在しないリポジトリを指している)
-        private const string GitHubRepoUrl = "https://github.com/TODO-OWNER/TODO-CutADash";
+        private const string GitHubRepoUrl = "https://github.com/KOUKiXYZZY/CutADash";
 
         private readonly UpdateManager _manager = new(new GithubSource(GitHubRepoUrl, null, false));
 
