@@ -1,0 +1,521 @@
+{
+  "kind": "Activities",
+  "items": [
+    {
+      "emoji": "✨",
+      "text": "sparkles",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🀄",
+      "text": "mahjong red dragon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🃏",
+      "text": "joker",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎀",
+      "text": "ribbon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎁",
+      "text": "wrapped gift",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎃",
+      "text": "jack-o-lantern",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎄",
+      "text": "Christmas tree",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎆",
+      "text": "fireworks",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎇",
+      "text": "sparkler",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎈",
+      "text": "balloon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎉",
+      "text": "party popper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎊",
+      "text": "confetti ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎋",
+      "text": "tanabata tree",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎍",
+      "text": "pine decoration",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎎",
+      "text": "Japanese dolls",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎏",
+      "text": "carp streamer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎐",
+      "text": "wind chime",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎑",
+      "text": "moon viewing ceremony",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎖️",
+      "text": "military medal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎗️",
+      "text": "reminder ribbon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎟️",
+      "text": "admission tickets",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎣",
+      "text": "fishing pole",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎨",
+      "text": "artist palette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎫",
+      "text": "ticket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎭",
+      "text": "performing arts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎮",
+      "text": "video game",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎯",
+      "text": "bullseye",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎰",
+      "text": "slot machine",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎱",
+      "text": "pool 8 ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎲",
+      "text": "game die",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎳",
+      "text": "bowling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎴",
+      "text": "flower playing cards",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎽",
+      "text": "running shirt",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎾",
+      "text": "tennis",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎿",
+      "text": "skis",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏀",
+      "text": "basketball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏅",
+      "text": "sports medal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏆",
+      "text": "trophy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏈",
+      "text": "american football",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏉",
+      "text": "rugby football",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏏",
+      "text": "cricket game",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏐",
+      "text": "volleyball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏑",
+      "text": "field hockey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏒",
+      "text": "ice hockey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏓",
+      "text": "ping pong",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏸",
+      "text": "badminton",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔮",
+      "text": "crystal ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕹️",
+      "text": "joystick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖼️",
+      "text": "framed picture",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛷",
+      "text": "sled",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤿",
+      "text": "diving mask",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥅",
+      "text": "goal net",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥇",
+      "text": "1st place medal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥈",
+      "text": "2nd place medal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥉",
+      "text": "3rd place medal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥊",
+      "text": "boxing glove",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥋",
+      "text": "martial arts uniform",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥌",
+      "text": "curling stone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥍",
+      "text": "lacrosse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥎",
+      "text": "softball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥏",
+      "text": "flying disc",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧧",
+      "text": "red envelope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧨",
+      "text": "firecracker",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧩",
+      "text": "puzzle piece",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧵",
+      "text": "thread",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧶",
+      "text": "yarn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧸",
+      "text": "teddy bear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧿",
+      "text": "nazar amulet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪀",
+      "text": "yo-yo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪁",
+      "text": "kite",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪄",
+      "text": "magic wand",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪅",
+      "text": "piñata",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪆",
+      "text": "nesting dolls",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪡",
+      "text": "sewing needle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪢",
+      "text": "knot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪩",
+      "text": "mirror ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪬",
+      "text": "hamsa",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♟️",
+      "text": "chess pawn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♠️",
+      "text": "spade suit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♣️",
+      "text": "club suit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♥️",
+      "text": "heart suit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♦️",
+      "text": "diamond suit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚽",
+      "text": "soccer ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚾",
+      "text": "baseball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛳",
+      "text": "flag in hole",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛸️",
+      "text": "ice skate",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

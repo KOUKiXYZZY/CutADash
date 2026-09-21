@@ -1,0 +1,9 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- キーボードフォーカス枠の太さ。CutADash本体とSelectionToolbar(別プロジェクト)の
+         両方から参照するため、どちらにも依存しないCommonへ定義を集約している -->
+    <Thickness x:Key="AppFocusVisualPrimaryThickness">0.5</Thickness>
+    <Thickness x:Key="AppFocusVisualSecondaryThickness">0</Thickness>
+</ResourceDictionary>

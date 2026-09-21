@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Face" xml:space="preserve">
+    <value>脸</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>人物</value>
+  </data>
+  <data name="Animals" xml:space="preserve">
+    <value>动物</value>
+  </data>
+  <data name="Food &amp; Drink" xml:space="preserve">
+    <value>食物和饮料</value>
+  </data>
+  <data name="Activities" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="Travel" xml:space="preserve">
+    <value>交通工具</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>地点</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>身体</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>国旗</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>天气</value>
+  </data>
+  <data name="Emotion" xml:space="preserve">
+    <value>情感</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="Plants" xml:space="preserve">
+    <value>植物</value>
+  </data>
+  <data name="Objects" xml:space="preserve">
+    <value>物品</value>
+  </data>
+  <data name="Symbols" xml:space="preserve">
+    <value>符号</value>
+  </data>
+  <data name="Flags" xml:space="preserve">
+    <value>旗帜</value>
+  </data>
+  <data name="Smileys &amp; Emotion" xml:space="preserve">
+    <value>表情与情感</value>
+  </data>
+  <data name="People &amp; Body" xml:space="preserve">
+    <value>人物与身体</value>
+  </data>
+  <data name="Animals &amp; Nature" xml:space="preserve">
+    <value>动物与自然</value>
+  </data>
+  <data name="Travel &amp; Places" xml:space="preserve">
+    <value>旅行与地点</value>
+  </data>
+  <data name="TrayIcon_Tooltip" xml:space="preserve">
+    <value>CutADash</value>
+  </data>
+  <data name="TrayIcon_Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="TrayIcon_Settings" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="TrayIcon_SequentialPaste" xml:space="preserve">
+    <value>顺序粘贴</value>
+  </data>
+  <data name="ListFrame_AddToSequentialPaste" xml:space="preserve">
+    <value>添加到顺序粘贴</value>
+  </data>
+  <data name="TrayIcon_PauseMonitoring" xml:space="preserve">
+    <value>暂停剪贴板监控</value>
+  </data>
+  <data name="TrayIcon_ResumeMonitoring" xml:space="preserve">
+    <value>恢复剪贴板监控</value>
+  </data>
+  <data name="TrayIcon_Quit" xml:space="preserve">
+    <value>退出应用</value>
+  </data>
+  <data name="TrayIcon_AlwaysPastePlainText" xml:space="preserve">
+    <value>始终以纯文本粘贴</value>
+  </data>
+  <data name="TrayIcon_CheckForUpdates" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
+    <value>应用更新并重启</value>
+  </data>
+  <data name="EmojiSetup_Message" xml:space="preserve">
+    <value>正在从字体生成表情符号图片(仅首次启动)…</value>
+  </data>
+  <data name="EmojiSetup_Progress" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="Nav_History" xml:space="preserve">
+    <value>历史记录</value>
+  </data>
+  <data name="Nav_Favorite" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="Nav_Emoji" xml:space="preserve">
+    <value>表情符号</value>
+  </data>
+  <data name="Contents_Paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="Contents_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Contents_PasteFormatted" xml:space="preserve">
+    <value>保留格式粘贴</value>
+  </data>
+  <data name="Contents_PastePlain" xml:space="preserve">
+    <value>粘贴为纯文本</value>
+  </data>
+  <data name="Empty_Text" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="ListFrame_AddToFavorite" xml:space="preserve">
+    <value>添加到收藏</value>
+  </data>
+  <data name="ListFrame_FavoriteRoot" xml:space="preserve">
+    <value>根目录</value>
+  </data>
+  <data name="Contents_UnsavedChangesTitle" xml:space="preserve">
+    <value>有未保存的更改</value>
+  </data>
+  <data name="Contents_UnsavedChangesMessage" xml:space="preserve">
+    <value>要不保存更改就离开吗?</value>
+  </data>
+  <data name="Contents_DiscardChanges" xml:space="preserve">
+    <value>不保存并离开</value>
+  </data>
+  <data name="Contents_CancelLeave" xml:space="preserve">
+    <value>取消</value>
+  </data>
+</root>

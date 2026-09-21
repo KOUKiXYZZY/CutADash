@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<winex:WindowEx
+    xmlns:winex="using:WinUIEx"
+    x:Class="CutADash.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CutADash"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    MinWidth="350"
+    Title="CutADash">
+
+    <Grid x:Name="RootGrid">
+        <!-- Tabキーで History/Favorite/Emoji を順に選べるようにする設定は、
+             テンプレート内部のホスト要素に対して行う必要があるため
+             NavView_Loaded(EnableTabThroughMenuItems)で実施している -->
+        <NavigationView x:Name="NavView"
+                        IsSettingsVisible="False"
+                        PaneDisplayMode="LeftCompact"
+                        IsBackButtonVisible="Collapsed"
+                        IsPaneToggleButtonVisible="True"
+                        SelectionChanged="NavigationView_SelectionChanged"
+                        OpenPaneLength="180"
+                        CornerRadius="0"
+                        Loaded="NavView_Loaded">
+            <NavigationView.Resources>
+                <!-- NavigationView内部のContentGrid(左上が既定で角丸8px)を四角にする -->
+                <CornerRadius x:Key="NavigationViewContentGridCornerRadius">0</CornerRadius>
+
+                <!-- アイコンのBitmapImageは、表示先のDPIに合わせたサイズのPNGを選ぶ必要が
+                     あるため、XAMLの固定リソースではなくコードビハインド側で生成している
+                     (MainWindow.xaml.cs の GetNavIcon を参照) -->
+            </NavigationView.Resources>
+
+            <!-- 3線(ハンバーガー)ボタンは内部でPaneToggleButtonStyleを参照する普通のButtonなので、
+                 NavigationViewItemと違いFocusVisualPrimaryThickness/SecondaryThicknessが
+                 正しく反映される。既定のPaneToggleButtonStyleを継承し、太さだけ上書きする -->
+            <NavigationView.PaneToggleButtonStyle>
+                <Style TargetType="Button" BasedOn="{StaticResource PaneToggleButtonStyle}">
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </NavigationView.PaneToggleButtonStyle>
+            <NavigationView.MenuItems>
+                <!-- アイコンは塗りと淵の重ね合わせをPNG側で済ませてある
+                     (NavigationViewItem.IconはIconElementを1つしか受け付けずGridで重ねられない)。
+                     SvgImageSourceはDirect2DのSVG描画機構を丸ごと読み込み、実測で200MB近く
+                     メモリを余分に使ったため、PNG+BitmapImageにしている。
+                     未選択時の淵の色はテーマごとに別ファイルで、SelectionChangedで選び直す -->
+                <NavigationViewItem x:Name="HistoryNavItem" Content="History" Tag="history"
+                                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}" FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}">
+                    <NavigationViewItem.Icon>
+                        <!-- Sourceは表示先のDPIに合わせたPNGを選ぶ必要があるため、
+                             XAMLでは指定せずUpdateNavIcons/ApplyNavIconが実行時に設定する -->
+                        <ImageIcon x:Name="HistoryNavIcon" Width="16" Height="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="FavoriteNavItem" Content="Favorite" Tag="favorite"
+                                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}" FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}">
+                    <NavigationViewItem.Icon>
+                        <ImageIcon x:Name="FavoriteNavIcon" Width="16" Height="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="EmojiNavItem" Content="Emoji" Tag="emoji"
+                                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}" FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}">
+                    <NavigationViewItem.Icon>
+                        <ImageIcon x:Name="EmojiNavIcon" Width="16" Height="16"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            
+            <Grid x:Name="RootContentGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Widthを明示しておかないと、Grid列がAutoのため中身(長いテキストなど)の
+                     要求サイズにそのまま追従して広がってしまう。ContentSizerでドラッグすれば
+                     ここから変更できる -->
+                <Frame x:Name="ListFrame"
+                       Grid.Row="0" Grid.RowSpan="2"
+                       Grid.Column="0"
+                       MinWidth="200"
+                       Width="280"/>
+                
+                <!-- ThemeShadowは奥行き(Translation のZ)を持つ要素から、その後ろにある
+                     要素へ落ちる。区切り線自体を少し手前に出して影を落とさせる -->
+                <Border x:Name="DividerBorder"
+                        Grid.Row="0" Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Width="1"
+                        HorizontalAlignment="Center"
+                        Translation="0,0,16"
+                        Background="{StaticResource DividerSeparatorVertical}">
+                    <Border.Shadow>
+                        <ThemeShadow/>
+                    </Border.Shadow>
+                </Border>
+                
+                <!-- 区切りのドラッグ処理。以前はCommunityToolkit.WinUI.Controls.Sizersの
+                     ContentSizerを使っていたが、このアプリ(非パッケージ)の環境では
+                     コントロールの既定スタイル(ms-appx:///CommunityToolkit.WinUI.Controls.Sizers/
+                     SizerBase.xaml)が実行時に解決できずOnApplyTemplateが一切走らないため、
+                     レイアウト上は正しい位置・サイズを持つのにポインター入力に完全に無反応になる
+                     不具合があった(調査の末に判明)。素朴なBorder+ポインターイベントによる
+                     自前実装に置き換えて、この依存を無くしている -->
+                <Border x:Name="ContentSizerControl"
+                        Grid.Row="0" Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Width="9"
+                        Background="Transparent"
+                        PointerPressed="ContentSizerControl_PointerPressed"
+                        PointerMoved="ContentSizerControl_PointerMoved"
+                        PointerReleased="ContentSizerControl_PointerReleased"
+                        PointerEntered="ContentSizerControl_PointerEntered"
+                        PointerExited="ContentSizerControl_PointerExited" />
+
+                <Grid x:Name="TitleBarRow" Grid.Row="0" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 閉じるボタンの左側を掴んでウィンドウを移動できるドラッグ領域。
+                         現在のタブ名をアクセントカラーで表示し、画面上部の空白を埋める -->
+                    <Grid x:Name="DragHandle"
+                          Grid.Column="0"
+                          Height="32"
+                          Background="Transparent">
+                        <TextBlock x:Name="CurrentTabTitle"
+                                   Margin="12,0,0,0"
+                                   VerticalAlignment="Center"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+
+                    <!-- ウィンドウ閉じるボタンを配置-->
+                    <Button Grid.Column="1"
+                        Width="42" Height="32"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        CornerRadius="0"
+                        IsTabStop="False"
+                        FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
+                        FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
+                        Click="CloseButton_Click">
+                        <Button.Resources>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
+                        </Button.Resources>
+                        <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
+                    </Button>
+
+                    <!-- タイトルバーとContentFrameの境界線 -->
+                    <Border Grid.Column="0" Grid.ColumnSpan="2"
+                            Height="1"
+                            VerticalAlignment="Bottom"
+                            Background="{StaticResource DividerBrushHorizontal}"/>
+                </Grid>
+
+                <Frame x:Name="ContentFrame" Grid.Row="1" Grid.Column="2" />
+            </Grid>
+        </NavigationView>
+    </Grid>
+</winex:WindowEx>

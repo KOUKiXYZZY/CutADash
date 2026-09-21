@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>QrDecoding</RootNamespace>
+    <UseWinUI>false</UseWinUI>
+    <AssemblyName>QrDecoding</AssemblyName>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;DevDebug</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- QRコードの検出・復号自体はOSSのZXing.Netに任せる(自前実装は
+         ロゴ入り・軽い歪みのあるQRへの頑健性が不十分だったため撤退した)。
+         画像フォーマット(PNG/JPEG等)のデコードにはSystem.Drawing.Commonを使う -->
+    <PackageReference Include="ZXing.Net" Version="0.16.10" />
+    <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.12" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
+  </ItemGroup>
+
+</Project>

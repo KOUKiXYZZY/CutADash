@@ -1,0 +1,1313 @@
+{
+  "kind": "Travel & Places",
+  "items": [
+    {
+      "emoji": "☔",
+      "text": "umbrella with rain drops",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚓",
+      "text": "anchor",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌀",
+      "text": "cyclone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌁",
+      "text": "foggy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌂",
+      "text": "closed umbrella",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌃",
+      "text": "night with stars",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌄",
+      "text": "sunrise over mountains",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌅",
+      "text": "sunrise",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌆",
+      "text": "cityscape at dusk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌇",
+      "text": "sunset",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌈",
+      "text": "rainbow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌉",
+      "text": "bridge at night",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌊",
+      "text": "water wave",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌋",
+      "text": "volcano",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌌",
+      "text": "milky way",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌍",
+      "text": "globe showing Europe-Africa",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌎",
+      "text": "globe showing Americas",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌏",
+      "text": "globe showing Asia-Australia",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌐",
+      "text": "globe with meridians",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌑",
+      "text": "new moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌒",
+      "text": "waxing crescent moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌓",
+      "text": "first quarter moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌔",
+      "text": "waxing gibbous moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌕",
+      "text": "full moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌖",
+      "text": "waning gibbous moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌗",
+      "text": "last quarter moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌘",
+      "text": "waning crescent moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌙",
+      "text": "crescent moon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌚",
+      "text": "new moon face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌛",
+      "text": "first quarter moon face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌜",
+      "text": "last quarter moon face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌝",
+      "text": "full moon face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌞",
+      "text": "sun with face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌟",
+      "text": "glowing star",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌠",
+      "text": "shooting star",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌡️",
+      "text": "thermometer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌤️",
+      "text": "sun behind small cloud",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌥️",
+      "text": "sun behind large cloud",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌦️",
+      "text": "sun behind rain cloud",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌧️",
+      "text": "cloud with rain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌨️",
+      "text": "cloud with snow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌩️",
+      "text": "cloud with lightning",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌪️",
+      "text": "tornado",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌫️",
+      "text": "fog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌬️",
+      "text": "wind face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎠",
+      "text": "carousel horse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎡",
+      "text": "ferris wheel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎢",
+      "text": "roller coaster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎪",
+      "text": "circus tent",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏍️",
+      "text": "motorcycle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏎️",
+      "text": "racing car",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏔️",
+      "text": "snow-capped mountain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏕️",
+      "text": "camping",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏖️",
+      "text": "beach with umbrella",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏗️",
+      "text": "building construction",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏘️",
+      "text": "houses",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏙️",
+      "text": "cityscape",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏚️",
+      "text": "derelict house",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏛️",
+      "text": "classical building",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏜️",
+      "text": "desert",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏝️",
+      "text": "desert island",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏞️",
+      "text": "national park",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏟️",
+      "text": "stadium",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏠",
+      "text": "house",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏡",
+      "text": "house with garden",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏢",
+      "text": "office building",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏣",
+      "text": "Japanese post office",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏤",
+      "text": "post office",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏥",
+      "text": "hospital",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏦",
+      "text": "bank",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏨",
+      "text": "hotel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏩",
+      "text": "love hotel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏪",
+      "text": "convenience store",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏫",
+      "text": "school",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏬",
+      "text": "department store",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏭",
+      "text": "factory",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏯",
+      "text": "Japanese castle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏰",
+      "text": "castle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💈",
+      "text": "barber pole",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💒",
+      "text": "wedding",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💧",
+      "text": "droplet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💺",
+      "text": "seat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔥",
+      "text": "fire",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕋",
+      "text": "kaaba",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕌",
+      "text": "mosque",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕍",
+      "text": "synagogue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕐",
+      "text": "one o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕑",
+      "text": "two o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕒",
+      "text": "three o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕓",
+      "text": "four o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕔",
+      "text": "five o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕕",
+      "text": "six o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕖",
+      "text": "seven o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕗",
+      "text": "eight o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕘",
+      "text": "nine o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕙",
+      "text": "ten o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕚",
+      "text": "eleven o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕛",
+      "text": "twelve o’clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕜",
+      "text": "one-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕝",
+      "text": "two-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕞",
+      "text": "three-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕟",
+      "text": "four-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕠",
+      "text": "five-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕡",
+      "text": "six-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕢",
+      "text": "seven-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕣",
+      "text": "eight-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕤",
+      "text": "nine-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕥",
+      "text": "ten-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕦",
+      "text": "eleven-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕧",
+      "text": "twelve-thirty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕰️",
+      "text": "mantelpiece clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗺️",
+      "text": "world map",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗻",
+      "text": "mount fuji",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗼",
+      "text": "Tokyo tower",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗽",
+      "text": "Statue of Liberty",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗾",
+      "text": "map of Japan",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚀",
+      "text": "rocket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚁",
+      "text": "helicopter",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚂",
+      "text": "locomotive",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚃",
+      "text": "railway car",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚄",
+      "text": "high-speed train",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚅",
+      "text": "bullet train",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚆",
+      "text": "train",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚇",
+      "text": "metro",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚈",
+      "text": "light rail",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚉",
+      "text": "station",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚊",
+      "text": "tram",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚋",
+      "text": "tram car",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚌",
+      "text": "bus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚍",
+      "text": "oncoming bus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚎",
+      "text": "trolleybus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚏",
+      "text": "bus stop",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚐",
+      "text": "minibus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚑",
+      "text": "ambulance",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚒",
+      "text": "fire engine",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚓",
+      "text": "police car",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚔",
+      "text": "oncoming police car",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚕",
+      "text": "taxi",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚖",
+      "text": "oncoming taxi",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚗",
+      "text": "automobile",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚘",
+      "text": "oncoming automobile",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚙",
+      "text": "sport utility vehicle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚚",
+      "text": "delivery truck",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚛",
+      "text": "articulated lorry",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚜",
+      "text": "tractor",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚝",
+      "text": "monorail",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚞",
+      "text": "mountain railway",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚟",
+      "text": "suspension railway",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚠",
+      "text": "mountain cableway",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚡",
+      "text": "aerial tramway",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚢",
+      "text": "ship",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚤",
+      "text": "speedboat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚥",
+      "text": "horizontal traffic light",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚦",
+      "text": "vertical traffic light",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚧",
+      "text": "construction",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚨",
+      "text": "police car light",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚲",
+      "text": "bicycle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛎️",
+      "text": "bellhop bell",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛑",
+      "text": "stop sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛕",
+      "text": "hindu temple",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛖",
+      "text": "hut",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛝",
+      "text": "playground slide",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛞",
+      "text": "wheel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛟",
+      "text": "ring buoy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛢️",
+      "text": "oil drum",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛣️",
+      "text": "motorway",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛤️",
+      "text": "railway track",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛥️",
+      "text": "motor boat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛩️",
+      "text": "small airplane",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛫",
+      "text": "airplane departure",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛬",
+      "text": "airplane arrival",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛰️",
+      "text": "satellite",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛳️",
+      "text": "passenger ship",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛴",
+      "text": "kick scooter",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛵",
+      "text": "motor scooter",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛶",
+      "text": "canoe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛸",
+      "text": "flying saucer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛹",
+      "text": "skateboard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛺",
+      "text": "auto rickshaw",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛻",
+      "text": "pickup truck",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛼",
+      "text": "roller skate",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦼",
+      "text": "motorized wheelchair",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦽",
+      "text": "manual wheelchair",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧭",
+      "text": "compass",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧱",
+      "text": "brick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧳",
+      "text": "luggage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪂",
+      "text": "parachute",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪐",
+      "text": "ringed planet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪨",
+      "text": "rock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪵",
+      "text": "wood",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⌚",
+      "text": "watch",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⌛",
+      "text": "hourglass done",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏰",
+      "text": "alarm clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏱️",
+      "text": "stopwatch",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏲️",
+      "text": "timer clock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏳",
+      "text": "hourglass not done",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☀️",
+      "text": "sun",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☁️",
+      "text": "cloud",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☂️",
+      "text": "umbrella",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☃️",
+      "text": "snowman",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☄️",
+      "text": "comet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♨️",
+      "text": "hot springs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚡",
+      "text": "high voltage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛄",
+      "text": "snowman without snow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛅",
+      "text": "sun behind cloud",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛈️",
+      "text": "cloud with lightning and rain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛩️",
+      "text": "shinto shrine",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛪",
+      "text": "church",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛰️",
+      "text": "mountain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛱️",
+      "text": "umbrella on ground",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛲",
+      "text": "fountain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛴️",
+      "text": "ferry",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛵",
+      "text": "sailboat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛺",
+      "text": "tent",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛽",
+      "text": "fuel pump",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✈️",
+      "text": "airplane",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❄️",
+      "text": "snowflake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⭐",
+      "text": "star",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

@@ -1,0 +1,1019 @@
+{
+  "kind": "Smileys & Emotion",
+  "items": [
+    {
+      "emoji": "😀",
+      "text": "grinning face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😁",
+      "text": "beaming face with smiling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😂",
+      "text": "face with tears of joy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😃",
+      "text": "grinning face with big eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😄",
+      "text": "grinning face with smiling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😅",
+      "text": "grinning face with sweat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😆",
+      "text": "grinning squinting face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😇",
+      "text": "smiling face with halo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😈",
+      "text": "smiling face with horns",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😉",
+      "text": "winking face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😊",
+      "text": "smiling face with smiling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😋",
+      "text": "face savoring food",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😌",
+      "text": "relieved face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😍",
+      "text": "smiling face with heart-eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😎",
+      "text": "smiling face with sunglasses",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😏",
+      "text": "smirking face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😐",
+      "text": "neutral face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😑",
+      "text": "expressionless face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😒",
+      "text": "unamused face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😓",
+      "text": "downcast face with sweat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😔",
+      "text": "pensive face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😕",
+      "text": "confused face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😖",
+      "text": "confounded face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😗",
+      "text": "kissing face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😘",
+      "text": "face blowing a kiss",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😙",
+      "text": "kissing face with smiling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😚",
+      "text": "kissing face with closed eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😛",
+      "text": "face with tongue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😜",
+      "text": "winking face with tongue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😝",
+      "text": "squinting face with tongue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😞",
+      "text": "disappointed face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😟",
+      "text": "worried face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😠",
+      "text": "angry face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😡",
+      "text": "pouting face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😢",
+      "text": "crying face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😣",
+      "text": "persevering face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😤",
+      "text": "face with steam from nose",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😥",
+      "text": "sad but relieved face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😦",
+      "text": "frowning face with open mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😧",
+      "text": "anguished face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😨",
+      "text": "fearful face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😩",
+      "text": "weary face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😪",
+      "text": "sleepy face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😫",
+      "text": "tired face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😬",
+      "text": "grimacing face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😭",
+      "text": "loudly crying face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😮",
+      "text": "face with open mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😮‍💨",
+      "text": "face exhaling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😯",
+      "text": "hushed face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😰",
+      "text": "anxious face with sweat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😱",
+      "text": "face screaming in fear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😲",
+      "text": "astonished face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😳",
+      "text": "flushed face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😴",
+      "text": "sleeping face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😵",
+      "text": "face with crossed-out eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😵‍💫",
+      "text": "face with spiral eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😶",
+      "text": "face without mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😶‍🌫️",
+      "text": "face in clouds",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😷",
+      "text": "face with medical mask",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😸",
+      "text": "grinning cat with smiling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😹",
+      "text": "cat with tears of joy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😺",
+      "text": "grinning cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😻",
+      "text": "smiling cat with heart-eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😼",
+      "text": "cat with wry smile",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😽",
+      "text": "kissing cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😾",
+      "text": "pouting cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "😿",
+      "text": "crying cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙀",
+      "text": "weary cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙁",
+      "text": "slightly frowning face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙂",
+      "text": "slightly smiling face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙂‍↔️",
+      "text": "head shaking horizontally",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙂‍↕️",
+      "text": "head shaking vertically",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙃",
+      "text": "upside-down face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙄",
+      "text": "face with rolling eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙈",
+      "text": "see-no-evil monkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙉",
+      "text": "hear-no-evil monkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙊",
+      "text": "speak-no-evil monkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤍",
+      "text": "white heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤎",
+      "text": "brown heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤐",
+      "text": "zipper-mouth face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤑",
+      "text": "money-mouth face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤒",
+      "text": "face with thermometer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤓",
+      "text": "nerd face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤔",
+      "text": "thinking face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤕",
+      "text": "face with head-bandage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤖",
+      "text": "robot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤗",
+      "text": "smiling face with open hands",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤠",
+      "text": "cowboy hat face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤡",
+      "text": "clown face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤢",
+      "text": "nauseated face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤣",
+      "text": "rolling on the floor laughing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤤",
+      "text": "drooling face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤥",
+      "text": "lying face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤧",
+      "text": "sneezing face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤨",
+      "text": "face with raised eyebrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤩",
+      "text": "star-struck",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤪",
+      "text": "zany face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤫",
+      "text": "shushing face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤬",
+      "text": "face with symbols on mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤭",
+      "text": "face with hand over mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤮",
+      "text": "face vomiting",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤯",
+      "text": "exploding head",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥰",
+      "text": "smiling face with hearts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥱",
+      "text": "yawning face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥲",
+      "text": "smiling face with tear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥳",
+      "text": "partying face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥴",
+      "text": "woozy face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥵",
+      "text": "hot face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥶",
+      "text": "cold face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥸",
+      "text": "disguised face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥹",
+      "text": "face holding back tears",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥺",
+      "text": "pleading face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧐",
+      "text": "face with monocle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫠",
+      "text": "melting face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫡",
+      "text": "saluting face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫢",
+      "text": "face with open eyes and hand over mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫣",
+      "text": "face with peeking eye",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫤",
+      "text": "face with diagonal mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫥",
+      "text": "dotted line face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫨",
+      "text": "shaking face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☹️",
+      "text": "frowning face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☺️",
+      "text": "smiling face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❣️",
+      "text": "heart exclamation",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❤️",
+      "text": "red heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❤️‍🔥",
+      "text": "heart on fire",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❤️‍🩹",
+      "text": "mending heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💓",
+      "text": "beating heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💔",
+      "text": "broken heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💕",
+      "text": "two hearts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💖",
+      "text": "sparkling heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💗",
+      "text": "growing heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💘",
+      "text": "heart with arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💙",
+      "text": "blue heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💚",
+      "text": "green heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💛",
+      "text": "yellow heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💜",
+      "text": "purple heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💝",
+      "text": "heart with ribbon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💞",
+      "text": "revolving hearts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💟",
+      "text": "heart decoration",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖤",
+      "text": "black heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💢",
+      "text": "anger symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💣",
+      "text": "bomb",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💤",
+      "text": "zzz",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💥",
+      "text": "collision",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💦",
+      "text": "sweat droplets",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💨",
+      "text": "dashing away",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💩",
+      "text": "pile of poo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💫",
+      "text": "dizzy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💬",
+      "text": "speech balloon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💭",
+      "text": "thought balloon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💯",
+      "text": "hundred points",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕳️",
+      "text": "hole",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗨️",
+      "text": "left speech bubble",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗯️",
+      "text": "right anger bubble",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧡",
+      "text": "orange heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩵",
+      "text": "light blue heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩶",
+      "text": "grey heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩷",
+      "text": "pink heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👁️‍🗨️",
+      "text": "eye in speech bubble",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☠️",
+      "text": "skull and crossbones",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👹",
+      "text": "ogre",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👺",
+      "text": "goblin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👻",
+      "text": "ghost",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👽",
+      "text": "alien",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👾",
+      "text": "alien monster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👿",
+      "text": "angry face with horns",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💀",
+      "text": "skull",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💋",
+      "text": "kiss mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💌",
+      "text": "love letter",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

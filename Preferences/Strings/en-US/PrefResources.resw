@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Pref_Tab_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Pref_Tab_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Pref_Tab_Shortcuts" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
+  <data name="Pref_Tab_ExcludedApps" xml:space="preserve">
+    <value>Excluded Apps</value>
+  </data>
+  <data name="Pref_Tab_SelectionToolbar" xml:space="preserve">
+    <value>Selection Toolbar</value>
+  </data>
+  <data name="Pref_Tab_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Pref_General_Title" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Pref_LaunchAtLogin" xml:space="preserve">
+    <value>Launch at login</value>
+  </data>
+  <data name="Pref_DisableCaretPositioning" xml:space="preserve">
+    <value>Don't move window to caret position</value>
+  </data>
+  <data name="Pref_DisableWindowsClipboardHistory" xml:space="preserve">
+    <value>Disable Windows Clipboard History (Win+V)</value>
+  </data>
+  <data name="Pref_Language_Title" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Pref_Language_Description" xml:space="preserve">
+    <value>Choose the display language. Restart the app for changes to fully take effect.</value>
+  </data>
+  <data name="Pref_Language_SystemDefault" xml:space="preserve">
+    <value>System default</value>
+  </data>
+  <data name="Pref_Theme_Title" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Pref_Theme_Description" xml:space="preserve">
+    <value>Choose the background material for the main window (palette).</value>
+  </data>
+  <data name="Pref_History_Title" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Pref_MaxHistoryCount" xml:space="preserve">
+    <value>Number of history items to keep</value>
+  </data>
+  <data name="Pref_DisableImageHistory" xml:space="preserve">
+    <value>Don't add images to history</value>
+  </data>
+  <data name="Pref_ThumbnailSize" xml:space="preserve">
+    <value>Thumbnail size</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Small" xml:space="preserve">
+    <value>Small (100px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Medium" xml:space="preserve">
+    <value>Medium (200px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Large" xml:space="preserve">
+    <value>Large (300px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLarge" xml:space="preserve">
+    <value>Extra Large (400px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLargePlus" xml:space="preserve">
+    <value>Extra Large+ (600px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Max" xml:space="preserve">
+    <value>Maximum (800px)</value>
+  </data>
+  <data name="Pref_OpenHistory" xml:space="preserve">
+    <value>Open History</value>
+  </data>
+  <data name="Pref_OpenFavorite" xml:space="preserve">
+    <value>Open Favorite</value>
+  </data>
+  <data name="Pref_OpenEmoji" xml:space="preserve">
+    <value>Open Emoji</value>
+  </data>
+  <data name="Pref_Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Pref_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Pref_ShortcutHint" xml:space="preserve">
+    <value>Press a new key combination (modifier + key). Press Esc to cancel.</value>
+  </data>
+  <data name="Pref_ExcludedApps_Title" xml:space="preserve">
+    <value>Apps excluded from copying</value>
+  </data>
+  <data name="Pref_ExcludedApps_Description" xml:space="preserve">
+    <value>Content copied from apps added here won't be added to history. Enter the process name (without extension, e.g. chrome, notepad).</value>
+  </data>
+  <data name="Pref_ExcludedApps_Placeholder" xml:space="preserve">
+    <value>Process name (e.g. chrome)</value>
+  </data>
+  <data name="Pref_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Pref_SelectionToolbar_Description" xml:space="preserve">
+    <value>Shows a small toolbar near selected text, or an editable field you click on.</value>
+  </data>
+  <data name="Pref_SelectionToolbarEnabled" xml:space="preserve">
+    <value>Show text selection toolbar (experimental)</value>
+  </data>
+  <data name="Pref_SelectionToolbarAutoHideSeconds" xml:space="preserve">
+    <value>Auto-hide after: {0}s</value>
+  </data>
+  <data name="Pref_About_Description" xml:space="preserve">
+    <value>A tool for managing clipboard history, emoji, and favorites.</value>
+  </data>
+  <data name="Pref_Version" xml:space="preserve">
+    <value>Version {0}</value>
+  </data>
+  <data name="Pref_NotSet" xml:space="preserve">
+    <value>Not set</value>
+  </data>
+  <data name="Pref_WaitingForKeyInput" xml:space="preserve">
+    <value>Waiting for key input...</value>
+  </data>
+</root>

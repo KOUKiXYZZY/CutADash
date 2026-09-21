@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<base:ClipboardListFrameBase
+    x:Class="CutADash.Views.ListFrame.ListFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CutADash"
+    xmlns:base="using:CutADash.Views.ListFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:contents="using:CutADash.Views.Contents"
+    xmlns:wv2="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- <CornerRadius x:Key="ListViewItemCornerRadius">0</CornerRadius> -->
+
+        <!-- TruncateTextConverter/BoolToVisibilityConverter/DividerBrushHorizontalは
+             App.xamlで共有定義済み -->
+
+        <!-- 各項目共通の右クリックメニュー(お気に入りへ追加)。DataContextはFlyoutを開いた
+             コンテナ(Grid)から引き継がれるため、Click側でClipboardItemとして取り出せる。
+             「お気に入りに追加」サブメニューの中身(ルート+既存フォルダ一覧)は、
+             Opening時にコードビハインドで丸ごと作り直して差し替える
+             (MenuFlyoutSubItem.Itemsへ実行時に追加した項目が描画されないWinUIの既知の
+             不具合を避けるため、既存のSubItemを書き換えるのではなく毎回新規に作る) -->
+        <MenuFlyout x:Key="ItemContextMenu" Opening="ItemContextMenu_Opening"/>
+
+        <!-- Text表示。リッチテキスト(Rtf/Html)を持っていても種別バッジは出さず、
+             常にプレーンテキストとして表示する(Contents側の常時プレーンテキスト表示と統一) -->
+        <DataTemplate x:Key="TextTemplate">
+            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+                <TextBlock
+                    Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
+                    FontSize="16"
+                    MaxLines="1"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis" />
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+        <!-- Image表示: 一覧ではサムネイルを描画せず、角丸のタグ風表示にする。
+             種別バッジ(GIF/Shape/Image)に加え、名前(未設定なら「名称未設定」)を表示する -->
+        <DataTemplate x:Key="ImageTemplate">
+            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                            CornerRadius="12"
+                            Padding="10,4"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+        <!-- Files表示 -->
+        <DataTemplate x:Key="FilesTemplate">
+            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock
+                        Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
+                        FontSize="16"
+                        MaxLines="1"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+
+        <!-- TemplateSelector -->
+        <contents:ClipboardTemplateSelector
+            x:Key="ClipboardTemplateSelector"
+            TextTemplate="{StaticResource TextTemplate}"
+            ImageTemplate="{StaticResource ImageTemplate}"
+            FilesTemplate="{StaticResource FilesTemplate}" />
+
+        <!-- 猫テーマ専用。行の区切り線ではなく、丸みを帯びた1枚ずつのカードを
+             余白で並べる見た目にする(ApplyCatListStyleで切り替える)。
+             既定のControlFillColorSecondaryBrushだと薄すぎて見えづらかったため、
+             明暗共通の少し濃いめの黒系半透明色に固定している -->
+        <SolidColorBrush x:Key="CatCardBackgroundBrush" Color="#40000000"/>
+        <DataTemplate x:Key="TextTemplateCat">
+            <Border Margin="8,4,8,0" Padding="10,10"
+                    CornerRadius="14"
+                    Background="{StaticResource CatCardBackgroundBrush}"
+                    ContextFlyout="{StaticResource ItemContextMenu}">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                            Width="28" Height="28"
+                            CornerRadius="14"
+                            Background="#FFCBA4"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="&#x1F43E;" FontSize="15"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="ImageTemplateCat">
+            <Border Margin="8,4,8,0" Padding="10,10"
+                    CornerRadius="14"
+                    Background="{StaticResource CatCardBackgroundBrush}"
+                    ContextFlyout="{StaticResource ItemContextMenu}">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                            Width="28" Height="28"
+                            CornerRadius="14"
+                            Background="#A7D8C0"
+                            VerticalAlignment="Center">
+                        <FontIcon Glyph="&#xEB9F;" FontSize="13"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="FilesTemplateCat">
+            <Border Margin="8,4,8,0" Padding="10,10"
+                    CornerRadius="14"
+                    Background="{StaticResource CatCardBackgroundBrush}"
+                    ContextFlyout="{StaticResource ItemContextMenu}">
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                            Width="28" Height="28"
+                            CornerRadius="14"
+                            Background="#B7C9F2"
+                            VerticalAlignment="Center">
+                        <FontIcon Glyph="&#xE7C3;" FontSize="13"
+                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <contents:ClipboardTemplateSelector
+            x:Key="ClipboardTemplateSelectorCat"
+            TextTemplate="{StaticResource TextTemplateCat}"
+            ImageTemplate="{StaticResource ImageTemplateCat}"
+            FilesTemplate="{StaticResource FilesTemplateCat}" />
+    </Page.Resources>
+    <Grid Background="Transparent" x:Name="SideContent" KeyDown="SideContent_KeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="SearchBox"
+                 PlaceholderText="Search"
+                 PlaceholderForeground="LightGray"
+                 Margin="6,6,6,6"
+                 CornerRadius="8"
+                 Grid.Row="0"
+                 Text="{Binding SearchText, Mode=TwoWay}"
+                 TextChanged="SearchBox_TextChanged"
+                 KeyDown="SearchBox_KeyDown"/>
+        <ListView x:Name="ListView"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding DisplayItems}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+
+                  ItemTemplateSelector="{StaticResource ClipboardTemplateSelector}"
+                  Grid.Row="1"
+                  SelectionChanged="ItemsListView_SelectionChanged"
+                  KeyDown="ItemsListView_KeyDown"
+                  PreviewKeyDown="ItemsListView_PreviewKeyDown"
+                  GotFocus="ItemsListView_GotFocus"
+                  >
+
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+
+            <!-- フォーカス枠(既定は外2px+内1pxの二重線)を細くする。
+                 App.xamlのimplicitスタイルだと起動時クラッシュするため、ページスコープで指定する。
+                 BasedOnを付けないと選択時のアクセント表示等、既定テンプレート全体が失われるので注意 -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <!-- 検索結果が返ってくるまでの待機アニメーション -->
+        <ProgressRing Grid.Row="1"
+                      Width="32" Height="32"
+                      IsActive="{Binding IsSearching}"
+                      Visibility="{Binding IsSearching, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <!-- 履歴が1件も無いときに表示する -->
+        <TextBlock x:Name="EmptyText"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="Gray"
+                   FontSize="16"
+                   IsHitTestVisible="False"
+                   Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <!-- 履歴削除ボタンの領域が一覧へ落とす影。行1の最下部に重ねて描くため、
+             ListViewより後ろに置いて手前に来るようにし、操作を邪魔しないよう
+             ヒットテストからは外す -->
+        <Border Grid.Row="1"
+                Height="8"
+                VerticalAlignment="Bottom"
+                IsHitTestVisible="False"
+                Background="{StaticResource BottomBarShadowBrush}"/>
+
+        <!-- 履歴を全て削除するボタン -->
+        <Grid Grid.Row="2">
+            <Button Width="42" Height="32"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
+                    FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
+                    ToolTipService.ToolTip="All Clear"
+                    Click="AllClear_Click">
+                <FontIcon Glyph="&#xE74D;" FontSize="14"/>
+            </Button>
+        </Grid>
+    </Grid>
+</base:ClipboardListFrameBase>

@@ -1,0 +1,218 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	  <OutputType>WinExe</OutputType>
+	  <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+	  <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+	  <RootNamespace>CutADash</RootNamespace>
+	  <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <Platforms>x86;x64;ARM64</Platforms>
+	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	  <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+	  <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+	  <UseWinUI>true</UseWinUI>
+	  <EnableMsixTooling>true</EnableMsixTooling>
+	  <Nullable>enable</Nullable>
+	  <!--
+	  以下を追加したらunpackagedで動作するようになった
+	  -->
+	  <WindowsPackageType>None</WindowsPackageType>
+	  <WindowsAppSDKSelfContained>false</WindowsAppSDKSelfContained>
+	  <!-- WindowsAppSDKSelfContained=falseの組み合わせだと、レジストリフリー有効化
+	       (UndockedRegFreeWinRT)の自動有効化条件に当てはまらないため、明示的に有効にする。
+	       Microsoft.UI.Xaml.dllでの謎の0xc000027b(stowed 8007007E)クラッシュの
+	       原因になっている可能性がある不安定な状態を避けるための対策 -->
+	  <WindowsAppSdkUndockedRegFreeWinRTInitialize>true</WindowsAppSdkUndockedRegFreeWinRTInitialize>
+	  <!--
+	    アセンブリ名を指定することで、プロジェクト名と異なる名前のアセンブリを生成することができます。
+	  -->
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <PublishTrimmed>true</PublishTrimmed>
+	  <AssemblyName>CutADash</AssemblyName>
+	  <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+	  <Configurations>Debug;Release;DevDebug</Configurations>
+	  
+	  <EnableComInterop>true</EnableComInterop>
+	  <!-- PublishTrimmedにより既定で無効化される、組み込みCOM相互運用(CUIAutomation/IAccessible2など
+	       [ComImport]ベースの古典的なCOM)を明示的に再有効化する。無効のままだと
+	       NotSupportedException(Built-in COM has been disabled via a feature switch)になる -->
+	  <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	  <EnableUnsafeBinaryFormatterSerialization>false</EnableUnsafeBinaryFormatterSerialization>
+	  <!-- publish出力を配布向けに最小限にするための設定。
+	       日本語/英語/中国語以外のサテライトリソースアセンブリを含めない -->
+	  <SatelliteResourceLanguages>ja-JP;en-US;zh-CN</SatelliteResourceLanguages>
+	  <!-- 参照アセンブリに付随する.xml(ドキュメントコメント)/.pdbが出力にコピーされるのを防ぐ -->
+	  <AllowedReferenceRelatedFileExtensions>.dll</AllowedReferenceRelatedFileExtensions>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Services - コピー\**" />
+    <Compile Remove="Views\Favorite\**" />
+    <EmbeddedResource Remove="Services - コピー\**" />
+    <EmbeddedResource Remove="Views\Favorite\**" />
+    <None Remove="Services - コピー\**" />
+    <None Remove="Views\Favorite\**" />
+    <Page Remove="Services - コピー\**" />
+    <Page Remove="Views\Favorite\**" />
+  </ItemGroup>
+  <ItemGroup>
+	  <Content Remove="Assets\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+	  <None Remove="Emoji.xaml" />
+	  <None Remove="History.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
+    Tools extension to be activated for this project even if the Windows App SDK Nuget
+    package has not yet been restored.
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Accessibility" Version="4.6.0-preview3.19128.7" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1721" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260416003" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Velopack" Version="0.0.1298" />
+    <PackageReference Include="WinUIEx" Version="2.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\010_Common.csproj" />
+    <ProjectReference Include="..\QrDecoding\070_QrDecoding.csproj" />
+    <ProjectReference Include="..\SelectionToolbar\090_SelectionToolbar.csproj" />
+    <ProjectReference Include="..\SequentialPaste\110_SequentialPaste.csproj" />
+    <ProjectReference Include="..\Repositories\030_Repositories.csproj" />
+    <ProjectReference Include="..\Preferences\040_Preferences.csproj" />
+    <ProjectReference Include="..\WinAPI\100_WinAPI.csproj" />
+    <ProjectReference Include="..\Migration\060_Migration.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Assets\AppIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <!-- システムトレイ用の単色アイコン(ライト/ダーク別)。生成方法は
+         AssetsSrc\AppIcon\Source\build-tray-icon.ps1 を参照 -->
+    <None Update="Assets\AppIconTray*.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <!-- NavigationViewのアイコン。AssetsSrc\Nav\Source のSVGから同フォルダの
+         render-nav-icons.ps1 で各拡大率ぶんのサイズを描き起こしてある(16/24/32/48px)。
+         増減してもここは触らなくて済むよう、個別指定ではなくまとめて指定する -->
+    <None Update="Assets\Nav\*.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <!-- 絵文字マスタ(kind別のJSON+DPI別スプライトシートPNG)。Microsoft Fluent Emoji
+         (microsoft/fluentui-emoji、MIT、リポジトリ直下にサブモジュールとして追加済み)を
+         情報源に、EmojiGenerateScript\build_emoji_data.pyでビルド前に生成したものを
+         そのまま同梱する -->
+    <None Update="Assets\Emoji\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Emoji\*.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Page Update="Emoji.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="History.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Emoji\" />
+    <Folder Include="Views\Emoji\" />
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
+    the Windows App SDK Nuget package has not yet been restored.
+  -->
+  <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
+
+  <!-- Publish Properties -->
+  <PropertyGroup>
+    <PublishSingleFile>False</PublishSingleFile>
+	<TrimMode>full</TrimMode>
+    <!-- R2R(事前ネイティブコンパイル)は使わない。得られるのは起動の高速化だけで、
+         このアプリの実行時間全体からすれば小さい一方、ILとは別のネイティブコードが
+         生成されるぶん、実行時の挙動がビルド構成によって変わる余地が増える。
+         配布版だけ再現する不具合を追う際の切り分けを難しくしたくないため無効にしている -->
+    <PublishReadyToRun>False</PublishReadyToRun>
+    <!-- フレームワーク依存(false)にすると配布ファイル数は減るが、実行環境に
+         .NET 8 Desktop Runtimeのインストールが必須になる。開発機にすら入って
+         いなかったことが判明し配布先での動作リスクが高いため、自己完結型に戻した。
+         PublishTrimmedは自己完結型でないと使えない(NETSDK1102)上、trueにすると
+         sqlite-net-pclのリフレクションベースのスキーマ組み立てが壊れて
+         「duplicate column name」でクラッシュする問題があったため無効のまま -->
+    <PublishTrimmed>False</PublishTrimmed>
+	<SelfContained>true</SelfContained>
+    <SupportedOSPlatformVersion>10.0.26100.0</SupportedOSPlatformVersion>
+    <UseWindowsForms>False</UseWindowsForms>
+    <PublishAot>False</PublishAot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|x86'">
+    <DefineConstants>$(DefineConstants);DEVDEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|x64'">
+    <DefineConstants>$(DefineConstants);DEVDEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|ARM64'">
+    <DefineConstants>$(DefineConstants);DEVDEBUG</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.runtime\1.8.260416003\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Services - コピー\**" />
+  </ItemGroup>
+
+  <!-- Preferencesプロジェクト配下のPrefResources.resw(実体はPreferences/Strings/にある)を、
+       CutADash本体のresources.priにリンクとして取り込む。ファイル自体は移動せず、
+       ビルド時にCutADash.pri側へ"PrefResources"という別サブツリーとしてコンパイルされる。
+       Preferences.dll単体で見えるProjectReference先の別pri(Preferences.pri)を
+       ResourceManagerで明示読み込みする方式は実行時に文字列が引けなかったため、
+       動作実績のある本体側resources.pri経由に統一している -->
+  <ItemGroup>
+    <PRIResource Include="..\Preferences\Strings\**\PrefResources.resw" Link="Strings\%(RecursiveDir)PrefResources.resw" />
+  </ItemGroup>
+
+  <!-- SelectionToolbarプロジェクト配下のToolbarResources.reswも同様にリンクして
+       本体のresources.priへ"ToolbarResources"サブツリーとして取り込む -->
+  <ItemGroup>
+    <PRIResource Include="..\SelectionToolbar\Strings\**\ToolbarResources.resw" Link="Strings\%(RecursiveDir)ToolbarResources.resw" />
+  </ItemGroup>
+
+  <!-- 配布物に.pdb(デバッグシンボル)を含めない。CutADash自身・参照している各プロジェクト
+       (Common/Repositories/Preferences/Migration等)の.pdbも含め、publish完了後に
+       まとめて取り除く(プロジェクトごとに個別設定するより確実)。
+       クラッシュ調査は自前のcrash_log.txtで行っており、pdbが無くても支障は無い -->
+  <Target Name="RemovePublishSymbols" AfterTargets="Publish" Condition="'$(PublishDir)' != ''">
+    <ItemGroup>
+      <_PublishPdb Include="$(PublishDir)**\*.pdb" />
+    </ItemGroup>
+    <Delete Files="@(_PublishPdb)" Condition="'@(_PublishPdb)' != ''" />
+  </Target>
+  <ItemGroup>
+    <PRIResource Remove="Views\Favorite\**" />
+  </ItemGroup>
+</Project>

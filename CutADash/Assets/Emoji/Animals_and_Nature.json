@@ -1,0 +1,917 @@
+{
+  "kind": "Animals & Nature",
+  "items": [
+    {
+      "emoji": "🌱",
+      "text": "seedling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌲",
+      "text": "evergreen tree",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌳",
+      "text": "deciduous tree",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌴",
+      "text": "palm tree",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌵",
+      "text": "cactus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌷",
+      "text": "tulip",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌸",
+      "text": "cherry blossom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌹",
+      "text": "rose",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌺",
+      "text": "hibiscus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌻",
+      "text": "sunflower",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌼",
+      "text": "blossom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌾",
+      "text": "sheaf of rice",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌿",
+      "text": "herb",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍀",
+      "text": "four leaf clover",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍁",
+      "text": "maple leaf",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍂",
+      "text": "fallen leaf",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍃",
+      "text": "leaf fluttering in wind",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏵️",
+      "text": "rosette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐀",
+      "text": "rat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐁",
+      "text": "mouse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐂",
+      "text": "ox",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐃",
+      "text": "water buffalo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐄",
+      "text": "cow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐅",
+      "text": "tiger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐆",
+      "text": "leopard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐇",
+      "text": "rabbit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐈",
+      "text": "cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐈‍⬛",
+      "text": "black cat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐉",
+      "text": "dragon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐊",
+      "text": "crocodile",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐋",
+      "text": "whale",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐌",
+      "text": "snail",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐍",
+      "text": "snake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐎",
+      "text": "horse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐏",
+      "text": "ram",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐐",
+      "text": "goat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐑",
+      "text": "ewe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐒",
+      "text": "monkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐓",
+      "text": "rooster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐔",
+      "text": "chicken",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐕",
+      "text": "dog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐕‍🦺",
+      "text": "service dog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐖",
+      "text": "pig",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐗",
+      "text": "boar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐘",
+      "text": "elephant",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐙",
+      "text": "octopus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐚",
+      "text": "spiral shell",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐛",
+      "text": "bug",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐜",
+      "text": "ant",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐝",
+      "text": "honeybee",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐞",
+      "text": "lady beetle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐟",
+      "text": "fish",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐠",
+      "text": "tropical fish",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐡",
+      "text": "blowfish",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐢",
+      "text": "turtle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐣",
+      "text": "hatching chick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐤",
+      "text": "baby chick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐥",
+      "text": "front-facing baby chick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐦",
+      "text": "bird",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐦‍🔥",
+      "text": "phoenix",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐦‍⬛",
+      "text": "black bird",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐧",
+      "text": "penguin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐨",
+      "text": "koala",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐩",
+      "text": "poodle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐪",
+      "text": "camel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐫",
+      "text": "two-hump camel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐬",
+      "text": "dolphin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐭",
+      "text": "mouse face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐮",
+      "text": "cow face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐯",
+      "text": "tiger face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐰",
+      "text": "rabbit face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐱",
+      "text": "cat face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐲",
+      "text": "dragon face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐳",
+      "text": "spouting whale",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐴",
+      "text": "horse face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐵",
+      "text": "monkey face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐶",
+      "text": "dog face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐷",
+      "text": "pig face",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐸",
+      "text": "frog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐹",
+      "text": "hamster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐺",
+      "text": "wolf",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐻",
+      "text": "bear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐻‍❄️",
+      "text": "polar bear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐼",
+      "text": "panda",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐽",
+      "text": "pig nose",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐾",
+      "text": "paw prints",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🐿️",
+      "text": "chipmunk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💐",
+      "text": "bouquet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💮",
+      "text": "white flower",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕊️",
+      "text": "dove",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕷️",
+      "text": "spider",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕸️",
+      "text": "spider web",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥀",
+      "text": "wilted flower",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦁",
+      "text": "lion",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦂",
+      "text": "scorpion",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦃",
+      "text": "turkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦄",
+      "text": "unicorn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦅",
+      "text": "eagle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦆",
+      "text": "duck",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦇",
+      "text": "bat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦈",
+      "text": "shark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦉",
+      "text": "owl",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦊",
+      "text": "fox",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦋",
+      "text": "butterfly",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦌",
+      "text": "deer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦍",
+      "text": "gorilla",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦎",
+      "text": "lizard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦏",
+      "text": "rhinoceros",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦒",
+      "text": "giraffe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦓",
+      "text": "zebra",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦔",
+      "text": "hedgehog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦕",
+      "text": "sauropod",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦖",
+      "text": "T-Rex",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦗",
+      "text": "cricket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦘",
+      "text": "kangaroo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦙",
+      "text": "llama",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦚",
+      "text": "peacock",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦛",
+      "text": "hippopotamus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦜",
+      "text": "parrot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦝",
+      "text": "raccoon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦟",
+      "text": "mosquito",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦠",
+      "text": "microbe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦡",
+      "text": "badger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦢",
+      "text": "swan",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦣",
+      "text": "mammoth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦤",
+      "text": "dodo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦥",
+      "text": "sloth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦦",
+      "text": "otter",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦧",
+      "text": "orangutan",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦨",
+      "text": "skunk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦩",
+      "text": "flamingo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦫",
+      "text": "beaver",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦬",
+      "text": "bison",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦭",
+      "text": "seal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦮",
+      "text": "guide dog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪰",
+      "text": "fly",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪱",
+      "text": "worm",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪲",
+      "text": "beetle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪳",
+      "text": "cockroach",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪴",
+      "text": "potted plant",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪶",
+      "text": "feather",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪷",
+      "text": "lotus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪸",
+      "text": "coral",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪹",
+      "text": "empty nest",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪺",
+      "text": "nest with eggs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪻",
+      "text": "hyacinth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪼",
+      "text": "jellyfish",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪽",
+      "text": "wing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪿",
+      "text": "goose",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫎",
+      "text": "moose",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫏",
+      "text": "donkey",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☘️",
+      "text": "shamrock",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

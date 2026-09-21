@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Pref_Tab_General" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Pref_Tab_History" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="Pref_Tab_Shortcuts" xml:space="preserve">
+    <value>ショートカットキー</value>
+  </data>
+  <data name="Pref_Tab_ExcludedApps" xml:space="preserve">
+    <value>除外アプリ</value>
+  </data>
+  <data name="Pref_Tab_SelectionToolbar" xml:space="preserve">
+    <value>選択ツールバー</value>
+  </data>
+  <data name="Pref_Tab_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Pref_General_Title" xml:space="preserve">
+    <value>全般</value>
+  </data>
+  <data name="Pref_LaunchAtLogin" xml:space="preserve">
+    <value>ログイン時に起動</value>
+  </data>
+  <data name="Pref_DisableCaretPositioning" xml:space="preserve">
+    <value>ウィンドウの位置をキャレットに移動しない</value>
+  </data>
+  <data name="Pref_DisableWindowsClipboardHistory" xml:space="preserve">
+    <value>Windows標準のクリップボード履歴(Win+V)を無効にする</value>
+  </data>
+  <data name="Pref_Language_Title" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Pref_Language_Description" xml:space="preserve">
+    <value>表示言語を選べます。完全に反映するには再起動が必要です。</value>
+  </data>
+  <data name="Pref_Language_SystemDefault" xml:space="preserve">
+    <value>システム既定</value>
+  </data>
+  <data name="Pref_Theme_Title" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Pref_Theme_Description" xml:space="preserve">
+    <value>メインウィンドウ(パレット)の背景素材を選べます。</value>
+  </data>
+  <data name="Pref_History_Title" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="Pref_MaxHistoryCount" xml:space="preserve">
+    <value>保持する履歴の数</value>
+  </data>
+  <data name="Pref_DisableImageHistory" xml:space="preserve">
+    <value>画像を履歴に登録しない</value>
+  </data>
+  <data name="Pref_ThumbnailSize" xml:space="preserve">
+    <value>サムネイルのサイズ</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Small" xml:space="preserve">
+    <value>小 (100px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Medium" xml:space="preserve">
+    <value>中 (200px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Large" xml:space="preserve">
+    <value>大 (300px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLarge" xml:space="preserve">
+    <value>特大 (400px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLargePlus" xml:space="preserve">
+    <value>特大+ (600px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Max" xml:space="preserve">
+    <value>最大 (800px)</value>
+  </data>
+  <data name="Pref_OpenHistory" xml:space="preserve">
+    <value>履歴を開く</value>
+  </data>
+  <data name="Pref_OpenFavorite" xml:space="preserve">
+    <value>Favoriteを開く</value>
+  </data>
+  <data name="Pref_OpenEmoji" xml:space="preserve">
+    <value>Emojiを開く</value>
+  </data>
+  <data name="Pref_Change" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="Pref_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Pref_ShortcutHint" xml:space="preserve">
+    <value>新しいキーの組み合わせを押してください（修飾キー + 通常のキー）。Escでキャンセルします。</value>
+  </data>
+  <data name="Pref_ExcludedApps_Title" xml:space="preserve">
+    <value>コピーを除外するアプリケーション</value>
+  </data>
+  <data name="Pref_ExcludedApps_Description" xml:space="preserve">
+    <value>ここに追加したアプリでコピーした内容は履歴に登録されません。プロセス名(拡張子なし。例: chrome, notepad)を入力してください。</value>
+  </data>
+  <data name="Pref_ExcludedApps_Placeholder" xml:space="preserve">
+    <value>プロセス名 (例: chrome)</value>
+  </data>
+  <data name="Pref_Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Pref_SelectionToolbar_Description" xml:space="preserve">
+    <value>選択したテキストや、クリックした入力欄の近くに小さなツールバーを表示します。</value>
+  </data>
+  <data name="Pref_SelectionToolbarEnabled" xml:space="preserve">
+    <value>テキスト選択ツールバーを表示する(試験的機能)</value>
+  </data>
+  <data name="Pref_SelectionToolbarAutoHideSeconds" xml:space="preserve">
+    <value>自動的に隠すまでの秒数: {0}秒</value>
+  </data>
+  <data name="Pref_About_Description" xml:space="preserve">
+    <value>クリップボード履歴・絵文字・お気に入りを管理するためのツールです。</value>
+  </data>
+  <data name="Pref_Version" xml:space="preserve">
+    <value>バージョン {0}</value>
+  </data>
+  <data name="Pref_NotSet" xml:space="preserve">
+    <value>未設定</value>
+  </data>
+  <data name="Pref_WaitingForKeyInput" xml:space="preserve">
+    <value>キー入力待ち...</value>
+  </data>
+</root>

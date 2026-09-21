@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<winuiex:WindowEx
+    x:Class="SelectionToolbar.SelectionToolbarWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:winuiex="using:WinUIEx"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IsTitleBarVisible="False"
+    IsResizable="False"
+    IsMaximizable="False"
+    IsMinimizable="False"
+    Height="32"
+    IsAlwaysOnTop="True"
+    Title="Selection Toolbar">
+
+    <Border x:Name="RootBorder"
+            Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+            BorderThickness="1"
+            CornerRadius="6"
+            BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}">
+        <!-- 各ボタンをウィンドウいっぱいに(Stretch)敷き詰める。Copy/Searchは幅を均等に
+             分け合い(*)、Closeだけ必要な分だけの幅(固定42)にして右端に固定する。
+             高さも固定値では実際のウィンドウ高さとの誤差で隙間ができるため、
+             Border/Grid/ボタンいずれも高さを指定せずStretchで実サイズに追従させる -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="42"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="CopyButton"
+                    Grid.Column="0"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    Click="CopyButton_Click">
+                <TextBlock x:Name="CopyButtonText" FontSize="12"/>
+            </Button>
+            <Button x:Name="SearchButton"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    Click="SearchButton_Click">
+                <TextBlock x:Name="SearchButtonText" FontSize="12"/>
+            </Button>
+
+            <!-- ウィンドウ閉じるボタンを配置-->
+            <Button x:Name="CloseButton"
+                Grid.Column="2"
+                Width="42"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Right"
+                Background="Transparent"
+                BorderThickness="0"
+                CornerRadius="0"
+                IsTabStop="False"
+                FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
+                FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
+                Click="CloseButton_Click">
+                <Button.Resources>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
+                </Button.Resources>
+                <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
+            </Button>
+        </Grid>
+    </Border>
+</winuiex:WindowEx>

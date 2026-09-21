@@ -1,0 +1,53 @@
+{
+  "kind": "Flags",
+  "items": [
+    {
+      "emoji": "🎌",
+      "text": "crossed flags",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏁",
+      "text": "chequered flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏳️",
+      "text": "white flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏳️‍🌈",
+      "text": "rainbow flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏳️‍⚧️",
+      "text": "transgender flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏴",
+      "text": "black flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏴‍☠️",
+      "text": "pirate flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚩",
+      "text": "triangular flag",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

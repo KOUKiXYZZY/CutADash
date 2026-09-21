@@ -1,0 +1,1343 @@
+{
+  "kind": "Symbols",
+  "items": [
+    {
+      "emoji": "♈",
+      "text": "Aries",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♉",
+      "text": "Taurus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♐",
+      "text": "Sagittarius",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♑",
+      "text": "Capricorn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♒",
+      "text": "Aquarius",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♓",
+      "text": "Pisces",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✅",
+      "text": "check mark button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❓",
+      "text": "red question mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❔",
+      "text": "white question mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❕",
+      "text": "white exclamation mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❗",
+      "text": "red exclamation mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➕",
+      "text": "plus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➖",
+      "text": "minus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➗",
+      "text": "divide",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏩",
+      "text": "fast-forward button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🅰️",
+      "text": "A button (blood type)",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🅱️",
+      "text": "B button (blood type)",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🅾️",
+      "text": "O button (blood type)",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🅿️",
+      "text": "P button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆎",
+      "text": "AB button (blood type)",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆑",
+      "text": "CL button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆒",
+      "text": "COOL button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆓",
+      "text": "FREE button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆔",
+      "text": "ID button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆕",
+      "text": "NEW button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆖",
+      "text": "NG button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆗",
+      "text": "OK button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆘",
+      "text": "SOS button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆙",
+      "text": "UP! button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🆚",
+      "text": "VS button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈁",
+      "text": "Japanese “here” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈂️",
+      "text": "Japanese “service charge” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈚",
+      "text": "Japanese “free of charge” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈯",
+      "text": "Japanese “reserved” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈲",
+      "text": "Japanese “prohibited” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈳",
+      "text": "Japanese “vacancy” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈴",
+      "text": "Japanese “passing grade” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈵",
+      "text": "Japanese “no vacancy” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈶",
+      "text": "Japanese “not free of charge” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈷️",
+      "text": "Japanese “monthly amount” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈸",
+      "text": "Japanese “application” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈹",
+      "text": "Japanese “discount” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🈺",
+      "text": "Japanese “open for business” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🉐",
+      "text": "Japanese “bargain” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🉑",
+      "text": "Japanese “acceptable” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎦",
+      "text": "cinema",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏧",
+      "text": "ATM sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💠",
+      "text": "diamond with a dot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💱",
+      "text": "currency exchange",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💲",
+      "text": "heavy dollar sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📛",
+      "text": "name badge",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📳",
+      "text": "vibration mode",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📴",
+      "text": "mobile phone off",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📵",
+      "text": "no mobile phones",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📶",
+      "text": "antenna bars",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔀",
+      "text": "shuffle tracks button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔁",
+      "text": "repeat button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔂",
+      "text": "repeat single button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔃",
+      "text": "clockwise vertical arrows",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔄",
+      "text": "counterclockwise arrows button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔅",
+      "text": "dim button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔆",
+      "text": "bright button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔘",
+      "text": "radio button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔙",
+      "text": "BACK arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔚",
+      "text": "END arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔛",
+      "text": "ON! arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔜",
+      "text": "SOON arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔝",
+      "text": "TOP arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔞",
+      "text": "no one under eighteen",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔟",
+      "text": "keycap: 10",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔠",
+      "text": "input latin uppercase",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔡",
+      "text": "input latin lowercase",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔢",
+      "text": "input numbers",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔣",
+      "text": "input symbols",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔤",
+      "text": "input latin letters",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔯",
+      "text": "dotted six-pointed star",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔰",
+      "text": "Japanese symbol for beginner",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔱",
+      "text": "trident emblem",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔲",
+      "text": "black square button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔳",
+      "text": "white square button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔴",
+      "text": "red circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔵",
+      "text": "blue circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔶",
+      "text": "large orange diamond",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔷",
+      "text": "large blue diamond",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔸",
+      "text": "small orange diamond",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔹",
+      "text": "small blue diamond",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔺",
+      "text": "red triangle pointed up",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔻",
+      "text": "red triangle pointed down",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔼",
+      "text": "upwards button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔽",
+      "text": "downwards button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕉️",
+      "text": "om",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕎",
+      "text": "menorah",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚫",
+      "text": "prohibited",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚭",
+      "text": "no smoking",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚮",
+      "text": "litter in bin sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚯",
+      "text": "no littering",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚰",
+      "text": "potable water",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚱",
+      "text": "non-potable water",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚳",
+      "text": "no bicycles",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚷",
+      "text": "no pedestrians",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚸",
+      "text": "children crossing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚹",
+      "text": "men’s room",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚺",
+      "text": "women’s room",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚻",
+      "text": "restroom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚼",
+      "text": "baby symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚾",
+      "text": "water closet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛂",
+      "text": "passport control",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛃",
+      "text": "customs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛄",
+      "text": "baggage claim",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛅",
+      "text": "left luggage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛐",
+      "text": "place of worship",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛜",
+      "text": "wireless",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟠",
+      "text": "orange circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟡",
+      "text": "yellow circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟢",
+      "text": "green circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟣",
+      "text": "purple circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟤",
+      "text": "brown circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟥",
+      "text": "red square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟦",
+      "text": "blue square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟧",
+      "text": "orange square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟨",
+      "text": "yellow square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟩",
+      "text": "green square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟪",
+      "text": "purple square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟫",
+      "text": "brown square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🟰",
+      "text": "heavy equals sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪯",
+      "text": "khanda",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "‼️",
+      "text": "double exclamation mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⁉️",
+      "text": "exclamation question mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "™️",
+      "text": "trade mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "ℹ️",
+      "text": "information",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↔️",
+      "text": "left-right arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↕️",
+      "text": "up-down arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↖️",
+      "text": "up-left arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↗️",
+      "text": "up-right arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↘️",
+      "text": "down-right arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↙️",
+      "text": "down-left arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↩️",
+      "text": "right arrow curving left",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "↪️",
+      "text": "left arrow curving right",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏏️",
+      "text": "eject button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏪",
+      "text": "fast reverse button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏫",
+      "text": "fast up button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏬",
+      "text": "fast down button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏭️",
+      "text": "next track button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏮️",
+      "text": "last track button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏯️",
+      "text": "play or pause button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏸️",
+      "text": "pause button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏹️",
+      "text": "stop button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⏺️",
+      "text": "record button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "#️⃣",
+      "text": "keycap: #",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "Ⓜ️",
+      "text": "circled M",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "▪️",
+      "text": "black small square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "▫️",
+      "text": "white small square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "▶️",
+      "text": "play button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "◀️",
+      "text": "reverse button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "◻️",
+      "text": "white medium square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "◼️",
+      "text": "black medium square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "◽",
+      "text": "white medium-small square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "◾",
+      "text": "black medium-small square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☑️",
+      "text": "check box with check",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☢️",
+      "text": "radioactive",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☣️",
+      "text": "biohazard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☦️",
+      "text": "orthodox cross",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☪️",
+      "text": "star and crescent",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☮️",
+      "text": "peace symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☯️",
+      "text": "yin yang",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☸️",
+      "text": "wheel of dharma",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♀️",
+      "text": "female sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♂️",
+      "text": "male sign",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♊",
+      "text": "Gemini",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♋",
+      "text": "Cancer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♌",
+      "text": "Leo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♍",
+      "text": "Virgo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♎",
+      "text": "Libra",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♏",
+      "text": "Scorpio",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♻️",
+      "text": "recycling symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♾️",
+      "text": "infinity",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "♿",
+      "text": "wheelchair symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚕️",
+      "text": "medical symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚛️",
+      "text": "atom symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚜️",
+      "text": "fleur-de-lis",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚠️",
+      "text": "warning",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚧️",
+      "text": "transgender symbol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚪",
+      "text": "white circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚫",
+      "text": "black circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛎",
+      "text": "Ophiuchus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛔",
+      "text": "no entry",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✔️",
+      "text": "check mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✖️",
+      "text": "multiply",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✝️",
+      "text": "latin cross",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✡️",
+      "text": "star of David",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✳️",
+      "text": "eight-spoked asterisk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✴️",
+      "text": "eight-pointed star",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❇️",
+      "text": "sparkle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❌",
+      "text": "cross mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "❎",
+      "text": "cross mark button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➡️",
+      "text": "right arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➰",
+      "text": "curly loop",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "➿",
+      "text": "double curly loop",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⤴️",
+      "text": "right arrow curving up",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⤵️",
+      "text": "right arrow curving down",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "*️⃣",
+      "text": "keycap: *",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⬅️",
+      "text": "left arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⬆️",
+      "text": "up arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⬇️",
+      "text": "down arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⬛",
+      "text": "black large square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⬜",
+      "text": "white large square",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⭕",
+      "text": "hollow red circle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "〰️",
+      "text": "wavy dash",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "〽️",
+      "text": "part alternation mark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "0️⃣",
+      "text": "keycap: 0",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "1️⃣",
+      "text": "keycap: 1",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "㊗️",
+      "text": "Japanese “congratulations” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "㊙️",
+      "text": "Japanese “secret” button",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "2️⃣",
+      "text": "keycap: 2",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "3️⃣",
+      "text": "keycap: 3",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "4️⃣",
+      "text": "keycap: 4",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "5️⃣",
+      "text": "keycap: 5",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "6️⃣",
+      "text": "keycap: 6",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "7️⃣",
+      "text": "keycap: 7",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "8️⃣",
+      "text": "keycap: 8",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "9️⃣",
+      "text": "keycap: 9",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "©️",
+      "text": "copyright",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "®️",
+      "text": "registered",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

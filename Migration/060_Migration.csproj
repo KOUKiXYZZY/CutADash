@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>CutADash.Migration</RootNamespace>
+    <UseWinUI>false</UseWinUI>
+    <AssemblyName>Migration</AssemblyName>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;DevDebug</Configurations>
+    <!-- CutADashと同じ実行環境(RID)で動く必要があるため、対応プラットフォームを揃える -->
+    <Platforms>x86;x64;ARM64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\010_Common.csproj" />
+  </ItemGroup>
+
+</Project>
