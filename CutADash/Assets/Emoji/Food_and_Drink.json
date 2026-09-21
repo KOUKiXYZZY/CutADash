@@ -1,0 +1,821 @@
+{
+  "kind": "Food & Drink",
+  "items": [
+    {
+      "emoji": "☕",
+      "text": "hot beverage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌭",
+      "text": "hot dog",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌮",
+      "text": "taco",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌯",
+      "text": "burrito",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌰",
+      "text": "chestnut",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌶️",
+      "text": "hot pepper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🌽",
+      "text": "ear of corn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍄",
+      "text": "mushroom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍄‍🟫",
+      "text": "brown mushroom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍅",
+      "text": "tomato",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍆",
+      "text": "eggplant",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍇",
+      "text": "grapes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍈",
+      "text": "melon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍉",
+      "text": "watermelon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍊",
+      "text": "tangerine",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍋",
+      "text": "lemon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍋‍🟩",
+      "text": "lime",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍌",
+      "text": "banana",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍍",
+      "text": "pineapple",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍎",
+      "text": "red apple",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍏",
+      "text": "green apple",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍐",
+      "text": "pear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍑",
+      "text": "peach",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍒",
+      "text": "cherries",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍓",
+      "text": "strawberry",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍔",
+      "text": "hamburger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍕",
+      "text": "pizza",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍖",
+      "text": "meat on bone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍗",
+      "text": "poultry leg",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍘",
+      "text": "rice cracker",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍙",
+      "text": "rice ball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍚",
+      "text": "cooked rice",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍛",
+      "text": "curry rice",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍜",
+      "text": "steaming bowl",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍝",
+      "text": "spaghetti",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍞",
+      "text": "bread",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍟",
+      "text": "french fries",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍠",
+      "text": "roasted sweet potato",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍡",
+      "text": "dango",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍢",
+      "text": "oden",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍣",
+      "text": "sushi",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍤",
+      "text": "fried shrimp",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍥",
+      "text": "fish cake with swirl",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍦",
+      "text": "soft ice cream",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍧",
+      "text": "shaved ice",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍨",
+      "text": "ice cream",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍩",
+      "text": "doughnut",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍪",
+      "text": "cookie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍫",
+      "text": "chocolate bar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍬",
+      "text": "candy",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍭",
+      "text": "lollipop",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍮",
+      "text": "custard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍯",
+      "text": "honey pot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍰",
+      "text": "shortcake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍱",
+      "text": "bento box",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍲",
+      "text": "pot of food",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍳",
+      "text": "cooking",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍴",
+      "text": "fork and knife",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍵",
+      "text": "teacup without handle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍶",
+      "text": "sake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍷",
+      "text": "wine glass",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍸",
+      "text": "cocktail glass",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍹",
+      "text": "tropical drink",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍺",
+      "text": "beer mug",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍻",
+      "text": "clinking beer mugs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍼",
+      "text": "baby bottle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍽️",
+      "text": "fork and knife with plate",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍾",
+      "text": "bottle with popping cork",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🍿",
+      "text": "popcorn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎂",
+      "text": "birthday cake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏺",
+      "text": "amphora",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔪",
+      "text": "kitchen knife",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥂",
+      "text": "clinking glasses",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥃",
+      "text": "tumbler glass",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥄",
+      "text": "spoon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥐",
+      "text": "croissant",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥑",
+      "text": "avocado",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥒",
+      "text": "cucumber",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥓",
+      "text": "bacon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥔",
+      "text": "potato",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥕",
+      "text": "carrot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥖",
+      "text": "baguette bread",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥗",
+      "text": "green salad",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥘",
+      "text": "shallow pan of food",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥙",
+      "text": "stuffed flatbread",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥚",
+      "text": "egg",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥛",
+      "text": "glass of milk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥜",
+      "text": "peanuts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥝",
+      "text": "kiwi fruit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥞",
+      "text": "pancakes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥟",
+      "text": "dumpling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥠",
+      "text": "fortune cookie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥡",
+      "text": "takeout box",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥢",
+      "text": "chopsticks",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥣",
+      "text": "bowl with spoon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥤",
+      "text": "cup with straw",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥥",
+      "text": "coconut",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥦",
+      "text": "broccoli",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥧",
+      "text": "pie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥨",
+      "text": "pretzel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥩",
+      "text": "cut of meat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥪",
+      "text": "sandwich",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥫",
+      "text": "canned food",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥬",
+      "text": "leafy green",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥭",
+      "text": "mango",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥮",
+      "text": "moon cake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥯",
+      "text": "bagel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦀",
+      "text": "crab",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦐",
+      "text": "shrimp",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦑",
+      "text": "squid",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦞",
+      "text": "lobster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦪",
+      "text": "oyster",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧀",
+      "text": "cheese wedge",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧁",
+      "text": "cupcake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧂",
+      "text": "salt",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧃",
+      "text": "beverage box",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧄",
+      "text": "garlic",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧅",
+      "text": "onion",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧆",
+      "text": "falafel",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧇",
+      "text": "waffle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧈",
+      "text": "butter",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧉",
+      "text": "mate",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧊",
+      "text": "ice",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧋",
+      "text": "bubble tea",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫐",
+      "text": "blueberries",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫑",
+      "text": "bell pepper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫒",
+      "text": "olive",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫓",
+      "text": "flatbread",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫔",
+      "text": "tamale",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫕",
+      "text": "fondue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫖",
+      "text": "teapot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫗",
+      "text": "pouring liquid",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫘",
+      "text": "beans",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫙",
+      "text": "jar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫚",
+      "text": "ginger root",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫛",
+      "text": "pea pod",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CutADash.Views.Emoji.Emoji"
+    x:Name="EmojiPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:CutADash.Models"
+    xmlns:viewModels="using:CutADash.ViewModels"
+    xmlns:behaviors="using:CutADash.Behaviors"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationCacheMode="Disabled">
+    <!-- 既定値(Disabled)と同じだが、Navigationで他タブ⇔Emoji間を行き来するたびに
+         必ず新しいPageインスタンス(≒新しいEmojiGridViewModel)が作られる、という
+         MainWindow側のReleaseData/GC前提を崩さないよう、意図として明示しておく -->
+
+    <Page.Resources>
+        <!-- 絵文字1セルのテンプレート。ページング方式にしたため(スクロールしない)、
+             常に1ページぶんの件数しか実体化されない。ItemsRepeaterの仮想化に頼る必要が
+             無いため、単純なUniformGridLayoutで並べるだけで良い(以前ネストした
+             ItemsRepeaterで仮想化が崩れて重くなっていたのは、全件が一度に実体化される
+             ことが原因だったため、ページングそのものが解決策になる) -->
+        <DataTemplate x:Key="EmojiCellTemplate" x:DataType="models:EmojiItem">
+            <!-- IsTabStop=Trueでキーボードフォーカスを受けられるようにする(矢印キーでの
+                 セル間移動はPage側のXYFocusKeyboardNavigationが担う)。Enter/Space/クリックでの
+                 ペーストはEmojiCellPasteBehaviorがCommand呼び出しへ変換する(コードビハインドに
+                 直接ロジックを置かない、MouseWheelPagingBehaviorと同じMVVMの定石) -->
+            <Border Width="32"
+                    Height="32"
+                    CornerRadius="4"
+                    Background="Transparent"
+                    IsTabStop="True"
+                    UseSystemFocusVisuals="True"
+                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
+                    FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
+                    PointerEntered="EmojiCell_PointerEntered"
+                    PointerExited="EmojiCell_PointerExited"
+                    KeyDown="EmojiCell_KeyDown"
+                    RightTapped="EmojiCell_RightTapped">
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:EmojiCellPasteBehavior PasteCommand="{Binding DataContext.PasteCommand, ElementName=EmojiPage}"/>
+                </interactivity:Interaction.Behaviors>
+                <Grid>
+                    <!-- kindごとのスプライトシート(Assets/Emoji/{kind}.scale-*.png、10列、
+                         ビルド時にAssetsSrc/EmojiGenerateScript/build_emoji_data.pyで生成済み)を
+                         Clip+平行移動で覗き見る。Source/Width/Height/Margin(切り抜き位置)は
+                         コードビハインド(FlatRepeater_ElementPrepared)で設定する -->
+                    <Grid x:Name="SpriteClip" Width="32" Height="32">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0,0,32,32"/>
+                        </Grid.Clip>
+                        <Image x:Name="SpriteImage"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <!-- 肌の色バリエーションを持つ絵文字であることを示す小さなバッジ(右下)。
+                         バリエーション自体の画像データは持っていないため、選択肢を出す機能は無く、
+                         「バリエーションがある」ことだけをツールチップとあわせて知らせる。
+                         Visibilityはx:Bindではなくコードビハインド(FlatRepeater_ElementPrepared)で
+                         設定する。x:Bindを使うとItemsRepeaterがコンテナのDataContextを
+                         自動設定しなくなり(コンパイル済みバインディングはDataContextを経由しない
+                         ため)、他のイベントハンドラのborder.DataContextがことごとく
+                         EmojiItemではなくPage自体のDataContextになってしまう不具合を踏んだ -->
+                    <Ellipse x:Name="VariantBadge"
+                             Width="6"
+                             Height="6"
+                             Margin="0,0,2,2"
+                             HorizontalAlignment="Right"
+                             VerticalAlignment="Bottom"
+                             Fill="{ThemeResource SystemAccentColor}"
+                             Visibility="Collapsed"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!-- 絵文字を左詰めで折り返して並べるレイアウト -->
+        <UniformGridLayout x:Key="EmojiGridLayout"
+                           MinItemWidth="32"
+                           MinItemHeight="32"
+                           MinRowSpacing="4"
+                           MinColumnSpacing="4"
+                           ItemsStretch="None"/>
+    </Page.Resources>
+
+    <!-- 矢印キーで絵文字セル間をフォーカス移動できるようにする -->
+    <Grid x:Name="GridRoot" XYFocusKeyboardNavigation="Enabled" SizeChanged="GridRoot_SizeChanged">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- コンパクト表示専用: カテゴリをアイコン(各種類の代表絵文字)タブで切り替える。
+             コンパクト表示はウィンドウが狭く、カテゴリ一覧(ListFrame)と絵文字グリッドを
+             同時に表示できないため、Windowsの絵文字ピッカーのようにグリッドの上へ
+             タブとして出す(選ぶと通常表示と同じくCategoryを切り替えて1ページぶん表示する) -->
+        <ListView x:Name="CompactCategoryTabs"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="2"
+                  Margin="4,4,4,0"
+                  Visibility="Collapsed"
+                  SelectionMode="Single"
+                  SelectionChanged="CompactCategoryTabs_SelectionChanged"
+                  ScrollViewer.HorizontalScrollMode="Enabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollMode="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:EmojiCategoryTab">
+                    <Border Height="36"
+                            Padding="10,0">
+                        <TextBlock Text="{Binding DisplayName}"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="Padding" Value="2"/>
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <!-- 選択中カテゴリ(通常表示)/選択中タブ(コンパクト表示)のうち、現在のページぶんだけ。
+             マウスホイールでのページ送りはMouseWheelPagingBehaviorがUIイベント→Command
+             呼び出しへ変換する(コードビハインドには置かない)。
+             Backgroundを明示しないと、子要素(絵文字セル)が無い余白部分はヒットテスト
+             対象にならずホイールイベントが届かない(実際に踏んだ不具合) -->
+        <Grid Grid.Row="1" Grid.Column="0" Background="Transparent" IsTabStop="True">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:MouseWheelPagingBehavior NextPageCommand="{x:Bind ViewModel.GoToNextPageCommand, Mode=OneWay}"
+                                                     PreviousPageCommand="{x:Bind ViewModel.GoToPreviousPageCommand, Mode=OneWay}"/>
+            </interactivity:Interaction.Behaviors>
+            <ItemsRepeater x:Name="FlatRepeater"
+                           Margin="4"
+                           Layout="{StaticResource EmojiGridLayout}"
+                           ItemTemplate="{StaticResource EmojiCellTemplate}"
+                           ElementPrepared="FlatRepeater_ElementPrepared"/>
+        </Grid>
+
+        <!-- 読み込み中のインジケーター -->
+        <ProgressRing x:Name="LoadingRing"
+                      Grid.Row="1"
+                      Grid.Column="0"
+                      IsActive="False"
+                      Visibility="Collapsed"
+                      Width="48"
+                      Height="48"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+
+        <!-- ページ送り(縦向き、右側に配置)。SelectedPageIndex/NumberOfPagesはViewModelへ
+             OneWayバインドして表示のみ同期し、ユーザー操作(クリック/ドラッグ)による
+             Command呼び出しはPipsPagerPageCommandBehaviorが担う(コードビハインドには置かない) -->
+        <PipsPager x:Name="Pager"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Margin="4,0,4,0"
+                   Orientation="Vertical"
+                   PreviousButtonVisibility="Visible"
+                   NextButtonVisibility="Visible"
+                   NumberOfPages="{x:Bind ViewModel.PageCount, Mode=OneWay}"
+                   SelectedPageIndex="{x:Bind ViewModel.PageIndex, Mode=OneWay}">
+            <interactivity:Interaction.Behaviors>
+                <behaviors:PipsPagerPageCommandBehavior Command="{x:Bind ViewModel.SetPageCommand, Mode=OneWay}"
+                                                         CurrentIndex="{x:Bind ViewModel.PageIndex, Mode=OneWay}"/>
+            </interactivity:Interaction.Behaviors>
+        </PipsPager>
+    </Grid>
+</Page>

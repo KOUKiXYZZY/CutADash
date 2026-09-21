@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Pref_Tab_General" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Pref_Tab_History" xml:space="preserve">
+    <value>历史记录</value>
+  </data>
+  <data name="Pref_Tab_Shortcuts" xml:space="preserve">
+    <value>快捷键</value>
+  </data>
+  <data name="Pref_Tab_ExcludedApps" xml:space="preserve">
+    <value>排除的应用</value>
+  </data>
+  <data name="Pref_Tab_SelectionToolbar" xml:space="preserve">
+    <value>选择工具栏</value>
+  </data>
+  <data name="Pref_Tab_About" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="Pref_General_Title" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Pref_LaunchAtLogin" xml:space="preserve">
+    <value>登录时启动</value>
+  </data>
+  <data name="Pref_DisableCaretPositioning" xml:space="preserve">
+    <value>不要将窗口移动到光标位置</value>
+  </data>
+  <data name="Pref_DisableWindowsClipboardHistory" xml:space="preserve">
+    <value>禁用Windows剪贴板历史记录(Win+V)</value>
+  </data>
+  <data name="Pref_Language_Title" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Pref_Language_Description" xml:space="preserve">
+    <value>选择显示语言。完全生效需要重启应用。</value>
+  </data>
+  <data name="Pref_Language_SystemDefault" xml:space="preserve">
+    <value>系统默认</value>
+  </data>
+  <data name="Pref_Theme_Title" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Pref_Theme_Description" xml:space="preserve">
+    <value>选择主窗口(面板)的背景材质。</value>
+  </data>
+  <data name="Pref_History_Title" xml:space="preserve">
+    <value>历史记录</value>
+  </data>
+  <data name="Pref_MaxHistoryCount" xml:space="preserve">
+    <value>保留的历史记录数量</value>
+  </data>
+  <data name="Pref_DisableImageHistory" xml:space="preserve">
+    <value>不将图片添加到历史记录</value>
+  </data>
+  <data name="Pref_ThumbnailSize" xml:space="preserve">
+    <value>缩略图大小</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Small" xml:space="preserve">
+    <value>小 (100px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Medium" xml:space="preserve">
+    <value>中 (200px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Large" xml:space="preserve">
+    <value>大 (300px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLarge" xml:space="preserve">
+    <value>特大 (400px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_ExtraLargePlus" xml:space="preserve">
+    <value>特大+ (600px)</value>
+  </data>
+  <data name="Pref_ThumbnailSize_Max" xml:space="preserve">
+    <value>最大 (800px)</value>
+  </data>
+  <data name="Pref_OpenHistory" xml:space="preserve">
+    <value>打开历史记录</value>
+  </data>
+  <data name="Pref_OpenFavorite" xml:space="preserve">
+    <value>打开收藏</value>
+  </data>
+  <data name="Pref_OpenEmoji" xml:space="preserve">
+    <value>打开表情符号</value>
+  </data>
+  <data name="Pref_Change" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="Pref_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="Pref_ShortcutHint" xml:space="preserve">
+    <value>请按下新的组合键(修饰键 + 普通键)。按Esc取消。</value>
+  </data>
+  <data name="Pref_ExcludedApps_Title" xml:space="preserve">
+    <value>排除复制的应用程序</value>
+  </data>
+  <data name="Pref_ExcludedApps_Description" xml:space="preserve">
+    <value>从这里添加的应用复制的内容不会添加到历史记录中。请输入进程名(不含扩展名，例如: chrome, notepad)。</value>
+  </data>
+  <data name="Pref_ExcludedApps_Placeholder" xml:space="preserve">
+    <value>进程名 (例如: chrome)</value>
+  </data>
+  <data name="Pref_Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="Pref_SelectionToolbar_Description" xml:space="preserve">
+    <value>在选中的文本或点击的输入框附近显示一个小工具栏。</value>
+  </data>
+  <data name="Pref_SelectionToolbarEnabled" xml:space="preserve">
+    <value>显示文本选择工具栏(实验性功能)</value>
+  </data>
+  <data name="Pref_SelectionToolbarAutoHideSeconds" xml:space="preserve">
+    <value>自动隐藏时间: {0}秒</value>
+  </data>
+  <data name="Pref_About_Description" xml:space="preserve">
+    <value>用于管理剪贴板历史记录、表情符号和收藏夹的工具。</value>
+  </data>
+  <data name="Pref_Version" xml:space="preserve">
+    <value>版本 {0}</value>
+  </data>
+  <data name="Pref_NotSet" xml:space="preserve">
+    <value>未设置</value>
+  </data>
+  <data name="Pref_WaitingForKeyInput" xml:space="preserve">
+    <value>等待按键输入...</value>
+  </data>
+</root>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:ListFrameBase
+    x:Class="CutADash.Views.ListFrame.EmojiListFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CutADash"
+    xmlns:base="using:CutADash.Views.ListFrame"
+    xmlns:models="using:CutADash.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Transparent">
+        <ListView x:Name="CategoryListView"
+                  ItemsSource="{Binding Categories}"
+                  SelectionMode="Single"
+                  SelectionChanged="EmojiListFrame_SelectionChanged"
+                  KeyDown="CategoryListView_KeyDown"
+                  GotFocus="ItemsListView_GotFocus">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="8">
+                        <TextBlock Text="{Binding DisplayName}"
+                                   FontSize="16"/>
+                        <Border Height="1"
+                                Margin="-8,0,-8,-8"
+                                VerticalAlignment="Bottom"
+                                Background="{StaticResource DividerBrushHorizontal}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!-- フォーカス枠を細くする。ListFrame(History)のBaseExampleと同じ設定。
+                 BasedOnを付けないと選択時のアクセント表示等、既定テンプレート全体が失われるので注意 -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</base:ListFrameBase>

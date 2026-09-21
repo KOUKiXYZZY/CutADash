@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:ClipboardListFrameBase
+    x:Class="CutADash.Views.ListFrame.FavoriteListFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CutADash"
+    xmlns:base="using:CutADash.Views.ListFrame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:contents="using:CutADash.Views.Contents"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TruncateTextConverter/BoolToVisibilityConverter/DividerBrushHorizontal/
+             NameOrPlaceholderConverterはApp.xamlで共有定義済み -->
+
+        <!-- 検索結果一覧(フラット、アイテムのみ)用。ListFrameと同じClipboardItem直接バインド。
+             種別バッジは出さず、常にプレーンテキストとして表示する -->
+        <DataTemplate x:Key="SearchTextTemplate">
+            <Grid Padding="8" Background="Transparent">
+                <TextBlock
+                    Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
+                    FontSize="16"
+                    MaxLines="1"
+                    TextWrapping="NoWrap"
+                    TextTrimming="CharacterEllipsis" />
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SearchImageTemplate">
+            <Grid Padding="8" Background="Transparent">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                            CornerRadius="12"
+                            Padding="10,4"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SearchFilesTemplate">
+            <Grid Padding="8" Background="Transparent">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock
+                        Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
+                        FontSize="16"
+                        MaxLines="1"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+                <Border Height="1"
+                        Margin="-8,0,-8,-8"
+                        VerticalAlignment="Bottom"
+                        Background="{StaticResource DividerBrushHorizontal}"/>
+            </Grid>
+        </DataTemplate>
+        <contents:ClipboardTemplateSelector
+            x:Key="SearchTemplateSelector"
+            TextTemplate="{StaticResource SearchTextTemplate}"
+            ImageTemplate="{StaticResource SearchImageTemplate}"
+            FilesTemplate="{StaticResource SearchFilesTemplate}" />
+
+        <!-- ツリー表示(フォルダ/アイテム)用。FavoriteNodeがバインド対象になるため、
+             ClipboardItem由来のプロパティはItem.経由で参照する -->
+        <MenuFlyout x:Key="FolderContextMenu">
+            <MenuFlyoutItem Text="名前の変更" Click="RenameFolder_Click"
+                             Visibility="{Binding IsFolder, Converter={StaticResource BoolToVisibilityConverter}}">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE70F;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <!-- Shape/Image項目のみ、ユーザーが名前を付けられる(未設定なら「名称未設定」表示) -->
+            <MenuFlyoutItem Text="名前の変更" Click="RenameItem_Click"
+                             Visibility="{Binding IsImageItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE70F;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="削除" Click="DeleteNode_Click">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE74D;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <MenuFlyoutSeparator Visibility="{Binding IsItem, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            <MenuFlyoutItem Text="ペースト" Click="PasteItem_Click"
+                            Visibility="{Binding IsItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE77F;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Text="シーケンシャルペーストに追加"
+                            Click="AddToSequentialPaste_Click"
+                            Visibility="{Binding IsItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE8C8;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <!-- Text系項目のみ、改行で分割して1行ずつシーケンシャルペーストのキューに追加する(空行はスキップ) -->
+            <MenuFlyoutItem Text="1行ずつシーケンシャルペーストに追加"
+                            Click="AddLinesToSequentialPaste_Click"
+                            Visibility="{Binding IsTextItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE8C8;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+        </MenuFlyout>
+
+        <!-- TreeView.ItemTemplateSelector、およびContentControl.ContentTemplateSelectorへ
+             委譲する方式のどちらも実機でテンプレートが適用されず(既定のToString()表示に
+             フォールバックする)不具合が確認されたため、TemplateSelectorを使わず、
+             1つのDataTemplateの中でIsFolder/IsTextItem/IsImageItem/IsFilesItem(FavoriteNode側の
+             bool計算プロパティ)に応じてVisibilityを切り替える方式にしている -->
+        <DataTemplate x:Key="FavoriteNodeTemplate">
+            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource FolderContextMenu}">
+                <!-- フォルダ -->
+                <StackPanel Orientation="Horizontal" Spacing="8"
+                            Visibility="{Binding IsFolder, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <FontIcon Glyph="&#xE8B7;" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Name}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- テキスト/リッチテキスト。種別バッジは出さず、常にプレーンテキストとして表示する -->
+                <Grid Visibility="{Binding IsTextItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock
+                        Text="{Binding Item.Text, Converter={StaticResource TruncateTextConverter}}"
+                        FontSize="16"
+                        MaxLines="1"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis" />
+                </Grid>
+
+                <!-- 画像/Shape。種別バッジ(GIF/Shape/Image)に加え、名前(未設定なら「名称未設定」)を表示する -->
+                <StackPanel Orientation="Horizontal" Spacing="8"
+                            Visibility="{Binding IsImageItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
+                            CornerRadius="12"
+                            Padding="10,4"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Item, Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                    <TextBlock Text="{Binding Item.Name, Converter={StaticResource NameOrPlaceholderConverter}}"
+                               FontSize="16"
+                               MaxLines="1"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- ファイル -->
+                <StackPanel Orientation="Horizontal" Spacing="8"
+                            Visibility="{Binding IsFilesItem, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <TextBlock
+                        Text="{Binding Item.Files, Converter={StaticResource FilesSummaryConverter}}"
+                        FontSize="16"
+                        MaxLines="1"
+                        TextWrapping="NoWrap"
+                        TextTrimming="CharacterEllipsis"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="Transparent" x:Name="SideContent" KeyDown="SideContent_KeyDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="SearchBox"
+                     PlaceholderText="Search"
+                     PlaceholderForeground="LightGray"
+                     Margin="6,6,6,6"
+                     CornerRadius="8"
+                     Grid.Row="0"
+                     Text="{Binding SearchText, Mode=TwoWay}"
+                     TextChanged="SearchBox_TextChanged"
+                     KeyDown="SearchBox_KeyDown"/>
+
+        <!-- 通常時: フォルダ階層をツリーで表示。ドラッグ&ドロップで並び替え・
+             フォルダ間移動ができる(WinUI標準のTreeView機能) -->
+        <TreeView x:Name="FolderTree"
+                  Grid.Row="1"
+                  SelectionMode="Single"
+                  CanDragItems="True"
+                  CanReorderItems="True"
+                  AllowDrop="True"
+                  ItemsSource="{Binding RootNodes}"
+                  SelectionChanged="FolderTree_SelectionChanged"
+                  DragItemsCompleted="FolderTree_DragItemsCompleted"
+                  PreviewKeyDown="FolderTree_PreviewKeyDown"
+                  KeyDown="FolderTree_KeyDown">
+            <TreeView.Resources>
+                <!-- 既定テンプレートのMultiSelectGrid(シェブロン列を含む行全体)は
+                     Margin="{ThemeResource TreeViewItemMultiSelectSelectedItemBorderMargin}"を
+                     左端の余白として持つ。既定値は正の余白のため、ここを負にしてシェブロンごと
+                     行全体を左端へ寄せる -->
+                <Thickness x:Key="TreeViewItemMultiSelectSelectedItemBorderMargin">-14,0,0,0</Thickness>
+            </TreeView.Resources>
+            <!-- RootNodesをコードビハインドでTreeViewNodeへ手動変換する方式は実機で
+                 正しく描画されなかったため、ItemsSourceへ直接FavoriteNodeのコレクションを
+                 バインドし、各行のTreeViewItem.ItemsSourceでChildrenへ辿る標準的な
+                 階層バインディング方式にしている -->
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <TreeViewItem ItemsSource="{Binding Children}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}"
+                                  ContentTemplate="{StaticResource FavoriteNodeTemplate}"/>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <!-- 既定テンプレートは展開シェブロン自体にPadding="14,0"を持ち、
+                         その右にContentPresenter(Margin=このPadding)が続く構造になっている。
+                         シェブロンとフォルダ/アイテムの間隔を詰めるため、Paddingを負にして
+                         ContentPresenterを左へ引き寄せる(シェブロン側のPaddingはテンプレート内
+                         固定値でここからは変えられない) -->
+                    <Setter Property="Padding" Value="-10,0,0,0"/>
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+
+        <!-- 検索中: フォルダを無視し、アイテムだけをフラットに絞り込んで表示する -->
+        <ListView x:Name="BaseExample"
+                      Grid.Row="1"
+                      SelectionMode="Single"
+                      Visibility="Collapsed"
+
+                      ItemsSource="{Binding DisplayItems}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+
+                      ItemTemplateSelector="{StaticResource SearchTemplateSelector}"
+                      SelectionChanged="ItemsListView_SelectionChanged"
+                      KeyDown="ItemsListView_KeyDown"
+                      PreviewKeyDown="ItemsListView_PreviewKeyDown"
+                      GotFocus="ItemsListView_GotFocus">
+
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+
+            <!-- フォーカス枠(既定は外2px+内1pxの二重線)を細くする。
+                 App.xamlのimplicitスタイルだと起動時クラッシュするため、ページスコープで指定する。
+                 BasedOnを付けないと選択時のアクセント表示等、既定テンプレート全体が失われるので注意 -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
+                    <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <!-- お気に入りが1件も無い(またはツリーで検索結果が0件の)ときに表示する -->
+        <TextBlock x:Name="EmptyText"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="Gray"
+                   FontSize="16"
+                   IsHitTestVisible="False"
+                   Visibility="{Binding IsCurrentViewEmpty, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <!-- 下部ボタン領域が一覧へ落とす影。行1の最下部に重ねて描くため、
+             一覧より後ろに置いて手前に来るようにし、操作を邪魔しないよう
+             ヒットテストからは外す -->
+        <Border Grid.Row="1"
+                Height="8"
+                VerticalAlignment="Bottom"
+                IsHitTestVisible="False"
+                Background="{StaticResource BottomBarShadowBrush}"/>
+
+        <!-- 新しいフォルダを追加するボタン。押した時点で選択中フォルダ(無ければルート)の
+             子として「新しいフォルダ」を即時作成する(ダイアログは出さない、
+             名前は後からTreeViewの右クリック「名前の変更」で変える想定) -->
+        <Grid Grid.Row="2">
+            <Button Width="42" Height="32"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
+                    FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
+                    ToolTipService.ToolTip="New Folder"
+                    Click="AddFolder_Click">
+                <FontIcon Glyph="&#xE710;" FontSize="14"/>
+            </Button>
+        </Grid>
+    </Grid>
+</base:ClipboardListFrameBase>

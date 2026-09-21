@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="CutADash.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CutADash"
+    xmlns:converters="using:CutADash.Views.Converter">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!-- CutADash本体とSelectionToolbar(別プロジェクト)の両方で使う
+                     フォーカス枠の太さ等をCommonへ集約している -->
+                <ResourceDictionary Source="ms-appx:///Common/Styles/SharedResources.xaml" />
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- 区切り線用の色。既定のDividerStrokeColorDefaultはライト時にかなり薄く
+                 見えづらかったため、ライトの時だけはっきりした黒にする(ダークは
+                 既定の見た目に近い半透明の白のまま) -->
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <Color x:Key="AppDividerStrokeColor">#701A1A1A</Color>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="AppDividerStrokeColor">#33FFFFFF</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <!-- Other app resources here -->
+
+            <!-- ListFrame/Contentsなど複数のページで共有するConverter -->
+            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:FilesSummaryConverter x:Key="FilesSummaryConverter" />
+            <converters:ImageBadgeTextConverter x:Key="ImageBadgeTextConverter" />
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:NameOrPlaceholderConverter x:Key="NameOrPlaceholderConverter" />
+
+            <!-- UI の角丸をなくす -->
+            <!-- <CornerRadius x:Key="ControlCornerRadius">0</CornerRadius> -->
+
+            <!-- ウィンドウ(OSが描画する外枠)の角丸。DWM_WINDOW_CORNER_PREFERENCEの
+                 メンバー名をそのまま文字列で指定する(DWMWCP_DEFAULT/DWMWCP_DONOTROUND/
+                 DWMWCP_ROUND/DWMWCP_ROUNDSMALL)。MainWindow.xaml.csのコンストラクタで
+                 読み取ってSetWindowCornerPreferenceに渡す -->
+            <x:String x:Key="AppWindowCornerPreference">DWMWCP_DONOTROUND</x:String>
+
+            <!-- 区切り線: 中央が一番濃く、端にいくほど透明になるグラデーション。
+                 MainWindow(タイトルバー/ListFrameとの境界)とListFrame(アイテム境界)で共有する -->
+            <LinearGradientBrush x:Key="DividerBrushVertical" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="Transparent" Offset="0.0"/>
+                <GradientStop Color="{ThemeResource AppDividerStrokeColor}" Offset="0.1"/>
+                <GradientStop Color="Transparent" Offset="0.8"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="DividerBrushHorizontal" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="Transparent" Offset="0.0"/>
+                <GradientStop Color="{ThemeResource AppDividerStrokeColor}" Offset="0.5"/>
+                <GradientStop Color="Transparent" Offset="0.8"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="DividerSeparatorVertical" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{ThemeResource AppDividerStrokeColor}" Offset="0.5"/>
+            </LinearGradientBrush>
+
+            <!-- 下部のバーが上のコンテンツへ落とす影。バー側(下)が一番濃く、
+                 上へ向かって透明になる。ListFrameの履歴削除ボタンと一覧の境界で使う -->
+            <LinearGradientBrush x:Key="BottomBarShadowBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#00000000" Offset="0.4"/>
+                <GradientStop Color="#18000000" Offset="1.0"/>
+            </LinearGradientBrush>
+        </ResourceDictionary>
+
+
+    </Application.Resources>
+</Application>

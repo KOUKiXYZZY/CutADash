@@ -1,0 +1,1565 @@
+{
+  "kind": "Objects",
+  "items": [
+    {
+      "emoji": "🎒",
+      "text": "backpack",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎓",
+      "text": "graduation cap",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎙️",
+      "text": "studio microphone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎚️",
+      "text": "level slider",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎛️",
+      "text": "control knobs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎞️",
+      "text": "film frames",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎤",
+      "text": "microphone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎥",
+      "text": "movie camera",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎧",
+      "text": "headphone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎩",
+      "text": "top hat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎬",
+      "text": "clapper board",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎵",
+      "text": "musical note",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎶",
+      "text": "musical notes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎷",
+      "text": "saxophone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎸",
+      "text": "guitar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎹",
+      "text": "musical keyboard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎺",
+      "text": "trumpet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎻",
+      "text": "violin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🎼",
+      "text": "musical score",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏮",
+      "text": "red paper lantern",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏷️",
+      "text": "label",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🏹",
+      "text": "bow and arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👑",
+      "text": "crown",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👒",
+      "text": "woman’s hat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👓",
+      "text": "glasses",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👔",
+      "text": "necktie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👕",
+      "text": "t-shirt",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👖",
+      "text": "jeans",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👗",
+      "text": "dress",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👘",
+      "text": "kimono",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👙",
+      "text": "bikini",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👚",
+      "text": "woman’s clothes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👛",
+      "text": "purse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👜",
+      "text": "handbag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👝",
+      "text": "clutch bag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👞",
+      "text": "man’s shoe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👟",
+      "text": "running shoe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👠",
+      "text": "high-heeled shoe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👡",
+      "text": "woman’s sandal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👢",
+      "text": "woman’s boot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💄",
+      "text": "lipstick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💉",
+      "text": "syringe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💊",
+      "text": "pill",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💍",
+      "text": "ring",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💎",
+      "text": "gem stone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💡",
+      "text": "light bulb",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💰",
+      "text": "money bag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💳",
+      "text": "credit card",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💴",
+      "text": "yen banknote",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💵",
+      "text": "dollar banknote",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💶",
+      "text": "euro banknote",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💷",
+      "text": "pound banknote",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💸",
+      "text": "money with wings",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💹",
+      "text": "chart increasing with yen",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💻",
+      "text": "laptop",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💼",
+      "text": "briefcase",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💽",
+      "text": "computer disk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💾",
+      "text": "floppy disk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "💿",
+      "text": "optical disk",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📀",
+      "text": "dvd",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📁",
+      "text": "file folder",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📂",
+      "text": "open file folder",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📃",
+      "text": "page with curl",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📄",
+      "text": "page facing up",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📅",
+      "text": "calendar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📆",
+      "text": "tear-off calendar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📇",
+      "text": "card index",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📈",
+      "text": "chart increasing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📉",
+      "text": "chart decreasing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📊",
+      "text": "bar chart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📋",
+      "text": "clipboard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📌",
+      "text": "pushpin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📍",
+      "text": "round pushpin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📎",
+      "text": "paperclip",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📏",
+      "text": "straight ruler",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📐",
+      "text": "triangular ruler",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📑",
+      "text": "bookmark tabs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📒",
+      "text": "ledger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📓",
+      "text": "notebook",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📔",
+      "text": "notebook with decorative cover",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📕",
+      "text": "closed book",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📖",
+      "text": "open book",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📗",
+      "text": "green book",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📘",
+      "text": "blue book",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📙",
+      "text": "orange book",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📚",
+      "text": "books",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📜",
+      "text": "scroll",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📝",
+      "text": "memo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📞",
+      "text": "telephone receiver",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📟",
+      "text": "pager",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📠",
+      "text": "fax machine",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📡",
+      "text": "satellite antenna",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📢",
+      "text": "loudspeaker",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📣",
+      "text": "megaphone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📤",
+      "text": "outbox tray",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📥",
+      "text": "inbox tray",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📦",
+      "text": "package",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📧",
+      "text": "e-mail",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📨",
+      "text": "incoming envelope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📩",
+      "text": "envelope with arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📪",
+      "text": "closed mailbox with lowered flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📫",
+      "text": "closed mailbox with raised flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📬",
+      "text": "open mailbox with raised flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📭",
+      "text": "open mailbox with lowered flag",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📮",
+      "text": "postbox",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📯",
+      "text": "postal horn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📰",
+      "text": "newspaper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📱",
+      "text": "mobile phone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📲",
+      "text": "mobile phone with arrow",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📷",
+      "text": "camera",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📸",
+      "text": "camera with flash",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📹",
+      "text": "video camera",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📺",
+      "text": "television",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📻",
+      "text": "radio",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📼",
+      "text": "videocassette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📽️",
+      "text": "film projector",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "📿",
+      "text": "prayer beads",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔇",
+      "text": "muted speaker",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔈",
+      "text": "speaker low volume",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔉",
+      "text": "speaker medium volume",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔊",
+      "text": "speaker high volume",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔋",
+      "text": "battery",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔌",
+      "text": "electric plug",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔍",
+      "text": "magnifying glass tilted left",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔎",
+      "text": "magnifying glass tilted right",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔏",
+      "text": "locked with pen",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔐",
+      "text": "locked with key",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔑",
+      "text": "key",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔒",
+      "text": "locked",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔓",
+      "text": "unlocked",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔔",
+      "text": "bell",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔕",
+      "text": "bell with slash",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔖",
+      "text": "bookmark",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔗",
+      "text": "link",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔦",
+      "text": "flashlight",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔧",
+      "text": "wrench",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔨",
+      "text": "hammer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔩",
+      "text": "nut and bolt",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔫",
+      "text": "water pistol",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔬",
+      "text": "microscope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🔭",
+      "text": "telescope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕯️",
+      "text": "candle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🕶️",
+      "text": "sunglasses",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖇️",
+      "text": "linked paperclips",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖊️",
+      "text": "pen",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖋️",
+      "text": "fountain pen",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖌️",
+      "text": "paintbrush",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖍️",
+      "text": "crayon",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖥️",
+      "text": "desktop computer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖨️",
+      "text": "printer",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖱️",
+      "text": "computer mouse",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🖲️",
+      "text": "trackball",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗂️",
+      "text": "card index dividers",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗃️",
+      "text": "card file box",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗄️",
+      "text": "file cabinet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗑️",
+      "text": "wastebasket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗒️",
+      "text": "spiral notepad",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗓️",
+      "text": "spiral calendar",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗜️",
+      "text": "clamp",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗝️",
+      "text": "old key",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗞️",
+      "text": "rolled-up newspaper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗡️",
+      "text": "dagger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗳️",
+      "text": "ballot box with ballot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🗿",
+      "text": "moai",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚪",
+      "text": "door",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚬",
+      "text": "cigarette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚽",
+      "text": "toilet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🚿",
+      "text": "shower",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛁",
+      "text": "bathtub",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛋️",
+      "text": "couch and lamp",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛍️",
+      "text": "shopping bags",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛏️",
+      "text": "bed",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛒",
+      "text": "shopping cart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛗",
+      "text": "elevator",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛠️",
+      "text": "hammer and wrench",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🛡️",
+      "text": "shield",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥁",
+      "text": "drum",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥻",
+      "text": "sari",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥼",
+      "text": "lab coat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥽",
+      "text": "goggles",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥾",
+      "text": "hiking boot",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🥿",
+      "text": "flat shoe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦯",
+      "text": "white cane",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦺",
+      "text": "safety vest",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧢",
+      "text": "billed cap",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧣",
+      "text": "scarf",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧤",
+      "text": "gloves",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧥",
+      "text": "coat",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧦",
+      "text": "socks",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧪",
+      "text": "test tube",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧫",
+      "text": "petri dish",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧬",
+      "text": "dna",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧮",
+      "text": "abacus",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧯",
+      "text": "fire extinguisher",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧰",
+      "text": "toolbox",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧲",
+      "text": "magnet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧴",
+      "text": "lotion bottle",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧷",
+      "text": "safety pin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧹",
+      "text": "broom",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧺",
+      "text": "basket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧻",
+      "text": "roll of paper",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧼",
+      "text": "soap",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧽",
+      "text": "sponge",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧾",
+      "text": "receipt",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩰",
+      "text": "ballet shoes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩱",
+      "text": "one-piece swimsuit",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩲",
+      "text": "briefs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩳",
+      "text": "shorts",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩴",
+      "text": "thong sandal",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩸",
+      "text": "drop of blood",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩹",
+      "text": "adhesive bandage",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩺",
+      "text": "stethoscope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩻",
+      "text": "x-ray",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🩼",
+      "text": "crutch",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪃",
+      "text": "boomerang",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪇",
+      "text": "maracas",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪈",
+      "text": "flute",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪑",
+      "text": "chair",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪒",
+      "text": "razor",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪓",
+      "text": "axe",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪔",
+      "text": "diya lamp",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪕",
+      "text": "banjo",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪖",
+      "text": "military helmet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪗",
+      "text": "accordion",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪘",
+      "text": "long drum",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪙",
+      "text": "coin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪚",
+      "text": "carpentry saw",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪛",
+      "text": "screwdriver",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪜",
+      "text": "ladder",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪝",
+      "text": "hook",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪞",
+      "text": "mirror",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪟",
+      "text": "window",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪠",
+      "text": "plunger",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪣",
+      "text": "bucket",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪤",
+      "text": "mouse trap",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪥",
+      "text": "toothbrush",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪦",
+      "text": "headstone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪧",
+      "text": "placard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪪",
+      "text": "identification card",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪫",
+      "text": "low battery",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪭",
+      "text": "folding hand fan",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🪮",
+      "text": "hair pick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫧",
+      "text": "bubbles",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⌨️",
+      "text": "keyboard",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "☎️",
+      "text": "telephone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚒️",
+      "text": "hammer and pick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚔️",
+      "text": "crossed swords",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚖️",
+      "text": "balance scale",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚗️",
+      "text": "alembic",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚙️",
+      "text": "gear",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚰️",
+      "text": "coffin",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⚱️",
+      "text": "funeral urn",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛏️",
+      "text": "pick",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛑️",
+      "text": "rescue worker’s helmet",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛓️",
+      "text": "chains",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛓️‍💥",
+      "text": "broken chain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✂️",
+      "text": "scissors",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✉️",
+      "text": "envelope",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✏️",
+      "text": "pencil",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "✒️",
+      "text": "black nib",
+      "has_variants": false,
+      "variants": []
+    }
+  ]
+}

@@ -1,0 +1,3922 @@
+{
+  "kind": "People & Body",
+  "items": [
+    {
+      "emoji": "🎅",
+      "text": "Santa Claus",
+      "has_variants": true,
+      "variants": [
+        "🎅🏻",
+        "🎅🏼",
+        "🎅🏽",
+        "🎅🏾",
+        "🎅🏿"
+      ]
+    },
+    {
+      "emoji": "🏂",
+      "text": "snowboarder",
+      "has_variants": true,
+      "variants": [
+        "🏂🏻",
+        "🏂🏼",
+        "🏂🏽",
+        "🏂🏾",
+        "🏂🏿"
+      ]
+    },
+    {
+      "emoji": "🏃",
+      "text": "person running",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻",
+        "🏃🏼",
+        "🏃🏽",
+        "🏃🏾",
+        "🏃🏿"
+      ]
+    },
+    {
+      "emoji": "🏃‍♀️",
+      "text": "woman running",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻‍♀️",
+        "🏃🏼‍♀️",
+        "🏃🏽‍♀️",
+        "🏃🏾‍♀️",
+        "🏃🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🏃‍♀️‍➡️",
+      "text": "woman running facing right",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻‍♀️‍➡️",
+        "🏃🏼‍♀️‍➡️",
+        "🏃🏽‍♀️‍➡️",
+        "🏃🏾‍♀️‍➡️",
+        "🏃🏿‍♀️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🏃‍♂️",
+      "text": "man running",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻‍♂️",
+        "🏃🏼‍♂️",
+        "🏃🏽‍♂️",
+        "🏃🏾‍♂️",
+        "🏃🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🏃‍♂️‍➡️",
+      "text": "man running facing right",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻‍♂️‍➡️",
+        "🏃🏼‍♂️‍➡️",
+        "🏃🏽‍♂️‍➡️",
+        "🏃🏾‍♂️‍➡️",
+        "🏃🏿‍♂️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🏃‍➡️",
+      "text": "person running facing right",
+      "has_variants": true,
+      "variants": [
+        "🏃🏻‍➡️",
+        "🏃🏼‍➡️",
+        "🏃🏽‍➡️",
+        "🏃🏾‍➡️",
+        "🏃🏿‍➡️"
+      ]
+    },
+    {
+      "emoji": "🏄",
+      "text": "person surfing",
+      "has_variants": true,
+      "variants": [
+        "🏄🏻",
+        "🏄🏼",
+        "🏄🏽",
+        "🏄🏾",
+        "🏄🏿"
+      ]
+    },
+    {
+      "emoji": "🏄‍♀️",
+      "text": "woman surfing",
+      "has_variants": true,
+      "variants": [
+        "🏄🏻‍♀️",
+        "🏄🏼‍♀️",
+        "🏄🏽‍♀️",
+        "🏄🏾‍♀️",
+        "🏄🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🏄‍♂️",
+      "text": "man surfing",
+      "has_variants": true,
+      "variants": [
+        "🏄🏻‍♂️",
+        "🏄🏼‍♂️",
+        "🏄🏽‍♂️",
+        "🏄🏾‍♂️",
+        "🏄🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🏇",
+      "text": "horse racing",
+      "has_variants": true,
+      "variants": [
+        "🏇🏻",
+        "🏇🏼",
+        "🏇🏽",
+        "🏇🏾",
+        "🏇🏿"
+      ]
+    },
+    {
+      "emoji": "🏊",
+      "text": "person swimming",
+      "has_variants": true,
+      "variants": [
+        "🏊🏻",
+        "🏊🏼",
+        "🏊🏽",
+        "🏊🏾",
+        "🏊🏿"
+      ]
+    },
+    {
+      "emoji": "🏊‍♀️",
+      "text": "woman swimming",
+      "has_variants": true,
+      "variants": [
+        "🏊🏻‍♀️",
+        "🏊🏼‍♀️",
+        "🏊🏽‍♀️",
+        "🏊🏾‍♀️",
+        "🏊🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🏊‍♂️",
+      "text": "man swimming",
+      "has_variants": true,
+      "variants": [
+        "🏊🏻‍♂️",
+        "🏊🏼‍♂️",
+        "🏊🏽‍♂️",
+        "🏊🏾‍♂️",
+        "🏊🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🏋️",
+      "text": "person lifting weights",
+      "has_variants": true,
+      "variants": [
+        "🏋🏻",
+        "🏋🏼",
+        "🏋🏽",
+        "🏋🏾",
+        "🏋🏿"
+      ]
+    },
+    {
+      "emoji": "🏋️‍♀️",
+      "text": "woman lifting weights",
+      "has_variants": true,
+      "variants": [
+        "🏋🏻‍♀️",
+        "🏋🏼‍♀️",
+        "🏋🏽‍♀️",
+        "🏋🏾‍♀️",
+        "🏋🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🏋️‍♂️",
+      "text": "man lifting weights",
+      "has_variants": true,
+      "variants": [
+        "🏋🏻‍♂️",
+        "🏋🏼‍♂️",
+        "🏋🏽‍♂️",
+        "🏋🏾‍♂️",
+        "🏋🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🏌️",
+      "text": "person golfing",
+      "has_variants": true,
+      "variants": [
+        "🏌🏻",
+        "🏌🏼",
+        "🏌🏽",
+        "🏌🏾",
+        "🏌🏿"
+      ]
+    },
+    {
+      "emoji": "🏌️‍♀️",
+      "text": "woman golfing",
+      "has_variants": true,
+      "variants": [
+        "🏌🏻‍♀️",
+        "🏌🏼‍♀️",
+        "🏌🏽‍♀️",
+        "🏌🏾‍♀️",
+        "🏌🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🏌️‍♂️",
+      "text": "man golfing",
+      "has_variants": true,
+      "variants": [
+        "🏌🏻‍♂️",
+        "🏌🏼‍♂️",
+        "🏌🏽‍♂️",
+        "🏌🏾‍♂️",
+        "🏌🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👀",
+      "text": "eyes",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👁️",
+      "text": "eye",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👂",
+      "text": "ear",
+      "has_variants": true,
+      "variants": [
+        "👂🏻",
+        "👂🏼",
+        "👂🏽",
+        "👂🏾",
+        "👂🏿"
+      ]
+    },
+    {
+      "emoji": "👃",
+      "text": "nose",
+      "has_variants": true,
+      "variants": [
+        "👃🏻",
+        "👃🏼",
+        "👃🏽",
+        "👃🏾",
+        "👃🏿"
+      ]
+    },
+    {
+      "emoji": "👄",
+      "text": "mouth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👅",
+      "text": "tongue",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👆",
+      "text": "backhand index pointing up",
+      "has_variants": true,
+      "variants": [
+        "👆🏻",
+        "👆🏼",
+        "👆🏽",
+        "👆🏾",
+        "👆🏿"
+      ]
+    },
+    {
+      "emoji": "👇",
+      "text": "backhand index pointing down",
+      "has_variants": true,
+      "variants": [
+        "👇🏻",
+        "👇🏼",
+        "👇🏽",
+        "👇🏾",
+        "👇🏿"
+      ]
+    },
+    {
+      "emoji": "👈",
+      "text": "backhand index pointing left",
+      "has_variants": true,
+      "variants": [
+        "👈🏻",
+        "👈🏼",
+        "👈🏽",
+        "👈🏾",
+        "👈🏿"
+      ]
+    },
+    {
+      "emoji": "👉",
+      "text": "backhand index pointing right",
+      "has_variants": true,
+      "variants": [
+        "👉🏻",
+        "👉🏼",
+        "👉🏽",
+        "👉🏾",
+        "👉🏿"
+      ]
+    },
+    {
+      "emoji": "👊",
+      "text": "oncoming fist",
+      "has_variants": true,
+      "variants": [
+        "👊🏻",
+        "👊🏼",
+        "👊🏽",
+        "👊🏾",
+        "👊🏿"
+      ]
+    },
+    {
+      "emoji": "👋",
+      "text": "waving hand",
+      "has_variants": true,
+      "variants": [
+        "👋🏻",
+        "👋🏼",
+        "👋🏽",
+        "👋🏾",
+        "👋🏿"
+      ]
+    },
+    {
+      "emoji": "👌",
+      "text": "OK hand",
+      "has_variants": true,
+      "variants": [
+        "👌🏻",
+        "👌🏼",
+        "👌🏽",
+        "👌🏾",
+        "👌🏿"
+      ]
+    },
+    {
+      "emoji": "👍",
+      "text": "thumbs up",
+      "has_variants": true,
+      "variants": [
+        "👍🏻",
+        "👍🏼",
+        "👍🏽",
+        "👍🏾",
+        "👍🏿"
+      ]
+    },
+    {
+      "emoji": "👎",
+      "text": "thumbs down",
+      "has_variants": true,
+      "variants": [
+        "👎🏻",
+        "👎🏼",
+        "👎🏽",
+        "👎🏾",
+        "👎🏿"
+      ]
+    },
+    {
+      "emoji": "👏",
+      "text": "clapping hands",
+      "has_variants": true,
+      "variants": [
+        "👏🏻",
+        "👏🏼",
+        "👏🏽",
+        "👏🏾",
+        "👏🏿"
+      ]
+    },
+    {
+      "emoji": "👐",
+      "text": "open hands",
+      "has_variants": true,
+      "variants": [
+        "👐🏻",
+        "👐🏼",
+        "👐🏽",
+        "👐🏾",
+        "👐🏿"
+      ]
+    },
+    {
+      "emoji": "👣",
+      "text": "footprints",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👤",
+      "text": "bust in silhouette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👥",
+      "text": "busts in silhouette",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👦",
+      "text": "boy",
+      "has_variants": true,
+      "variants": [
+        "👦🏻",
+        "👦🏼",
+        "👦🏽",
+        "👦🏾",
+        "👦🏿"
+      ]
+    },
+    {
+      "emoji": "👧",
+      "text": "girl",
+      "has_variants": true,
+      "variants": [
+        "👧🏻",
+        "👧🏼",
+        "👧🏽",
+        "👧🏾",
+        "👧🏿"
+      ]
+    },
+    {
+      "emoji": "👨",
+      "text": "man",
+      "has_variants": true,
+      "variants": [
+        "👨🏻",
+        "👨🏼",
+        "👨🏽",
+        "👨🏾",
+        "👨🏿"
+      ]
+    },
+    {
+      "emoji": "👨‍🌾",
+      "text": "man farmer",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🌾",
+        "👨🏼‍🌾",
+        "👨🏽‍🌾",
+        "👨🏾‍🌾",
+        "👨🏿‍🌾"
+      ]
+    },
+    {
+      "emoji": "👨‍🍳",
+      "text": "man cook",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🍳",
+        "👨🏼‍🍳",
+        "👨🏽‍🍳",
+        "👨🏾‍🍳",
+        "👨🏿‍🍳"
+      ]
+    },
+    {
+      "emoji": "👨‍🍼",
+      "text": "man feeding baby",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🍼",
+        "👨🏼‍🍼",
+        "👨🏽‍🍼",
+        "👨🏾‍🍼",
+        "👨🏿‍🍼"
+      ]
+    },
+    {
+      "emoji": "👨‍🎓",
+      "text": "man student",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🎓",
+        "👨🏼‍🎓",
+        "👨🏽‍🎓",
+        "👨🏾‍🎓",
+        "👨🏿‍🎓"
+      ]
+    },
+    {
+      "emoji": "👨‍🎤",
+      "text": "man singer",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🎤",
+        "👨🏼‍🎤",
+        "👨🏽‍🎤",
+        "👨🏾‍🎤",
+        "👨🏿‍🎤"
+      ]
+    },
+    {
+      "emoji": "👨‍🎨",
+      "text": "man artist",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🎨",
+        "👨🏼‍🎨",
+        "👨🏽‍🎨",
+        "👨🏾‍🎨",
+        "👨🏿‍🎨"
+      ]
+    },
+    {
+      "emoji": "👨‍🏫",
+      "text": "man teacher",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🏫",
+        "👨🏼‍🏫",
+        "👨🏽‍🏫",
+        "👨🏾‍🏫",
+        "👨🏿‍🏫"
+      ]
+    },
+    {
+      "emoji": "👨‍🏭",
+      "text": "man factory worker",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🏭",
+        "👨🏼‍🏭",
+        "👨🏽‍🏭",
+        "👨🏾‍🏭",
+        "👨🏿‍🏭"
+      ]
+    },
+    {
+      "emoji": "👨‍💻",
+      "text": "man technologist",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍💻",
+        "👨🏼‍💻",
+        "👨🏽‍💻",
+        "👨🏾‍💻",
+        "👨🏿‍💻"
+      ]
+    },
+    {
+      "emoji": "👨‍💼",
+      "text": "man office worker",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍💼",
+        "👨🏼‍💼",
+        "👨🏽‍💼",
+        "👨🏾‍💼",
+        "👨🏿‍💼"
+      ]
+    },
+    {
+      "emoji": "👨‍🔧",
+      "text": "man mechanic",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🔧",
+        "👨🏼‍🔧",
+        "👨🏽‍🔧",
+        "👨🏾‍🔧",
+        "👨🏿‍🔧"
+      ]
+    },
+    {
+      "emoji": "👨‍🔬",
+      "text": "man scientist",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🔬",
+        "👨🏼‍🔬",
+        "👨🏽‍🔬",
+        "👨🏾‍🔬",
+        "👨🏿‍🔬"
+      ]
+    },
+    {
+      "emoji": "👨‍🚀",
+      "text": "man astronaut",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🚀",
+        "👨🏼‍🚀",
+        "👨🏽‍🚀",
+        "👨🏾‍🚀",
+        "👨🏿‍🚀"
+      ]
+    },
+    {
+      "emoji": "👨‍🚒",
+      "text": "man firefighter",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🚒",
+        "👨🏼‍🚒",
+        "👨🏽‍🚒",
+        "👨🏾‍🚒",
+        "👨🏿‍🚒"
+      ]
+    },
+    {
+      "emoji": "👨‍🦯",
+      "text": "man with white cane",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦯",
+        "👨🏼‍🦯",
+        "👨🏽‍🦯",
+        "👨🏾‍🦯",
+        "👨🏿‍🦯"
+      ]
+    },
+    {
+      "emoji": "👨‍🦯‍➡️",
+      "text": "man with white cane facing right",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦯‍➡️",
+        "👨🏼‍🦯‍➡️",
+        "👨🏽‍🦯‍➡️",
+        "👨🏾‍🦯‍➡️",
+        "👨🏿‍🦯‍➡️"
+      ]
+    },
+    {
+      "emoji": "👨‍🦰",
+      "text": "man: red hair",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦰",
+        "👨🏼‍🦰",
+        "👨🏽‍🦰",
+        "👨🏾‍🦰",
+        "👨🏿‍🦰"
+      ]
+    },
+    {
+      "emoji": "👨‍🦱",
+      "text": "man: curly hair",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦱",
+        "👨🏼‍🦱",
+        "👨🏽‍🦱",
+        "👨🏾‍🦱",
+        "👨🏿‍🦱"
+      ]
+    },
+    {
+      "emoji": "👨‍🦲",
+      "text": "man: bald",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦲",
+        "👨🏼‍🦲",
+        "👨🏽‍🦲",
+        "👨🏾‍🦲",
+        "👨🏿‍🦲"
+      ]
+    },
+    {
+      "emoji": "👨‍🦳",
+      "text": "man: white hair",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦳",
+        "👨🏼‍🦳",
+        "👨🏽‍🦳",
+        "👨🏾‍🦳",
+        "👨🏿‍🦳"
+      ]
+    },
+    {
+      "emoji": "👨‍🦼",
+      "text": "man in motorized wheelchair",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦼",
+        "👨🏼‍🦼",
+        "👨🏽‍🦼",
+        "👨🏾‍🦼",
+        "👨🏿‍🦼"
+      ]
+    },
+    {
+      "emoji": "👨‍🦼‍➡️",
+      "text": "man in motorized wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦼‍➡️",
+        "👨🏼‍🦼‍➡️",
+        "👨🏽‍🦼‍➡️",
+        "👨🏾‍🦼‍➡️",
+        "👨🏿‍🦼‍➡️"
+      ]
+    },
+    {
+      "emoji": "👨‍🦽",
+      "text": "man in manual wheelchair",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦽",
+        "👨🏼‍🦽",
+        "👨🏽‍🦽",
+        "👨🏾‍🦽",
+        "👨🏿‍🦽"
+      ]
+    },
+    {
+      "emoji": "👨‍🦽‍➡️",
+      "text": "man in manual wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍🦽‍➡️",
+        "👨🏼‍🦽‍➡️",
+        "👨🏽‍🦽‍➡️",
+        "👨🏾‍🦽‍➡️",
+        "👨🏿‍🦽‍➡️"
+      ]
+    },
+    {
+      "emoji": "👨‍⚕️",
+      "text": "man health worker",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍⚕️",
+        "👨🏼‍⚕️",
+        "👨🏽‍⚕️",
+        "👨🏾‍⚕️",
+        "👨🏿‍⚕️"
+      ]
+    },
+    {
+      "emoji": "👨‍⚖️",
+      "text": "man judge",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍⚖️",
+        "👨🏼‍⚖️",
+        "👨🏽‍⚖️",
+        "👨🏾‍⚖️",
+        "👨🏿‍⚖️"
+      ]
+    },
+    {
+      "emoji": "👨‍✈️",
+      "text": "man pilot",
+      "has_variants": true,
+      "variants": [
+        "👨🏻‍✈️",
+        "👨🏼‍✈️",
+        "👨🏽‍✈️",
+        "👨🏾‍✈️",
+        "👨🏿‍✈️"
+      ]
+    },
+    {
+      "emoji": "👩",
+      "text": "woman",
+      "has_variants": true,
+      "variants": [
+        "👩🏻",
+        "👩🏼",
+        "👩🏽",
+        "👩🏾",
+        "👩🏿"
+      ]
+    },
+    {
+      "emoji": "👩‍🌾",
+      "text": "woman farmer",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🌾",
+        "👩🏼‍🌾",
+        "👩🏽‍🌾",
+        "👩🏾‍🌾",
+        "👩🏿‍🌾"
+      ]
+    },
+    {
+      "emoji": "👩‍🍳",
+      "text": "woman cook",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🍳",
+        "👩🏼‍🍳",
+        "👩🏽‍🍳",
+        "👩🏾‍🍳",
+        "👩🏿‍🍳"
+      ]
+    },
+    {
+      "emoji": "👩‍🍼",
+      "text": "woman feeding baby",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🍼",
+        "👩🏼‍🍼",
+        "👩🏽‍🍼",
+        "👩🏾‍🍼",
+        "👩🏿‍🍼"
+      ]
+    },
+    {
+      "emoji": "👩‍🎓",
+      "text": "woman student",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🎓",
+        "👩🏼‍🎓",
+        "👩🏽‍🎓",
+        "👩🏾‍🎓",
+        "👩🏿‍🎓"
+      ]
+    },
+    {
+      "emoji": "👩‍🎤",
+      "text": "woman singer",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🎤",
+        "👩🏼‍🎤",
+        "👩🏽‍🎤",
+        "👩🏾‍🎤",
+        "👩🏿‍🎤"
+      ]
+    },
+    {
+      "emoji": "👩‍🎨",
+      "text": "woman artist",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🎨",
+        "👩🏼‍🎨",
+        "👩🏽‍🎨",
+        "👩🏾‍🎨",
+        "👩🏿‍🎨"
+      ]
+    },
+    {
+      "emoji": "👩‍🏫",
+      "text": "woman teacher",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🏫",
+        "👩🏼‍🏫",
+        "👩🏽‍🏫",
+        "👩🏾‍🏫",
+        "👩🏿‍🏫"
+      ]
+    },
+    {
+      "emoji": "👩‍🏭",
+      "text": "woman factory worker",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🏭",
+        "👩🏼‍🏭",
+        "👩🏽‍🏭",
+        "👩🏾‍🏭",
+        "👩🏿‍🏭"
+      ]
+    },
+    {
+      "emoji": "👩‍💻",
+      "text": "woman technologist",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍💻",
+        "👩🏼‍💻",
+        "👩🏽‍💻",
+        "👩🏾‍💻",
+        "👩🏿‍💻"
+      ]
+    },
+    {
+      "emoji": "👩‍💼",
+      "text": "woman office worker",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍💼",
+        "👩🏼‍💼",
+        "👩🏽‍💼",
+        "👩🏾‍💼",
+        "👩🏿‍💼"
+      ]
+    },
+    {
+      "emoji": "👩‍🔧",
+      "text": "woman mechanic",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🔧",
+        "👩🏼‍🔧",
+        "👩🏽‍🔧",
+        "👩🏾‍🔧",
+        "👩🏿‍🔧"
+      ]
+    },
+    {
+      "emoji": "👩‍🔬",
+      "text": "woman scientist",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🔬",
+        "👩🏼‍🔬",
+        "👩🏽‍🔬",
+        "👩🏾‍🔬",
+        "👩🏿‍🔬"
+      ]
+    },
+    {
+      "emoji": "👩‍🚀",
+      "text": "woman astronaut",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🚀",
+        "👩🏼‍🚀",
+        "👩🏽‍🚀",
+        "👩🏾‍🚀",
+        "👩🏿‍🚀"
+      ]
+    },
+    {
+      "emoji": "👩‍🚒",
+      "text": "woman firefighter",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🚒",
+        "👩🏼‍🚒",
+        "👩🏽‍🚒",
+        "👩🏾‍🚒",
+        "👩🏿‍🚒"
+      ]
+    },
+    {
+      "emoji": "👩‍🦯",
+      "text": "woman with white cane",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦯",
+        "👩🏼‍🦯",
+        "👩🏽‍🦯",
+        "👩🏾‍🦯",
+        "👩🏿‍🦯"
+      ]
+    },
+    {
+      "emoji": "👩‍🦯‍➡️",
+      "text": "woman with white cane facing right",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦯‍➡️",
+        "👩🏼‍🦯‍➡️",
+        "👩🏽‍🦯‍➡️",
+        "👩🏾‍🦯‍➡️",
+        "👩🏿‍🦯‍➡️"
+      ]
+    },
+    {
+      "emoji": "👩‍🦰",
+      "text": "woman: red hair",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦰",
+        "👩🏼‍🦰",
+        "👩🏽‍🦰",
+        "👩🏾‍🦰",
+        "👩🏿‍🦰"
+      ]
+    },
+    {
+      "emoji": "👩‍🦱",
+      "text": "woman: curly hair",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦱",
+        "👩🏼‍🦱",
+        "👩🏽‍🦱",
+        "👩🏾‍🦱",
+        "👩🏿‍🦱"
+      ]
+    },
+    {
+      "emoji": "👩‍🦲",
+      "text": "woman: bald",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦲",
+        "👩🏼‍🦲",
+        "👩🏽‍🦲",
+        "👩🏾‍🦲",
+        "👩🏿‍🦲"
+      ]
+    },
+    {
+      "emoji": "👩‍🦳",
+      "text": "woman: white hair",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦳",
+        "👩🏼‍🦳",
+        "👩🏽‍🦳",
+        "👩🏾‍🦳",
+        "👩🏿‍🦳"
+      ]
+    },
+    {
+      "emoji": "👩‍🦼",
+      "text": "woman in motorized wheelchair",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👩‍🦼",
+      "text": "woman in motorized wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦼",
+        "👩🏻‍🦼‍➡️",
+        "👩🏼‍🦼",
+        "👩🏼‍🦼‍➡️",
+        "👩🏽‍🦼",
+        "👩🏽‍🦼‍➡️",
+        "👩🏾‍🦼",
+        "👩🏾‍🦼‍➡️",
+        "👩🏿‍🦼",
+        "👩🏿‍🦼‍➡️"
+      ]
+    },
+    {
+      "emoji": "👩‍🦽",
+      "text": "woman in manual wheelchair",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦽",
+        "👩🏼‍🦽",
+        "👩🏽‍🦽",
+        "👩🏾‍🦽",
+        "👩🏿‍🦽"
+      ]
+    },
+    {
+      "emoji": "👩‍🦽‍➡️",
+      "text": "woman in manual wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍🦽‍➡️",
+        "👩🏼‍🦽‍➡️",
+        "👩🏽‍🦽‍➡️",
+        "👩🏾‍🦽‍➡️",
+        "👩🏿‍🦽‍➡️"
+      ]
+    },
+    {
+      "emoji": "👩‍⚕️",
+      "text": "woman health worker",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍⚕️",
+        "👩🏼‍⚕️",
+        "👩🏽‍⚕️",
+        "👩🏾‍⚕️",
+        "👩🏿‍⚕️"
+      ]
+    },
+    {
+      "emoji": "👩‍⚖️",
+      "text": "woman judge",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍⚖️",
+        "👩🏼‍⚖️",
+        "👩🏽‍⚖️",
+        "👩🏾‍⚖️",
+        "👩🏿‍⚖️"
+      ]
+    },
+    {
+      "emoji": "👩‍✈️",
+      "text": "woman pilot",
+      "has_variants": true,
+      "variants": [
+        "👩🏻‍✈️",
+        "👩🏼‍✈️",
+        "👩🏽‍✈️",
+        "👩🏾‍✈️",
+        "👩🏿‍✈️"
+      ]
+    },
+    {
+      "emoji": "👮",
+      "text": "police officer",
+      "has_variants": true,
+      "variants": [
+        "👮🏻",
+        "👮🏼",
+        "👮🏽",
+        "👮🏾",
+        "👮🏿"
+      ]
+    },
+    {
+      "emoji": "👮‍♀️",
+      "text": "woman police officer",
+      "has_variants": true,
+      "variants": [
+        "👮🏻‍♀️",
+        "👮🏼‍♀️",
+        "👮🏽‍♀️",
+        "👮🏾‍♀️",
+        "👮🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "👮‍♂️",
+      "text": "man police officer",
+      "has_variants": true,
+      "variants": [
+        "👮🏻‍♂️",
+        "👮🏼‍♂️",
+        "👮🏽‍♂️",
+        "👮🏾‍♂️",
+        "👮🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👯",
+      "text": "people with bunny ears",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👯‍♀️",
+      "text": "women with bunny ears",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👯‍♂️",
+      "text": "men with bunny ears",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "👰",
+      "text": "person with veil",
+      "has_variants": true,
+      "variants": [
+        "👰🏻",
+        "👰🏼",
+        "👰🏽",
+        "👰🏾",
+        "👰🏿"
+      ]
+    },
+    {
+      "emoji": "👰‍♀️",
+      "text": "woman with veil",
+      "has_variants": true,
+      "variants": [
+        "👰🏻‍♀️",
+        "👰🏼‍♀️",
+        "👰🏽‍♀️",
+        "👰🏾‍♀️",
+        "👰🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "👰‍♂️",
+      "text": "man with veil",
+      "has_variants": true,
+      "variants": [
+        "👰🏻‍♂️",
+        "👰🏼‍♂️",
+        "👰🏽‍♂️",
+        "👰🏾‍♂️",
+        "👰🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👱",
+      "text": "person: blond hair",
+      "has_variants": true,
+      "variants": [
+        "👱🏻",
+        "👱🏼",
+        "👱🏽",
+        "👱🏾",
+        "👱🏿"
+      ]
+    },
+    {
+      "emoji": "👱‍♀️",
+      "text": "woman: blond hair",
+      "has_variants": true,
+      "variants": [
+        "👱🏻‍♀️",
+        "👱🏼‍♀️",
+        "👱🏽‍♀️",
+        "👱🏾‍♀️",
+        "👱🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "👱‍♂️",
+      "text": "man: blond hair",
+      "has_variants": true,
+      "variants": [
+        "👱🏻‍♂️",
+        "👱🏼‍♂️",
+        "👱🏽‍♂️",
+        "👱🏾‍♂️",
+        "👱🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👲",
+      "text": "person with skullcap",
+      "has_variants": true,
+      "variants": [
+        "👲🏻",
+        "👲🏼",
+        "👲🏽",
+        "👲🏾",
+        "👲🏿"
+      ]
+    },
+    {
+      "emoji": "👳",
+      "text": "person wearing turban",
+      "has_variants": true,
+      "variants": [
+        "👳🏻",
+        "👳🏼",
+        "👳🏽",
+        "👳🏾",
+        "👳🏿"
+      ]
+    },
+    {
+      "emoji": "👳‍♀️",
+      "text": "woman wearing turban",
+      "has_variants": true,
+      "variants": [
+        "👳🏻‍♀️",
+        "👳🏼‍♀️",
+        "👳🏽‍♀️",
+        "👳🏾‍♀️",
+        "👳🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "👳‍♂️",
+      "text": "man wearing turban",
+      "has_variants": true,
+      "variants": [
+        "👳🏻‍♂️",
+        "👳🏼‍♂️",
+        "👳🏽‍♂️",
+        "👳🏾‍♂️",
+        "👳🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👴",
+      "text": "old man",
+      "has_variants": true,
+      "variants": [
+        "👴🏻",
+        "👴🏼",
+        "👴🏽",
+        "👴🏾",
+        "👴🏿"
+      ]
+    },
+    {
+      "emoji": "👵",
+      "text": "old woman",
+      "has_variants": true,
+      "variants": [
+        "👵🏻",
+        "👵🏼",
+        "👵🏽",
+        "👵🏾",
+        "👵🏿"
+      ]
+    },
+    {
+      "emoji": "👶",
+      "text": "baby",
+      "has_variants": true,
+      "variants": [
+        "👶🏻",
+        "👶🏼",
+        "👶🏽",
+        "👶🏾",
+        "👶🏿"
+      ]
+    },
+    {
+      "emoji": "👷",
+      "text": "construction worker",
+      "has_variants": true,
+      "variants": [
+        "👷🏻",
+        "👷🏼",
+        "👷🏽",
+        "👷🏾",
+        "👷🏿"
+      ]
+    },
+    {
+      "emoji": "👷‍♀️",
+      "text": "woman construction worker",
+      "has_variants": true,
+      "variants": [
+        "👷🏻‍♀️",
+        "👷🏼‍♀️",
+        "👷🏽‍♀️",
+        "👷🏾‍♀️",
+        "👷🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "👷‍♂️",
+      "text": "man construction worker",
+      "has_variants": true,
+      "variants": [
+        "👷🏻‍♂️",
+        "👷🏼‍♂️",
+        "👷🏽‍♂️",
+        "👷🏾‍♂️",
+        "👷🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "👸",
+      "text": "princess",
+      "has_variants": true,
+      "variants": [
+        "👸🏻",
+        "👸🏼",
+        "👸🏽",
+        "👸🏾",
+        "👸🏿"
+      ]
+    },
+    {
+      "emoji": "👼",
+      "text": "baby angel",
+      "has_variants": true,
+      "variants": [
+        "👼🏻",
+        "👼🏼",
+        "👼🏽",
+        "👼🏾",
+        "👼🏿"
+      ]
+    },
+    {
+      "emoji": "💁",
+      "text": "person tipping hand",
+      "has_variants": true,
+      "variants": [
+        "💁🏻",
+        "💁🏼",
+        "💁🏽",
+        "💁🏾",
+        "💁🏿"
+      ]
+    },
+    {
+      "emoji": "💁‍♀️",
+      "text": "woman tipping hand",
+      "has_variants": true,
+      "variants": [
+        "💁🏻‍♀️",
+        "💁🏼‍♀️",
+        "💁🏽‍♀️",
+        "💁🏾‍♀️",
+        "💁🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "💁‍♂️",
+      "text": "man tipping hand",
+      "has_variants": true,
+      "variants": [
+        "💁🏻‍♂️",
+        "💁🏼‍♂️",
+        "💁🏽‍♂️",
+        "💁🏾‍♂️",
+        "💁🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "💂",
+      "text": "guard",
+      "has_variants": true,
+      "variants": [
+        "💂🏻",
+        "💂🏼",
+        "💂🏽",
+        "💂🏾",
+        "💂🏿"
+      ]
+    },
+    {
+      "emoji": "💂‍♀️",
+      "text": "woman guard",
+      "has_variants": true,
+      "variants": [
+        "💂🏻‍♀️",
+        "💂🏼‍♀️",
+        "💂🏽‍♀️",
+        "💂🏾‍♀️",
+        "💂🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "💂‍♂️",
+      "text": "man guard",
+      "has_variants": true,
+      "variants": [
+        "💂🏻‍♂️",
+        "💂🏼‍♂️",
+        "💂🏽‍♂️",
+        "💂🏾‍♂️",
+        "💂🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "💃",
+      "text": "woman dancing",
+      "has_variants": true,
+      "variants": [
+        "💃🏻",
+        "💃🏼",
+        "💃🏽",
+        "💃🏾",
+        "💃🏿"
+      ]
+    },
+    {
+      "emoji": "💅",
+      "text": "nail polish",
+      "has_variants": true,
+      "variants": [
+        "💅🏻",
+        "💅🏼",
+        "💅🏽",
+        "💅🏾",
+        "💅🏿"
+      ]
+    },
+    {
+      "emoji": "💆",
+      "text": "person getting massage",
+      "has_variants": true,
+      "variants": [
+        "💆🏻",
+        "💆🏼",
+        "💆🏽",
+        "💆🏾",
+        "💆🏿"
+      ]
+    },
+    {
+      "emoji": "💆‍♀️",
+      "text": "woman getting massage",
+      "has_variants": true,
+      "variants": [
+        "💆🏻‍♀️",
+        "💆🏼‍♀️",
+        "💆🏽‍♀️",
+        "💆🏾‍♀️",
+        "💆🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "💆‍♂️",
+      "text": "man getting massage",
+      "has_variants": true,
+      "variants": [
+        "💆🏻‍♂️",
+        "💆🏼‍♂️",
+        "💆🏽‍♂️",
+        "💆🏾‍♂️",
+        "💆🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "💇",
+      "text": "person getting haircut",
+      "has_variants": true,
+      "variants": [
+        "💇🏻",
+        "💇🏼",
+        "💇🏽",
+        "💇🏾",
+        "💇🏿"
+      ]
+    },
+    {
+      "emoji": "💇‍♀️",
+      "text": "woman getting haircut",
+      "has_variants": true,
+      "variants": [
+        "💇🏻‍♀️",
+        "💇🏼‍♀️",
+        "💇🏽‍♀️",
+        "💇🏾‍♀️",
+        "💇🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "💇‍♂️",
+      "text": "man getting haircut",
+      "has_variants": true,
+      "variants": [
+        "💇🏻‍♂️",
+        "💇🏼‍♂️",
+        "💇🏽‍♂️",
+        "💇🏾‍♂️",
+        "💇🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "💪",
+      "text": "flexed biceps",
+      "has_variants": true,
+      "variants": [
+        "💪🏻",
+        "💪🏼",
+        "💪🏽",
+        "💪🏾",
+        "💪🏿"
+      ]
+    },
+    {
+      "emoji": "🕴️",
+      "text": "person in suit levitating",
+      "has_variants": true,
+      "variants": [
+        "🕴🏻",
+        "🕴🏼",
+        "🕴🏽",
+        "🕴🏾",
+        "🕴🏿"
+      ]
+    },
+    {
+      "emoji": "🕵️",
+      "text": "detective",
+      "has_variants": true,
+      "variants": [
+        "🕵🏻",
+        "🕵🏼",
+        "🕵🏽",
+        "🕵🏾",
+        "🕵🏿"
+      ]
+    },
+    {
+      "emoji": "🕵️‍♀️",
+      "text": "woman detective",
+      "has_variants": true,
+      "variants": [
+        "🕵🏻‍♀️",
+        "🕵🏼‍♀️",
+        "🕵🏽‍♀️",
+        "🕵🏾‍♀️",
+        "🕵🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🕵️‍♂️",
+      "text": "man detective",
+      "has_variants": true,
+      "variants": [
+        "🕵🏻‍♂️",
+        "🕵🏼‍♂️",
+        "🕵🏽‍♂️",
+        "🕵🏾‍♂️",
+        "🕵🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🕺",
+      "text": "man dancing",
+      "has_variants": true,
+      "variants": [
+        "🕺🏻",
+        "🕺🏼",
+        "🕺🏽",
+        "🕺🏾",
+        "🕺🏿"
+      ]
+    },
+    {
+      "emoji": "🖐️",
+      "text": "hand with fingers splayed",
+      "has_variants": true,
+      "variants": [
+        "🖐🏻",
+        "🖐🏼",
+        "🖐🏽",
+        "🖐🏾",
+        "🖐🏿"
+      ]
+    },
+    {
+      "emoji": "🖕",
+      "text": "middle finger",
+      "has_variants": true,
+      "variants": [
+        "🖕🏻",
+        "🖕🏼",
+        "🖕🏽",
+        "🖕🏾",
+        "🖕🏿"
+      ]
+    },
+    {
+      "emoji": "🖖",
+      "text": "vulcan salute",
+      "has_variants": true,
+      "variants": [
+        "🖖🏻",
+        "🖖🏼",
+        "🖖🏽",
+        "🖖🏾",
+        "🖖🏿"
+      ]
+    },
+    {
+      "emoji": "🗣️",
+      "text": "speaking head",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🙅",
+      "text": "person gesturing NO",
+      "has_variants": true,
+      "variants": [
+        "🙅🏻",
+        "🙅🏼",
+        "🙅🏽",
+        "🙅🏾",
+        "🙅🏿"
+      ]
+    },
+    {
+      "emoji": "🙅‍♀️",
+      "text": "woman gesturing NO",
+      "has_variants": true,
+      "variants": [
+        "🙅🏻‍♀️",
+        "🙅🏼‍♀️",
+        "🙅🏽‍♀️",
+        "🙅🏾‍♀️",
+        "🙅🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙅‍♂️",
+      "text": "man gesturing NO",
+      "has_variants": true,
+      "variants": [
+        "🙅🏻‍♂️",
+        "🙅🏼‍♂️",
+        "🙅🏽‍♂️",
+        "🙅🏾‍♂️",
+        "🙅🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙆",
+      "text": "person gesturing OK",
+      "has_variants": true,
+      "variants": [
+        "🙆🏻",
+        "🙆🏼",
+        "🙆🏽",
+        "🙆🏾",
+        "🙆🏿"
+      ]
+    },
+    {
+      "emoji": "🙆‍♀️",
+      "text": "woman gesturing OK",
+      "has_variants": true,
+      "variants": [
+        "🙆🏻‍♀️",
+        "🙆🏼‍♀️",
+        "🙆🏽‍♀️",
+        "🙆🏾‍♀️",
+        "🙆🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙆‍♂️",
+      "text": "man gesturing OK",
+      "has_variants": true,
+      "variants": [
+        "🙆🏻‍♂️",
+        "🙆🏼‍♂️",
+        "🙆🏽‍♂️",
+        "🙆🏾‍♂️",
+        "🙆🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙇",
+      "text": "person bowing",
+      "has_variants": true,
+      "variants": [
+        "🙇🏻",
+        "🙇🏼",
+        "🙇🏽",
+        "🙇🏾",
+        "🙇🏿"
+      ]
+    },
+    {
+      "emoji": "🙇‍♀️",
+      "text": "woman bowing",
+      "has_variants": true,
+      "variants": [
+        "🙇🏻‍♀️",
+        "🙇🏼‍♀️",
+        "🙇🏽‍♀️",
+        "🙇🏾‍♀️",
+        "🙇🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙇‍♂️",
+      "text": "man bowing",
+      "has_variants": true,
+      "variants": [
+        "🙇🏻‍♂️",
+        "🙇🏼‍♂️",
+        "🙇🏽‍♂️",
+        "🙇🏾‍♂️",
+        "🙇🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙋",
+      "text": "person raising hand",
+      "has_variants": true,
+      "variants": [
+        "🙋🏻",
+        "🙋🏼",
+        "🙋🏽",
+        "🙋🏾",
+        "🙋🏿"
+      ]
+    },
+    {
+      "emoji": "🙋‍♀️",
+      "text": "woman raising hand",
+      "has_variants": true,
+      "variants": [
+        "🙋🏻‍♀️",
+        "🙋🏼‍♀️",
+        "🙋🏽‍♀️",
+        "🙋🏾‍♀️",
+        "🙋🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙋‍♂️",
+      "text": "man raising hand",
+      "has_variants": true,
+      "variants": [
+        "🙋🏻‍♂️",
+        "🙋🏼‍♂️",
+        "🙋🏽‍♂️",
+        "🙋🏾‍♂️",
+        "🙋🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙌",
+      "text": "raising hands",
+      "has_variants": true,
+      "variants": [
+        "🙌🏻",
+        "🙌🏼",
+        "🙌🏽",
+        "🙌🏾",
+        "🙌🏿"
+      ]
+    },
+    {
+      "emoji": "🙍",
+      "text": "person frowning",
+      "has_variants": true,
+      "variants": [
+        "🙍🏻",
+        "🙍🏼",
+        "🙍🏽",
+        "🙍🏾",
+        "🙍🏿"
+      ]
+    },
+    {
+      "emoji": "🙍‍♀️",
+      "text": "woman frowning",
+      "has_variants": true,
+      "variants": [
+        "🙍🏻‍♀️",
+        "🙍🏼‍♀️",
+        "🙍🏽‍♀️",
+        "🙍🏾‍♀️",
+        "🙍🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙍‍♂️",
+      "text": "man frowning",
+      "has_variants": true,
+      "variants": [
+        "🙍🏻‍♂️",
+        "🙍🏼‍♂️",
+        "🙍🏽‍♂️",
+        "🙍🏾‍♂️",
+        "🙍🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙎",
+      "text": "person pouting",
+      "has_variants": true,
+      "variants": [
+        "🙎🏻",
+        "🙎🏼",
+        "🙎🏽",
+        "🙎🏾",
+        "🙎🏿"
+      ]
+    },
+    {
+      "emoji": "🙎‍♀️",
+      "text": "woman pouting",
+      "has_variants": true,
+      "variants": [
+        "🙎🏻‍♀️",
+        "🙎🏼‍♀️",
+        "🙎🏽‍♀️",
+        "🙎🏾‍♀️",
+        "🙎🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🙎‍♂️",
+      "text": "man pouting",
+      "has_variants": true,
+      "variants": [
+        "🙎🏻‍♂️",
+        "🙎🏼‍♂️",
+        "🙎🏽‍♂️",
+        "🙎🏾‍♂️",
+        "🙎🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🙏",
+      "text": "folded hands",
+      "has_variants": true,
+      "variants": [
+        "🙏🏻",
+        "🙏🏼",
+        "🙏🏽",
+        "🙏🏾",
+        "🙏🏿"
+      ]
+    },
+    {
+      "emoji": "🚣",
+      "text": "person rowing boat",
+      "has_variants": true,
+      "variants": [
+        "🚣🏻",
+        "🚣🏼",
+        "🚣🏽",
+        "🚣🏾",
+        "🚣🏿"
+      ]
+    },
+    {
+      "emoji": "🚣‍♀️",
+      "text": "woman rowing boat",
+      "has_variants": true,
+      "variants": [
+        "🚣🏻‍♀️",
+        "🚣🏼‍♀️",
+        "🚣🏽‍♀️",
+        "🚣🏾‍♀️",
+        "🚣🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🚣‍♂️",
+      "text": "man rowing boat",
+      "has_variants": true,
+      "variants": [
+        "🚣🏻‍♂️",
+        "🚣🏼‍♂️",
+        "🚣🏽‍♂️",
+        "🚣🏾‍♂️",
+        "🚣🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🚴",
+      "text": "person biking",
+      "has_variants": true,
+      "variants": [
+        "🚴🏻",
+        "🚴🏼",
+        "🚴🏽",
+        "🚴🏾",
+        "🚴🏿"
+      ]
+    },
+    {
+      "emoji": "🚴‍♀️",
+      "text": "woman biking",
+      "has_variants": true,
+      "variants": [
+        "🚴🏻‍♀️",
+        "🚴🏼‍♀️",
+        "🚴🏽‍♀️",
+        "🚴🏾‍♀️",
+        "🚴🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🚴‍♂️",
+      "text": "man biking",
+      "has_variants": true,
+      "variants": [
+        "🚴🏻‍♂️",
+        "🚴🏼‍♂️",
+        "🚴🏽‍♂️",
+        "🚴🏾‍♂️",
+        "🚴🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🚵",
+      "text": "person mountain biking",
+      "has_variants": true,
+      "variants": [
+        "🚵🏻",
+        "🚵🏼",
+        "🚵🏽",
+        "🚵🏾",
+        "🚵🏿"
+      ]
+    },
+    {
+      "emoji": "🚵‍♀️",
+      "text": "woman mountain biking",
+      "has_variants": true,
+      "variants": [
+        "🚵🏻‍♀️",
+        "🚵🏼‍♀️",
+        "🚵🏽‍♀️",
+        "🚵🏾‍♀️",
+        "🚵🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🚵‍♂️",
+      "text": "man mountain biking",
+      "has_variants": true,
+      "variants": [
+        "🚵🏻‍♂️",
+        "🚵🏼‍♂️",
+        "🚵🏽‍♂️",
+        "🚵🏾‍♂️",
+        "🚵🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🚶",
+      "text": "person walking",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻",
+        "🚶🏼",
+        "🚶🏽",
+        "🚶🏾",
+        "🚶🏿"
+      ]
+    },
+    {
+      "emoji": "🚶‍♀️",
+      "text": "woman walking",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻‍♀️",
+        "🚶🏼‍♀️",
+        "🚶🏽‍♀️",
+        "🚶🏾‍♀️",
+        "🚶🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🚶‍♀️‍➡️",
+      "text": "woman walking facing right",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻‍♀️‍➡️",
+        "🚶🏼‍♀️‍➡️",
+        "🚶🏽‍♀️‍➡️",
+        "🚶🏾‍♀️‍➡️",
+        "🚶🏿‍♀️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🚶‍♂️",
+      "text": "man walking",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻‍♂️",
+        "🚶🏼‍♂️",
+        "🚶🏽‍♂️",
+        "🚶🏾‍♂️",
+        "🚶🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🚶‍♂️‍➡️",
+      "text": "man walking facing right",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻‍♂️‍➡️",
+        "🚶🏼‍♂️‍➡️",
+        "🚶🏽‍♂️‍➡️",
+        "🚶🏾‍♂️‍➡️",
+        "🚶🏿‍♂️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🚶‍➡️",
+      "text": "person walking facing right",
+      "has_variants": true,
+      "variants": [
+        "🚶🏻‍➡️",
+        "🚶🏼‍➡️",
+        "🚶🏽‍➡️",
+        "🚶🏾‍➡️",
+        "🚶🏿‍➡️"
+      ]
+    },
+    {
+      "emoji": "🛀",
+      "text": "person taking bath",
+      "has_variants": true,
+      "variants": [
+        "🛀🏻",
+        "🛀🏼",
+        "🛀🏽",
+        "🛀🏾",
+        "🛀🏿"
+      ]
+    },
+    {
+      "emoji": "🛌",
+      "text": "person in bed",
+      "has_variants": true,
+      "variants": [
+        "🛌🏻",
+        "🛌🏼",
+        "🛌🏽",
+        "🛌🏾",
+        "🛌🏿"
+      ]
+    },
+    {
+      "emoji": "🤌",
+      "text": "pinched fingers",
+      "has_variants": true,
+      "variants": [
+        "🤌🏻",
+        "🤌🏼",
+        "🤌🏽",
+        "🤌🏾",
+        "🤌🏿"
+      ]
+    },
+    {
+      "emoji": "🤏",
+      "text": "pinching hand",
+      "has_variants": true,
+      "variants": [
+        "🤏🏻",
+        "🤏🏼",
+        "🤏🏽",
+        "🤏🏾",
+        "🤏🏿"
+      ]
+    },
+    {
+      "emoji": "🤘",
+      "text": "sign of the horns",
+      "has_variants": true,
+      "variants": [
+        "🤘🏻",
+        "🤘🏼",
+        "🤘🏽",
+        "🤘🏾",
+        "🤘🏿"
+      ]
+    },
+    {
+      "emoji": "🤙",
+      "text": "call me hand",
+      "has_variants": true,
+      "variants": [
+        "🤙🏻",
+        "🤙🏼",
+        "🤙🏽",
+        "🤙🏾",
+        "🤙🏿"
+      ]
+    },
+    {
+      "emoji": "🤚",
+      "text": "raised back of hand",
+      "has_variants": true,
+      "variants": [
+        "🤚🏻",
+        "🤚🏼",
+        "🤚🏽",
+        "🤚🏾",
+        "🤚🏿"
+      ]
+    },
+    {
+      "emoji": "🤛",
+      "text": "left-facing fist",
+      "has_variants": true,
+      "variants": [
+        "🤛🏻",
+        "🤛🏼",
+        "🤛🏽",
+        "🤛🏾",
+        "🤛🏿"
+      ]
+    },
+    {
+      "emoji": "🤜",
+      "text": "right-facing fist",
+      "has_variants": true,
+      "variants": [
+        "🤜🏻",
+        "🤜🏼",
+        "🤜🏽",
+        "🤜🏾",
+        "🤜🏿"
+      ]
+    },
+    {
+      "emoji": "🤝",
+      "text": "handshake",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤞",
+      "text": "crossed fingers",
+      "has_variants": true,
+      "variants": [
+        "🤞🏻",
+        "🤞🏼",
+        "🤞🏽",
+        "🤞🏾",
+        "🤞🏿"
+      ]
+    },
+    {
+      "emoji": "🤟",
+      "text": "love-you gesture",
+      "has_variants": true,
+      "variants": [
+        "🤟🏻",
+        "🤟🏼",
+        "🤟🏽",
+        "🤟🏾",
+        "🤟🏿"
+      ]
+    },
+    {
+      "emoji": "🤦",
+      "text": "person facepalming",
+      "has_variants": true,
+      "variants": [
+        "🤦🏻",
+        "🤦🏼",
+        "🤦🏽",
+        "🤦🏾",
+        "🤦🏿"
+      ]
+    },
+    {
+      "emoji": "🤦‍♀️",
+      "text": "woman facepalming",
+      "has_variants": true,
+      "variants": [
+        "🤦🏻‍♀️",
+        "🤦🏼‍♀️",
+        "🤦🏽‍♀️",
+        "🤦🏾‍♀️",
+        "🤦🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤦‍♂️",
+      "text": "man facepalming",
+      "has_variants": true,
+      "variants": [
+        "🤦🏻‍♂️",
+        "🤦🏼‍♂️",
+        "🤦🏽‍♂️",
+        "🤦🏾‍♂️",
+        "🤦🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤰",
+      "text": "pregnant woman",
+      "has_variants": true,
+      "variants": [
+        "🤰🏻",
+        "🤰🏼",
+        "🤰🏽",
+        "🤰🏾",
+        "🤰🏿"
+      ]
+    },
+    {
+      "emoji": "🤱",
+      "text": "breast-feeding",
+      "has_variants": true,
+      "variants": [
+        "🤱🏻",
+        "🤱🏼",
+        "🤱🏽",
+        "🤱🏾",
+        "🤱🏿"
+      ]
+    },
+    {
+      "emoji": "🤲",
+      "text": "palms up together",
+      "has_variants": true,
+      "variants": [
+        "🤲🏻",
+        "🤲🏼",
+        "🤲🏽",
+        "🤲🏾",
+        "🤲🏿"
+      ]
+    },
+    {
+      "emoji": "🤳",
+      "text": "selfie",
+      "has_variants": true,
+      "variants": [
+        "🤳🏻",
+        "🤳🏼",
+        "🤳🏽",
+        "🤳🏾",
+        "🤳🏿"
+      ]
+    },
+    {
+      "emoji": "🤴",
+      "text": "prince",
+      "has_variants": true,
+      "variants": [
+        "🤴🏻",
+        "🤴🏼",
+        "🤴🏽",
+        "🤴🏾",
+        "🤴🏿"
+      ]
+    },
+    {
+      "emoji": "🤵",
+      "text": "person in tuxedo",
+      "has_variants": true,
+      "variants": [
+        "🤵🏻",
+        "🤵🏼",
+        "🤵🏽",
+        "🤵🏾",
+        "🤵🏿"
+      ]
+    },
+    {
+      "emoji": "🤵‍♀️",
+      "text": "woman in tuxedo",
+      "has_variants": true,
+      "variants": [
+        "🤵🏻‍♀️",
+        "🤵🏼‍♀️",
+        "🤵🏽‍♀️",
+        "🤵🏾‍♀️",
+        "🤵🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤵‍♂️",
+      "text": "man in tuxedo",
+      "has_variants": true,
+      "variants": [
+        "🤵🏻‍♂️",
+        "🤵🏼‍♂️",
+        "🤵🏽‍♂️",
+        "🤵🏾‍♂️",
+        "🤵🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤶",
+      "text": "Mrs. Claus",
+      "has_variants": true,
+      "variants": [
+        "🤶🏻",
+        "🤶🏼",
+        "🤶🏽",
+        "🤶🏾",
+        "🤶🏿"
+      ]
+    },
+    {
+      "emoji": "🤷",
+      "text": "person shrugging",
+      "has_variants": true,
+      "variants": [
+        "🤷🏻",
+        "🤷🏼",
+        "🤷🏽",
+        "🤷🏾",
+        "🤷🏿"
+      ]
+    },
+    {
+      "emoji": "🤷‍♀️",
+      "text": "woman shrugging",
+      "has_variants": true,
+      "variants": [
+        "🤷🏻‍♀️",
+        "🤷🏼‍♀️",
+        "🤷🏽‍♀️",
+        "🤷🏾‍♀️",
+        "🤷🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤷‍♂️",
+      "text": "man shrugging",
+      "has_variants": true,
+      "variants": [
+        "🤷🏻‍♂️",
+        "🤷🏼‍♂️",
+        "🤷🏽‍♂️",
+        "🤷🏾‍♂️",
+        "🤷🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤸",
+      "text": "person cartwheeling",
+      "has_variants": true,
+      "variants": [
+        "🤸🏻",
+        "🤸🏼",
+        "🤸🏽",
+        "🤸🏾",
+        "🤸🏿"
+      ]
+    },
+    {
+      "emoji": "🤸‍♀️",
+      "text": "woman cartwheeling",
+      "has_variants": true,
+      "variants": [
+        "🤸🏻‍♀️",
+        "🤸🏼‍♀️",
+        "🤸🏽‍♀️",
+        "🤸🏾‍♀️",
+        "🤸🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤸‍♂️",
+      "text": "man cartwheeling",
+      "has_variants": true,
+      "variants": [
+        "🤸🏻‍♂️",
+        "🤸🏼‍♂️",
+        "🤸🏽‍♂️",
+        "🤸🏾‍♂️",
+        "🤸🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤹",
+      "text": "person juggling",
+      "has_variants": true,
+      "variants": [
+        "🤹🏻",
+        "🤹🏼",
+        "🤹🏽",
+        "🤹🏾",
+        "🤹🏿"
+      ]
+    },
+    {
+      "emoji": "🤹‍♀️",
+      "text": "woman juggling",
+      "has_variants": true,
+      "variants": [
+        "🤹🏻‍♀️",
+        "🤹🏼‍♀️",
+        "🤹🏽‍♀️",
+        "🤹🏾‍♀️",
+        "🤹🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤹‍♂️",
+      "text": "man juggling",
+      "has_variants": true,
+      "variants": [
+        "🤹🏻‍♂️",
+        "🤹🏼‍♂️",
+        "🤹🏽‍♂️",
+        "🤹🏾‍♂️",
+        "🤹🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤺",
+      "text": "person fencing",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤼",
+      "text": "people wrestling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤼‍♀️",
+      "text": "women wrestling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤼‍♂️",
+      "text": "men wrestling",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🤽",
+      "text": "person playing water polo",
+      "has_variants": true,
+      "variants": [
+        "🤽🏻",
+        "🤽🏼",
+        "🤽🏽",
+        "🤽🏾",
+        "🤽🏿"
+      ]
+    },
+    {
+      "emoji": "🤽‍♀️",
+      "text": "woman playing water polo",
+      "has_variants": true,
+      "variants": [
+        "🤽🏻‍♀️",
+        "🤽🏼‍♀️",
+        "🤽🏽‍♀️",
+        "🤽🏾‍♀️",
+        "🤽🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤽‍♂️",
+      "text": "man playing water polo",
+      "has_variants": true,
+      "variants": [
+        "🤽🏻‍♂️",
+        "🤽🏼‍♂️",
+        "🤽🏽‍♂️",
+        "🤽🏾‍♂️",
+        "🤽🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🤾",
+      "text": "person playing handball",
+      "has_variants": true,
+      "variants": [
+        "🤾🏻",
+        "🤾🏼",
+        "🤾🏽",
+        "🤾🏾",
+        "🤾🏿"
+      ]
+    },
+    {
+      "emoji": "🤾‍♀️",
+      "text": "woman playing handball",
+      "has_variants": true,
+      "variants": [
+        "🤾🏻‍♀️",
+        "🤾🏼‍♀️",
+        "🤾🏽‍♀️",
+        "🤾🏾‍♀️",
+        "🤾🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🤾‍♂️",
+      "text": "man playing handball",
+      "has_variants": true,
+      "variants": [
+        "🤾🏻‍♂️",
+        "🤾🏼‍♂️",
+        "🤾🏽‍♂️",
+        "🤾🏾‍♂️",
+        "🤾🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🥷",
+      "text": "ninja",
+      "has_variants": true,
+      "variants": [
+        "🥷🏻",
+        "🥷🏼",
+        "🥷🏽",
+        "🥷🏾",
+        "🥷🏿"
+      ]
+    },
+    {
+      "emoji": "🦴",
+      "text": "bone",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦵",
+      "text": "leg",
+      "has_variants": true,
+      "variants": [
+        "🦵🏻",
+        "🦵🏼",
+        "🦵🏽",
+        "🦵🏾",
+        "🦵🏿"
+      ]
+    },
+    {
+      "emoji": "🦶",
+      "text": "foot",
+      "has_variants": true,
+      "variants": [
+        "🦶🏻",
+        "🦶🏼",
+        "🦶🏽",
+        "🦶🏾",
+        "🦶🏿"
+      ]
+    },
+    {
+      "emoji": "🦷",
+      "text": "tooth",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦸",
+      "text": "superhero",
+      "has_variants": true,
+      "variants": [
+        "🦸🏻",
+        "🦸🏼",
+        "🦸🏽",
+        "🦸🏾",
+        "🦸🏿"
+      ]
+    },
+    {
+      "emoji": "🦸‍♀️",
+      "text": "woman superhero",
+      "has_variants": true,
+      "variants": [
+        "🦸🏻‍♀️",
+        "🦸🏼‍♀️",
+        "🦸🏽‍♀️",
+        "🦸🏾‍♀️",
+        "🦸🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🦸‍♂️",
+      "text": "man superhero",
+      "has_variants": true,
+      "variants": [
+        "🦸🏻‍♂️",
+        "🦸🏼‍♂️",
+        "🦸🏽‍♂️",
+        "🦸🏾‍♂️",
+        "🦸🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🦹",
+      "text": "supervillain",
+      "has_variants": true,
+      "variants": [
+        "🦹🏻",
+        "🦹🏼",
+        "🦹🏽",
+        "🦹🏾",
+        "🦹🏿"
+      ]
+    },
+    {
+      "emoji": "🦹‍♀️",
+      "text": "woman supervillain",
+      "has_variants": true,
+      "variants": [
+        "🦹🏻‍♀️",
+        "🦹🏼‍♀️",
+        "🦹🏽‍♀️",
+        "🦹🏾‍♀️",
+        "🦹🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🦹‍♂️",
+      "text": "man supervillain",
+      "has_variants": true,
+      "variants": [
+        "🦹🏻‍♂️",
+        "🦹🏼‍♂️",
+        "🦹🏽‍♂️",
+        "🦹🏾‍♂️",
+        "🦹🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🦻",
+      "text": "ear with hearing aid",
+      "has_variants": true,
+      "variants": [
+        "🦻🏻",
+        "🦻🏼",
+        "🦻🏽",
+        "🦻🏾",
+        "🦻🏿"
+      ]
+    },
+    {
+      "emoji": "🦾",
+      "text": "mechanical arm",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🦿",
+      "text": "mechanical leg",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧌",
+      "text": "troll",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧍",
+      "text": "person standing",
+      "has_variants": true,
+      "variants": [
+        "🧍🏻",
+        "🧍🏼",
+        "🧍🏽",
+        "🧍🏾",
+        "🧍🏿"
+      ]
+    },
+    {
+      "emoji": "🧍‍♀️",
+      "text": "woman standing",
+      "has_variants": true,
+      "variants": [
+        "🧍🏻‍♀️",
+        "🧍🏼‍♀️",
+        "🧍🏽‍♀️",
+        "🧍🏾‍♀️",
+        "🧍🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧍‍♂️",
+      "text": "man standing",
+      "has_variants": true,
+      "variants": [
+        "🧍🏻‍♂️",
+        "🧍🏼‍♂️",
+        "🧍🏽‍♂️",
+        "🧍🏾‍♂️",
+        "🧍🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧎",
+      "text": "person kneeling",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻",
+        "🧎🏼",
+        "🧎🏽",
+        "🧎🏾",
+        "🧎🏿"
+      ]
+    },
+    {
+      "emoji": "🧎‍♀️",
+      "text": "woman kneeling",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻‍♀️",
+        "🧎🏼‍♀️",
+        "🧎🏽‍♀️",
+        "🧎🏾‍♀️",
+        "🧎🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧎‍♀️‍➡️",
+      "text": "woman kneeling facing right",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻‍♀️‍➡️",
+        "🧎🏼‍♀️‍➡️",
+        "🧎🏽‍♀️‍➡️",
+        "🧎🏾‍♀️‍➡️",
+        "🧎🏿‍♀️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧎‍♂️",
+      "text": "man kneeling",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻‍♂️",
+        "🧎🏼‍♂️",
+        "🧎🏽‍♂️",
+        "🧎🏾‍♂️",
+        "🧎🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧎‍♂️‍➡️",
+      "text": "man kneeling facing right",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻‍♂️‍➡️",
+        "🧎🏼‍♂️‍➡️",
+        "🧎🏽‍♂️‍➡️",
+        "🧎🏾‍♂️‍➡️",
+        "🧎🏿‍♂️‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧎‍➡️",
+      "text": "person kneeling facing right",
+      "has_variants": true,
+      "variants": [
+        "🧎🏻‍➡️",
+        "🧎🏼‍➡️",
+        "🧎🏽‍➡️",
+        "🧎🏾‍➡️",
+        "🧎🏿‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧏",
+      "text": "deaf person",
+      "has_variants": true,
+      "variants": [
+        "🧏🏻",
+        "🧏🏼",
+        "🧏🏽",
+        "🧏🏾",
+        "🧏🏿"
+      ]
+    },
+    {
+      "emoji": "🧏‍♀️",
+      "text": "deaf woman",
+      "has_variants": true,
+      "variants": [
+        "🧏🏻‍♀️",
+        "🧏🏼‍♀️",
+        "🧏🏽‍♀️",
+        "🧏🏾‍♀️",
+        "🧏🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧏‍♂️",
+      "text": "deaf man",
+      "has_variants": true,
+      "variants": [
+        "🧏🏻‍♂️",
+        "🧏🏼‍♂️",
+        "🧏🏽‍♂️",
+        "🧏🏾‍♂️",
+        "🧏🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧑",
+      "text": "person",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻",
+        "🧑🏼",
+        "🧑🏽",
+        "🧑🏾",
+        "🧑🏿"
+      ]
+    },
+    {
+      "emoji": "🧑‍🌾",
+      "text": "farmer",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🌾",
+        "🧑🏼‍🌾",
+        "🧑🏽‍🌾",
+        "🧑🏾‍🌾",
+        "🧑🏿‍🌾"
+      ]
+    },
+    {
+      "emoji": "🧑‍🍳",
+      "text": "cook",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🍳",
+        "🧑🏼‍🍳",
+        "🧑🏽‍🍳",
+        "🧑🏾‍🍳",
+        "🧑🏿‍🍳"
+      ]
+    },
+    {
+      "emoji": "🧑‍🍼",
+      "text": "person feeding baby",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🍼",
+        "🧑🏼‍🍼",
+        "🧑🏽‍🍼",
+        "🧑🏾‍🍼",
+        "🧑🏿‍🍼"
+      ]
+    },
+    {
+      "emoji": "🧑‍🎄",
+      "text": "mx claus",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🎄",
+        "🧑🏼‍🎄",
+        "🧑🏽‍🎄",
+        "🧑🏾‍🎄",
+        "🧑🏿‍🎄"
+      ]
+    },
+    {
+      "emoji": "🧑‍🎓",
+      "text": "student",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🎓",
+        "🧑🏼‍🎓",
+        "🧑🏽‍🎓",
+        "🧑🏾‍🎓",
+        "🧑🏿‍🎓"
+      ]
+    },
+    {
+      "emoji": "🧑‍🎤",
+      "text": "singer",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🎤",
+        "🧑🏼‍🎤",
+        "🧑🏽‍🎤",
+        "🧑🏾‍🎤",
+        "🧑🏿‍🎤"
+      ]
+    },
+    {
+      "emoji": "🧑‍🎨",
+      "text": "artist",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🎨",
+        "🧑🏼‍🎨",
+        "🧑🏽‍🎨",
+        "🧑🏾‍🎨",
+        "🧑🏿‍🎨"
+      ]
+    },
+    {
+      "emoji": "🧑‍🏫",
+      "text": "teacher",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🏫",
+        "🧑🏼‍🏫",
+        "🧑🏽‍🏫",
+        "🧑🏾‍🏫",
+        "🧑🏿‍🏫"
+      ]
+    },
+    {
+      "emoji": "🧑‍🏭",
+      "text": "factory worker",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🏭",
+        "🧑🏼‍🏭",
+        "🧑🏽‍🏭",
+        "🧑🏾‍🏭",
+        "🧑🏿‍🏭"
+      ]
+    },
+    {
+      "emoji": "🧑‍💻",
+      "text": "technologist",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍💻",
+        "🧑🏼‍💻",
+        "🧑🏽‍💻",
+        "🧑🏾‍💻",
+        "🧑🏿‍💻"
+      ]
+    },
+    {
+      "emoji": "🧑‍💼",
+      "text": "office worker",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍💼",
+        "🧑🏼‍💼",
+        "🧑🏽‍💼",
+        "🧑🏾‍💼",
+        "🧑🏿‍💼"
+      ]
+    },
+    {
+      "emoji": "🧑‍🔧",
+      "text": "mechanic",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🔧",
+        "🧑🏼‍🔧",
+        "🧑🏽‍🔧",
+        "🧑🏾‍🔧",
+        "🧑🏿‍🔧"
+      ]
+    },
+    {
+      "emoji": "🧑‍🔬",
+      "text": "scientist",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🔬",
+        "🧑🏼‍🔬",
+        "🧑🏽‍🔬",
+        "🧑🏾‍🔬",
+        "🧑🏿‍🔬"
+      ]
+    },
+    {
+      "emoji": "🧑‍🚀",
+      "text": "astronaut",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🚀",
+        "🧑🏼‍🚀",
+        "🧑🏽‍🚀",
+        "🧑🏾‍🚀",
+        "🧑🏿‍🚀"
+      ]
+    },
+    {
+      "emoji": "🧑‍🚒",
+      "text": "firefighter",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🚒",
+        "🧑🏼‍🚒",
+        "🧑🏽‍🚒",
+        "🧑🏾‍🚒",
+        "🧑🏿‍🚒"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦯",
+      "text": "person with white cane",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦯",
+        "🧑🏼‍🦯",
+        "🧑🏽‍🦯",
+        "🧑🏾‍🦯",
+        "🧑🏿‍🦯"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦯‍➡️",
+      "text": "person with white cane facing right",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦯‍➡️",
+        "🧑🏼‍🦯‍➡️",
+        "🧑🏽‍🦯‍➡️",
+        "🧑🏾‍🦯‍➡️",
+        "🧑🏿‍🦯‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦰",
+      "text": "person: red hair",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦰",
+        "🧑🏼‍🦰",
+        "🧑🏽‍🦰",
+        "🧑🏾‍🦰",
+        "🧑🏿‍🦰"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦱",
+      "text": "person: curly hair",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦱",
+        "🧑🏼‍🦱",
+        "🧑🏽‍🦱",
+        "🧑🏾‍🦱",
+        "🧑🏿‍🦱"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦲",
+      "text": "person: bald",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦲",
+        "🧑🏼‍🦲",
+        "🧑🏽‍🦲",
+        "🧑🏾‍🦲",
+        "🧑🏿‍🦲"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦳",
+      "text": "person: white hair",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦳",
+        "🧑🏼‍🦳",
+        "🧑🏽‍🦳",
+        "🧑🏾‍🦳",
+        "🧑🏿‍🦳"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦼",
+      "text": "person in motorized wheelchair",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦼",
+        "🧑🏼‍🦼",
+        "🧑🏽‍🦼",
+        "🧑🏾‍🦼",
+        "🧑🏿‍🦼"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦼‍➡️",
+      "text": "person in motorized wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦼‍➡️",
+        "🧑🏼‍🦼‍➡️",
+        "🧑🏽‍🦼‍➡️",
+        "🧑🏾‍🦼‍➡️",
+        "🧑🏿‍🦼‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦽",
+      "text": "person in manual wheelchair",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦽",
+        "🧑🏼‍🦽",
+        "🧑🏽‍🦽",
+        "🧑🏾‍🦽",
+        "🧑🏿‍🦽"
+      ]
+    },
+    {
+      "emoji": "🧑‍🦽‍➡️",
+      "text": "person in manual wheelchair facing right",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍🦽‍➡️",
+        "🧑🏼‍🦽‍➡️",
+        "🧑🏽‍🦽‍➡️",
+        "🧑🏾‍🦽‍➡️",
+        "🧑🏿‍🦽‍➡️"
+      ]
+    },
+    {
+      "emoji": "🧑‍⚕️",
+      "text": "health worker",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍⚕️",
+        "🧑🏼‍⚕️",
+        "🧑🏽‍⚕️",
+        "🧑🏾‍⚕️",
+        "🧑🏿‍⚕️"
+      ]
+    },
+    {
+      "emoji": "🧑‍⚖️",
+      "text": "judge",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍⚖️",
+        "🧑🏼‍⚖️",
+        "🧑🏽‍⚖️",
+        "🧑🏾‍⚖️",
+        "🧑🏿‍⚖️"
+      ]
+    },
+    {
+      "emoji": "🧑‍✈️",
+      "text": "pilot",
+      "has_variants": true,
+      "variants": [
+        "🧑🏻‍✈️",
+        "🧑🏼‍✈️",
+        "🧑🏽‍✈️",
+        "🧑🏾‍✈️",
+        "🧑🏿‍✈️"
+      ]
+    },
+    {
+      "emoji": "🧒",
+      "text": "child",
+      "has_variants": true,
+      "variants": [
+        "🧒🏻",
+        "🧒🏼",
+        "🧒🏽",
+        "🧒🏾",
+        "🧒🏿"
+      ]
+    },
+    {
+      "emoji": "🧓",
+      "text": "older person",
+      "has_variants": true,
+      "variants": [
+        "🧓🏻",
+        "🧓🏼",
+        "🧓🏽",
+        "🧓🏾",
+        "🧓🏿"
+      ]
+    },
+    {
+      "emoji": "🧔",
+      "text": "person: beard",
+      "has_variants": true,
+      "variants": [
+        "🧔🏻",
+        "🧔🏼",
+        "🧔🏽",
+        "🧔🏾",
+        "🧔🏿"
+      ]
+    },
+    {
+      "emoji": "🧔‍♀️",
+      "text": "woman: beard",
+      "has_variants": true,
+      "variants": [
+        "🧔🏻‍♀️",
+        "🧔🏼‍♀️",
+        "🧔🏽‍♀️",
+        "🧔🏾‍♀️",
+        "🧔🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧔‍♂️",
+      "text": "man: beard",
+      "has_variants": true,
+      "variants": [
+        "🧔🏻‍♂️",
+        "🧔🏼‍♂️",
+        "🧔🏽‍♂️",
+        "🧔🏾‍♂️",
+        "🧔🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧕",
+      "text": "woman with headscarf",
+      "has_variants": true,
+      "variants": [
+        "🧕🏻",
+        "🧕🏼",
+        "🧕🏽",
+        "🧕🏾",
+        "🧕🏿"
+      ]
+    },
+    {
+      "emoji": "🧖",
+      "text": "person in steamy room",
+      "has_variants": true,
+      "variants": [
+        "🧖🏻",
+        "🧖🏼",
+        "🧖🏽",
+        "🧖🏾",
+        "🧖🏿"
+      ]
+    },
+    {
+      "emoji": "🧖‍♀️",
+      "text": "woman in steamy room",
+      "has_variants": true,
+      "variants": [
+        "🧖🏻‍♀️",
+        "🧖🏼‍♀️",
+        "🧖🏽‍♀️",
+        "🧖🏾‍♀️",
+        "🧖🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧖‍♂️",
+      "text": "man in steamy room",
+      "has_variants": true,
+      "variants": [
+        "🧖🏻‍♂️",
+        "🧖🏼‍♂️",
+        "🧖🏽‍♂️",
+        "🧖🏾‍♂️",
+        "🧖🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧗",
+      "text": "person climbing",
+      "has_variants": true,
+      "variants": [
+        "🧗🏻",
+        "🧗🏼",
+        "🧗🏽",
+        "🧗🏾",
+        "🧗🏿"
+      ]
+    },
+    {
+      "emoji": "🧗‍♀️",
+      "text": "woman climbing",
+      "has_variants": true,
+      "variants": [
+        "🧗🏻‍♀️",
+        "🧗🏼‍♀️",
+        "🧗🏽‍♀️",
+        "🧗🏾‍♀️",
+        "🧗🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧗‍♂️",
+      "text": "man climbing",
+      "has_variants": true,
+      "variants": [
+        "🧗🏻‍♂️",
+        "🧗🏼‍♂️",
+        "🧗🏽‍♂️",
+        "🧗🏾‍♂️",
+        "🧗🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧘",
+      "text": "person in lotus position",
+      "has_variants": true,
+      "variants": [
+        "🧘🏻",
+        "🧘🏼",
+        "🧘🏽",
+        "🧘🏾",
+        "🧘🏿"
+      ]
+    },
+    {
+      "emoji": "🧘‍♀️",
+      "text": "woman in lotus position",
+      "has_variants": true,
+      "variants": [
+        "🧘🏻‍♀️",
+        "🧘🏼‍♀️",
+        "🧘🏽‍♀️",
+        "🧘🏾‍♀️",
+        "🧘🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧘‍♂️",
+      "text": "man in lotus position",
+      "has_variants": true,
+      "variants": [
+        "🧘🏻‍♂️",
+        "🧘🏼‍♂️",
+        "🧘🏽‍♂️",
+        "🧘🏾‍♂️",
+        "🧘🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧙",
+      "text": "mage",
+      "has_variants": true,
+      "variants": [
+        "🧙🏻",
+        "🧙🏼",
+        "🧙🏽",
+        "🧙🏾",
+        "🧙🏿"
+      ]
+    },
+    {
+      "emoji": "🧙‍♀️",
+      "text": "woman mage",
+      "has_variants": true,
+      "variants": [
+        "🧙🏻‍♀️",
+        "🧙🏼‍♀️",
+        "🧙🏽‍♀️",
+        "🧙🏾‍♀️",
+        "🧙🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧙‍♂️",
+      "text": "man mage",
+      "has_variants": true,
+      "variants": [
+        "🧙🏻‍♂️",
+        "🧙🏼‍♂️",
+        "🧙🏽‍♂️",
+        "🧙🏾‍♂️",
+        "🧙🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧚",
+      "text": "fairy",
+      "has_variants": true,
+      "variants": [
+        "🧚🏻",
+        "🧚🏼",
+        "🧚🏽",
+        "🧚🏾",
+        "🧚🏿"
+      ]
+    },
+    {
+      "emoji": "🧚‍♀️",
+      "text": "woman fairy",
+      "has_variants": true,
+      "variants": [
+        "🧚🏻‍♀️",
+        "🧚🏼‍♀️",
+        "🧚🏽‍♀️",
+        "🧚🏾‍♀️",
+        "🧚🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧚‍♂️",
+      "text": "man fairy",
+      "has_variants": true,
+      "variants": [
+        "🧚🏻‍♂️",
+        "🧚🏼‍♂️",
+        "🧚🏽‍♂️",
+        "🧚🏾‍♂️",
+        "🧚🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧛",
+      "text": "vampire",
+      "has_variants": true,
+      "variants": [
+        "🧛🏻",
+        "🧛🏼",
+        "🧛🏽",
+        "🧛🏾",
+        "🧛🏿"
+      ]
+    },
+    {
+      "emoji": "🧛‍♀️",
+      "text": "woman vampire",
+      "has_variants": true,
+      "variants": [
+        "🧛🏻‍♀️",
+        "🧛🏼‍♀️",
+        "🧛🏽‍♀️",
+        "🧛🏾‍♀️",
+        "🧛🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧛‍♂️",
+      "text": "man vampire",
+      "has_variants": true,
+      "variants": [
+        "🧛🏻‍♂️",
+        "🧛🏼‍♂️",
+        "🧛🏽‍♂️",
+        "🧛🏾‍♂️",
+        "🧛🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧜",
+      "text": "merperson",
+      "has_variants": true,
+      "variants": [
+        "🧜🏻",
+        "🧜🏼",
+        "🧜🏽",
+        "🧜🏾",
+        "🧜🏿"
+      ]
+    },
+    {
+      "emoji": "🧜‍♀️",
+      "text": "mermaid",
+      "has_variants": true,
+      "variants": [
+        "🧜🏻‍♀️",
+        "🧜🏼‍♀️",
+        "🧜🏽‍♀️",
+        "🧜🏾‍♀️",
+        "🧜🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧜‍♂️",
+      "text": "merman",
+      "has_variants": true,
+      "variants": [
+        "🧜🏻‍♂️",
+        "🧜🏼‍♂️",
+        "🧜🏽‍♂️",
+        "🧜🏾‍♂️",
+        "🧜🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧝",
+      "text": "elf",
+      "has_variants": true,
+      "variants": [
+        "🧝🏻",
+        "🧝🏼",
+        "🧝🏽",
+        "🧝🏾",
+        "🧝🏿"
+      ]
+    },
+    {
+      "emoji": "🧝‍♀️",
+      "text": "woman elf",
+      "has_variants": true,
+      "variants": [
+        "🧝🏻‍♀️",
+        "🧝🏼‍♀️",
+        "🧝🏽‍♀️",
+        "🧝🏾‍♀️",
+        "🧝🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "🧝‍♂️",
+      "text": "man elf",
+      "has_variants": true,
+      "variants": [
+        "🧝🏻‍♂️",
+        "🧝🏼‍♂️",
+        "🧝🏽‍♂️",
+        "🧝🏾‍♂️",
+        "🧝🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "🧞",
+      "text": "genie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧞‍♀️",
+      "text": "woman genie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧞‍♂️",
+      "text": "man genie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧟",
+      "text": "zombie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧟‍♀️",
+      "text": "woman zombie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧟‍♂️",
+      "text": "man zombie",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🧠",
+      "text": "brain",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫀",
+      "text": "anatomical heart",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫁",
+      "text": "lungs",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫂",
+      "text": "people hugging",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫃",
+      "text": "pregnant man",
+      "has_variants": true,
+      "variants": [
+        "🫃🏻",
+        "🫃🏼",
+        "🫃🏽",
+        "🫃🏾",
+        "🫃🏿"
+      ]
+    },
+    {
+      "emoji": "🫄",
+      "text": "pregnant person",
+      "has_variants": true,
+      "variants": [
+        "🫄🏻",
+        "🫄🏼",
+        "🫄🏽",
+        "🫄🏾",
+        "🫄🏿"
+      ]
+    },
+    {
+      "emoji": "🫅",
+      "text": "person with crown",
+      "has_variants": true,
+      "variants": [
+        "🫅🏻",
+        "🫅🏼",
+        "🫅🏽",
+        "🫅🏾",
+        "🫅🏿"
+      ]
+    },
+    {
+      "emoji": "🫦",
+      "text": "biting lip",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "🫰",
+      "text": "hand with index finger and thumb crossed",
+      "has_variants": true,
+      "variants": [
+        "🫰🏻",
+        "🫰🏼",
+        "🫰🏽",
+        "🫰🏾",
+        "🫰🏿"
+      ]
+    },
+    {
+      "emoji": "🫱",
+      "text": "rightwards hand",
+      "has_variants": true,
+      "variants": [
+        "🫱🏻",
+        "🫱🏼",
+        "🫱🏽",
+        "🫱🏾",
+        "🫱🏿"
+      ]
+    },
+    {
+      "emoji": "🫲",
+      "text": "leftwards hand",
+      "has_variants": true,
+      "variants": [
+        "🫲🏻",
+        "🫲🏼",
+        "🫲🏽",
+        "🫲🏾",
+        "🫲🏿"
+      ]
+    },
+    {
+      "emoji": "🫳",
+      "text": "palm down hand",
+      "has_variants": true,
+      "variants": [
+        "🫳🏻",
+        "🫳🏼",
+        "🫳🏽",
+        "🫳🏾",
+        "🫳🏿"
+      ]
+    },
+    {
+      "emoji": "🫴",
+      "text": "palm up hand",
+      "has_variants": true,
+      "variants": [
+        "🫴🏻",
+        "🫴🏼",
+        "🫴🏽",
+        "🫴🏾",
+        "🫴🏿"
+      ]
+    },
+    {
+      "emoji": "🫵",
+      "text": "index pointing at the viewer",
+      "has_variants": true,
+      "variants": [
+        "🫵🏻",
+        "🫵🏼",
+        "🫵🏽",
+        "🫵🏾",
+        "🫵🏿"
+      ]
+    },
+    {
+      "emoji": "🫶",
+      "text": "heart hands",
+      "has_variants": true,
+      "variants": [
+        "🫶🏻",
+        "🫶🏼",
+        "🫶🏽",
+        "🫶🏾",
+        "🫶🏿"
+      ]
+    },
+    {
+      "emoji": "🫷",
+      "text": "leftwards pushing hand",
+      "has_variants": true,
+      "variants": [
+        "🫷🏻",
+        "🫷🏼",
+        "🫷🏽",
+        "🫷🏾",
+        "🫷🏿"
+      ]
+    },
+    {
+      "emoji": "🫸",
+      "text": "rightwards pushing hand",
+      "has_variants": true,
+      "variants": [
+        "🫸🏻",
+        "🫸🏼",
+        "🫸🏽",
+        "🫸🏾",
+        "🫸🏿"
+      ]
+    },
+    {
+      "emoji": "☝️",
+      "text": "index pointing up",
+      "has_variants": true,
+      "variants": [
+        "☝🏻",
+        "☝🏼",
+        "☝🏽",
+        "☝🏾",
+        "☝🏿"
+      ]
+    },
+    {
+      "emoji": "⛷️",
+      "text": "skier",
+      "has_variants": false,
+      "variants": []
+    },
+    {
+      "emoji": "⛹️",
+      "text": "person bouncing ball",
+      "has_variants": true,
+      "variants": [
+        "⛹🏻",
+        "⛹🏼",
+        "⛹🏽",
+        "⛹🏾",
+        "⛹🏿"
+      ]
+    },
+    {
+      "emoji": "⛹️‍♀️",
+      "text": "woman bouncing ball",
+      "has_variants": true,
+      "variants": [
+        "⛹🏻‍♀️",
+        "⛹🏼‍♀️",
+        "⛹🏽‍♀️",
+        "⛹🏾‍♀️",
+        "⛹🏿‍♀️"
+      ]
+    },
+    {
+      "emoji": "⛹️‍♂️",
+      "text": "man bouncing ball",
+      "has_variants": true,
+      "variants": [
+        "⛹🏻‍♂️",
+        "⛹🏼‍♂️",
+        "⛹🏽‍♂️",
+        "⛹🏾‍♂️",
+        "⛹🏿‍♂️"
+      ]
+    },
+    {
+      "emoji": "✊",
+      "text": "raised fist",
+      "has_variants": true,
+      "variants": [
+        "✊🏻",
+        "✊🏼",
+        "✊🏽",
+        "✊🏾",
+        "✊🏿"
+      ]
+    },
+    {
+      "emoji": "✋",
+      "text": "raised hand",
+      "has_variants": true,
+      "variants": [
+        "✋🏻",
+        "✋🏼",
+        "✋🏽",
+        "✋🏾",
+        "✋🏿"
+      ]
+    },
+    {
+      "emoji": "✌️",
+      "text": "victory hand",
+      "has_variants": true,
+      "variants": [
+        "✌🏻",
+        "✌🏼",
+        "✌🏽",
+        "✌🏾",
+        "✌🏿"
+      ]
+    },
+    {
+      "emoji": "✍️",
+      "text": "writing hand",
+      "has_variants": true,
+      "variants": [
+        "✍🏻",
+        "✍🏼",
+        "✍🏽",
+        "✍🏾",
+        "✍🏿"
+      ]
+    }
+  ]
+}

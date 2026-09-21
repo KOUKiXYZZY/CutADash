@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Face" xml:space="preserve">
+    <value>Face</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="Animals" xml:space="preserve">
+    <value>Animals</value>
+  </data>
+  <data name="Food &amp; Drink" xml:space="preserve">
+    <value>Food &amp; Drink</value>
+  </data>
+  <data name="Activities" xml:space="preserve">
+    <value>Activities</value>
+  </data>
+  <data name="Travel" xml:space="preserve">
+    <value>Travel</value>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Places</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="Weather" xml:space="preserve">
+    <value>Weather</value>
+  </data>
+  <data name="Emotion" xml:space="preserve">
+    <value>Emotion</value>
+  </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Plants" xml:space="preserve">
+    <value>Plants</value>
+  </data>
+  <data name="Objects" xml:space="preserve">
+    <value>Objects</value>
+  </data>
+  <data name="Symbols" xml:space="preserve">
+    <value>Symbols</value>
+  </data>
+  <data name="Flags" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="Smileys &amp; Emotion" xml:space="preserve">
+    <value>Smileys &amp; Emotion</value>
+  </data>
+  <data name="People &amp; Body" xml:space="preserve">
+    <value>People &amp; Body</value>
+  </data>
+  <data name="Animals &amp; Nature" xml:space="preserve">
+    <value>Animals &amp; Nature</value>
+  </data>
+  <data name="Travel &amp; Places" xml:space="preserve">
+    <value>Travel &amp; Places</value>
+  </data>
+  <data name="TrayIcon_Tooltip" xml:space="preserve">
+    <value>CutADash</value>
+  </data>
+  <data name="TrayIcon_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="TrayIcon_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TrayIcon_SequentialPaste" xml:space="preserve">
+    <value>Sequential Paste</value>
+  </data>
+  <data name="ListFrame_AddToSequentialPaste" xml:space="preserve">
+    <value>Add to Sequential Paste</value>
+  </data>
+  <data name="TrayIcon_PauseMonitoring" xml:space="preserve">
+    <value>Pause Clipboard Monitoring</value>
+  </data>
+  <data name="TrayIcon_ResumeMonitoring" xml:space="preserve">
+    <value>Resume Clipboard Monitoring</value>
+  </data>
+  <data name="TrayIcon_Quit" xml:space="preserve">
+    <value>Quit App</value>
+  </data>
+  <data name="TrayIcon_AlwaysPastePlainText" xml:space="preserve">
+    <value>Always Paste as Plain Text</value>
+  </data>
+  <data name="TrayIcon_CheckForUpdates" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
+  <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
+    <value>Apply Update and Restart</value>
+  </data>
+  <data name="EmojiSetup_Message" xml:space="preserve">
+    <value>Generating emoji images from your font (first launch only)…</value>
+  </data>
+  <data name="EmojiSetup_Progress" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="Nav_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Nav_Favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="Nav_Emoji" xml:space="preserve">
+    <value>Emoji</value>
+  </data>
+  <data name="Contents_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="Contents_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Contents_PasteFormatted" xml:space="preserve">
+    <value>Paste with Formatting</value>
+  </data>
+  <data name="Contents_PastePlain" xml:space="preserve">
+    <value>Paste as Plain Text</value>
+  </data>
+  <data name="Empty_Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ListFrame_AddToFavorite" xml:space="preserve">
+    <value>Add to Favorite</value>
+  </data>
+  <data name="ListFrame_FavoriteRoot" xml:space="preserve">
+    <value>Root</value>
+  </data>
+  <data name="Contents_UnsavedChangesTitle" xml:space="preserve">
+    <value>Unsaved changes</value>
+  </data>
+  <data name="Contents_UnsavedChangesMessage" xml:space="preserve">
+    <value>Leave without saving your changes?</value>
+  </data>
+  <data name="Contents_DiscardChanges" xml:space="preserve">
+    <value>Leave without saving</value>
+  </data>
+  <data name="Contents_CancelLeave" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+</root>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<winex:WindowEx
+    xmlns:winex="using:WinUIEx"
+    x:Class="Preferences.Views.PreferenceWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Preferences"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Width="560"
+    Height="560"
+    MinWidth="480"
+    MinHeight="420"
+    Title="Settings">
+
+    <Grid x:Name="RootGrid">
+        <Grid.Resources>
+            <x:String x:Key="Pref_Delete_Str">Delete</x:String>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <SelectorBar x:Name="SectionSelector"
+                         Grid.Column="0"
+                         VerticalAlignment="Center"
+                         SelectionChanged="SectionSelector_SelectionChanged">
+                <SelectorBar.Resources>
+                    <!-- 既定よりスリムなパディングにする -->
+                    <Thickness x:Key="SelectorBarItemPadding">12,4,12,3</Thickness>
+                </SelectorBar.Resources>
+                <SelectorBarItem x:Name="GeneralTabItem" IsSelected="True" />
+                <SelectorBarItem x:Name="HistoryTabItem" />
+                <SelectorBarItem x:Name="ShortcutsTabItem" />
+                <SelectorBarItem x:Name="ExcludedAppsTabItem" />
+                <SelectorBarItem x:Name="SelectionToolbarTabItem" />
+                <SelectorBarItem x:Name="AboutTabItem" />
+            </SelectorBar>
+
+            <!-- SelectorBar・閉じるボタン以外の、ウィンドウを移動できるドラッグ領域(MainWindowと同じ仕組み) -->
+            <Grid x:Name="DragHandle"
+                  Grid.Column="1"
+                  Height="32"
+                  Background="Transparent" />
+
+            <!-- ウィンドウ閉じるボタン -->
+            <Button Grid.Column="2"
+                    Width="42" Height="32"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    Click="CloseButton_Click">
+                <Button.Resources>
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
+                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
+                </Button.Resources>
+                <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="Transparent">
+            <StackPanel x:Name="SettingsPanel" Padding="12" Spacing="16">
+                <TextBlock x:Name="GeneralSectionTitle" FontSize="18" FontWeight="Bold"/>
+
+                <CheckBox x:Name="LaunchAtLoginCheckBox"
+                          IsChecked="{x:Bind ViewModel.LaunchAtLogin, Mode=TwoWay}"/>
+
+                <CheckBox x:Name="DisableCaretPositioningCheckBox"
+                          IsChecked="{x:Bind ViewModel.DisableCaretPositioning, Mode=TwoWay}"/>
+
+                <CheckBox x:Name="DisableWindowsClipboardHistoryCheckBox"
+                          IsChecked="{x:Bind ViewModel.DisableWindowsClipboardHistory, Mode=TwoWay}"/>
+
+                <TextBlock x:Name="LanguageSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="LanguageDescriptionText"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <ComboBox x:Name="LanguageComboBox"
+                          Width="160"
+                          HorizontalAlignment="Left"
+                          SelectedValuePath="Tag"
+                          SelectedValue="{x:Bind ViewModel.SelectedLanguageTag, Mode=TwoWay}">
+                    <ComboBoxItem x:Name="LanguageSystemDefaultItem" Tag=""/>
+                    <ComboBoxItem Content="日本語" Tag="ja-JP"/>
+                    <ComboBoxItem Content="English" Tag="en-US"/>
+                    <ComboBoxItem Content="中文" Tag="zh-CN"/>
+                </ComboBox>
+
+                <TextBlock x:Name="ThemeSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="ThemeDescriptionText"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <ComboBox x:Name="BackdropComboBox"
+                          Width="160"
+                          HorizontalAlignment="Left"
+                          SelectedValuePath="Tag"
+                          SelectedValue="{x:Bind ViewModel.SelectedBackdropTag, Mode=TwoWay}">
+                    <ComboBoxItem Content="Mica" Tag="Mica"/>
+                    <ComboBoxItem Content="Acrylic" Tag="Acrylic"/>
+                    <ComboBoxItem Content="Blur" Tag="Blur"/>
+                    <ComboBoxItem Content="&#x1F431; Cat and Dash!?" Tag="Cat"/>
+                </ComboBox>
+
+            </StackPanel>
+
+            <StackPanel x:Name="HistoryPanel" Padding="12" Spacing="16" Visibility="Collapsed">
+                <TextBlock x:Name="HistorySectionTitle" FontSize="18" FontWeight="Bold"/>
+
+                <!-- 保持する履歴の件数 -->
+                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <TextBlock x:Name="MaxHistoryCountLabel"
+                               VerticalAlignment="Center"
+                               Width="160"/>
+
+                    <NumberBox x:Name="MaxHistoryCountNumberBox"
+                               Width="160"
+                               Minimum="1"
+                               Maximum="1000"
+                               SpinButtonPlacementMode="Compact"
+                               SmallChange="1"
+                               Value="{x:Bind ViewModel.MaxHistoryCount, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <CheckBox x:Name="DisableImageHistoryCheckBox"
+                          IsChecked="{x:Bind ViewModel.DisableImageHistory, Mode=TwoWay}"/>
+
+                <!-- 一覧表示用サムネイルのサイズ -->
+                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <TextBlock x:Name="ThumbnailSizeLabel"
+                               VerticalAlignment="Center"
+                               Width="160"/>
+
+                    <ComboBox x:Name="ThumbnailSizeComboBox"
+                              Width="160"
+                              SelectedValuePath="Tag"
+                              SelectedValue="{x:Bind ViewModel.ThumbnailMaxDimensionTag, Mode=TwoWay}">
+                        <ComboBoxItem x:Name="ThumbnailSizeSmallItem" Tag="100"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeMediumItem" Tag="200"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeLargeItem" Tag="300"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeExtraLargeItem" Tag="400"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeExtraLargePlusItem" Tag="600"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeMaxItem" Tag="800"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="ShortcutsPanel" Padding="12" Spacing="16" Visibility="Collapsed">
+                <TextBlock x:Name="ShortcutsSectionTitle" FontSize="18" FontWeight="Bold"/>
+
+                <!-- History -->
+                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <TextBlock x:Name="OpenHistoryLabel"
+                               VerticalAlignment="Center"
+                               Width="160"/>
+
+                    <Border BorderThickness="1"
+                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                            CornerRadius="4"
+                            Padding="10,6"
+                            MinWidth="160">
+                        <TextBlock x:Name="HistoryShortcutDisplay"
+                                   Text="{x:Bind ViewModel.HistoryShortcutText, Mode=OneWay}"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Button x:Name="ChangeHistoryShortcutButton" Tag="history" Click="ChangeShortcutButton_Click"/>
+                    <Button x:Name="DeleteHistoryShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="history"/>
+                </StackPanel>
+
+                <!-- Favorite -->
+                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <TextBlock x:Name="OpenFavoriteLabel"
+                               VerticalAlignment="Center"
+                               Width="160"/>
+
+                    <Border BorderThickness="1"
+                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                            CornerRadius="4"
+                            Padding="10,6"
+                            MinWidth="160">
+                        <TextBlock x:Name="FavoriteShortcutDisplay"
+                                   Text="{x:Bind ViewModel.FavoriteShortcutText, Mode=OneWay}"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Button x:Name="ChangeFavoriteShortcutButton" Tag="favorite" Click="ChangeShortcutButton_Click"/>
+                    <Button x:Name="DeleteFavoriteShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="favorite"/>
+                </StackPanel>
+
+                <!-- Emoji -->
+                <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                    <TextBlock x:Name="OpenEmojiLabel"
+                               VerticalAlignment="Center"
+                               Width="160"/>
+
+                    <Border BorderThickness="1"
+                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                            CornerRadius="4"
+                            Padding="10,6"
+                            MinWidth="160">
+                        <TextBlock x:Name="EmojiShortcutDisplay"
+                                   Text="{x:Bind ViewModel.EmojiShortcutText, Mode=OneWay}"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Button x:Name="ChangeEmojiShortcutButton" Tag="emoji" Click="ChangeShortcutButton_Click"/>
+                    <Button x:Name="DeleteEmojiShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="emoji"/>
+                </StackPanel>
+
+                <TextBlock x:Name="ShortcutHintText"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"
+                           Visibility="Collapsed"/>
+            </StackPanel>
+
+            <Grid x:Name="ExcludedAppsPanel" Padding="12" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="ExcludedAppsSectionTitle" Grid.Row="0" FontSize="18" FontWeight="Bold" Margin="0,0,0,16"/>
+
+                <TextBlock x:Name="ExcludedAppsDescriptionText"
+                           Grid.Row="1"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"
+                           Margin="0,0,0,16"/>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,16">
+                    <TextBox x:Name="NewExcludedAppTextBox"
+                             Width="240"
+                             Text="{x:Bind ViewModel.NewExcludedAppName, Mode=TwoWay}"
+                             KeyDown="NewExcludedAppTextBox_KeyDown"/>
+                    <Button x:Name="AddExcludedAppButton" Command="{x:Bind ViewModel.AddExcludedAppCommand}"/>
+                </StackPanel>
+
+                <ListView x:Name="ExcludedAppsListView"
+                          Grid.Row="3"
+                          ItemsSource="{x:Bind ViewModel.ExcludedAppNames}"
+                          SelectionMode="None"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollMode="Enabled">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Grid Padding="0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{x:Bind}" VerticalAlignment="Center"/>
+                                <Button Grid.Column="1"
+                                        Content="{StaticResource Pref_Delete_Str}"
+                                        Tag="{x:Bind}"
+                                        Click="RemoveExcludedAppButton_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <StackPanel x:Name="SelectionToolbarPanel" Padding="12" Spacing="16" Visibility="Collapsed">
+                <TextBlock x:Name="SelectionToolbarSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="SelectionToolbarDescriptionText"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <CheckBox x:Name="SelectionToolbarEnabledCheckBox"
+                          IsChecked="{x:Bind ViewModel.SelectionToolbarEnabled, Mode=TwoWay}"/>
+
+                <StackPanel Spacing="4">
+                    <TextBlock x:Name="SelectionToolbarAutoHideLabel"
+                               Text="{x:Bind ViewModel.SelectionToolbarAutoHideLabel, Mode=OneWay}"/>
+                    <Slider x:Name="SelectionToolbarAutoHideSlider"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            Minimum="1"
+                            Maximum="10"
+                            StepFrequency="1"
+                            IsEnabled="{x:Bind ViewModel.SelectionToolbarEnabled, Mode=OneWay}"
+                            Value="{x:Bind ViewModel.SelectionToolbarAutoHideSeconds, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Grid x:Name="AboutPanel" Padding="24" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12">
+                    <Image Source="ms-appx:///Assets/AppIcon.png" Width="64" Height="64" VerticalAlignment="Top"/>
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="CutADash" FontSize="22" FontWeight="Bold"/>
+                        <TextBlock x:Name="VersionText" Text="{x:Bind ViewModel.VersionText, Mode=OneWay}" FontSize="14"/>
+                        <TextBlock x:Name="AboutDescriptionText" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <ScrollViewer Grid.Row="1" Margin="0,16,0,0" VerticalScrollBarVisibility="Auto">
+                    <TextBlock x:Name="LicensesText"
+                               TextWrapping="Wrap"
+                               FontFamily="Consolas"
+                               FontSize="11"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</winex:WindowEx>
