@@ -450,6 +450,7 @@ namespace WinAPI
         {
             public const int WH_MOUSE_LL = 14;
 
+            public const int WM_MOUSEMOVE = 0x0200;
             public const int WM_LBUTTONDOWN = 0x0201;
             public const int WM_LBUTTONUP = 0x0202;
             public const int WM_RBUTTONDOWN = 0x0204;

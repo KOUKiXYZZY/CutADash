@@ -197,6 +197,9 @@ namespace CutADash
             // この過渡的な揺れを原理的に拾わない。Dittoのようなネイティブ実装と同じ粒度にする
             windowMessageDispatcher.AddHandler(WinAPI.WindowMessages.WM_ACTIVATEAPP, (wParam, lParam) =>
             {
+                // TODO: ショートカット表示直後に一瞬だけ消える不具合の調査用の一時ログ。
+                // 原因が分かったら上のMainWindow側のログと合わせて削除する
+                System.Diagnostics.Debug.WriteLine($"[App] WM_ACTIVATEAPP wParam={wParam} IsPasting={window.IsPasting}");
 #if !DEVDEBUG
                 // wParamが0なら、他アプリのウィンドウがアクティブになった(こちらは非アクティブ)
                 if (wParam == IntPtr.Zero && !window.IsPasting)

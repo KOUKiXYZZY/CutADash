@@ -10,7 +10,10 @@ namespace Common.Db
     /// </summary>
     public static class DbSchema
     {
-        public const int CurrentVersion = 1;
+        // v2: favorites.dbで、項目(フォルダでないノード)の下に別の項目がぶら下がっている
+        // 壊れたデータ(TreeViewの標準ドラッグ&ドロップがフォルダかどうかを区別せず
+        // ドロップを受け付けてしまっていた不具合の名残)を、ルート直下へ戻す移行を追加
+        public const int CurrentVersion = 2;
 
         /// <summary>
         /// マイグレーション対象のDBファイル名一覧(AppPaths.GetDataFilePath基準)。

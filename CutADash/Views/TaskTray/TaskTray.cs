@@ -53,6 +53,17 @@ namespace CutADash.Views.TaskTray
             _uiSettings.ColorValuesChanged += (s, e) =>
                 _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
 
+            // 表示スケール(DPI)の変更(モニタ間の移動・設定画面での変更)に追従する。
+            // WinUIExのTrayIcon.SetIcon(string)は呼び出し時点のDPIでHICONのサイズを
+            // 決めるため、初回作成時のDPIのまま放置すると、後からスケールが変わっても
+            // 古いサイズのアイコンのままになり、特に100%のような小さいサイズ側で
+            // 潰れて見えることがあった(実際に踏んだ不具合)。SystemEvents.
+            // DisplaySettingsChangedは解像度変更等でも飛んでくるが、再生成のコストは
+            // 軽いため区別せずまとめて呼び直す。バックグラウンドスレッドから飛んでくるため
+            // ColorValuesChangedと同じくUIスレッドへ戻す
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += (s, e) =>
+                _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
+
             _icon.Selected += (s, e) => _viewModel.OpenCommand.Execute(null);
             _icon.ContextMenu += (w, e) => e.Flyout = BuildContextMenu();
         }

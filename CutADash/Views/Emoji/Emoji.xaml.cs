@@ -417,6 +417,12 @@ namespace CutADash.Views.Emoji
             var dpiScale = XamlRoot?.RasterizationScale ?? 1.0;
             var (source, width, height) = Utils.EmojiSpriteAssets.GetOrLoad(item.Kind, itemCount, dpiScale);
 
+            // ItemsRepeaterによるセルのリサイクル時、直前と同じBitmapImageインスタンスを
+            // 再度SourceへセットするとWinUI側で実質no-opになり、何らかの理由(コンポジション
+            // 面の一時的な喪失等)で直前の描画が飛んでいた場合に再描画されないことがあった
+            // (カテゴリ切り替え/ページ送り直後にたまに絵文字が表示されない不具合)。
+            // 一度nullを経由させることで、参照が同じでも必ず再描画させる
+            image.Source = null;
             image.Source = source;
             image.Width = width;
             image.Height = height;

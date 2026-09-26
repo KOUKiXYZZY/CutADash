@@ -272,11 +272,19 @@ namespace CutADash.Views
         /// </summary>
         public void ShowActivate()
         {
+            // TODO: 「ショートカットで開いた直後に一瞬だけ表示されて消える」不具合の
+            // 再現条件が特定できていないため、発現時にWM_ACTIVATEAPPとの前後関係を
+            // 追えるよう一時的に診断ログを仕込んでいる。再現できたらログを元に調査し、
+            // 原因が分かったらこのログは削除する
+            System.Diagnostics.Debug.WriteLine($"[MainWindow] ShowActivate begin IsVisible={this.Visible}");
+
             RestoreWindowSizeOnce();
 
             this.Activate();
             this.ForceForeground();
             this.SetTopMost(true);
+
+            System.Diagnostics.Debug.WriteLine($"[MainWindow] ShowActivate end IsVisible={this.Visible} Foreground==Self={WinAPI.WinUser.GetForegroundWindow() == WindowNative.GetWindowHandle(this)}");
 
             Utils.GarbageCollectionHelper.OnWindowShown();
         }
@@ -284,6 +292,9 @@ namespace CutADash.Views
         /// <summary>パレットを隠し、各種監視も止める。次回表示に備えて状態をリセットする。</summary>
         public void HidePalette()
         {
+            // TODO: 上記ShowActivateと同じ調査目的の一時ログ
+            System.Diagnostics.Debug.WriteLine($"[MainWindow] HidePalette called{Environment.NewLine}{Environment.StackTrace}");
+
             this.SetTopMost(false);
             this.Hide();
             Utils.GarbageCollectionHelper.OnWindowHidden();

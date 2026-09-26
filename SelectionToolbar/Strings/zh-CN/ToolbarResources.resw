@@ -18,6 +18,9 @@
   <data name="Toolbar_Search" xml:space="preserve">
     <value>搜索</value>
   </data>
+  <data name="Toolbar_OpenUrl" xml:space="preserve">
+    <value>打开链接</value>
+  </data>
   <data name="Toolbar_Close" xml:space="preserve">
     <value>关闭</value>
   </data>

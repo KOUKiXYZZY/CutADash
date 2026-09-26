@@ -6,6 +6,7 @@ using System;
 using WinAPI;
 using WinRT.Interop;
 using WinUIEx;
+using Windows.Foundation;
 using Windows.Graphics;
 using static WinAPI.WinUser;
 using ShowWindowCommands = WinAPI.ShowWindowCommands;
@@ -51,6 +52,10 @@ namespace SequentialPaste
             _viewModel = viewModel;
             RootGrid.DataContext = _viewModel;
             _viewModel.QueueCompleted += () => DispatcherQueue.TryEnqueue(ShowQueueCompletedDialog);
+
+            // ウィンドウを開いた時点で既に選択されている項目(次に貼り付けられる項目)も
+            // 中央寄せしておく(SelectionChangedはこの時点では発火済みのため別途必要)
+            QueueListView.Loaded += (s, e) => CenterSelectedItem();
 
             _hWnd = WindowNative.GetWindowHandle(this);
 
@@ -183,6 +188,57 @@ namespace SequentialPaste
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e) => HideNoActivate();
+
+        // 選択行(=次に貼り付けられる項目)が変わるたびに、次の項目も見えるよう常に
+        // ビューポートの中央付近へスクロールする。貼り付けでキューの先頭が消費されて
+        // NextIndexが繰り上がる場合と、ユーザーが手動でクリックし直す場合の両方で発火する
+        private void QueueListView_SelectionChanged(object sender, SelectionChangedEventArgs e) =>
+            DispatcherQueue.TryEnqueue(CenterSelectedItem);
+
+        private void CenterSelectedItem()
+        {
+            var index = QueueListView.SelectedIndex;
+            if (index < 0)
+                return;
+
+            var scrollViewer = FindChildOfType<ScrollViewer>(QueueListView);
+            if (scrollViewer is null)
+                return;
+
+            var container = QueueListView.ContainerFromIndex(index) as FrameworkElement;
+            if (container is null)
+            {
+                // 仮想化により選択行のコンテナがまだ生成されていない場合、一旦ビューへ
+                // 入れてレイアウトを確定させてから改めて中央寄せの位置を計算し直す
+                QueueListView.ScrollIntoView(QueueListView.SelectedItem);
+                QueueListView.UpdateLayout();
+                container = QueueListView.ContainerFromIndex(index) as FrameworkElement;
+                if (container is null)
+                    return;
+            }
+
+            var itemTop = container.TransformToVisual(scrollViewer).TransformPoint(new Point(0, 0)).Y;
+            var itemCenter = itemTop + container.ActualHeight / 2;
+            var viewportCenter = scrollViewer.ViewportHeight / 2;
+            var targetOffset = scrollViewer.VerticalOffset + itemCenter - viewportCenter;
+
+            scrollViewer.ChangeView(null, Math.Max(0, targetOffset), null);
+        }
+
+        private static T? FindChildOfType<T>(DependencyObject parent)
+            where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T t)
+                    return t;
+                var result = FindChildOfType<T>(child);
+                if (result != null)
+                    return result;
+            }
+            return null;
+        }
 
         public void ShowNoActivate()
         {

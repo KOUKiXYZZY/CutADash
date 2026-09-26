@@ -52,8 +52,14 @@ namespace CutADash.Views.ListFrame
             }
         }
 
-        // FavoriteListViewModelはDIシングルトンでアプリと同じ寿命のため、
-        // 購読解除はしない(他のシングルトンViewModelの既存パターンと同じ)
+        // FavoriteListViewModel自体はDIシングルトンでアプリと同じ寿命だが、この
+        // FavoriteListFrame(Page)はタブを切り替えるたびに新しいインスタンスが作られては
+        // 捨てられる。購読解除しないと、ページが表示されなくなった後もViewModel側から
+        // 古いインスタンスが参照され続け(実質的なリーク)、TreeLoadedが飛ぶたびに
+        // 古いインスタンスのFolderTree.SelectedNodeがそのインスタンス自身のSelectionChanged
+        // を誘発してContentFrame(全タブ共通)を書き換えてしまい、他のタブを見ている最中に
+        // Favoriteで選んでいたはずの内容が急に表示される不具合になっていた(実際に踏んだ不具合)。
+        // Unloadedで解除する(WindowBackdropChangedと同じ既存パターン)
         private void AttachViewModel(FavoriteListViewModel viewModel)
         {
             if (_viewModel is not null)
@@ -61,6 +67,7 @@ namespace CutADash.Views.ListFrame
 
             _viewModel = viewModel;
             _viewModel.TreeLoaded += RestoreSelectedFolder;
+            this.Unloaded += (_, _) => viewModel.TreeLoaded -= RestoreSelectedFolder;
 
             // AttachViewModel時点で既に読み込み済み(2回目以降にこのタブへ来た時)なら、
             // TreeLoadedを待たずにここで復元する
@@ -470,6 +477,33 @@ namespace CutADash.Views.ListFrame
                     continue;
 
                 var parentNode = GetParentTreeViewNode(sender, movedTreeNode);
+
+                // WinUIのTreeView標準ドラッグ&ドロップは、狙った位置がほんの少しずれただけで
+                // 「並び替え」のつもりが「その項目の中へネスト」と判定されてしまうことがある
+                // (実際に踏んだ不具合。特に下方向へのドラッグで頻発した)。フォルダでない項目の
+                // 中へ実際にネストされてしまっていた場合は、エラーにして戻すのではなく
+                // 「その項目の直後に、同じ階層の兄弟として挿入するつもりだった」とみなして
+                // 自動的に読み替える
+                if (parentNode?.Content is FavoriteNode { IsFolder: false })
+                {
+                    var grandParentNode = GetParentTreeViewNode(sender, parentNode);
+                    var grandSiblings = grandParentNode?.Children ?? sender.RootNodes;
+                    var parentIndex = grandSiblings.IndexOf(parentNode);
+
+                    var correctedIndex = parentIndex + 1;
+                    var correctedParentId = (grandParentNode?.Content as FavoriteNode)?.Id;
+
+                    try
+                    {
+                        await _viewModel.MoveNodeAsync(movedNode.Id, correctedParentId, correctedIndex);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        await _viewModel.ReloadAsync();
+                    }
+                    continue;
+                }
+
                 var siblings = parentNode?.Children ?? sender.RootNodes;
                 var newIndex = siblings.IndexOf(movedTreeNode);
                 var newParentId = (parentNode?.Content as FavoriteNode)?.Id;

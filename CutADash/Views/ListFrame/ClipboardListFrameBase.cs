@@ -156,6 +156,11 @@ namespace CutADash.Views.ListFrame
         // 既に無くなった/操作が確定済みで「保存しますか」の確認が無意味な場面で使う。
         protected void NavigateContent(ClipboardItem? item)
         {
+            // このページが既にFrameから追い出された後なら、全タブ共通のContentFrameには
+            // 触らない(IsDetached参照)
+            if (IsDetached)
+                return;
+
             var ownerViewModel = DataContext as IClipboardItemListViewModel;
 
             if (ContentFrame?.Content is Contents.Contents existingContents)
@@ -178,6 +183,12 @@ namespace CutADash.Views.ListFrame
         /// </summary>
         protected async Task<bool> NavigateContentWithConfirmationAsync(ClipboardItem? item)
         {
+            // このページが既にFrameから追い出された後なら、全タブ共通のContentFrameには
+            // 触らない(IsDetached参照)。trueを返す(=選択の変更自体は妨げない)ことで、
+            // 呼び出し元が「キャンセルされた」と誤解して選択を戻そうとしないようにする
+            if (IsDetached)
+                return true;
+
             var ownerViewModel = DataContext as IClipboardItemListViewModel;
 
             if (ContentFrame?.Content is Contents.Contents existingContents)

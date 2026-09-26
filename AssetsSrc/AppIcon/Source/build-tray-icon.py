@@ -87,15 +87,24 @@ def build_theme_icon(theme_name: str) -> None:
         ico_out.chmod(0o666)
 
     src = Image.open(png_path).convert("RGBA")
-    sw, sh = src.size
 
-    # 書き出しPNGは正方形とは限らないため、長辺基準で余白少なめの
-    # 正方形キャンバス(透過背景、元画像とほぼ同じ解像度)にまず収める
+    # Affinity書き出しのキャンバス全体には、実際に描かれているグリフの外側に
+    # 余白(アートボードの安全マージン)が含まれている。そのままキャンバス全体を
+    # 基準に配置すると、PAD_RATIOの余白に加えてこの余白も重なり、通知領域では
+    # 他の常駐アプリのアイコンより小さく見えてしまっていた(実際に踏んだ不具合)。
+    # 先にアルファの外接矩形でクロップし、実際のグリフの大きさを基準にする
+    bbox = src.getbbox()
+    if bbox is None:
+        raise SystemExit(f"{png_path} が透明で、描画内容がありませんでした。")
+    glyph = src.crop(bbox)
+    sw, sh = glyph.size
+
+    # クロップ後のグリフを基準に、長辺基準で余白少なめの正方形キャンバスへ収める
     canvas_size = max(sw, sh)
     inner = int(canvas_size * (1 - PAD_RATIO * 2))
     scale = inner / max(sw, sh)
     placed_size = (max(1, round(sw * scale)), max(1, round(sh * scale)))
-    placed = resize_premultiplied(src, placed_size)
+    placed = resize_premultiplied(glyph, placed_size)
 
     master = Image.new("RGBA", (canvas_size, canvas_size), (0, 0, 0, 0))
     offset = (

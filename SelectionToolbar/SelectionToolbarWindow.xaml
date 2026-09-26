@@ -28,6 +28,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <!-- 選択文字列がURL(の一部)と判定できた時だけ表示する列。非表示時は
+                     コードビハインド(UpdateOpenUrlButtonVisibility)でWidth=0にして詰める -->
+                <ColumnDefinition x:Name="OpenUrlColumn" Width="*"/>
                 <ColumnDefinition Width="42"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -60,10 +63,24 @@
                     Click="SearchButton_Click">
                 <TextBlock x:Name="SearchButtonText" FontSize="12"/>
             </Button>
+            <Button x:Name="OpenUrlButton"
+                    Grid.Column="2"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    CornerRadius="0"
+                    Visibility="Collapsed"
+                    Click="OpenUrlButton_Click">
+                <TextBlock x:Name="OpenUrlButtonText" FontSize="12"/>
+            </Button>
 
             <!-- ウィンドウ閉じるボタンを配置-->
             <Button x:Name="CloseButton"
-                Grid.Column="2"
+                Grid.Column="3"
                 Width="42"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Right"

@@ -22,6 +22,23 @@ namespace CutADash.Views.ListFrame
         // 選択項目の表示先となるFrame
         protected Frame? ContentFrame;
 
+        // タブ切り替え等でこのページがFrameから追い出された後かどうか。
+        // ページ自体は即座に破棄されるとは限らず、DataContext経由でDIシングルトンの
+        // ViewModelにバインドされたままの子コントロール(TreeView等)が、ページが
+        // 表示されなくなった後もViewModel側の変更(コレクションの入れ替え等)を受けて
+        // SelectionChangedを再発火させ続けることがある(実際に踏んだ不具合: お気に入り
+        // タブを離れた後、別タブでの操作をきっかけに全タブ共通のContentFrameが
+        // 古いお気に入りの選択内容で書き換えられてしまっていた)。個々のイベント購読を
+        // 律儀に解除しても発火経路を全部塞ぎきれるとは限らないため、代わりに
+        // 「Unloaded後は共有のContentFrameに触らない」という形で一括してガードする
+        // (ClipboardListFrameBase.NavigateContent/NavigateContentWithConfirmationAsync参照)
+        protected bool IsDetached { get; private set; }
+
+        protected ListFrameBase()
+        {
+            this.Unloaded += (_, _) => IsDetached = true;
+        }
+
         // Enterでのペースト先(直前のフォアグラウンドウィンドウ)を得るためのMainWindow参照
         protected MainWindow? MainWindowRef;
 

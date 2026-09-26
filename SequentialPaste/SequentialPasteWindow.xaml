@@ -95,6 +95,7 @@
                       Grid.Row="1"
                       SelectionMode="Single"
                       SelectedIndex="{Binding NextIndex, Mode=TwoWay}"
+                      SelectionChanged="QueueListView_SelectionChanged"
                       ItemsSource="{Binding Items}"
                       Visibility="{Binding HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
                 <ListView.Resources>
@@ -180,6 +181,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         CornerRadius="0"
+                        IsEnabled="{Binding HasItems}"
                         FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
                         FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
                         Command="{Binding ToggleWatchingCommand}"/>
@@ -190,6 +192,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         CornerRadius="0"
+                        IsEnabled="{Binding HasItems}"
                         FocusVisualPrimaryThickness="{StaticResource AppFocusVisualPrimaryThickness}"
                         FocusVisualSecondaryThickness="{StaticResource AppFocusVisualSecondaryThickness}"
                         Command="{Binding ClearCommand}"/>

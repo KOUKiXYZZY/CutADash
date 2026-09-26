@@ -35,10 +35,6 @@ namespace SelectionToolbar
         // 探す際の上限階層数
         private const int MaxAncestorWalk = 4;
 
-        // ドラッグして選択したのか、ただの1クリックなのかを見分けるための、
-        // ボタン押下位置からの許容誤差(px)
-        private const int ClickDragThreshold = 2;
-
         private readonly MouseHook.LowLevelMouseProc _proc;
         private IntPtr _hookHandle;
         private IUIAutomation? _automation;
@@ -46,11 +42,18 @@ namespace SelectionToolbar
         private int _downY;
         private Microsoft.UI.Dispatching.DispatcherQueue? _dispatcherQueue;
 
+        // 押した位置から実際にWM_MOUSEMOVEで動いたかどうか。クリック→(動かず)→離す、
+        // という操作(ダブルクリックでの単語選択・トリプルクリックでの行選択もこれに該当)
+        // では反応させたくないため、クリック→マウスムーブ→離す、という一連の動きが
+        // 実際にあった時だけ選択内容を拾う(実際の要望: ダブルクリックでは出したくない)
+        private bool _hasMovedSinceDown;
+
         // マウスドラッグの検知(ポーリング)を補う、UI Automationのイベント購読(プッシュ通知)。
-        // ダブルクリックでの単語選択・トリプルクリックでの行選択・Shift+矢印キーでの選択など、
-        // マウスドラッグを伴わない選択操作はWM_LBUTTONUPベースの検知では拾えないため、
-        // TextSelectionChangedEventをデスクトップ全体(TreeScope_Subtree)で購読して補う。
-        // 対応していないアプリでは従来通りマウスドラッグ検知側だけが効く
+        // Shift+矢印キーでの選択などマウスを伴わない選択操作はWM_LBUTTONUPベースの検知では
+        // 拾えないため、TextSelectionChangedEventをデスクトップ全体(TreeScope_Subtree)で
+        // 購読して補う。ボタンを押している間の分は_hasMovedSinceDownがtrueの時だけ
+        // (=実際にマウスを動かした時だけ)拾う。対応していないアプリでは従来通り
+        // マウスドラッグ検知側だけが効く
         private TextSelectionEventHandler? _textSelectionEventHandler;
 
         /// <summary>ドラッグ選択の完了直後、非空のテキスト選択が見つかった時に発火する。</summary>
@@ -180,6 +183,20 @@ namespace SelectionToolbar
                 if (hwnd != IntPtr.Zero && IsOwnWindow(hwnd))
                     return;
 
+                // TextPattern要素自体はhwndを持たないことが多いため、その場合は現在の
+                // カーソル位置のウィンドウで判定する。エクスプローラのファイル一覧は
+                // アイコン名のラベルがTextPatternを実装しており、ダブルクリックで
+                // フォルダを開く際などに誤って選択イベントが飛んでくることがあった
+                // (実際に踏んだ不具合)
+                var checkHwnd = hwnd;
+                if (checkHwnd == IntPtr.Zero)
+                {
+                    GetCursorPos(out var cursorForCheck);
+                    checkHwnd = WindowFromPoint(new POINT { X = cursorForCheck.X, Y = cursorForCheck.Y });
+                }
+                if (IsExplorerFileListWindow(checkHwnd))
+                    return;
+
                 if (sender.GetCurrentPattern(UIA_TextPatternId) is not IUIAutomationTextPattern pattern)
                     return;
 
@@ -232,6 +249,22 @@ namespace SelectionToolbar
                     _downY = Marshal.ReadInt32(lParam, 4);
                     _isLeftMouseDown = true;
                     _pendingSelectionTextDuringDrag = null;
+
+                    _hasMovedSinceDown = false;
+
+                    // 新しいクリック(=新しい選択操作)のたびに重複防止キャッシュを
+                    // クリアする。これが無いと、一度ツールバーを表示したのと同じ内容を
+                    // (別の場所をクリックしてフォーカスを外した後などに)選び直しても、
+                    // 「前回と同じ選択内容」とみなされてツールバーが二度と出てこなかった
+                    // (実際に踏んだ不具合)。1回のドラッグ内でTextSelectionChangedEventと
+                    // WM_LBUTTONUPが同じ内容を二重発火するのを防ぐ役割はこのままでも保たれる
+                    // (ドラッグが始まる前にリセットされるだけなので)
+                    _lastShownSelectionText = null;
+                }
+                else if ((int)wParam == MouseHook.WM_MOUSEMOVE)
+                {
+                    if (_isLeftMouseDown)
+                        _hasMovedSinceDown = true;
                 }
                 else if ((int)wParam == MouseHook.WM_LBUTTONUP)
                 {
@@ -240,6 +273,16 @@ namespace SelectionToolbar
                     var y = Marshal.ReadInt32(lParam, 4);
 
                     _isLeftMouseDown = false;
+
+                    if (!_hasMovedSinceDown)
+                    {
+                        // クリック→(動かず)→離す、という操作(ダブルクリックでの単語選択・
+                        // トリプルクリックでの行選択もこれに該当)では反応させない。
+                        // クリック→マウスムーブ→離す、という一連の動きがあった時だけ拾う
+                        // (実際の要望)
+                        _pendingSelectionTextDuringDrag = null;
+                        return MouseHook.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
+                    }
 
                     // ドラッグ中にTextSelectionChangedEvent側で拾っておいた選択内容があれば、
                     // ボタンを離した今のタイミングでまとめて1回だけ出す
@@ -250,24 +293,16 @@ namespace SelectionToolbar
                             ShowSelectionFound(pendingText);
                     }
 
-                    // ドラッグしたのか、ただの1クリックなのかを、押下位置からの移動量で見分ける。
-                    // ドラッグ(=選択操作)の時だけ選択テキストの有無を確認する
-                    var isDrag = Math.Abs(x - _downX) > ClickDragThreshold
-                        || Math.Abs(y - _downY) > ClickDragThreshold;
+                    // ラムダが後から実行されるため、フィールド(_downX/_downY)を
+                    // 直接参照せず、この時点の値をローカルへ写してから渡す
+                    var downX = _downX;
+                    var downY = _downY;
 
-                    if (isDrag)
-                    {
-                        // ラムダが後から実行されるため、フィールド(_downX/_downY)を
-                        // 直接参照せず、この時点の値をローカルへ写してから渡す
-                        var downX = _downX;
-                        var downY = _downY;
-
-                        // フック内で重い処理(UI Automation呼び出し)をすると入力全体が
-                        // 詰まりかねないため、Task.Runでフック呼び出しスレッドから完全に
-                        // 切り離す(awaitなしで直接呼ぶだけでは同じスレッド上で同期的に
-                        // 実行されてしまい、フックが詰まってマウス入力全体が重くなっていた)
-                        _ = System.Threading.Tasks.Task.Run(() => CheckSelectionAsync(downX, downY, x, y));
-                    }
+                    // フック内で重い処理(UI Automation呼び出し)をすると入力全体が
+                    // 詰まりかねないため、Task.Runでフック呼び出しスレッドから完全に
+                    // 切り離す(awaitなしで直接呼ぶだけでは同じスレッド上で同期的に
+                    // 実行されてしまい、フックが詰まってマウス入力全体が重くなっていた)
+                    _ = System.Threading.Tasks.Task.Run(() => CheckSelectionAsync(downX, downY, x, y));
                 }
             }
 
@@ -325,6 +360,31 @@ namespace SelectionToolbar
 
         private static readonly uint _currentProcessId = (uint)Environment.ProcessId;
 
+        // エクスプローラのファイル/フォルダ一覧が使うウィンドウクラス名。
+        // "SysListView32"はクラシックなアイコン/詳細表示、"DirectUIHWND"は
+        // ナビゲーションウィンドウ内部の実際の表示領域(こちらがアイコン名の
+        // ラベルを持つ)。いずれもアイコン名のラベルがTextPatternを実装しており、
+        // 選択やダブルクリックでフォルダを開く操作がテキスト選択と誤検知されていた
+        private static readonly string[] ExplorerFileListClassNames =
+        {
+            "SysListView32",
+            "DirectUIHWND",
+        };
+
+        private static bool IsExplorerFileListWindow(IntPtr hWnd)
+        {
+            if (hWnd == IntPtr.Zero)
+                return false;
+
+            var classNameBuffer = new System.Text.StringBuilder(256);
+            if (GetClassName(hWnd, classNameBuffer, classNameBuffer.Capacity) == 0)
+                return false;
+
+            var className = classNameBuffer.ToString();
+            return Array.Exists(ExplorerFileListClassNames,
+                c => c.Equals(className, StringComparison.OrdinalIgnoreCase));
+        }
+
         private string? TryGetSelectedTextViaUiAutomation(int downX, int downY, int upX, int upY)
         {
             var automation = GetAutomation();
@@ -361,6 +421,9 @@ namespace SelectionToolbar
         /// </summary>
         private static string? TryGetSelectedTextFromPoint(IUIAutomation automation, int x, int y)
         {
+            if (IsExplorerFileListWindow(WindowFromPoint(new POINT { X = x, Y = y })))
+                return null;
+
             var point = new UiaPoint { x = x, y = y };
             var element = automation.ElementFromPoint(point);
             var walker = automation.get_RawViewWalker();
