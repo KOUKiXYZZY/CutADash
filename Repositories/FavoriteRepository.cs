@@ -257,8 +257,16 @@ namespace CutADash.Repositories
             if (newParentId == nodeId)
                 throw new InvalidOperationException("フォルダを自分自身の中には移動できません。");
 
-            if (newParentId is int newParentIdValue && IsDescendantOf(node, newParentIdValue))
-                throw new InvalidOperationException("フォルダを自分の子孫の中には移動できません。");
+            if (newParentId is int newParentIdValue)
+            {
+                if (IsDescendantOf(node, newParentIdValue))
+                    throw new InvalidOperationException("フォルダを自分の子孫の中には移動できません。");
+
+                // 項目(フォルダでないノード)の下へは何も移動できない。TreeViewの標準ドラッグ&ドロップは
+                // フォルダかどうかを区別せずどのノードへもドロップできてしまうため、ここで弾く
+                if (byId.TryGetValue(newParentIdValue, out var newParentNode) && !newParentNode.Entity.IsFolder)
+                    throw new InvalidOperationException("項目の中には移動できません。");
+            }
 
             var currentSiblings = node.Entity.ParentId is int currentParentId && byId.TryGetValue(currentParentId, out var currentParent)
                 ? currentParent.Children

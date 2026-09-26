@@ -232,6 +232,11 @@
                  階層バインディング方式にしている -->
             <TreeView.ItemTemplate>
                 <DataTemplate>
+                    <!-- 項目(フォルダでないノード)にAllowDrop=Falseを試したが、その項目が
+                         ドロップ先になれなくなる副作用で兄弟としての並び替えまで壊れてしまった
+                         (実際に踏んだ不具合)。「中へ入れる」だけを個別に拒否する公開APIは無いため、
+                         ドロップ自体はTreeView標準の挙動に任せ、不正な移動はFolderTree_DragItemsCompleted
+                         側でMoveNodeAsyncの例外を捕まえて取り消す方式に戻す -->
                     <TreeViewItem ItemsSource="{Binding Children}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}"
                                   ContentTemplate="{StaticResource FavoriteNodeTemplate}"/>
                 </DataTemplate>

@@ -77,6 +77,9 @@
     <PackageReference Include="Accessibility" Version="4.6.0-preview3.19128.7" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
+    <!-- タスクトレイアイコンのDPI変更(モニタ間移動・表示スケール変更)追従に使う
+         SystemEvents.DisplaySettingsChanged用。WinFormsへの依存は無い軽量パッケージ -->
+    <PackageReference Include="Microsoft.Win32.SystemEvents" Version="9.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1721" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260416003" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="3.0.1" />

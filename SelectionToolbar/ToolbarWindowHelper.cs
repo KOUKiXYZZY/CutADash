@@ -28,7 +28,7 @@ namespace SelectionToolbar
 
         private readonly WindowEx _window;
         private readonly IntPtr _hWnd;
-        private readonly int _widthDip;
+        private int _widthDip;
         private readonly int _heightDip;
         private readonly bool _showAbove;
         private readonly OutsideClickWatcher _outsideClickWatcher = new();
@@ -93,8 +93,16 @@ namespace SelectionToolbar
             };
         }
 
-        public void ShowAt(int screenX, int screenY)
+        /// <param name="widthDip">
+        /// このタイミングでの表示幅(DIP)。省略時はコンストラクタで渡した幅、または
+        /// 前回のShowAtで指定した幅のまま(SelectionToolbarWindowのように、ボタンの
+        /// 表示有無に応じて呼び出し側が毎回幅を変えたい場合に指定する)。
+        /// </param>
+        public void ShowAt(int screenX, int screenY, int? widthDip = null)
         {
+            if (widthDip is { } w)
+                _widthDip = w;
+
             // 表示先モニタのDPIは、実際にそこへ配置してからでないと正しく取れない
             // (コンストラクタ時点ではまだどの画面にも属していない既定のDPIになってしまう)。
             // そのため、まず前回分かっている高さ(初回は0)でおおまかに配置し、

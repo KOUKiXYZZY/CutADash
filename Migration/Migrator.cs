@@ -37,7 +37,15 @@ namespace CutADash.Migration
 
                 foreach (var fileName in DbSchema.DatabaseFileNames)
                 {
+                    var previousVersion = ReadSchemaVersion(fileName, key);
                     MigrateOne(fileName, key, log);
+
+                    // v2: TreeViewの標準ドラッグ&ドロップがフォルダかどうかを区別せず
+                    // ドロップを受け付けてしまっていた不具合により、項目(フォルダでない
+                    // ノード)の下に別の項目がぶら下がってしまっているデータが存在しうる。
+                    // 一度だけ(旧バージョンから上がる時だけ)ルート直下へ戻す
+                    if (fileName == "favorites.db" && previousVersion < 2)
+                        FixFavoriteItemsWithItemParent(key, log);
                 }
 
                 // DBのSQLCipher化とは別に、参照先の画像ファイル自体(ClipboardImages/
@@ -244,6 +252,135 @@ namespace CutADash.Migration
             {
                 return false;
             }
+        }
+
+        // MigrateOneがSchemaVersionを新しい値へ上書きしてしまう前に、旧バージョンを読んでおく。
+        // ファイルが無い/読めない/バージョン列が無い等はすべて0(=最も古い)として扱う
+        // (新規作成されるDBなので、以降のバージョン別移行処理は当然データが無く実質no-opになる)
+        private static int ReadSchemaVersion(string fileName, string key)
+        {
+            var path = AppPaths.GetDataFilePath(fileName);
+            if (!File.Exists(path))
+                return 0;
+
+            try
+            {
+                var connectionString = new SQLiteConnectionString(path, storeDateTimeAsTicks: true, key: key);
+                using var connection = new SQLiteConnection(connectionString);
+                return connection.ExecuteScalar<int>("SELECT Version FROM SchemaVersion WHERE Id = 1");
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        private sealed class FavoriteRow
+        {
+            public int Id { get; set; }
+            public int? ParentId { get; set; }
+            public bool IsFolder { get; set; }
+            public int Lft { get; set; }
+            public int Rgt { get; set; }
+        }
+
+        private sealed class FavoriteTreeNode
+        {
+            public required FavoriteRow Row { get; init; }
+            public List<FavoriteTreeNode> Children { get; } = new();
+        }
+
+        /// <summary>
+        /// favorites.dbで、項目(フォルダでないノード)の下に別の項目がぶら下がっている
+        /// 壊れたデータを、ルート直下(ParentId = null)へ戻す。TreeViewの標準ドラッグ&ドロップが
+        /// フォルダかどうかを区別せずドロップを受け付けてしまっていた不具合の名残
+        /// (FavoriteRepository.MoveNodeAsync側は既に修正済みで、以降は新たに発生しない)。
+        /// ParentIdを直接書き換えるだけだと入れ子集合モデル(Lft/Rgt)が壊れるため、
+        /// 修正後の親子関係でDFS順に振り直してから全行まとめて書き戻す。
+        /// </summary>
+        private static void FixFavoriteItemsWithItemParent(string key, TextWriter log)
+        {
+            var dbPath = AppPaths.GetDataFilePath("favorites.db");
+            if (!File.Exists(dbPath))
+                return;
+
+            var connectionString = new SQLiteConnectionString(dbPath, storeDateTimeAsTicks: true, key: key);
+            using var connection = new SQLiteConnection(connectionString);
+
+            List<FavoriteRow> rows;
+            try
+            {
+                rows = connection.Query<FavoriteRow>(
+                    "SELECT Id, ParentId, IsFolder, Lft, Rgt FROM FavoriteItemEntity");
+            }
+            catch (Exception ex)
+            {
+                log.WriteLine($"[Migration] favorites.dbの読み込みに失敗しました(スキップ): {ex.Message}");
+                return;
+            }
+
+            var byId = rows.ToDictionary(r => r.Id);
+            var fixedCount = 0;
+
+            foreach (var row in rows)
+            {
+                if (row.ParentId is int parentId
+                    && byId.TryGetValue(parentId, out var parent)
+                    && !parent.IsFolder)
+                {
+                    row.ParentId = null;
+                    fixedCount++;
+                }
+            }
+
+            if (fixedCount == 0)
+            {
+                log.WriteLine("[Migration] favorites.db: 項目の下にぶら下がった壊れたデータはありませんでした。");
+                return;
+            }
+
+            RenumberAndSave(connection, rows);
+
+            log.WriteLine($"[Migration] favorites.db: 項目の下にぶら下がっていた{fixedCount}件をルート直下へ戻しました。");
+        }
+
+        // 現在のLft昇順(=既存の表示順)を保ったまま、修正後のParentIdで木を組み直し、
+        // DFSでLft/Rgtを1から振り直して全行を1トランザクションで書き戻す
+        // (FavoriteRepository.BuildForest/Renumberと同じ考え方)
+        private static void RenumberAndSave(SQLiteConnection connection, List<FavoriteRow> rows)
+        {
+            var byId = rows.ToDictionary(r => r.Id, r => new FavoriteTreeNode { Row = r });
+            var roots = new List<FavoriteTreeNode>();
+
+            foreach (var row in rows.OrderBy(r => r.Lft))
+            {
+                var node = byId[row.Id];
+                if (row.ParentId is int parentId && byId.TryGetValue(parentId, out var parentNode))
+                    parentNode.Children.Add(node);
+                else
+                    roots.Add(node);
+            }
+
+            var counter = 1;
+            void Walk(FavoriteTreeNode node)
+            {
+                node.Row.Lft = counter++;
+                foreach (var child in node.Children)
+                    Walk(child);
+                node.Row.Rgt = counter++;
+            }
+            foreach (var root in roots)
+                Walk(root);
+
+            connection.RunInTransaction(() =>
+            {
+                foreach (var row in rows)
+                {
+                    connection.Execute(
+                        "UPDATE FavoriteItemEntity SET ParentId = ?, Lft = ?, Rgt = ? WHERE Id = ?",
+                        row.ParentId, row.Lft, row.Rgt, row.Id);
+                }
+            });
         }
 
         private static void CreateNewEncryptedDatabase(string path, string key)
