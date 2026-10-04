@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="UiLibrary.YearMonthPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UiLibrary"
+    MinWidth="200"
+    HorizontalAlignment="Left">
+
+    <!-- CalendarDatePickerと同じ見た目: 見出し(Header)、枠付きの入力欄(選択結果またはプレースホルダ +
+         右端にカレンダーのアイコン)、押すとカレンダーが下に開く -->
+    <StackPanel Spacing="4">
+        <TextBlock x:Name="HeaderTextBlock" Visibility="Collapsed"/>
+
+        <Button x:Name="PickerButton"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Height="32"
+                Padding="0"
+                Background="{ThemeResource ControlFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="{ThemeResource ControlCornerRadius}">
+
+            <!-- ホバー/押下の背景を、既定のボタンの色ではなく入力欄(CalendarDatePicker)の色にする -->
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{ThemeResource ControlFillColorSecondary}"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{ThemeResource ControlFillColorTertiary}"/>
+                <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="{ThemeResource ControlStrokeColorDefault}"/>
+                <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="{ThemeResource ControlStrokeColorDefault}"/>
+            </Button.Resources>
+
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="ValueTextBlock"
+                           Grid.Column="0"
+                           Margin="12,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           TextTrimming="CharacterEllipsis"
+                           Visibility="Collapsed"/>
+
+                <TextBlock x:Name="PlaceholderTextBlock"
+                           Grid.Column="0"
+                           Margin="12,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           TextTrimming="CharacterEllipsis"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+
+                <FontIcon Grid.Column="1"
+                          Margin="0,0,12,0"
+                          Glyph="&#xE787;"
+                          FontSize="14"
+                          FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+            </Grid>
+
+            <Button.Flyout>
+                <Flyout x:Name="PickerFlyout" Placement="Bottom">
+                    <!-- フライアウトの余白を詰めて、カレンダーが枠いっぱいに出るようにする -->
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="MinWidth" Value="0"/>
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+
+                    <local:YearMonthCalendar x:Name="Calendar"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+    </StackPanel>
+</UserControl>

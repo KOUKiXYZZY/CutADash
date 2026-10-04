@@ -105,6 +105,15 @@
   <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
     <value>应用更新并重启</value>
   </data>
+  <data name="Update_ConfirmMessage" xml:space="preserve">
+    <value>有新版本 {0}。&#10;是否下载并更新?应用将会重启。</value>
+  </data>
+  <data name="Dialog_Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
   <data name="EmojiSetup_Message" xml:space="preserve">
     <value>正在从字体生成表情符号图片(仅首次启动)…</value>
   </data>
@@ -131,6 +140,9 @@
   </data>
   <data name="Contents_PastePlain" xml:space="preserve">
     <value>粘贴为纯文本</value>
+  </data>
+  <data name="Contents_PasteFilePaths" xml:space="preserve">
+    <value>将文件路径粘贴为文本</value>
   </data>
   <data name="Empty_Text" xml:space="preserve">
     <value>无</value>

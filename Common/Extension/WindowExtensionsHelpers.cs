@@ -91,8 +91,18 @@ namespace Common.Extension
         /// <remarks>DesktopAcrylicBackdrop を新規作成して割り当てるため、既存の SystemBackdrop は上書きされる。WinUI 3（Windows App
         /// SDK）が必要。</remarks>
         /// <param name="window">バックドロップを適用するウィンドウ。</param>
-        public static void EnableAcrylicBackdrop(this Window window)
+        public static void EnableAcrylicBackdrop(this Window window, DesktopAcrylicKind kind = DesktopAcrylicKind.Default)
         {
+            // DesktopAcrylicBackdrop(XAMLの部品)には種類(Kind)を指定するプロパティが無い。Default以外
+            // (Thinなど)は、低レベルのDesktopAcrylicControllerで適用する。
+            // ウィンドウのActivated/Deactivatedに連動して、非アクティブ時にフォールバックへ切り替わる
+            // (DesktopAcrylicBackdropと同じ動き)
+            if (kind != DesktopAcrylicKind.Default)
+            {
+                window.EnableAcrylicController(kind, alwaysActive: false);
+                return;
+            }
+
             var _backdrop = new DesktopAcrylicBackdrop();
             window.SystemBackdrop = _backdrop;
         }
@@ -117,7 +127,12 @@ namespace Common.Extension
         /// 併用しない(二重に適用されてしまう)。
         /// </remarks>
         /// <param name="window">バックドロップを適用するウィンドウ。</param>
-        public static void EnableAcrylicBackdropAlwaysActive(this Window window)
+        public static void EnableAcrylicBackdropAlwaysActive(this Window window, DesktopAcrylicKind kind = DesktopAcrylicKind.Default)
+            => window.EnableAcrylicController(kind, alwaysActive: true);
+
+        // DesktopAcrylicControllerによるAcrylicの共通実装。alwaysActiveがfalseの時は、ウィンドウの
+        // Activated/Deactivatedに連動してIsInputActiveを更新する(非アクティブ時はフォールバック)
+        private static void EnableAcrylicController(this Window window, DesktopAcrylicKind kind, bool alwaysActive)
         {
             if (!DesktopAcrylicController.IsSupported())
             {
@@ -128,7 +143,7 @@ namespace Common.Extension
 
             var configuration = new SystemBackdropConfiguration
             {
-                // 非アクティブでもフォールバックへ切り替わらないよう、常にtrueに固定する
+                // 初期値はtrue。alwaysActiveの場合は、非アクティブでもフォールバックへ切り替わらないよう固定する
                 IsInputActive = true
             };
 
@@ -151,7 +166,14 @@ namespace Common.Extension
                 rootElement.ActualThemeChanged += (_, _) => UpdateTheme();
             }
 
-            var controller = new DesktopAcrylicController();
+            // 常時アクティブでない時は、ウィンドウの状態に連動させる(DesktopAcrylicBackdropと同じ動き)
+            if (!alwaysActive)
+            {
+                window.Activated += (_, args) =>
+                    configuration.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            }
+
+            var controller = new DesktopAcrylicController { Kind = kind };
             controller.AddSystemBackdropTarget(window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
             controller.SetSystemBackdropConfiguration(configuration);
 
@@ -171,9 +193,9 @@ namespace Common.Extension
         /// <remarks>既存の SystemBackdrop を新しい MicaBackdrop インスタンスで置き換えます。Mica の効果は Windows 11
         /// と対応するフレームワーク（WinUI/Windows App SDK）が必要で、環境により表示が異なる場合があります。</remarks>
         /// <param name="window">Mica を適用する対象の Window。</param>
-        public static void EnableMicaBackdrop(this Window window)
+        public static void EnableMicaBackdrop(this Window window, MicaKind kind = MicaKind.Base)
         {
-            var _backdrop = new MicaBackdrop();
+            var _backdrop = new MicaBackdrop { Kind = kind };
             window.SystemBackdrop = _backdrop;
         }
 
@@ -185,11 +207,11 @@ namespace Common.Extension
         /// Micaを適用する。EnableAcrylicBackdropAlwaysActiveのMica版。
         /// </summary>
         /// <param name="window">バックドロップを適用するウィンドウ。</param>
-        public static void EnableMicaBackdropAlwaysActive(this Window window)
+        public static void EnableMicaBackdropAlwaysActive(this Window window, MicaKind kind = MicaKind.Base)
         {
             if (!MicaController.IsSupported())
             {
-                window.SystemBackdrop = new MicaBackdrop();
+                window.SystemBackdrop = new MicaBackdrop { Kind = kind };
                 return;
             }
 
@@ -217,7 +239,7 @@ namespace Common.Extension
                 rootElement.ActualThemeChanged += (_, _) => UpdateTheme();
             }
 
-            var controller = new MicaController();
+            var controller = new MicaController { Kind = kind };
             controller.AddSystemBackdropTarget(window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
             controller.SetSystemBackdropConfiguration(configuration);
 
@@ -293,6 +315,20 @@ namespace Common.Extension
                         window.EnableAcrylicBackdrop();
                     break;
 
+                case Common.Models.WindowBackdropKind.MicaAlt:
+                    if (alwaysActive)
+                        window.EnableMicaBackdropAlwaysActive(MicaKind.BaseAlt);
+                    else
+                        window.EnableMicaBackdrop(MicaKind.BaseAlt);
+                    break;
+
+                case Common.Models.WindowBackdropKind.AcrylicThin:
+                    if (alwaysActive)
+                        window.EnableAcrylicBackdropAlwaysActive(DesktopAcrylicKind.Thin);
+                    else
+                        window.EnableAcrylicBackdrop(DesktopAcrylicKind.Thin);
+                    break;
+
                 case Common.Models.WindowBackdropKind.Cat:
                     // Cat専用のバックドロップ素材は無く、Micaを流用する。見た目の違いは
                     // 呼び出し側(MainWindow.ApplyBackdropWithTintOverlay)が重ねる暖色ティント
@@ -306,6 +342,25 @@ namespace Common.Extension
                 case Common.Models.WindowBackdropKind.Blur:
                     window.EnableBlurBackdrop();
                     break;
+            }
+        }
+
+        /// <summary>
+        /// 設定で選ばれた明/暗の表示テーマ(AppColorTheme)をウィンドウへ適用する。
+        /// Light/Darkは指定したテーマに固定し、DefaultはOSのテーマに合わせる(バックドロップの種類とは別の設定)。
+        /// ルート要素(window.Content)のRequestedThemeに反映することで、配下のコントロールの
+        /// 配色だけでなく、ApplyBackdropが参照するActualTheme(ひいてはMica/Acrylicの明暗)にも連動する。
+        /// </summary>
+        public static void ApplyColorTheme(this Window window, Common.Models.AppColorTheme theme)
+        {
+            if (window.Content is FrameworkElement root)
+            {
+                root.RequestedTheme = theme switch
+                {
+                    Common.Models.AppColorTheme.Dark => ElementTheme.Dark,
+                    Common.Models.AppColorTheme.Light => ElementTheme.Light,
+                    _ => ElementTheme.Default,
+                };
             }
         }
 

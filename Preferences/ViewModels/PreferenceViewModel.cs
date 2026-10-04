@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Preferences.Utils;
+using UiLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,9 +19,8 @@ namespace Preferences.ViewModels
     /// 対応するStore(HistorySettingsStore等)を直接呼ぶ(PreferencesGatewayは
     /// 書き込みを持たない設計にしたため)。
     ///
-    /// ショートカットキーの実際のキー捕捉(KeyDownの生イベント)だけはView側の責務として
-    /// PreferenceWindow.xaml.csに残し、確定した結果の反映(ApplyCapturedShortcut)は
-    /// こちらで行う。
+    /// ショートカットキーの入力は、UiLibraryのShortcutKeyBoxが受け持つ。ViewModelはその値
+    /// (ShortcutKey)を保持し、変更されたらStoreへ保存する。
     /// </summary>
     internal partial class PreferenceViewModel : ObservableObject
     {
@@ -38,15 +38,28 @@ namespace Preferences.ViewModels
         // メンバー名の文字列("Mica"/"Acrylic"/"Blur"/"Cat")として保持する
         [ObservableProperty] private string selectedBackdropTag = nameof(WindowBackdropKind.Acrylic);
 
+        // ComboBoxのSelectedValuePath="Tag"に合わせ、AppColorThemeのメンバー名の文字列
+        // ("Light"/"Dark")として保持する
+        [ObservableProperty] private string selectedColorThemeTag = nameof(AppColorTheme.Default);
+
+        // 言語のComboBoxで「システム既定」を表すTag。設定ファイルには空文字列で保存するが、
+        // ComboBoxのItemのTagに空文字列を使うと、SelectedValueと一致する項目が無い扱いになり
+        // 起動後の表示が空欄になる(実際に踏んだ不具合)ため、画面側だけは空でない値にする
+        private const string SystemLanguageTag = "system";
+
         // ComboBoxのSelectedValuePath="Tag"に合わせ、BCP-47言語タグ("ja-JP"/"en-US"/"zh-CN")、
-        // または空文字列(システム既定)として保持する
-        [ObservableProperty] private string selectedLanguageTag = "";
+        // またはSystemLanguageTag(システム既定)として保持する
+        [ObservableProperty] private string selectedLanguageTag = SystemLanguageTag;
 
         [ObservableProperty] private double maxHistoryCount;
         [ObservableProperty] private bool disableImageHistory;
 
         // ComboBoxのSelectedValuePath="Tag"に合わせ、px数値を文字列で保持する("100"〜"800")
-        [ObservableProperty] private string thumbnailMaxDimensionTag = "200";
+        [ObservableProperty] private string thumbnailMaxDimensionTag = "400";
+
+        // ComboBoxのSelectedValuePath="Tag"に合わせ、ToolbarPlacementのメンバー名の文字列
+        // ("Above"/"Below"/"Left"/"Right")として保持する
+        [ObservableProperty] private string selectedToolbarPlacementTag = nameof(ToolbarPlacement.Above);
 
         [ObservableProperty] private bool selectionToolbarEnabled;
         [ObservableProperty] private double selectionToolbarAutoHideSeconds;
@@ -57,9 +70,9 @@ namespace Preferences.ViewModels
 
         [ObservableProperty] private string versionText = string.Empty;
 
-        [ObservableProperty] private string historyShortcutText = string.Empty;
-        [ObservableProperty] private string favoriteShortcutText = string.Empty;
-        [ObservableProperty] private string emojiShortcutText = string.Empty;
+        [ObservableProperty] private ShortcutKey? historyShortcut;
+        [ObservableProperty] private ShortcutKey? favoriteShortcut;
+        [ObservableProperty] private ShortcutKey? emojiShortcut;
 
         public PreferenceViewModel(ServiceProvider provider)
         {
@@ -80,8 +93,11 @@ namespace Preferences.ViewModels
             SelectionToolbarAutoHideSeconds = PreferencesGateway.GetSelectionToolbarAutoHideSecondsBackup();
             UpdateSelectionToolbarAutoHideLabel();
 
+            SelectedToolbarPlacementTag = PreferencesGateway.GetSelectionToolbarPlacement().ToString();
             SelectedBackdropTag = PreferencesGateway.GetWindowBackdrop().ToString();
-            SelectedLanguageTag = PreferencesGateway.GetLanguage();
+            SelectedColorThemeTag = PreferencesGateway.GetColorTheme().ToString();
+            var savedLanguage = PreferencesGateway.GetLanguage();
+            SelectedLanguageTag = savedLanguage.Length == 0 ? SystemLanguageTag : savedLanguage;
 
             MaxHistoryCount = PreferencesGateway.GetMaxHistoryCount();
             DisableImageHistory = PreferencesGateway.IsImageHistoryDisabled();
@@ -97,9 +113,9 @@ namespace Preferences.ViewModels
             foreach (var name in PreferencesGateway.GetExcludedAppNames())
                 ExcludedAppNames.Add(name);
 
-            RefreshShortcutDisplay("history");
-            RefreshShortcutDisplay("favorite");
-            RefreshShortcutDisplay("emoji");
+            HistoryShortcut = ReadShortcut("history");
+            FavoriteShortcut = ReadShortcut("favorite");
+            EmojiShortcut = ReadShortcut("emoji");
         }
 
         partial void OnLaunchAtLoginChanged(bool value)
@@ -140,6 +156,27 @@ namespace Preferences.ViewModels
                 HistorySettingsStore.SetWindowBackdrop(backdrop);
         }
 
+        // 次にツールバーが表示される時から反映される(表示のたびに設定を読み直す)
+        partial void OnSelectedToolbarPlacementTagChanged(string value)
+        {
+            if (_isLoadingPreferences)
+                return;
+
+            if (Enum.TryParse<ToolbarPlacement>(value, out var placement))
+                HistorySettingsStore.SetSelectionToolbarPlacement(placement);
+        }
+
+        // アプリ全体の明/暗の表示テーマ。切り替えは即座に反映される
+        // (各ウィンドウがHistorySettingsStore.ColorThemeChangedを購読して適用する)
+        partial void OnSelectedColorThemeTagChanged(string value)
+        {
+            if (_isLoadingPreferences)
+                return;
+
+            if (Enum.TryParse<AppColorTheme>(value, out var theme))
+                HistorySettingsStore.SetColorTheme(theme);
+        }
+
         // 表示言語。保存とWindows.Globalization.ApplicationLanguages.PrimaryLanguageOverrideへの
         // 反映はすぐ行うが、既に読み込み済みのXAML/コードビハインドの文字列までは差し替わらない
         // ため、完全に反映するには再起動が必要(PreferenceWindow.xaml側で案内する)
@@ -151,14 +188,17 @@ namespace Preferences.ViewModels
             // ComboBoxのTwoWayバインディングが初期化のタイミングでnullを送り返してくることが
             // ある(WinUIの既知の挙動。選択項目の解決前にバインディングが一度走るため)。
             // ここで丸めないと設定ファイルに"Language":nullや空白だけの文字列が保存され続け、
-            // システム既定(空文字列)のつもりが実質的な既定値として機能しなくなってしまう。
-            // 実際に"System Default"項目(Tag="")が選ばれた場合の空文字列は、丸めずに
-            // そのまま下の通常経路(保存・PrimaryLanguageOverride反映)へ流す
-            if (value is null || (value.Length > 0 && string.IsNullOrWhiteSpace(value)))
+            // システム既定のつもりが実質的な既定値として機能しなくなってしまう。
+            // null/空白はシステム既定として扱う
+            if (string.IsNullOrWhiteSpace(value))
             {
-                SelectedLanguageTag = "";
+                SelectedLanguageTag = SystemLanguageTag;
                 return;
             }
+
+            // 画面上の「システム既定」(SystemLanguageTag)は、保存・適用では空文字列にする
+            if (value == SystemLanguageTag)
+                value = "";
 
             HistorySettingsStore.SetLanguage(value);
 
@@ -276,59 +316,33 @@ namespace Preferences.ViewModels
         private void SaveExcludedAppNames()
             => HistorySettingsStore.SetExcludedAppNames(new List<string>(ExcludedAppNames));
 
-        [RelayCommand]
-        private void DeleteShortcut(string key)
-        {
-            // Storeへの保存だけ行う。実際のWin32登録解除(HotKeyService.Remove)は、
-            // App.xaml.csがPreferencesGateway.HotKeyChangedを購読して反映する
-            // (ThumbnailMaxDimensionChanged/SelectionToolbarEnabledChangedと同じパターン)
-            HotKeySettingsStore.Remove(key);
-            RefreshShortcutDisplay(key);
-        }
-
-        /// <summary>
-        /// キー入力の捕捉自体はView側(Window.KeyDown)が行うため、確定した定義の反映だけを
-        /// こちらで受け持つ。Storeへの保存だけ行い、実際のWin32登録更新
-        /// (HotKeyService.Update)はApp.xaml.csがPreferencesGateway.HotKeyChangedを
-        /// 購読して反映する。
-        /// </summary>
-        public void ApplyCapturedShortcut(string key, HotKeyDefinition definition)
-        {
-            HotKeySettingsStore.Save(key, definition);
-            RefreshShortcutDisplay(key);
-        }
-
-        public void RefreshShortcutDisplay(string key)
+        // 現在登録されているホットキーを、ShortcutKeyBoxの値(ShortcutKey)にして返す
+        private ShortcutKey? ReadShortcut(string key)
         {
             var hotKeyService = _provider.GetRequiredKeyedService<HotKeyService>(key);
-            var text = hotKeyService.Current is { } definition
-                ? FormatHotKey(definition)
-                : PreferencesStrings.Get("Pref_NotSet");
-
-            switch (key)
-            {
-                case "history": HistoryShortcutText = text; break;
-                case "favorite": FavoriteShortcutText = text; break;
-                case "emoji": EmojiShortcutText = text; break;
-            }
+            return hotKeyService.Current is { } definition
+                ? new ShortcutKey((ShortcutModifiers)definition.Modifiers, definition.VirtualKey)
+                : null;
         }
 
-        private static string FormatHotKey(HotKeyDefinition definition)
+        partial void OnHistoryShortcutChanged(ShortcutKey? value) => SaveShortcut("history", value);
+
+        partial void OnFavoriteShortcutChanged(ShortcutKey? value) => SaveShortcut("favorite", value);
+
+        partial void OnEmojiShortcutChanged(ShortcutKey? value) => SaveShortcut("emoji", value);
+
+        // Storeへの保存だけ行う。実際のWin32登録の更新・解除(HotKeyService.Update/Remove)は、
+        // App.xaml.csがPreferencesGateway.HotKeyChangedを購読して反映する
+        // (ThumbnailMaxDimensionChanged/SelectionToolbarEnabledChangedと同じパターン)
+        private void SaveShortcut(string key, ShortcutKey? value)
         {
-            var parts = new List<string>();
+            if (_isLoadingPreferences)
+                return;
 
-            if ((definition.Modifiers & HotKeyNative.HotKeyModifiers.MOD_CONTROL) != 0)
-                parts.Add("Ctrl");
-            if ((definition.Modifiers & HotKeyNative.HotKeyModifiers.MOD_SHIFT) != 0)
-                parts.Add("Shift");
-            if ((definition.Modifiers & HotKeyNative.HotKeyModifiers.MOD_ALT) != 0)
-                parts.Add("Alt");
-            if ((definition.Modifiers & HotKeyNative.HotKeyModifiers.MOD_WIN) != 0)
-                parts.Add("Win");
-
-            parts.Add(((Windows.System.VirtualKey)definition.VirtualKey).ToString());
-
-            return string.Join(" + ", parts);
+            if (value is null)
+                HotKeySettingsStore.Remove(key);
+            else
+                HotKeySettingsStore.Save(key, new HotKeyDefinition((uint)value.Modifiers, value.VirtualKey));
         }
     }
 }

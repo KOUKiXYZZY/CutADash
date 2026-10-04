@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CutADash タスクトレイ用アイコン(ダークのタスクバー用(白))。小さいサイズ(16〜32px)でも
+     つぶれないよう、線を太くし、行は2本に絞った単色のクリップボード。
+     viewBoxは、グリフの外接矩形(余白約4%)に合わせた正方形。
+     枠線とクリップの間の隙間は、maskではなく、上辺の真ん中を空けた1本のパスで作る
+     (小さいサイズで描画した時にmaskが効かず、枠線が消える不具合があったため)。
+     ヘッドレスEdgeでPNG化したものが TaskTrayIconDark.png。 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="24 48 976 976">
+  <g fill="none" stroke="#FFFFFF" stroke-width="80" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ボードの枠(上辺の真ん中は、クリップの周りの隙間として空けてある) -->
+    <path d="M296 152 A128 128 0 0 0 168 280 V832 A128 128 0 0 0 296 960 H728 A128 128 0 0 0 856 832 V280 A128 128 0 0 0 728 152" stroke-linecap="butt"/>
+    <!-- 行 -->
+    <line x1="320" y1="520" x2="704" y2="520"/>
+    <line x1="320" y1="716" x2="560" y2="716"/>
+  </g>
+
+  <!-- クリップ -->
+  <rect x="344" y="72" width="336" height="184" rx="76" fill="#FFFFFF"/>
+</svg>

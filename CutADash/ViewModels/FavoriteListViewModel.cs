@@ -65,14 +65,33 @@ namespace CutADash.ViewModels
         {
             OnPropertyChanged(nameof(IsSearching));
 
-            DisplayItems.Clear();
+            _ = RunSearchAsync(value);
+        }
+
+        // 検索のたびに増やし、結果が返ってきた時に最新の検索か(=古い結果でないか)を判定する
+        private int _searchToken;
+
+        // 履歴と同じく、DBの全文検索(FTS5)で一致する項目のIdを求め、ツリーと同じ項目オブジェクト
+        // (_allItemsFlat)から結果を作る。ツリーの並び順がそのまま結果の順になる
+        private async Task RunSearchAsync(string value)
+        {
+            var token = ++_searchToken;
+
             if (string.IsNullOrWhiteSpace(value))
             {
+                DisplayItems.Clear();
                 OnPropertyChanged(nameof(IsCurrentViewEmpty));
                 return;
             }
 
-            foreach (var item in _allItemsFlat.Where(x => x.Text?.Contains(value, StringComparison.OrdinalIgnoreCase) == true))
+            var ids = (await _repository.SearchItemIdsAsync(value)).ToHashSet();
+
+            // 検索中にSearchTextがさらに変わっていたら、この結果は古いので捨てる
+            if (token != _searchToken)
+                return;
+
+            DisplayItems.Clear();
+            foreach (var item in _allItemsFlat.Where(x => ids.Contains(x.Id)))
                 DisplayItems.Add(item);
 
             OnPropertyChanged(nameof(IsCurrentViewEmpty));

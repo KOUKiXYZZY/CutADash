@@ -120,10 +120,10 @@ namespace CutADash.Utils
                     break;
             }
 
-            PasteDiagnosticsLog.Write($"[Writer] SetContent開始 Type={item.Type} HasText={item.Text is not null} HasRtf={item.Rtf is not null} HasHtml={item.Html is not null} plainTextOnly={plainTextOnly} 所有者={PasteDiagnosticsLog.Describe(WinAPI.WinUser.GetClipboardOwner())}");
+            PasteDiagnosticsLog.Write($"[Writer] SetContent start Type={item.Type} HasText={item.Text is not null} HasRtf={item.Rtf is not null} HasHtml={item.Html is not null} plainTextOnly={plainTextOnly} owner={PasteDiagnosticsLog.Describe(WinAPI.WinUser.GetClipboardOwner())}");
 
             Clipboard.SetContent(package);
-            PasteDiagnosticsLog.Write("[Writer] SetContent成功");
+            PasteDiagnosticsLog.Write("[Writer] SetContent succeeded");
 
             // SetContentだけだとデータは自プロセスが保持したままで、貼り付け先から
             // 要求された時に渡す遅延提供になる。直後にCtrl+Vを送ると、こちらのUIスレッドが
@@ -135,14 +135,14 @@ namespace CutADash.Utils
             try
             {
                 Clipboard.Flush();
-                PasteDiagnosticsLog.Write($"[Writer] Flush成功 所有者={PasteDiagnosticsLog.Describe(WinAPI.WinUser.GetClipboardOwner())}");
+                PasteDiagnosticsLog.Write($"[Writer] Flush succeeded owner={PasteDiagnosticsLog.Describe(WinAPI.WinUser.GetClipboardOwner())}");
             }
             catch (Exception ex)
             {
                 // 他アプリがクリップボードを掴んでいると失敗することがある。
                 // その場合も遅延提供のままにはなるので、貼り付け自体は続行する
-                PasteDiagnosticsLog.Write($"[Writer] Flush失敗: {ex.GetType().Name}: {ex.Message}");
-                System.Diagnostics.Debug.WriteLine($"[ClipboardContentWriter] Flush失敗: {ex.Message}");
+                PasteDiagnosticsLog.Write($"[Writer] Flush failed: {ex.GetType().Name}: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($"[ClipboardContentWriter] Flush failed: {ex.Message}");
             }
         }
 

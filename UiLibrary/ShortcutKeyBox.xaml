@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="UiLibrary.ShortcutKeyBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    MinWidth="200"
+    HorizontalAlignment="Left">
+
+    <!-- 押すとキー入力待ちになり、押した組み合わせがそのままショートカットになる入力欄。
+         値の右にある×で解除できる -->
+    <Grid ColumnSpacing="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="Box"
+                Grid.Column="0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                Height="32"
+                Padding="12,0"
+                Background="{ThemeResource ControlFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="{ThemeResource ControlCornerRadius}"
+                Click="Box_Click"
+                LostFocus="Box_LostFocus"
+                PreviewKeyDown="Box_PreviewKeyDown"
+                PreviewKeyUp="Box_PreviewKeyUp">
+            <TextBlock x:Name="ValueTextBlock" TextTrimming="CharacterEllipsis"/>
+        </Button>
+
+        <!-- Winキーは、押して入力するのではなく、このチェックで指定する(Windowsが先に処理してしまい、
+             アプリに届かない組み合わせが多いため。Dittoと同じ方式) -->
+        <CheckBox x:Name="WinCheckBox"
+                  Grid.Column="1"
+                  MinWidth="0"
+                  MinHeight="0"
+                  Height="32"
+                  Padding="8,0,0,0"
+                  VerticalAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  Visibility="Collapsed"
+                  Click="WinCheckBox_Click"/>
+
+        <Button x:Name="ClearButton"
+                Grid.Column="2"
+                Width="32" Height="32"
+                Padding="0"
+                Visibility="Collapsed"
+                Click="ClearButton_Click">
+            <FontIcon Glyph="&#xE711;" FontSize="12"
+                      FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+        </Button>
+    </Grid>
+</UserControl>

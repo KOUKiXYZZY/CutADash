@@ -76,6 +76,7 @@ namespace CutADash.Views.Contents
             ToolTipService.SetToolTip(PasteButton, Common.Utils.AppStrings.Get("Contents_Paste"));
             PasteFormattedMenuItem.Text = Common.Utils.AppStrings.Get("Contents_PasteFormatted");
             PastePlainMenuItem.Text = Common.Utils.AppStrings.Get("Contents_PastePlain");
+            PasteFilePathsMenuItem.Text = Common.Utils.AppStrings.Get("Contents_PasteFilePaths");
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -429,7 +430,7 @@ namespace CutADash.Views.Contents
             }
             catch (Exception ex)
             {
-                LogImageLoadFailure(path, ex.ToString());
+                LogImageLoadFailure(path, Common.Utils.ExceptionText.ToEnglishString(ex));
                 return null;
             }
         }

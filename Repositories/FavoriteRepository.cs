@@ -42,6 +42,69 @@ namespace CutADash.Repositories
             // 無いスレッドプールへ逃がしてから待つことでこれを避ける。
             Task.Run(() => _connection.CreateTableAsync<FavoriteItemEntity>()).Wait();
             Task.Run(BackfillNestedSetAsync).Wait();
+            Task.Run(EnsureFtsAsync).Wait();
+        }
+
+        /// <summary>
+        /// 全文検索用のFTS5テーブル(FavoriteItemFts)を用意する。履歴(ClipboardItemFts)と同じく
+        /// trigramトークナイザを使い、ItemIdでFavoriteItemEntity.Idと対応付ける。
+        /// 全文検索を入れる前から使っているDBは、起動時にFTS行が足りない(件数が合わない)ことで
+        /// 検知し、本体のTextから作り直す。以降は追加・編集・名前変更・削除のたびに同期する。
+        /// </summary>
+        private async Task EnsureFtsAsync()
+        {
+            await _connection.ExecuteAsync(
+                "CREATE VIRTUAL TABLE IF NOT EXISTS FavoriteItemFts USING fts5(Text, ItemId UNINDEXED, tokenize='trigram')");
+
+            const string indexable = "FROM FavoriteItemEntity WHERE IsFolder = 0 AND Text IS NOT NULL AND Text != ''";
+
+            var expected = await _connection.ExecuteScalarAsync<int>($"SELECT COUNT(*) {indexable}");
+            var actual = await _connection.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM FavoriteItemFts");
+            if (expected == actual)
+                return;
+
+            await _connection.RunInTransactionAsync(conn =>
+            {
+                conn.Execute("DELETE FROM FavoriteItemFts");
+                conn.Execute($"INSERT INTO FavoriteItemFts(Text, ItemId) SELECT Text, Id {indexable}");
+            });
+        }
+
+        // 項目のFTS行を、現在のTextで作り直す(Textが空ならFTS行は無いままにする)
+        private static void ReplaceFtsRow(SQLiteConnection conn, int id, string? text)
+        {
+            conn.Execute("DELETE FROM FavoriteItemFts WHERE ItemId = ?", id);
+
+            if (!string.IsNullOrEmpty(text))
+                conn.Execute("INSERT INTO FavoriteItemFts(Text, ItemId) VALUES (?, ?)", text, id);
+        }
+
+        // trigramトークナイザは3文字未満だと有効なトリグラムを作れずヒットしないため、
+        // それより短いクエリはLIKEにフォールバックする(履歴と同じ)
+        private const int MinFtsQueryLength = 3;
+
+        /// <summary>
+        /// Textを検索し、一致した項目のIdを返す(フォルダは含まない)。3文字以上ならFTS5、
+        /// それより短ければLIKE(部分一致)で検索する。
+        /// </summary>
+        public async Task<List<int>> SearchItemIdsAsync(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return new List<int>();
+
+            if (query.Length < MinFtsQueryLength)
+            {
+                return await _connection.QueryScalarsAsync<int>(
+                    "SELECT Id FROM FavoriteItemEntity WHERE IsFolder = 0 AND Text LIKE ?",
+                    $"%{query}%");
+            }
+
+            // ユーザー入力をそのままMATCHに渡すと"-"や"*"がFTS5のクエリ構文として解釈されエラーに
+            // なることがあるため、二重引用符で囲んだフレーズとして扱う
+            var phrase = "\"" + query.Replace("\"", "\"\"") + "\"";
+            return await _connection.QueryScalarsAsync<int>(
+                "SELECT DISTINCT ItemId FROM FavoriteItemFts WHERE FavoriteItemFts MATCH ?",
+                phrase);
         }
 
         /// <summary>
@@ -224,6 +287,13 @@ namespace CutADash.Repositories
         {
             await _connection.InsertAsync(entity);
 
+            if (!entity.IsFolder && !string.IsNullOrEmpty(entity.Text))
+            {
+                await _connection.ExecuteAsync(
+                    "INSERT INTO FavoriteItemFts(Text, ItemId) VALUES (?, ?)",
+                    entity.Text, entity.Id);
+            }
+
             var entities = await LoadAllAsync();
             var (roots, byId) = BuildForest(entities);
 
@@ -314,7 +384,12 @@ namespace CutADash.Repositories
 
             entity.Name = name;
             entity.Text = name;
-            await _connection.UpdateAsync(entity);
+
+            await _connection.RunInTransactionAsync(conn =>
+            {
+                conn.Update(entity);
+                ReplaceFtsRow(conn, entity.Id, entity.Text);
+            });
         }
 
         /// <summary>FavoriteListFrameで最後に選択していたフォルダのIdを取得する。ルート直下ならnull。</summary>
@@ -383,7 +458,14 @@ namespace CutADash.Repositories
             entity.Text = text;
             entity.Rtf = rtf;
             entity.Html = html;
-            await _connection.UpdateAsync(entity);
+
+            // 本体のTextだけ更新すると、編集後の語句が検索に掛からず編集前の語句が残るため、
+            // 本体とFTS行を1つのトランザクションで更新する(履歴のUpdateContentAsyncと同じ)
+            await _connection.RunInTransactionAsync(conn =>
+            {
+                conn.Update(entity);
+                ReplaceFtsRow(conn, entity.Id, entity.Text);
+            });
         }
 
         /// <summary>木構造の全行をLft昇順(表示順)で読み込む。フォルダ・アイテムの両方を含む。</summary>
@@ -444,7 +526,10 @@ namespace CutADash.Repositories
             await _connection.RunInTransactionAsync(conn =>
             {
                 foreach (var entity in toDelete)
+                {
                     conn.Delete(entity);
+                    conn.Execute("DELETE FROM FavoriteItemFts WHERE ItemId = ?", entity.Id);
+                }
                 foreach (var entity in remaining)
                     conn.Update(entity);
             });

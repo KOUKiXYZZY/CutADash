@@ -1,4 +1,5 @@
 using Common.Extension;
+using Common.Models;
 using Microsoft.UI.Xaml;
 using System;
 using WinAPI;
@@ -30,23 +31,20 @@ namespace SelectionToolbar
         private readonly IntPtr _hWnd;
         private int _widthDip;
         private readonly int _heightDip;
-        private readonly bool _showAbove;
         private readonly OutsideClickWatcher _outsideClickWatcher = new();
+        private readonly EscapeKeyWatcher _escapeKeyWatcher = new();
         private readonly DispatcherTimer _autoHideTimer = new();
         private bool _isPointerOver;
 
         // ShowAtのたびにMove直後のDPIで計算し直す(コンストラクタ時点ではまだどの
         // モニタにも実際に配置されていないため、そこでのDPIを信用できない)
+        private int _widthPx;
         private int _heightPx;
 
-        /// <param name="showAbove">
-        /// trueの場合、指定座標の下ではなく上に表示する(SelectionToolbarWindowで使用)。
-        /// </param>
-        public ToolbarWindowHelper(WindowEx window, FrameworkElement rootElement, int widthDip, int heightDip, bool showAbove = false)
+        public ToolbarWindowHelper(WindowEx window, FrameworkElement rootElement, int widthDip, int heightDip)
         {
             _window = window;
             _hWnd = WindowNative.GetWindowHandle(_window);
-            _showAbove = showAbove;
 
             var exStyle = GetWindowLong(_hWnd, GWL_EXSTYLE);
             SetWindowLong(_hWnd, GWL_EXSTYLE, exStyle | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW);
@@ -72,6 +70,7 @@ namespace SelectionToolbar
             _heightDip = heightDip;
 
             _outsideClickWatcher.ClickedOutside += (_, _) => HideNoActivate();
+            _escapeKeyWatcher.EscapePressed += (_, _) => HideNoActivate();
 
             _autoHideTimer.Tick += (_, _) =>
             {
@@ -107,17 +106,17 @@ namespace SelectionToolbar
             // (コンストラクタ時点ではまだどの画面にも属していない既定のDPIになってしまう)。
             // そのため、まず前回分かっている高さ(初回は0)でおおまかに配置し、
             // 実際のDPIを取得し直してからサイズと位置を確定する
-            var provisionalY = _showAbove ? screenY - _heightPx - Offset : screenY + Offset;
-            _window.AppWindow.Move(new PointInt32(screenX, provisionalY));
+            var placement = Preferences.PreferencesGateway.GetSelectionToolbarPlacement();
+
+            _window.AppWindow.Move(CalculatePosition(placement, screenX, screenY, _widthPx, _heightPx));
 
             var dpi = WinUser.Dpi.GetDpiForWindow(_hWnd);
             var scale = dpi / 96.0;
-            var widthPx = (int)(_widthDip * scale);
+            _widthPx = (int)(_widthDip * scale);
             _heightPx = (int)(_heightDip * scale);
-            _window.AppWindow.Resize(new SizeInt32(widthPx, _heightPx));
+            _window.AppWindow.Resize(new SizeInt32(_widthPx, _heightPx));
 
-            var y = _showAbove ? screenY - _heightPx - Offset : screenY + Offset;
-            _window.AppWindow.Move(new PointInt32(screenX, y));
+            _window.AppWindow.Move(CalculatePosition(placement, screenX, screenY, _widthPx, _heightPx));
 
             ShowWindow(_hWnd, ShowWindowCommands.SW_SHOWNOACTIVATE);
             // NOACTIVATEでフォーカスを奪わないまま、常に最前面(TOPMOST)へ出す
@@ -125,9 +124,23 @@ namespace SelectionToolbar
                 SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 
             _outsideClickWatcher.Start(_hWnd);
+            _escapeKeyWatcher.Start();
 
             _isPointerOver = false;
             RestartAutoHideTimer();
+        }
+
+        // 指定座標(マウスを離した位置)から見て、どちら側に出すかで左上の位置を決める。
+        // 左右の時は、ツールバーの縦の中心を指定座標の高さに揃える
+        private static PointInt32 CalculatePosition(ToolbarPlacement placement, int anchorX, int anchorY, int widthPx, int heightPx)
+        {
+            return placement switch
+            {
+                ToolbarPlacement.Below => new PointInt32(anchorX, anchorY + Offset),
+                ToolbarPlacement.Left => new PointInt32(anchorX - widthPx - Offset, anchorY - heightPx / 2),
+                ToolbarPlacement.Right => new PointInt32(anchorX + Offset, anchorY - heightPx / 2),
+                _ => new PointInt32(anchorX, anchorY - heightPx - Offset),
+            };
         }
 
         private void RestartAutoHideTimer()
@@ -148,6 +161,7 @@ namespace SelectionToolbar
         public void HideNoActivate()
         {
             _outsideClickWatcher.Stop();
+            _escapeKeyWatcher.Stop();
 
             // アプリ終了処理(AppDomain.CurrentDomain.ProcessExit)からここへ到達すると、
             // その時点でUIスレッドのCOM apartmentが既に不安定になっており、

@@ -50,7 +50,13 @@ namespace CutADash.ViewModels
             if (updateService is null)
                 return;
 
-            IsUpdateAvailable = await updateService.CheckForUpdatesQuietlyAsync();
+            var version = await updateService.GetAvailableVersionAsync();
+            IsUpdateAvailable = version is not null;
+
+            // 更新があれば、OK/キャンセルで尋ねる。キャンセルした場合は、そのままにしておき、
+            // トレイメニューの「アップデートを適用して再起動」から、いつでも適用できる
+            if (version is not null && await Utils.UpdatePrompt.ConfirmUpdateAsync(version))
+                await updateService.CheckDownloadAndApplyAsync();
         }
 
         [RelayCommand]
@@ -100,9 +106,14 @@ namespace CutADash.ViewModels
             if (updateService is null)
                 return;
 
-            var applied = await updateService.CheckDownloadAndApplyAsync();
-            if (!applied)
-                IsUpdateAvailable = false;
+            var version = await updateService.GetAvailableVersionAsync();
+            IsUpdateAvailable = version is not null;
+
+            // 更新が無ければ何もしない。あれば、OK/キャンセルで尋ねてから適用する
+            if (version is null || !await Utils.UpdatePrompt.ConfirmUpdateAsync(version))
+                return;
+
+            await updateService.CheckDownloadAndApplyAsync();
         }
     }
 }

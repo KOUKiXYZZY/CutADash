@@ -115,7 +115,7 @@ namespace CutADash
             InitializeComponent();
             // AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
 
-            // クラッシュの原因調査用。未処理例外をcrash_log.txtへ書き出す
+            // For crash investigation: write unhandled exceptions to crash_log.txt (English)
             this.UnhandledException += (s, e) =>
                 LogCrash("Application.UnhandledException", e.Exception);
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
@@ -126,7 +126,7 @@ namespace CutADash
 
         private static void LogCrash(string source, Exception? ex)
         {
-            var text = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {source}\n{ex}\n\n";
+            var text = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {source}\n{Common.Utils.ExceptionText.ToEnglishString(ex)}\n\n";
             Debug.WriteLine(text);
 
             try
@@ -325,6 +325,13 @@ namespace CutADash
             });
 
             _ = new Views.TaskTray.TaskTray(provider);
+
+#if DEBUG || DEVDEBUG
+            // 動作確認用: 環境変数CUTADASH_OPEN_UI_GALLERY=1で起動すると、UIライブラリのギャラリー画面を
+            // 起動直後に開く(トレイのメニューを経由しなくて済む)
+            if (Environment.GetEnvironmentVariable("CUTADASH_OPEN_UI_GALLERY") == "1")
+                new UiLibrary.GalleryWindow().Activate();
+#endif
             InitializeSelectionToolbar();
 
             // App(このクラス)が直接生成したリソースの後始末。Environment.Exit(0)は

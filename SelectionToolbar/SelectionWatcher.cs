@@ -204,6 +204,10 @@ namespace SelectionToolbar
                 if (string.IsNullOrWhiteSpace(text) || text.Trim().Length <= 1)
                 {
                     _pendingSelectionTextDuringDrag = null;
+
+                    // 選択が解除された(空になった)ので、重複防止の記憶をリセットする。
+                    // abc→選択解除→abcなら再び表示してよい(実際の要望)
+                    _lastShownSelectionText = null;
                     return;
                 }
 
@@ -215,10 +219,9 @@ namespace SelectionToolbar
                     return;
                 }
 
-                if (text == _lastShownSelectionText)
-                    return;
-
-                ShowSelectionFound(text);
+                // 左ボタンを押していない時のこのイベントは、Ctrl+A/Shift+矢印キー等
+                // キーボードだけで起きた選択変化なので表示しない
+                // (実際の要望: ツールバーはマウスで選択した時だけ出す)
             }
             catch (Exception ex)
             {
@@ -226,17 +229,31 @@ namespace SelectionToolbar
             }
         }
 
-        private void ShowSelectionFound(string text)
+        /// <param name="anchorX">
+        /// ツールバーを出す位置。省略時は現在のマウスカーソル位置を使う
+        /// (現在はマウスを伴わない選択では呼ばれないため、念のための既定値)。
+        /// マウスドラッグに紐づく呼び出し元は、選択を始めた位置(ドラッグ開始位置)を明示的に渡す
+        /// (実際の要望: 選択し終えた位置ではなく最初にクリックした位置に出したい)。
+        /// </param>
+        private void ShowSelectionFound(string text, int? anchorX = null, int? anchorY = null)
         {
             _lastShownSelectionText = text;
 
-            // イベントは選択位置の座標を教えてくれないため、現在のマウスカーソル位置を
-            // ポップアップのアンカーとして使う(キーボード選択の場合は多少ずれるが、
-            // マウスドラッグ検知側の座標付きの結果と役割は同じなので許容する)
-            GetCursorPos(out var cursor);
+            int x, y;
+            if (anchorX is { } ax && anchorY is { } ay)
+            {
+                x = ax;
+                y = ay;
+            }
+            else
+            {
+                GetCursorPos(out var cursor);
+                x = cursor.X;
+                y = cursor.Y;
+            }
 
             _dispatcherQueue?.TryEnqueue(() =>
-                SelectionFound?.Invoke(this, new SelectionFoundEventArgs { Text = text, ScreenX = cursor.X, ScreenY = cursor.Y }));
+                SelectionFound?.Invoke(this, new SelectionFoundEventArgs { Text = text, ScreenX = x, ScreenY = y }));
         }
 
         private IntPtr OnMouseEvent(int nCode, IntPtr wParam, IntPtr lParam)
@@ -247,19 +264,23 @@ namespace SelectionToolbar
                 {
                     _downX = Marshal.ReadInt32(lParam, 0);
                     _downY = Marshal.ReadInt32(lParam, 4);
+
+                    // 閉じるボタン等、自分自身(SelectionToolbar)のウィンドウをクリックした場合は、
+                    // 「新しい選択操作が始まった」とはみなさない(ドラッグ状態を触らない)。
+                    // 閉じるボタンを押した直後に再表示されてしまう不具合の対策として入れたもの
+                    if (IsOwnWindow(WindowFromPoint(new POINT { X = _downX, Y = _downY })))
+                        return MouseHook.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
+
                     _isLeftMouseDown = true;
                     _pendingSelectionTextDuringDrag = null;
 
                     _hasMovedSinceDown = false;
 
-                    // 新しいクリック(=新しい選択操作)のたびに重複防止キャッシュを
-                    // クリアする。これが無いと、一度ツールバーを表示したのと同じ内容を
-                    // (別の場所をクリックしてフォーカスを外した後などに)選び直しても、
-                    // 「前回と同じ選択内容」とみなされてツールバーが二度と出てこなかった
-                    // (実際に踏んだ不具合)。1回のドラッグ内でTextSelectionChangedEventと
-                    // WM_LBUTTONUPが同じ内容を二重発火するのを防ぐ役割はこのままでも保たれる
-                    // (ドラッグが始まる前にリセットされるだけなので)
-                    _lastShownSelectionText = null;
+                    // 直前にツールバーを出したのと同じ文字列を選び直した時は出さない
+                    // (実際の要望)。以前は新しいクリックのたびに_lastShownSelectionTextを
+                    // クリアして、同じ内容でも再表示されるようにしていたが、その動作はやめた。
+                    // 別の文字列を一度選べばキャッシュが更新されるので、その後は元の文字列も
+                    // 再び表示される
                 }
                 else if ((int)wParam == MouseHook.WM_MOUSEMOVE)
                 {
@@ -272,7 +293,11 @@ namespace SelectionToolbar
                     var x = Marshal.ReadInt32(lParam, 0);
                     var y = Marshal.ReadInt32(lParam, 4);
 
+                    // ツールバー自身の上で離した場合(閉じる/コピー等のボタン操作)は、選択操作とは
+                    // 無関係なので何もしない
                     _isLeftMouseDown = false;
+                    if (IsOwnWindow(WindowFromPoint(new POINT { X = x, Y = y })))
+                        return MouseHook.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
 
                     if (!_hasMovedSinceDown)
                     {
@@ -281,6 +306,11 @@ namespace SelectionToolbar
                         // クリック→マウスムーブ→離す、という一連の動きがあった時だけ拾う
                         // (実際の要望)
                         _pendingSelectionTextDuringDrag = null;
+
+                        // 動かさずにクリックすると、多くのアプリでは既存の選択が解除される。
+                        // 解除のイベントを出さないアプリでも同じ文字列を選び直せば再表示
+                        // されるよう、重複防止の記憶をリセットしておく
+                        _lastShownSelectionText = null;
                         return MouseHook.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
                     }
 
@@ -290,7 +320,7 @@ namespace SelectionToolbar
                     {
                         _pendingSelectionTextDuringDrag = null;
                         if (pendingText != _lastShownSelectionText)
-                            ShowSelectionFound(pendingText);
+                            ShowSelectionFound(pendingText, x, y);
                     }
 
                     // ラムダが後から実行されるため、フィールド(_downX/_downY)を
@@ -310,9 +340,9 @@ namespace SelectionToolbar
             return MouseHook.CallNextHookEx(_hookHandle, nCode, wParam, lParam);
         }
 
-        /// <param name="downX">ドラッグを開始した位置(WM_LBUTTONDOWN)。要素の探索に使う。</param>
+        /// <param name="downX">ドラッグを開始した位置(WM_LBUTTONDOWN)。要素の探索とツールバーを出す位置に使う。</param>
         /// <param name="downY">同上。</param>
-        /// <param name="upX">ドラッグを終えた位置(WM_LBUTTONUP)。ツールバーを出す位置に使う。</param>
+        /// <param name="upX">ドラッグを終えた位置(WM_LBUTTONUP)。要素の探索の補助に使う。</param>
         /// <param name="upY">同上。</param>
         private System.Threading.Tasks.Task CheckSelectionAsync(int downX, int downY, int upX, int upY)
         {
@@ -335,7 +365,8 @@ namespace SelectionToolbar
                 {
                     _lastShownSelectionText = text;
 
-                    // ツールバー自体は、カーソルがある位置(ドラッグ終了位置)の近くに出す
+                    // ツールバー自体は、マウスを離した位置(ドラッグ終了位置)を基準に出す
+                    // (上下左右のどちら側に出すかはPreferencesの設定で選べる)
                     _dispatcherQueue?.TryEnqueue(() =>
                         SelectionFound?.Invoke(this, new SelectionFoundEventArgs { Text = text, ScreenX = upX, ScreenY = upY }));
                 }

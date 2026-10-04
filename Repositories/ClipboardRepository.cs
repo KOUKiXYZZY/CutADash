@@ -172,9 +172,26 @@ namespace CutADash.Repositories
             if (id == 0)
                 return;
 
-            await _connection.ExecuteAsync(
-                "UPDATE ClipboardItemEntity SET Text = ?, Rtf = ?, Html = ? WHERE Id = ?",
-                text, rtf, html, id);
+            // 3文字以上の検索はFTS5のテーブル(ClipboardItemFts)を使うため、本体のTextだけを
+            // 更新すると、編集後の語句では検索に掛からず、編集前の語句が検索に残ってしまう
+            // (実際に踏んだ不具合)。本体の更新と、FTS行の削除→再作成を1つのトランザクションに
+            // まとめ、途中で失敗しても本体とインデックスが食い違わないようにする。
+            // 編集で全て消した場合(Textが空)は、FTS行を削除したままにする
+            await _connection.RunInTransactionAsync(connection =>
+            {
+                connection.Execute(
+                    "UPDATE ClipboardItemEntity SET Text = ?, Rtf = ?, Html = ? WHERE Id = ?",
+                    text, rtf, html, id);
+
+                connection.Execute("DELETE FROM ClipboardItemFts WHERE ItemId = ?", id);
+
+                if (!string.IsNullOrEmpty(text))
+                {
+                    connection.Execute(
+                        "INSERT INTO ClipboardItemFts(Text, ItemId) VALUES (?, ?)",
+                        text, id);
+                }
+            });
         }
 
         /// <summary>Shape/Image項目の表示名を変更する(未設定に戻す場合はnameにnullを渡す)。</summary>

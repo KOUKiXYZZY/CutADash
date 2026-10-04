@@ -1,5 +1,5 @@
 # NavigationView のアイコンPNGを、このフォルダ(AssetsSrc/Nav/Source、リポジトリ直下)配下の
-# SVGマスターから各サイズで描き起こし、実際にビルドで使われるCtrlVPlus/Assets/Navへ出力する。
+# SVGマスターから各サイズで描き起こし、実際にビルドで使われるCutADash/Assets/Navへ出力する。
 #
 # アイコンごとにサブフォルダ(Emoji/Favorite/History等)へ分け、Selected/Unselectedの
 # それぞれをDark/Light別のSVGとして手動編集する構成になっているため、フォルダ構成は
@@ -23,11 +23,16 @@
 #
 #   使い方: pwsh -File AssetsSrc/Nav/Source/render-nav-icons.ps1
 
+param(
+    # 描き起こすSVGのファイル名の絞り込み。既定は全て。例: -Filter 'History*.svg'
+    [string]$Filter = '*.svg'
+)
+
 $ErrorActionPreference = 'Stop'
 
 $repoRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 $svgDir = $PSScriptRoot
-$outDir = Join-Path $repoRoot 'CtrlVPlus\Assets\Nav'
+$outDir = Join-Path $repoRoot 'CutADash\Assets\Nav'
 
 # 16 DIP 表示に対して、拡大率 100% / 150% / 200% / 300% で必要になる物理ピクセル数。
 # 中間の拡大率(125%など)では、これより大きい最小のものを選んでデコード時に縮める。
@@ -50,7 +55,7 @@ $work = Join-Path ([System.IO.Path]::GetTempPath()) "navicon-render-$(Get-Random
 New-Item -ItemType Directory -Force -Path $work | Out-Null
 
 try {
-    Get-ChildItem -Path $svgDir -Filter *.svg -Recurse | ForEach-Object {
+    Get-ChildItem -Path $svgDir -Filter $Filter -Recurse | ForEach-Object {
         $svg = $_
         Copy-Item $svg.FullName -Destination $work -Force
 
@@ -80,30 +85,26 @@ img{display:block;width:${size}px;height:${size}px}</style>
 
         $out = Join-Path $outDir "$($svg.BaseName).png"
 
-        # protect-assets.ps1で読み取り専用にされている場合、書き込み前に解除しておく
+        # 読み取り専用にされている場合に備えて、書き込み前に解除しておく
         if (Test-Path $out) {
             Set-ItemProperty -Path $out -Name IsReadOnly -Value $false
         }
 
-        $sizesArg = ($sizes -join ',')
-        $pngsArg = ($sizePngs -join '|')
-
-        $py = @"
-from PIL import Image
-
-sizes = [int(s) for s in '$sizesArg'.split(',')]
-paths = r'$pngsArg'.split('|')
-
-canvas = Image.new('RGBA', ($maxSize, sum(sizes)), (0, 0, 0, 0))
-y = 0
-for size, path in zip(sizes, paths):
-    tile = Image.open(path).convert('RGBA')
-    canvas.paste(tile, (0, y))
-    y += size
-
-canvas.save(r'$out')
-"@
-        $py | py -3 -
+        # 4サイズを縦に結合した1枚のPNGにする(System.Drawingを使うので、Pythonは不要)
+        Add-Type -AssemblyName System.Drawing
+        $canvas = [System.Drawing.Bitmap]::new($maxSize, ($sizes | Measure-Object -Sum).Sum, [System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+        $graphics = [System.Drawing.Graphics]::FromImage($canvas)
+        $graphics.CompositingMode = [System.Drawing.Drawing2D.CompositingMode]::SourceCopy
+        $y = 0
+        for ($i = 0; $i -lt $sizes.Count; $i++) {
+            $tile = [System.Drawing.Image]::FromFile($sizePngs[$i])
+            $graphics.DrawImage($tile, 0, $y, $sizes[$i], $sizes[$i])
+            $tile.Dispose()
+            $y += $sizes[$i]
+        }
+        $graphics.Dispose()
+        $canvas.Save($out, [System.Drawing.Imaging.ImageFormat]::Png)
+        $canvas.Dispose()
 
         if (-not (Test-Path $out)) { throw "結合に失敗しました: $out" }
         Write-Host ("  {0}" -f (Split-Path $out -Leaf))

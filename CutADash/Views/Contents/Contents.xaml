@@ -29,7 +29,7 @@
                      テキスト/画像/ファイルのどの表示でも同じ見た目の面の上に載るようにする -->
                 <Border Margin="12"
                         CornerRadius="4"
-                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                        Background="{ThemeResource AppContentsCardBackgroundBrush}">
                     <Grid>
                         <!-- 猫テーマの間だけ、編集面の背後に肉球を薄っすらと散らして表示する
                              (ApplyCatContentsBackgroundで切り替え)。RichEditBoxのBackgroundが
@@ -125,7 +125,7 @@
                          不透明な面を敷いて、透明度がはっきり見えるようにする -->
                     <Border Margin="12"
                             CornerRadius="4"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
+                            Background="{ThemeResource AppContentsCardBackgroundBrush}">
                         <Image x:Name="ImagePreview"
                                 Stretch="Uniform"
                                 Margin="12" />
@@ -192,7 +192,10 @@
                         <MenuFlyoutItem x:Name="PasteFormattedMenuItem"
                                         Command="{Binding PasteFormattedCommand}"
                                         Visibility="{Binding ShowPasteFormatted, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                        <MenuFlyoutItem x:Name="PastePlainMenuItem" Command="{Binding PastePlainCommand}"/>
+                        <MenuFlyoutItem x:Name="PastePlainMenuItem" Command="{Binding PastePlainCommand}"
+                                        Visibility="{Binding ShowPastePlain, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        <MenuFlyoutItem x:Name="PasteFilePathsMenuItem" Command="{Binding PasteFilePathsCommand}"
+                                        Visibility="{Binding ShowPasteFilePaths, Converter={StaticResource BoolToVisibilityConverter}}"/>
                     </MenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>

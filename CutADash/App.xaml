@@ -17,13 +17,31 @@
 
             <!-- 区切り線用の色。既定のDividerStrokeColorDefaultはライト時にかなり薄く
                  見えづらかったため、ライトの時だけはっきりした黒にする(ダークは
-                 既定の見た目に近い半透明の白のまま) -->
+                 既定の見た目に近い半透明の白のまま)。
+                 選択中アイテムのハイライトも、WinUI既定のListViewItemBackgroundSelected系は
+                 Mica/Acrylicの明るい背景に対してほぼ見分けが付かないほど薄かったため、
+                 ライトの時だけアクセントカラーを混ぜてはっきりさせる(実際に踏んだ不具合。
+                 ダークは既定のままでも十分視認できていたため変更しない) -->
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
-                    <Color x:Key="AppDividerStrokeColor">#701A1A1A</Color>
+                    <Color x:Key="AppDividerStrokeColor">#A01A1A1A</Color>
+                    <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="{ThemeResource SystemAccentColor}" Opacity="0.22"/>
+                    <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver" Color="{ThemeResource SystemAccentColor}" Opacity="0.32"/>
+                    <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPressed" Color="{ThemeResource SystemAccentColor}" Opacity="0.4"/>
+
+                    <!-- Contents.xamlのカード(選択項目の内容を表示する面)の背景。既定の
+                         CardBackgroundFillColorDefaultBrush(ほぼ透明な白)を上書きしようとしたが
+                         反映されなかったため(既定のBrush定義がColorトークン経由ではない可能性)、
+                         Contents.xaml側でこの専用キーを直接参照させる方式に変更した -->
+                    <SolidColorBrush x:Key="AppContentsCardBackgroundBrush" Color="#D9D9D9"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="AppDividerStrokeColor">#33FFFFFF</Color>
+                    <!-- StaticResourceでCardBackgroundFillColorDefaultBrushをエイリアスしようとしたら
+                         起動時にクラッシュした(実際に踏んだ不具合。恐らくThemeDictionary内から
+                         別の(やはりテーマ依存の)マージ済みリソースをStaticResourceで参照するのが
+                         不安定だったため)。ダークは元々の見た目に近い値をそのまま直接指定する -->
+                    <SolidColorBrush x:Key="AppContentsCardBackgroundBrush" Color="#14FFFFFF"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 

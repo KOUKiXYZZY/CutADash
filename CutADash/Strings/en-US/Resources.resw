@@ -105,6 +105,15 @@
   <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
     <value>Apply Update and Restart</value>
   </data>
+  <data name="Update_ConfirmMessage" xml:space="preserve">
+    <value>Version {0} is available.&#10;Download and update now? The app will restart.</value>
+  </data>
+  <data name="Dialog_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="EmojiSetup_Message" xml:space="preserve">
     <value>Generating emoji images from your font (first launch only)…</value>
   </data>
@@ -131,6 +140,9 @@
   </data>
   <data name="Contents_PastePlain" xml:space="preserve">
     <value>Paste as Plain Text</value>
+  </data>
+  <data name="Contents_PasteFilePaths" xml:space="preserve">
+    <value>Paste File Paths as Text</value>
   </data>
   <data name="Empty_Text" xml:space="preserve">
     <value>None</value>

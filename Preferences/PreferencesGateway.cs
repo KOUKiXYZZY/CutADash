@@ -39,6 +39,7 @@ namespace Preferences
             HistorySettingsStore.SelectionToolbarEnabledChanged += v => SelectionToolbarEnabledChanged?.Invoke(v);
             HistorySettingsStore.AlwaysPastePlainTextChanged += v => AlwaysPastePlainTextChanged?.Invoke(v);
             HistorySettingsStore.WindowBackdropChanged += v => WindowBackdropChanged?.Invoke(v);
+            HistorySettingsStore.ColorThemeChanged += v => ColorThemeChanged?.Invoke(v);
             HistorySettingsStore.SelectionToolbarAutoHideSecondsChanged += v => SelectionToolbarAutoHideSecondsChanged?.Invoke(v);
             HistorySettingsStore.ExcludedAppNamesChanged += v => ExcludedAppNamesChanged?.Invoke(v);
             HistorySettingsStore.LanguageChanged += v => LanguageChanged?.Invoke(v);
@@ -53,6 +54,7 @@ namespace Preferences
         public static event Action<bool>? SelectionToolbarEnabledChanged;
         public static event Action<bool>? AlwaysPastePlainTextChanged;
         public static event Action<WindowBackdropKind>? WindowBackdropChanged;
+        public static event Action<AppColorTheme>? ColorThemeChanged;
         public static event Action<double>? SelectionToolbarAutoHideSecondsChanged;
         public static event Action<List<string>>? ExcludedAppNamesChanged;
         public static event Action<string>? LanguageChanged;
@@ -79,7 +81,15 @@ namespace Preferences
         /// <summary>一覧表示用サムネイルの最大辺の長さ(px)。</summary>
         public static int GetThumbnailMaxDimension()
         {
-            return HistorySettingsStore.Load().ThumbnailMaxDimension;
+            // 選べるサイズは400/600/800だけ。以前の版で保存された100/200/300等は、
+            // 一番近い選択肢に丸めて返す(設定画面のComboBoxにも一致する項目があるようにする)
+            var saved = HistorySettingsStore.Load().ThumbnailMaxDimension;
+            return saved switch
+            {
+                <= 500 => 400,
+                <= 700 => 600,
+                _ => 800,
+            };
         }
 
         /// <summary>ウィンドウをキャレット位置へ移動する機能が無効化されているかどうか。</summary>
@@ -120,6 +130,27 @@ namespace Preferences
         public static WindowBackdropKind GetWindowBackdrop()
         {
             return HistorySettingsStore.Load().WindowBackdrop;
+        }
+
+        /// <summary>アプリ全体の明/暗の表示テーマ。</summary>
+        public static AppColorTheme GetColorTheme()
+        {
+            return HistorySettingsStore.Load().ColorTheme;
+        }
+
+        /// <summary>
+        /// アプリ全体の明/暗の表示テーマを設定する。
+        /// タスクトレイのメニュー等、Preferences以外のプロジェクトから書き込みたい場合はこちらを使う。
+        /// </summary>
+        public static void SetColorTheme(AppColorTheme theme)
+        {
+            HistorySettingsStore.SetColorTheme(theme);
+        }
+
+        /// <summary>テキスト選択ツールバーを、マウスを離した位置のどちら側に出すか。</summary>
+        public static ToolbarPlacement GetSelectionToolbarPlacement()
+        {
+            return HistorySettingsStore.Load().SelectionToolbarPlacement;
         }
 
         /// <summary>テキスト選択ツールバーを自動的に隠すまでの秒数。</summary>

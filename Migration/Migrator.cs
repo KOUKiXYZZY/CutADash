@@ -54,12 +54,12 @@ namespace CutADash.Migration
                 EncryptPlainImageFiles("clipboard_history.db", "ClipboardItemEntity", key, log);
                 EncryptPlainImageFiles("favorites.db", "FavoriteItemEntity", key, log);
 
-                log.WriteLine("[Migration] 全DBの処理が完了しました。");
+                log.WriteLine("[Migration] All databases processed.");
                 return 0;
             }
             catch (Exception ex)
             {
-                log.WriteLine($"[Migration] 失敗しました: {ex}");
+                log.WriteLine($"[Migration] Failed: {Common.Utils.ExceptionText.ToEnglishString(ex)}");
                 return 1;
             }
         }
@@ -214,11 +214,11 @@ namespace CutADash.Migration
         private static void MigrateOne(string fileName, string key, TextWriter log)
         {
             var path = AppPaths.GetDataFilePath(fileName);
-            log.WriteLine($"[Migration] {fileName} を確認しています...");
+            log.WriteLine($"[Migration] {fileName} is being checked...");
 
             if (!File.Exists(path))
             {
-                log.WriteLine($"[Migration] {fileName} が存在しないため、新規に暗号化DBを作成します。");
+                log.WriteLine($"[Migration] {fileName} does not exist; creating a new encrypted DB.");
                 CreateNewEncryptedDatabase(path, key);
                 EnsureSchemaVersion(path, key, log);
                 return;
@@ -226,12 +226,12 @@ namespace CutADash.Migration
 
             if (TryOpenWithKey(path, key))
             {
-                log.WriteLine($"[Migration] {fileName} は既に暗号化されています。スキーマバージョンを確認します。");
+                log.WriteLine($"[Migration] {fileName} is already encrypted. Checking the schema version.");
                 EnsureSchemaVersion(path, key, log);
                 return;
             }
 
-            log.WriteLine($"[Migration] {fileName} は暗号化されていない旧形式のようです。暗号化DBへ移行します。");
+            log.WriteLine($"[Migration] {fileName} appears to be an old unencrypted format. Migrating to an encrypted DB.");
             MigratePlainToEncrypted(path, key, log);
             EnsureSchemaVersion(path, key, log);
         }
@@ -315,7 +315,7 @@ namespace CutADash.Migration
             }
             catch (Exception ex)
             {
-                log.WriteLine($"[Migration] favorites.dbの読み込みに失敗しました(スキップ): {ex.Message}");
+                log.WriteLine($"[Migration] Failed to read favorites.db (skipped): {ex.Message}");
                 return;
             }
 
@@ -335,13 +335,13 @@ namespace CutADash.Migration
 
             if (fixedCount == 0)
             {
-                log.WriteLine("[Migration] favorites.db: 項目の下にぶら下がった壊れたデータはありませんでした。");
+                log.WriteLine("[Migration] favorites.db: no broken data (items nested under items) found.");
                 return;
             }
 
             RenumberAndSave(connection, rows);
 
-            log.WriteLine($"[Migration] favorites.db: 項目の下にぶら下がっていた{fixedCount}件をルート直下へ戻しました。");
+            log.WriteLine($"[Migration] favorites.db: moved {fixedCount} item(s) nested under items back to the root.");
         }
 
         // 現在のLft昇順(=既存の表示順)を保ったまま、修正後のParentIdで木を組み直し、
@@ -403,7 +403,7 @@ namespace CutADash.Migration
                 "INSERT OR REPLACE INTO SchemaVersion (Id, Version) VALUES (1, ?)",
                 DbSchema.CurrentVersion);
 
-            log.WriteLine($"[Migration] SchemaVersionを{DbSchema.CurrentVersion}に設定しました。");
+            log.WriteLine($"[Migration] SchemaVersion set to {DbSchema.CurrentVersion}.");
         }
 
         // SQLCipherのsqlcipher_export()を使い、暗号化されていない旧DBの全内容
@@ -435,7 +435,7 @@ namespace CutADash.Migration
             File.Move(plainPath, backupPath);
             File.Move(newPath, plainPath);
 
-            log.WriteLine($"[Migration] 移行が完了しました。元ファイルは {Path.GetFileName(backupPath)} として残しています。");
+            log.WriteLine($"[Migration] Migration completed. The original file was kept as {Path.GetFileName(backupPath)}.");
         }
 
         // 指定したDB(既に暗号化済み)から、画像ファイルのパス列(ImageFilePath/ThumbnailFilePath)
@@ -460,7 +460,7 @@ namespace CutADash.Migration
             catch (Exception ex)
             {
                 // テーブルが無い(初回作成直後で空、等)場合もあるため、失敗しても処理継続する
-                log.WriteLine($"[Migration] {dbFileName}の画像パス列取得に失敗しました(スキップ): {ex.Message}");
+                log.WriteLine($"[Migration] {dbFileName}: failed to read image path columns (skipped): {ex.Message}");
                 return;
             }
 
@@ -471,7 +471,7 @@ namespace CutADash.Migration
                 encryptedCount += EncryptIfPlain(row.ThumbnailFilePath);
             }
 
-            log.WriteLine($"[Migration] {dbFileName}: 画像ファイル{encryptedCount}件を暗号化しました。");
+            log.WriteLine($"[Migration] {dbFileName}: encrypted {encryptedCount} image file(s).");
         }
 
         private static int EncryptIfPlain(string? path)

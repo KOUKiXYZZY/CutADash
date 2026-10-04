@@ -44,7 +44,11 @@ namespace CutADash.ViewModels
 
         public bool CanDecode => Item?.Type is ClipboardContentType.Text or ClipboardContentType.Image;
 
-        public bool ShowPasteButton => Item?.Type == ClipboardContentType.Text;
+        public bool ShowPasteButton => Item?.Type == ClipboardContentType.Text || ShowPasteFilePaths;
+
+        public bool ShowPastePlain => Item?.Type == ClipboardContentType.Text;
+
+        public bool ShowPasteFilePaths => Item is { Type: ClipboardContentType.Files, Files.Count: > 0 };
 
         public bool ShowPasteFormatted => Item?.Rtf is not null || Item?.Html is not null;
 
@@ -63,6 +67,8 @@ namespace CutADash.ViewModels
             OnPropertyChanged(nameof(CanEncode));
             OnPropertyChanged(nameof(CanDecode));
             OnPropertyChanged(nameof(ShowPasteButton));
+            OnPropertyChanged(nameof(ShowPastePlain));
+            OnPropertyChanged(nameof(ShowPasteFilePaths));
             OnPropertyChanged(nameof(ShowPasteFormatted));
             OnPropertyChanged(nameof(IsDecodeTargetImage));
             OnPropertyChanged(nameof(IsDecodeTargetText));
@@ -93,6 +99,25 @@ namespace CutADash.ViewModels
                 return;
 
             await ForegroundPasteHelper.PasteToPreviousWindowAsync(MainWindow, item, plainTextOnly: true);
+            await BumpItemToTopAsync(item);
+        }
+
+        // コピーしたファイルのパスを、1行に1つずつのテキストとして貼り付ける。
+        // 貼り付けるテキストは一時的な項目で、履歴には登録しない(addToHistoryは既定のfalse)。
+        // 履歴の先頭へ上げるのは元のファイル項目のほう
+        [RelayCommand]
+        private async Task PasteFilePaths()
+        {
+            if (Item is not { Type: ClipboardContentType.Files, Files: { Count: > 0 } files } item)
+                return;
+
+            var pathsItem = new ClipboardItem
+            {
+                Type = ClipboardContentType.Text,
+                Text = string.Join(Environment.NewLine, files),
+            };
+
+            await ForegroundPasteHelper.PasteToPreviousWindowAsync(MainWindow, pathsItem, plainTextOnly: true);
             await BumpItemToTopAsync(item);
         }
 

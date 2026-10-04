@@ -51,10 +51,25 @@
   <data name="Pref_Language_SystemDefault" xml:space="preserve">
     <value>系统默认</value>
   </data>
-  <data name="Pref_Theme_Title" xml:space="preserve">
+  <data name="Pref_ColorTheme_Title" xml:space="preserve">
     <value>主题</value>
   </data>
-  <data name="Pref_Theme_Description" xml:space="preserve">
+  <data name="Pref_ColorTheme_Description" xml:space="preserve">
+    <value>选择应用整体的明/暗显示主题。</value>
+  </data>
+  <data name="Pref_ColorTheme_Default" xml:space="preserve">
+    <value>系统默认</value>
+  </data>
+  <data name="Pref_ColorTheme_Light" xml:space="preserve">
+    <value>浅色</value>
+  </data>
+  <data name="Pref_ColorTheme_Dark" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="Pref_Backdrop_Title" xml:space="preserve">
+    <value>背景材质</value>
+  </data>
+  <data name="Pref_Backdrop_Description" xml:space="preserve">
     <value>选择主窗口(面板)的背景材质。</value>
   </data>
   <data name="Pref_History_Title" xml:space="preserve">
@@ -70,22 +85,13 @@
     <value>缩略图大小</value>
   </data>
   <data name="Pref_ThumbnailSize_Small" xml:space="preserve">
-    <value>小 (100px)</value>
+    <value>小</value>
   </data>
   <data name="Pref_ThumbnailSize_Medium" xml:space="preserve">
-    <value>中 (200px)</value>
+    <value>中</value>
   </data>
   <data name="Pref_ThumbnailSize_Large" xml:space="preserve">
-    <value>大 (300px)</value>
-  </data>
-  <data name="Pref_ThumbnailSize_ExtraLarge" xml:space="preserve">
-    <value>特大 (400px)</value>
-  </data>
-  <data name="Pref_ThumbnailSize_ExtraLargePlus" xml:space="preserve">
-    <value>特大+ (600px)</value>
-  </data>
-  <data name="Pref_ThumbnailSize_Max" xml:space="preserve">
-    <value>最大 (800px)</value>
+    <value>大</value>
   </data>
   <data name="Pref_OpenHistory" xml:space="preserve">
     <value>打开历史记录</value>
@@ -122,6 +128,21 @@
   </data>
   <data name="Pref_SelectionToolbarEnabled" xml:space="preserve">
     <value>显示文本选择工具栏(实验性功能)</value>
+  </data>
+  <data name="Pref_SelectionToolbarPlacement" xml:space="preserve">
+    <value>显示位置(相对于松开鼠标的位置)</value>
+  </data>
+  <data name="Pref_ToolbarPlacement_Above" xml:space="preserve">
+    <value>上方</value>
+  </data>
+  <data name="Pref_ToolbarPlacement_Below" xml:space="preserve">
+    <value>下方</value>
+  </data>
+  <data name="Pref_ToolbarPlacement_Left" xml:space="preserve">
+    <value>左侧</value>
+  </data>
+  <data name="Pref_ToolbarPlacement_Right" xml:space="preserve">
+    <value>右侧</value>
   </data>
   <data name="Pref_SelectionToolbarAutoHideSeconds" xml:space="preserve">
     <value>自动隐藏时间: {0}秒</value>

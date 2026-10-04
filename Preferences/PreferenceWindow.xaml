@@ -4,6 +4,7 @@
     x:Class="Preferences.Views.PreferenceWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="using:UiLibrary"
     xmlns:local="using:Preferences"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -95,14 +96,30 @@
                           HorizontalAlignment="Left"
                           SelectedValuePath="Tag"
                           SelectedValue="{x:Bind ViewModel.SelectedLanguageTag, Mode=TwoWay}">
-                    <ComboBoxItem x:Name="LanguageSystemDefaultItem" Tag=""/>
+                    <ComboBoxItem x:Name="LanguageSystemDefaultItem" Tag="system"/>
                     <ComboBoxItem Content="日本語" Tag="ja-JP"/>
                     <ComboBoxItem Content="English" Tag="en-US"/>
                     <ComboBoxItem Content="中文" Tag="zh-CN"/>
                 </ComboBox>
 
-                <TextBlock x:Name="ThemeSectionTitle" FontSize="18" FontWeight="Bold"/>
-                <TextBlock x:Name="ThemeDescriptionText"
+                <TextBlock x:Name="ColorThemeSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="ColorThemeDescriptionText"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <ComboBox x:Name="ColorThemeComboBox"
+                          Width="160"
+                          HorizontalAlignment="Left"
+                          SelectedValuePath="Tag"
+                          SelectedValue="{x:Bind ViewModel.SelectedColorThemeTag, Mode=TwoWay}">
+                    <ComboBoxItem x:Name="ColorThemeDefaultItem" Tag="Default"/>
+                    <ComboBoxItem x:Name="ColorThemeLightItem" Tag="Light"/>
+                    <ComboBoxItem x:Name="ColorThemeDarkItem" Tag="Dark"/>
+                </ComboBox>
+
+                <TextBlock x:Name="BackdropSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="BackdropDescriptionText"
                            TextWrapping="Wrap"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                            FontSize="12"/>
@@ -113,7 +130,9 @@
                           SelectedValuePath="Tag"
                           SelectedValue="{x:Bind ViewModel.SelectedBackdropTag, Mode=TwoWay}">
                     <ComboBoxItem Content="Mica" Tag="Mica"/>
+                    <ComboBoxItem Content="Mica Alt" Tag="MicaAlt"/>
                     <ComboBoxItem Content="Acrylic" Tag="Acrylic"/>
+                    <ComboBoxItem Content="Acrylic Thin" Tag="AcrylicThin"/>
                     <ComboBoxItem Content="Blur" Tag="Blur"/>
                     <ComboBoxItem Content="&#x1F431; Cat and Dash!?" Tag="Cat"/>
                 </ComboBox>
@@ -151,12 +170,9 @@
                               Width="160"
                               SelectedValuePath="Tag"
                               SelectedValue="{x:Bind ViewModel.ThumbnailMaxDimensionTag, Mode=TwoWay}">
-                        <ComboBoxItem x:Name="ThumbnailSizeSmallItem" Tag="100"/>
-                        <ComboBoxItem x:Name="ThumbnailSizeMediumItem" Tag="200"/>
-                        <ComboBoxItem x:Name="ThumbnailSizeLargeItem" Tag="300"/>
-                        <ComboBoxItem x:Name="ThumbnailSizeExtraLargeItem" Tag="400"/>
-                        <ComboBoxItem x:Name="ThumbnailSizeExtraLargePlusItem" Tag="600"/>
-                        <ComboBoxItem x:Name="ThumbnailSizeMaxItem" Tag="800"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeSmallItem" Tag="400"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeMediumItem" Tag="600"/>
+                        <ComboBoxItem x:Name="ThumbnailSizeLargeItem" Tag="800"/>
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
@@ -170,18 +186,11 @@
                                VerticalAlignment="Center"
                                Width="160"/>
 
-                    <Border BorderThickness="1"
-                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
-                            CornerRadius="4"
-                            Padding="10,6"
-                            MinWidth="160">
-                        <TextBlock x:Name="HistoryShortcutDisplay"
-                                   Text="{x:Bind ViewModel.HistoryShortcutText, Mode=OneWay}"
-                                   VerticalAlignment="Center"/>
-                    </Border>
-
-                    <Button x:Name="ChangeHistoryShortcutButton" Tag="history" Click="ChangeShortcutButton_Click"/>
-                    <Button x:Name="DeleteHistoryShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="history"/>
+                    <ui:ShortcutKeyBox x:Name="HistoryShortcutBox"
+                                       RequireModifier="True"
+                                       IsClearable="True"
+                                       MinWidth="240"
+                                       Shortcut="{x:Bind ViewModel.HistoryShortcut, Mode=TwoWay}"/>
                 </StackPanel>
 
                 <!-- Favorite -->
@@ -190,18 +199,11 @@
                                VerticalAlignment="Center"
                                Width="160"/>
 
-                    <Border BorderThickness="1"
-                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
-                            CornerRadius="4"
-                            Padding="10,6"
-                            MinWidth="160">
-                        <TextBlock x:Name="FavoriteShortcutDisplay"
-                                   Text="{x:Bind ViewModel.FavoriteShortcutText, Mode=OneWay}"
-                                   VerticalAlignment="Center"/>
-                    </Border>
-
-                    <Button x:Name="ChangeFavoriteShortcutButton" Tag="favorite" Click="ChangeShortcutButton_Click"/>
-                    <Button x:Name="DeleteFavoriteShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="favorite"/>
+                    <ui:ShortcutKeyBox x:Name="FavoriteShortcutBox"
+                                       RequireModifier="True"
+                                       IsClearable="True"
+                                       MinWidth="240"
+                                       Shortcut="{x:Bind ViewModel.FavoriteShortcut, Mode=TwoWay}"/>
                 </StackPanel>
 
                 <!-- Emoji -->
@@ -210,24 +212,16 @@
                                VerticalAlignment="Center"
                                Width="160"/>
 
-                    <Border BorderThickness="1"
-                            BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
-                            CornerRadius="4"
-                            Padding="10,6"
-                            MinWidth="160">
-                        <TextBlock x:Name="EmojiShortcutDisplay"
-                                   Text="{x:Bind ViewModel.EmojiShortcutText, Mode=OneWay}"
-                                   VerticalAlignment="Center"/>
-                    </Border>
-
-                    <Button x:Name="ChangeEmojiShortcutButton" Tag="emoji" Click="ChangeShortcutButton_Click"/>
-                    <Button x:Name="DeleteEmojiShortcutButton" Command="{x:Bind ViewModel.DeleteShortcutCommand}" CommandParameter="emoji"/>
+                    <ui:ShortcutKeyBox x:Name="EmojiShortcutBox"
+                                       RequireModifier="True"
+                                       IsClearable="True"
+                                       MinWidth="240"
+                                       Shortcut="{x:Bind ViewModel.EmojiShortcut, Mode=TwoWay}"/>
                 </StackPanel>
 
                 <TextBlock x:Name="ShortcutHintText"
                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                           FontSize="12"
-                           Visibility="Collapsed"/>
+                           FontSize="12"/>
             </StackPanel>
 
             <Grid x:Name="ExcludedAppsPanel" Padding="12" Visibility="Collapsed">
@@ -300,6 +294,21 @@
                             StepFrequency="1"
                             IsEnabled="{x:Bind ViewModel.SelectionToolbarEnabled, Mode=OneWay}"
                             Value="{x:Bind ViewModel.SelectionToolbarAutoHideSeconds, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock x:Name="SelectionToolbarPlacementLabel"/>
+                    <ComboBox x:Name="SelectionToolbarPlacementComboBox"
+                              Width="160"
+                              HorizontalAlignment="Left"
+                              SelectedValuePath="Tag"
+                              IsEnabled="{x:Bind ViewModel.SelectionToolbarEnabled, Mode=OneWay}"
+                              SelectedValue="{x:Bind ViewModel.SelectedToolbarPlacementTag, Mode=TwoWay}">
+                        <ComboBoxItem x:Name="ToolbarPlacementAboveItem" Tag="Above"/>
+                        <ComboBoxItem x:Name="ToolbarPlacementBelowItem" Tag="Below"/>
+                        <ComboBoxItem x:Name="ToolbarPlacementLeftItem" Tag="Left"/>
+                        <ComboBoxItem x:Name="ToolbarPlacementRightItem" Tag="Right"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
 

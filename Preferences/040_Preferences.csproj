@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Common\010_Common.csproj" />
     <ProjectReference Include="..\WinAPI\100_WinAPI.csproj" />
+    <ProjectReference Include="..\UiLibrary\130_UiLibrary.csproj" />
   </ItemGroup>
 
 </Project>
