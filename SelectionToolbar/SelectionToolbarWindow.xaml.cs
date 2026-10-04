@@ -1,3 +1,4 @@
+using Common.Extension;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
@@ -37,8 +38,13 @@ namespace SelectionToolbar
 
             LocalizeUi();
 
+            // MainWindowと同じ明/暗の表示テーマ(Light/Dark)に揃える。OSのテーマには追従しない
+            this.ApplyColorTheme(Preferences.PreferencesGateway.GetColorTheme());
+            Preferences.PreferencesGateway.ColorThemeChanged += theme =>
+                this.DispatcherQueue.TryEnqueue(() => this.ApplyColorTheme(theme));
+
             // 選択したテキストの上に指が被らないよう、選択位置の上に表示する
-            _helper = new ToolbarWindowHelper(this, RootBorder, widthDip: WidthDip, heightDip: 32, showAbove: true);
+            _helper = new ToolbarWindowHelper(this, RootBorder, widthDip: WidthDip, heightDip: 32);
         }
 
         private void LocalizeUi()

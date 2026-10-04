@@ -95,7 +95,7 @@
                 <Border x:Name="DividerBorder"
                         Grid.Row="0" Grid.RowSpan="2"
                         Grid.Column="1"
-                        Width="1"
+                        Width="2"
                         HorizontalAlignment="Center"
                         Translation="0,0,16"
                         Background="{StaticResource DividerSeparatorVertical}">

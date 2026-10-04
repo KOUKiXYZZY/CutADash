@@ -58,9 +58,9 @@ namespace CutADash.Infra.Win32
             ReleaseAllPressedKeys();
 
             Utils.PasteDiagnosticsLog.Write(
-                $"[Paster] 開始 target={Utils.PasteDiagnosticsLog.Describe(targetHwnd)} " +
+                $"[Paster] Start target={Utils.PasteDiagnosticsLog.Describe(targetHwnd)} " +
                 $"focus={Utils.PasteDiagnosticsLog.Describe(focusHwnd)} " +
-                $"現在の前面={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())}");
+                $"currentForeground={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())}");
 
             uint previousLockTimeout = 0;
             var lockTimeoutSaved = SystemParametersInfo(SPI_GETFOREGROUNDLOCKTIMEOUT, 0, ref previousLockTimeout, 0);
@@ -82,9 +82,9 @@ namespace CutADash.Infra.Win32
                 }
 
                 Utils.PasteDiagnosticsLog.Write(
-                    $"[Paster] 前面化 試行={attempts}回 {Environment.TickCount - start}ms " +
-                    $"結果={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())} " +
-                    $"一致={GetForegroundWindow() == targetHwnd}");
+                    $"[Paster] Foreground attempts={attempts} {Environment.TickCount - start}ms " +
+                    $"result={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())} " +
+                    $"matched={GetForegroundWindow() == targetHwnd}");
 
                 // 貼り付け先がクリップボードの変更を処理し終えるのを待つ
                 await Task.Delay(PasteSettleDelayMs);
@@ -124,8 +124,8 @@ namespace CutADash.Infra.Win32
                 var sentUp = SendInput((uint)upInputs.Length, upInputs, System.Runtime.InteropServices.Marshal.SizeOf<INPUT>());
 
                 Utils.PasteDiagnosticsLog.Write(
-                    $"[Paster] Ctrl+V送信 押下={sentDown}/2 解放={sentUp}/2 " +
-                    $"送信時の前面={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())}");
+                    $"[Paster] Ctrl+V sent down={sentDown}/2 up={sentUp}/2 " +
+                    $"foregroundAtSend={Utils.PasteDiagnosticsLog.Describe(GetForegroundWindow())}");
 
                 // キーはイベントを入力キューに積んだ時点で即座に返るため、対象アプリが
                 // 処理し終える前にこちらの後片付けへ進まないよう、少しだけ待つ
@@ -186,14 +186,14 @@ namespace CutADash.Infra.Win32
             var info = new GUITHREADINFO { cbSize = System.Runtime.InteropServices.Marshal.SizeOf<GUITHREADINFO>() };
             if (GetGUIThreadInfo(threadId, ref info) && info.hwndFocus == focusHwnd)
             {
-                Utils.PasteDiagnosticsLog.Write("[Paster] フォーカスは既に目的の位置にある");
+                Utils.PasteDiagnosticsLog.Write("[Paster] Focus is already at the target");
                 return;
             }
 
             SetFocus(focusHwnd);
 
             Utils.PasteDiagnosticsLog.Write(
-                $"[Paster] フォーカスを戻した 現在={(GetGUIThreadInfo(threadId, ref info) ? Utils.PasteDiagnosticsLog.Describe(info.hwndFocus) : "取得不可")}");
+                $"[Paster] Focus restored current={(GetGUIThreadInfo(threadId, ref info) ? Utils.PasteDiagnosticsLog.Describe(info.hwndFocus) : "unavailable")}");
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace CutADash.Infra.Win32
             if (upInputs.Count == 0)
                 return;
 
-            Utils.PasteDiagnosticsLog.Write($"[Paster] 押下中のキーを解放 数={upInputs.Count}");
+            Utils.PasteDiagnosticsLog.Write($"[Paster] Released held keys count={upInputs.Count}");
             SendInput((uint)upInputs.Count, upInputs.ToArray(), System.Runtime.InteropServices.Marshal.SizeOf<INPUT>());
         }
 

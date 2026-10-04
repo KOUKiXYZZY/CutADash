@@ -118,7 +118,14 @@ namespace CutADash.Views
             this.SetWindowCornerPreference(ResolveWindowCornerPreference()); // 角丸(App.xamlのAppWindowCornerPreferenceで変更可)
             // this.DisableAccentBorder(); // アクティブウィンドウの境界線を消す
 
-           // 種類(Mica/Acrylic/Blur)はPreferenceWindowの「テーマ」タブで選べる
+            // 明/暗の表示テーマ(Light/Dark)はPreferenceWindowの「テーマ」タブで選べる。
+            // バックドロップより先に適用する(ApplyBackdropWithTintOverlayがRootGrid.ActualThemeを
+            // 見て色を決めるため)
+            this.ApplyColorTheme(Preferences.PreferencesGateway.GetColorTheme());
+            Preferences.PreferencesGateway.ColorThemeChanged += theme =>
+                this.DispatcherQueue.TryEnqueue(() => this.ApplyColorTheme(theme));
+
+           // 種類(Mica/Acrylic/Blur)はPreferenceWindowの「バックドロップ」タブで選べる
             ApplyBackdropWithTintOverlay(Preferences.PreferencesGateway.GetWindowBackdrop());
             Preferences.PreferencesGateway.WindowBackdropChanged += kind =>
                 this.DispatcherQueue.TryEnqueue(() => ApplyBackdropWithTintOverlay(kind));
@@ -572,10 +579,19 @@ namespace CutADash.Views
             var state = item.IsSelected ? "Selected" : "Unselected";
             var assetName = $"{name}{state}{(isDark ? "Dark" : "Light")}";
 
-            var source = await GetNavIconAsync(assetName);
+            try
+            {
+                var source = await GetNavIconAsync(assetName);
 
-            if (!ReferenceEquals(icon.Source, source))
-                icon.Source = source;
+                if (!ReferenceEquals(icon.Source, source))
+                    icon.Source = source;
+            }
+            catch (Exception ex)
+            {
+                // fire-and-forgetで呼ばれるため、握りつぶさず出力に残す
+                // (Navアイコンが表示されない時の原因調査用)
+                System.Diagnostics.Debug.WriteLine($"[MainWindow] Navアイコン({assetName})の読み込みに失敗: {ex}");
+            }
         }
 
         // NavigationViewItemのImageIconを表示しているサイズ(DIP)。MainWindow.xaml側の

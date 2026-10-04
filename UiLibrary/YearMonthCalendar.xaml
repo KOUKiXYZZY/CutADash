@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="UiLibrary.YearMonthCalendar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    MinWidth="264">
+
+    <Grid x:Name="RootGrid" Padding="8" RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 見出し行: 前へ / 年(月選択の時)または年の範囲(年選択の時) / 次へ -->
+        <Grid Grid.Row="0" ColumnSpacing="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="PreviousButton"
+                    Grid.Column="0"
+                    Width="40" Height="36"
+                    Padding="0"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="PreviousButton_Click">
+                <FontIcon Glyph="&#xE76B;" FontSize="12"
+                          FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+            </Button>
+
+            <Button x:Name="TitleButton"
+                    Grid.Column="1"
+                    Height="36"
+                    HorizontalAlignment="Stretch"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"
+                    Click="TitleButton_Click"/>
+
+            <Button x:Name="NextButton"
+                    Grid.Column="2"
+                    Width="40" Height="36"
+                    Padding="0"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="NextButton_Click">
+                <FontIcon Glyph="&#xE76C;" FontSize="12"
+                          FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"/>
+            </Button>
+        </Grid>
+
+        <!-- 4列x3行のセル(月または年)。矢印キーでセル間を移動できる -->
+        <Grid x:Name="CellsGrid"
+              Grid.Row="1"
+              ColumnSpacing="4"
+              RowSpacing="4"
+              XYFocusKeyboardNavigation="Enabled">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</UserControl>

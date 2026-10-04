@@ -11,7 +11,7 @@ namespace Preferences.Models
     {
         public int MaxHistoryCount { get; set; } = 50;
         public bool DisableImageHistory { get; set; } = false;
-        public int ThumbnailMaxDimension { get; set; } = 200;
+        public int ThumbnailMaxDimension { get; set; } = 400;
 
         /// <summary>
         /// ホットキーで開いた際、ウィンドウをキャレット位置へ移動する機能を無効にするかどうか。
@@ -39,6 +39,18 @@ namespace Preferences.Models
 
         /// <summary>メインウィンドウ(パレット)の背景素材(バックドロップ)の種類。</summary>
         public WindowBackdropKind WindowBackdrop { get; set; } = WindowBackdropKind.Acrylic;
+
+        /// <summary>
+        /// アプリ全体の明/暗の表示テーマ。Defaultの時だけOSのテーマに合わせる
+        /// (バックドロップの種類とは別の設定)。
+        /// </summary>
+        public AppColorTheme ColorTheme { get; set; } = AppColorTheme.Default;
+
+        /// <summary>
+        /// テキスト選択ツールバーを、マウスを離した位置のどちら側に出すか。
+        /// Edgeの選択メニュー等、アプリ側のポップアップと重なる場合に変えられるようにしている。
+        /// </summary>
+        public ToolbarPlacement SelectionToolbarPlacement { get; set; } = ToolbarPlacement.Above;
 
         /// <summary>
         /// テキスト選択ツールバーを、操作されないまま自動的に隠すまでの秒数。

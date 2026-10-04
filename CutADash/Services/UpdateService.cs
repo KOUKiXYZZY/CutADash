@@ -20,23 +20,26 @@ namespace CutADash.Services
 
         private readonly UpdateManager _manager = new(new GithubSource(GitHubRepoUrl, null, false));
 
-        /// <summary>アプリ起動直後、バックグラウンドで更新の有無だけ確認する(ダウンロード・適用はしない)。</summary>
-        public async Task<bool> CheckForUpdatesQuietlyAsync()
+        /// <summary>
+        /// 更新の有無だけを、バックグラウンドで確認する(ダウンロード・適用はしない)。
+        /// 更新があればその新しいバージョン(例: "1.0.3")を、無い/確認できない場合はnullを返す。
+        /// </summary>
+        public async Task<string?> GetAvailableVersionAsync()
         {
             try
             {
                 if (!_manager.IsInstalled)
-                    return false; // 開発環境(Velopackでインストールされていない)では何もしない
+                    return null; // 開発環境(Velopackでインストールされていない)では何もしない
 
                 var updateInfo = await _manager.CheckForUpdatesAsync();
-                return updateInfo is not null;
+                return updateInfo?.TargetFullRelease.Version.ToString();
             }
             catch (Exception ex)
             {
                 // オフライン等でのチェック失敗はアプリの起動を妨げてはいけないため、
                 // ログにだけ残して握りつぶす
-                Debug.WriteLine($"[UpdateService] 更新チェックに失敗しました: {ex}");
-                return false;
+                Debug.WriteLine($"[UpdateService] Update check failed: {ex}");
+                return null;
             }
         }
 

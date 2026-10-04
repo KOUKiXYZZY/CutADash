@@ -149,6 +149,27 @@ namespace Preferences.Utils
             WindowBackdropChanged?.Invoke(backdrop);
         }
 
+        /// <summary>ColorThemeが変更された時に発火する。</summary>
+        public static event Action<AppColorTheme>? ColorThemeChanged;
+
+        /// <summary>アプリ全体の明/暗の表示テーマを設定する。</summary>
+        public static void SetColorTheme(AppColorTheme theme)
+        {
+            var settings = Load();
+            settings.ColorTheme = theme;
+            Save(settings);
+
+            ColorThemeChanged?.Invoke(theme);
+        }
+
+        /// <summary>テキスト選択ツールバーを出す向き(上下左右)を設定する。</summary>
+        public static void SetSelectionToolbarPlacement(ToolbarPlacement placement)
+        {
+            var settings = Load();
+            settings.SelectionToolbarPlacement = placement;
+            Save(settings);
+        }
+
         /// <summary>SelectionToolbarAutoHideSecondsが変更された時に発火する。</summary>
         public static event Action<double>? SelectionToolbarAutoHideSecondsChanged;
 

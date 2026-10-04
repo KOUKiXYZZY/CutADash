@@ -1,4 +1,8 @@
-"""システムトレイ(通知領域)専用のアイコンを、Affinity Designerで手作業エクスポートした
+"""[注意] このスクリプトは、SVGからベクターのまま各サイズを描画する build-icons-from-svg.ps1 に
+置き換えた。入力のPNGもSVGから作るようになったため、通常はこのスクリプトを実行しない
+(実行すると、縮小した画像で、ps1が作ったICOを上書きしてしまう)。
+
+システムトレイ(通知領域)専用のアイコンを、Affinity Designerで手作業エクスポートした
 PNG(TaskTrayIconLight.png / TaskTrayIconDark.png)からICOへパッキングするだけのスクリプト。
 
 背景: 通知領域アイコンは、アプリ本体のアイコン(AppIcon.ico、角丸タイル+グラデーション

@@ -35,9 +35,9 @@ namespace CutADash.Utils
             bool plainTextOnly = false)
         {
             PasteDiagnosticsLog.Write(
-                $"[Helper] 呼び出し paste={paste} addToHistory={addToHistory} plainTextOnly={plainTextOnly} " +
-                $"mainWindowあり={mainWindow is not null} " +
-                $"貼り付け先={PasteDiagnosticsLog.Describe(mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero)}");
+                $"[Helper] Called paste={paste} addToHistory={addToHistory} plainTextOnly={plainTextOnly} " +
+                $"hasMainWindow={mainWindow is not null} " +
+                $"pasteTarget={PasteDiagnosticsLog.Describe(mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero)}");
 
             // これから書き戻すクリップボード変更を、新規コピーとして履歴に再登録して
             // しまわないようにする。1回の書き込みで変更通知が複数回来るため、
@@ -86,7 +86,7 @@ namespace CutADash.Utils
                         // 記録しておかないと無言で握りつぶされる。実際、P/Invoke宣言の
                         // 追加漏れによるMissingMethodExceptionがこの経路で見えなくなり、
                         // 「クリップボードには入るのに貼り付かない」状態の原因特定に時間を要した
-                        PasteDiagnosticsLog.Write($"[Helper] 例外: {ex}");
+                        PasteDiagnosticsLog.Write($"[Helper] Exception: {Common.Utils.ExceptionText.ToEnglishString(ex)}");
                         throw;
                     }
                     finally
@@ -99,7 +99,7 @@ namespace CutADash.Utils
                 {
                     // ここに来ると、クリップボードへの書き戻しは成功しているのにキーは
                     // 一切送られない(コピーはされるが貼り付かない)状態になる
-                    PasteDiagnosticsLog.Write("[Helper] 貼り付け先が未記憶(PreviousForegroundWindow=0)のため、キー送信を行わなかった");
+                    PasteDiagnosticsLog.Write("[Helper] Paste target not remembered (PreviousForegroundWindow=0); key send skipped");
                 }
 
                 // ペーストが完了してからウィンドウを隠す(すぐに消えないようにする)。

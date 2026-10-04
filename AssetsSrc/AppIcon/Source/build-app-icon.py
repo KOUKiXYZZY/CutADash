@@ -1,4 +1,8 @@
-"""このフォルダ(AssetsSrc/AppIcon/Source、リポジトリ直下)のAppIcon.png(Affinity Designerで
+"""[注意] このスクリプトは、SVGからベクターのまま各サイズを描画する build-icons-from-svg.ps1 に
+置き換えた。入力のPNGもSVGから作るようになったため、通常はこのスクリプトを実行しない
+(実行すると、縮小した画像で、ps1が作ったICOを上書きしてしまう)。
+
+このフォルダ(AssetsSrc/AppIcon/Source、リポジトリ直下)のAppIcon.png(Affinity Designerで
 手作業エクスポートしたもの)から、実際にビルドで使われるCutADash/Assets/AppIcon.png
 (1024x1024の1枚絵)とAppIcon.ico(複数解像度をまとめたアイコンリソース。
 020_CutADash.csprojのApplicationIconが参照)を作り直す。

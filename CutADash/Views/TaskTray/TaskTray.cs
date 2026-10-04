@@ -110,6 +110,15 @@ namespace CutADash.Views.TaskTray
             checkForUpdatesItem.Click += (s, e) => _viewModel.CheckForUpdatesCommand.Execute(null);
             quitItem.Click += (s, e) => _viewModel.QuitCommand.Execute(null);
 
+#if DEBUG || DEVDEBUG
+            // デバッグビルドだけ、UIライブラリ(UiLibrary)の部品を一覧で試せる
+            // 画面を開く項目を出す。リリースビルドには含まれない
+            var uiTestItem = new MenuFlyoutItem { Text = "Debug: UI Gallery" };
+            uiTestItem.Click += (s, e) => new UiLibrary.GalleryWindow().Activate();
+            flyout.Items.Insert(flyout.Items.Count - 1, uiTestItem);
+            flyout.Items.Insert(flyout.Items.Count - 1, new MenuFlyoutSeparator());
+#endif
+
             return flyout;
         }
 

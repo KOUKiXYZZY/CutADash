@@ -27,10 +27,6 @@ namespace Preferences.Views
     /// </summary>
     public sealed partial class PreferenceWindow : WindowEx
     {
-        private bool _isCapturing;
-        private uint _capturedModifiers;
-        private string? _capturingKey;
-
         internal PreferenceViewModel ViewModel { get; }
 
         public PreferenceWindow(ServiceProvider provider)
@@ -40,6 +36,11 @@ namespace Preferences.Views
             InitializeComponent();
 
             LocalizeUi();
+
+            // 明/暗の表示テーマ(Light/Dark)。バックドロップより先に適用する
+            this.ApplyColorTheme(PreferencesGateway.GetColorTheme());
+            PreferencesGateway.ColorThemeChanged += theme =>
+                this.DispatcherQueue.TryEnqueue(() => this.ApplyColorTheme(theme));
 
             // MainWindowと同様、境界線・タイトルバーを消して×ボタンだけにする
             this.EnableAcrylicBackdrop(); // アクリル素材を有効化
@@ -53,8 +54,6 @@ namespace Preferences.Views
             {
                 this.CenterOnScreen();
             }
-
-            this.Content.KeyDown += OnKeyDown;
 
             // DragHandleをドラッグすることでウィンドウの移動をさせる(MainWindowと同じ仕組み)
             DragHandle.Loaded += OnDragHandleLoadedOrSizeChanged;
@@ -100,8 +99,14 @@ namespace Preferences.Views
             LanguageDescriptionText.Text = PreferencesStrings.Get("Pref_Language_Description");
             LanguageSystemDefaultItem.Content = PreferencesStrings.Get("Pref_Language_SystemDefault");
 
-            ThemeSectionTitle.Text = PreferencesStrings.Get("Pref_Theme_Title");
-            ThemeDescriptionText.Text = PreferencesStrings.Get("Pref_Theme_Description");
+            ColorThemeSectionTitle.Text = PreferencesStrings.Get("Pref_ColorTheme_Title");
+            ColorThemeDescriptionText.Text = PreferencesStrings.Get("Pref_ColorTheme_Description");
+            ColorThemeDefaultItem.Content = PreferencesStrings.Get("Pref_ColorTheme_Default");
+            ColorThemeLightItem.Content = PreferencesStrings.Get("Pref_ColorTheme_Light");
+            ColorThemeDarkItem.Content = PreferencesStrings.Get("Pref_ColorTheme_Dark");
+
+            BackdropSectionTitle.Text = PreferencesStrings.Get("Pref_Backdrop_Title");
+            BackdropDescriptionText.Text = PreferencesStrings.Get("Pref_Backdrop_Description");
 
             HistorySectionTitle.Text = PreferencesStrings.Get("Pref_History_Title");
             MaxHistoryCountLabel.Text = PreferencesStrings.Get("Pref_MaxHistoryCount");
@@ -110,20 +115,17 @@ namespace Preferences.Views
             ThumbnailSizeSmallItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_Small");
             ThumbnailSizeMediumItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_Medium");
             ThumbnailSizeLargeItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_Large");
-            ThumbnailSizeExtraLargeItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_ExtraLarge");
-            ThumbnailSizeExtraLargePlusItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_ExtraLargePlus");
-            ThumbnailSizeMaxItem.Content = PreferencesStrings.Get("Pref_ThumbnailSize_Max");
 
             ShortcutsSectionTitle.Text = PreferencesStrings.Get("Pref_Tab_Shortcuts");
             OpenHistoryLabel.Text = PreferencesStrings.Get("Pref_OpenHistory");
             OpenFavoriteLabel.Text = PreferencesStrings.Get("Pref_OpenFavorite");
             OpenEmojiLabel.Text = PreferencesStrings.Get("Pref_OpenEmoji");
-            ChangeHistoryShortcutButton.Content = PreferencesStrings.Get("Pref_Change");
-            ChangeFavoriteShortcutButton.Content = PreferencesStrings.Get("Pref_Change");
-            ChangeEmojiShortcutButton.Content = PreferencesStrings.Get("Pref_Change");
-            DeleteHistoryShortcutButton.Content = PreferencesStrings.Get("Pref_Delete");
-            DeleteFavoriteShortcutButton.Content = PreferencesStrings.Get("Pref_Delete");
-            DeleteEmojiShortcutButton.Content = PreferencesStrings.Get("Pref_Delete");
+            foreach (var box in new[] { HistoryShortcutBox, FavoriteShortcutBox, EmojiShortcutBox })
+            {
+                box.PlaceholderText = PreferencesStrings.Get("Pref_NotSet");
+                box.CapturingText = PreferencesStrings.Get("Pref_WaitingForKeyInput");
+            }
+
             ShortcutHintText.Text = PreferencesStrings.Get("Pref_ShortcutHint");
 
             ExcludedAppsSectionTitle.Text = PreferencesStrings.Get("Pref_ExcludedApps_Title");
@@ -139,6 +141,11 @@ namespace Preferences.Views
             SelectionToolbarSectionTitle.Text = PreferencesStrings.Get("Pref_Tab_SelectionToolbar");
             SelectionToolbarDescriptionText.Text = PreferencesStrings.Get("Pref_SelectionToolbar_Description");
             SelectionToolbarEnabledCheckBox.Content = PreferencesStrings.Get("Pref_SelectionToolbarEnabled");
+            SelectionToolbarPlacementLabel.Text = PreferencesStrings.Get("Pref_SelectionToolbarPlacement");
+            ToolbarPlacementAboveItem.Content = PreferencesStrings.Get("Pref_ToolbarPlacement_Above");
+            ToolbarPlacementBelowItem.Content = PreferencesStrings.Get("Pref_ToolbarPlacement_Below");
+            ToolbarPlacementLeftItem.Content = PreferencesStrings.Get("Pref_ToolbarPlacement_Left");
+            ToolbarPlacementRightItem.Content = PreferencesStrings.Get("Pref_ToolbarPlacement_Right");
 
             AboutDescriptionText.Text = PreferencesStrings.Get("Pref_About_Description");
             LicensesText.Text = OpenSourceLicenses.BuildLicensesText();
@@ -178,7 +185,6 @@ namespace Preferences.Views
             this.SaveWindowSize<Common.Models.WindowSize>(key: PreferenceWindowKey, savePosition: true);
 
             // 参照が残ってGCされなくなるのを防ぐため、購読したイベントを全て外す
-            this.Content.KeyDown -= OnKeyDown;
             DragHandle.Loaded -= OnDragHandleLoadedOrSizeChanged;
             DragHandle.SizeChanged -= OnDragHandleLoadedOrSizeChanged;
             AppWindow.Changed -= OnAppWindowChanged;
@@ -258,97 +264,5 @@ namespace Preferences.Views
             ViewModel.RemoveExcludedAppCommand.Execute(name);
         }
 
-        // ショートカットのキー捕捉は、Windowのキー入力を直接見る必要がある(RichEditBox等の
-        // フォーカスを介さない)View固有の処理のため、ここに残す。捕捉した結果の反映
-        // (HotKeyServiceへの保存・表示更新)はViewModelへ委譲する
-        private void ChangeShortcutButton_Click(object sender, RoutedEventArgs e)
-        {
-            var key = (string)((Button)sender).Tag;
-
-            _capturingKey = key;
-            _isCapturing = true;
-            _capturedModifiers = 0;
-
-            SetCapturingDisplay(key, PreferencesStrings.Get("Pref_WaitingForKeyInput"));
-            ShortcutHintText.Visibility = Visibility.Visible;
-        }
-
-        private void SetCapturingDisplay(string key, string text)
-        {
-            switch (key)
-            {
-                case "history": ViewModel.HistoryShortcutText = text; break;
-                case "favorite": ViewModel.FavoriteShortcutText = text; break;
-                case "emoji": ViewModel.EmojiShortcutText = text; break;
-            }
-        }
-
-        private void OnKeyDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (!_isCapturing)
-                return;
-
-            switch (e.Key)
-            {
-                case VirtualKey.Control:
-                case VirtualKey.LeftControl:
-                case VirtualKey.RightControl:
-                    _capturedModifiers |= HotKeyNative.HotKeyModifiers.MOD_CONTROL;
-                    e.Handled = true;
-                    return;
-                case VirtualKey.Shift:
-                case VirtualKey.LeftShift:
-                case VirtualKey.RightShift:
-                    _capturedModifiers |= HotKeyNative.HotKeyModifiers.MOD_SHIFT;
-                    e.Handled = true;
-                    return;
-                case VirtualKey.Menu:
-                case VirtualKey.LeftMenu:
-                case VirtualKey.RightMenu:
-                    _capturedModifiers |= HotKeyNative.HotKeyModifiers.MOD_ALT;
-                    e.Handled = true;
-                    return;
-                case VirtualKey.LeftWindows:
-                case VirtualKey.RightWindows:
-                    _capturedModifiers |= HotKeyNative.HotKeyModifiers.MOD_WIN;
-                    e.Handled = true;
-                    return;
-                case VirtualKey.Escape:
-                    CancelCapture();
-                    e.Handled = true;
-                    return;
-            }
-
-            // 修飾キーなしの組み合わせは登録できない(他の操作と衝突しやすいため)
-            if (_capturedModifiers == 0)
-            {
-                e.Handled = true;
-                return;
-            }
-
-            var key = _capturingKey!;
-            var newDefinition = new HotKeyDefinition(_capturedModifiers, (uint)e.Key);
-
-            _isCapturing = false;
-            _capturingKey = null;
-            ShortcutHintText.Visibility = Visibility.Collapsed;
-            ViewModel.ApplyCapturedShortcut(key, newDefinition);
-
-            e.Handled = true;
-        }
-
-        private void CancelCapture()
-        {
-            var key = _capturingKey;
-
-            _isCapturing = false;
-            _capturingKey = null;
-            ShortcutHintText.Visibility = Visibility.Collapsed;
-
-            if (key is not null)
-            {
-                ViewModel.RefreshShortcutDisplay(key);
-            }
-        }
     }
 }

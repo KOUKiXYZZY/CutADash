@@ -73,6 +73,12 @@ namespace SequentialPaste
             // MainWindowと見た目を揃える(タイトルバー削除・角丸・設定画面と連動する背景素材)
             this.DwmTransitions(true);
             this.SetWindowCornerPreference(ResolveWindowCornerPreference());
+
+            // 明/暗の表示テーマ(Light/Dark)。バックドロップより先に適用する
+            this.ApplyColorTheme(Preferences.PreferencesGateway.GetColorTheme());
+            Preferences.PreferencesGateway.ColorThemeChanged += theme =>
+                this.DispatcherQueue.TryEnqueue(() => this.ApplyColorTheme(theme));
+
             ApplyBackdropWithTintOverlay(Preferences.PreferencesGateway.GetWindowBackdrop());
             Preferences.PreferencesGateway.WindowBackdropChanged += kind =>
                 this.DispatcherQueue.TryEnqueue(() => ApplyBackdropWithTintOverlay(kind));

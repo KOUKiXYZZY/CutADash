@@ -210,6 +210,15 @@
   <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
     <value>アップデートを適用して再起動</value>
   </data>
+  <data name="Update_ConfirmMessage" xml:space="preserve">
+    <value>新しいバージョン {0} があります。&#10;ダウンロードして更新し、アプリを再起動しますか?</value>
+  </data>
+  <data name="Dialog_Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
   <data name="EmojiSetup_Message" xml:space="preserve">
     <value>初回起動時にフォントからPNGを生成中…</value>
   </data>
@@ -236,6 +245,9 @@
   </data>
   <data name="Contents_PastePlain" xml:space="preserve">
     <value>プレーンテキストとして貼り付け</value>
+  </data>
+  <data name="Contents_PasteFilePaths" xml:space="preserve">
+    <value>ファイルパスをテキストとして貼り付け</value>
   </data>
   <data name="Empty_Text" xml:space="preserve">
     <value>なし</value>
