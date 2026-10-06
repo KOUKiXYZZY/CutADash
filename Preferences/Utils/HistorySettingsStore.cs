@@ -95,19 +95,43 @@ namespace Preferences.Utils
             CaretPositioningDisabledChanged?.Invoke(disabled);
         }
 
+        /// <summary>「選択時にペーストしない」(クリップボードへ移すだけ)の有効/無効を切り替える。</summary>
+        public static void SetCopyOnlyOnSelect(bool enabled)
+        {
+            var settings = Load();
+            settings.CopyOnlyOnSelect = enabled;
+            Save(settings);
+        }
+
+        /// <summary>コンパクト表示時の、内容のポップアップ表示の有効/無効を切り替える。</summary>
+        public static void SetContentsPopupEnabled(bool enabled)
+        {
+            var settings = Load();
+            settings.ContentsPopupEnabled = enabled;
+            Save(settings);
+        }
+
         /// <summary>DisableWindowsClipboardHistoryが変更された時に発火する。</summary>
         public static event Action<bool>? WindowsClipboardHistoryDisabledChanged;
 
-        /// <summary>Windows標準のクリップボード履歴(Win+Vパネル)の無効/有効を切り替える。</summary>
-        public static void SetWindowsClipboardHistoryDisabled(bool disabled)
+        /// <summary>
+        /// Windows標準のクリップボード履歴(Win+Vパネル)の無効/有効を切り替える。
+        /// HKLMへの書き込みに管理者権限が必要なため、UACの確認を出す。
+        /// ユーザーがキャンセルした(または失敗した)場合は何も変えず、falseを返す。
+        /// </summary>
+        public static async System.Threading.Tasks.Task<bool> SetWindowsClipboardHistoryDisabledAsync(bool disabled)
         {
-            ClipboardHistoryHelper.SetEnabled(disabled);
+            // UACの確認が終わるまで待つため、UIスレッドを止めないよう別スレッドで行う
+            var succeeded = await System.Threading.Tasks.Task.Run(() => ClipboardHistoryHelper.TrySetDisabled(disabled));
+            if (!succeeded)
+                return false;
 
             var settings = Load();
             settings.DisableWindowsClipboardHistory = disabled;
             Save(settings);
 
             WindowsClipboardHistoryDisabledChanged?.Invoke(disabled);
+            return true;
         }
 
         /// <summary>SelectionToolbarEnabledが変更された時に発火する。</summary>

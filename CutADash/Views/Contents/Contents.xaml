@@ -27,9 +27,16 @@
             <Grid>
                 <!-- ImageAreaGrid内のBorderと同じ背景・Margin・CornerRadiusにして、
                      テキスト/画像/ファイルのどの表示でも同じ見た目の面の上に載るようにする -->
+                <!-- カードの背景色だけを担う面。中身(文字色等)に影響させず、猫テーマ+ライトの時だけ
+                     RequestedThemeをDarkにして、ダークの時の色に揃える(ApplyCatContentsBackground) -->
+                <Border x:Name="EditorCardBackground"
+                        Margin="12"
+                        CornerRadius="4"
+                        IsHitTestVisible="False"
+                        Background="{ThemeResource AppContentsCardBackgroundBrush}"/>
                 <Border Margin="12"
                         CornerRadius="4"
-                        Background="{ThemeResource AppContentsCardBackgroundBrush}">
+                        Background="Transparent">
                     <Grid>
                         <!-- 猫テーマの間だけ、編集面の背後に肉球を薄っすらと散らして表示する
                              (ApplyCatContentsBackgroundで切り替え)。RichEditBoxのBackgroundが
@@ -123,9 +130,13 @@
                     <!-- ウィンドウ自体がAcrylic/Blur/Micaの半透明背景のため、透過PNG等を
                          そのまま乗せるとアルファが分かりづらい。画像の背後にテーマ追従の
                          不透明な面を敷いて、透明度がはっきり見えるようにする -->
-                    <Border Margin="12"
+                    <Border x:Name="ImageCardBackground"
+                            Margin="12"
                             CornerRadius="4"
-                            Background="{ThemeResource AppContentsCardBackgroundBrush}">
+                            IsHitTestVisible="False"
+                            Background="{ThemeResource AppContentsCardBackgroundBrush}"/>
+                    <Border Margin="12"
+                            CornerRadius="4">
                         <Image x:Name="ImagePreview"
                                 Stretch="Uniform"
                                 Margin="12" />
@@ -164,13 +175,15 @@
         <!-- 下部のボタン列がエディタへ落とす影。行0の最下部に重ねて描くため、
              エディタより後ろに置いて手前に来るようにし、操作を邪魔しないよう
              ヒットテストからは外す(ListFrameと同じ作り) -->
-        <Border Grid.Row="0"
+        <Border x:Name="ActionBarShadow"
+                Grid.Row="0"
                 Height="8"
                 VerticalAlignment="Bottom"
                 IsHitTestVisible="False"
                 Background="{StaticResource BottomBarShadowBrush}"/>
 
-        <StackPanel Grid.Row="1"
+        <StackPanel x:Name="ActionBar"
+                    Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Height="32">

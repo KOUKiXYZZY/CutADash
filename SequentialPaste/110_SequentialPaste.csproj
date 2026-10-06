@@ -23,6 +23,8 @@
     <ProjectReference Include="..\Repositories\030_Repositories.csproj" />
     <!-- ウィンドウの背景素材(Mica/Acrylic/Blur)を設定画面の選択と連動させるため -->
     <ProjectReference Include="..\Preferences\040_Preferences.csproj" />
+    <ProjectReference Include="..\UiLibrary\130_UiLibrary.csproj" />
+    <ProjectReference Include="..\Theming\140_Theming.csproj" />
   </ItemGroup>
 
 </Project>

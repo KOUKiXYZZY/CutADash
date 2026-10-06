@@ -9,10 +9,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Width="560"
-    Height="560"
-    MinWidth="480"
-    MinHeight="420"
+    Width="748"
+    Height="487"
+    IsResizable="False"
+    IsMaximizable="False"
     Title="Settings">
 
     <Grid x:Name="RootGrid">
@@ -24,53 +24,26 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <SelectorBar x:Name="SectionSelector"
-                         Grid.Column="0"
-                         VerticalAlignment="Center"
-                         SelectionChanged="SectionSelector_SelectionChanged">
-                <SelectorBar.Resources>
-                    <!-- 既定よりスリムなパディングにする -->
-                    <Thickness x:Key="SelectorBarItemPadding">12,4,12,3</Thickness>
-                </SelectorBar.Resources>
-                <SelectorBarItem x:Name="GeneralTabItem" IsSelected="True" />
-                <SelectorBarItem x:Name="HistoryTabItem" />
-                <SelectorBarItem x:Name="ShortcutsTabItem" />
-                <SelectorBarItem x:Name="ExcludedAppsTabItem" />
-                <SelectorBarItem x:Name="SelectionToolbarTabItem" />
-                <SelectorBarItem x:Name="AboutTabItem" />
-            </SelectorBar>
-
-            <!-- SelectorBar・閉じるボタン以外の、ウィンドウを移動できるドラッグ領域(MainWindowと同じ仕組み) -->
-            <Grid x:Name="DragHandle"
-                  Grid.Column="1"
-                  Height="32"
-                  Background="Transparent" />
-
-            <!-- ウィンドウ閉じるボタン -->
-            <Button Grid.Column="2"
-                    Width="42" Height="32"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Right"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    CornerRadius="0"
-                    Click="CloseButton_Click">
-                <Button.Resources>
-                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
-                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
-                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
-                </Button.Resources>
-                <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
-            </Button>
-        </Grid>
+        <!-- セクションのタブを左に置いたタイトルバー。タブ以外の空き領域を掴んで移動できる -->
+        <ui:SlimTitleBar x:Name="TitleBarRow" Grid.Row="0" ShowDivider="False">
+            <ui:SlimTitleBar.LeftContent>
+                <SelectorBar x:Name="SectionSelector"
+                             VerticalAlignment="Center"
+                             SelectionChanged="SectionSelector_SelectionChanged">
+                    <SelectorBar.Resources>
+                        <!-- 既定よりスリムなパディングにする -->
+                        <Thickness x:Key="SelectorBarItemPadding">12,4,12,3</Thickness>
+                    </SelectorBar.Resources>
+                    <SelectorBarItem x:Name="GeneralTabItem" IsSelected="True" />
+                    <SelectorBarItem x:Name="AppearanceTabItem" />
+                    <SelectorBarItem x:Name="HistoryTabItem" />
+                    <SelectorBarItem x:Name="ShortcutsTabItem" />
+                    <SelectorBarItem x:Name="ExcludedAppsTabItem" />
+                    <SelectorBarItem x:Name="SelectionToolbarTabItem" />
+                    <SelectorBarItem x:Name="AboutTabItem" />
+                </SelectorBar>
+            </ui:SlimTitleBar.LeftContent>
+        </ui:SlimTitleBar>
 
         <Grid Grid.Row="1" Background="Transparent">
             <StackPanel x:Name="SettingsPanel" Padding="12" Spacing="16">
@@ -84,6 +57,23 @@
 
                 <CheckBox x:Name="DisableWindowsClipboardHistoryCheckBox"
                           IsChecked="{x:Bind ViewModel.DisableWindowsClipboardHistory, Mode=TwoWay}"/>
+                <TextBlock x:Name="ClipboardHistoryRestartNoteText"
+                           Margin="28,-12,0,0"
+                           TextWrapping="Wrap"
+                           Foreground="Red"
+                           FontSize="12"
+                           Visibility="{x:Bind ViewModel.ShowClipboardHistoryRestartNote, Mode=OneWay}"/>
+
+                <CheckBox x:Name="CopyOnlyOnSelectCheckBox"
+                          IsChecked="{x:Bind ViewModel.CopyOnlyOnSelect, Mode=TwoWay}"/>
+                <TextBlock x:Name="CopyOnlyOnSelectNoteText"
+                           Margin="28,-12,0,0"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <CheckBox x:Name="ContentsPopupCheckBox"
+                          IsChecked="{x:Bind ViewModel.ContentsPopupEnabled, Mode=TwoWay}"/>
 
                 <TextBlock x:Name="LanguageSectionTitle" FontSize="18" FontWeight="Bold"/>
                 <TextBlock x:Name="LanguageDescriptionText"
@@ -101,6 +91,10 @@
                     <ComboBoxItem Content="English" Tag="en-US"/>
                     <ComboBoxItem Content="中文" Tag="zh-CN"/>
                 </ComboBox>
+            </StackPanel>
+
+            <StackPanel x:Name="AppearancePanel" Padding="12" Spacing="16" Visibility="Collapsed">
+                <TextBlock x:Name="AppearanceSectionTitle" FontSize="18" FontWeight="Bold"/>
 
                 <TextBlock x:Name="ColorThemeSectionTitle" FontSize="18" FontWeight="Bold"/>
                 <TextBlock x:Name="ColorThemeDescriptionText"
@@ -136,7 +130,6 @@
                     <ComboBoxItem Content="Blur" Tag="Blur"/>
                     <ComboBoxItem Content="&#x1F431; Cat and Dash!?" Tag="Cat"/>
                 </ComboBox>
-
             </StackPanel>
 
             <StackPanel x:Name="HistoryPanel" Padding="12" Spacing="16" Visibility="Collapsed">

@@ -87,7 +87,7 @@ namespace CutADash.Views.TaskTray
             };
             var checkForUpdatesItem = new MenuFlyoutItem
             {
-                Text = AppStrings.Get(_viewModel.IsUpdateAvailable ? "TrayIcon_ApplyUpdate" : "TrayIcon_CheckForUpdates")
+                Text = AppStrings.Get("TrayIcon_CheckForUpdates")
             };
             var quitItem = new MenuFlyoutItem { Text = AppStrings.Get("TrayIcon_Quit") };
 

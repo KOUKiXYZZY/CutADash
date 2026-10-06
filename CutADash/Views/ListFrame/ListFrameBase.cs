@@ -80,26 +80,6 @@ namespace CutADash.Views.ListFrame
             return false;
         }
 
-        /// <summary>
-        /// 選択を前後へ動かす(MainWindowが低レベルキーフックで受けた上下キーから呼ばれる)。
-        /// MainWindowはWS_EX_NOACTIVATEでフォーカスを持たないため、
-        /// ListView自身のキー処理は使えない。
-        /// </summary>
-        public virtual void MoveSelection(int delta)
-        {
-            var listView = ItemsListView;
-            if (listView.Items.Count == 0)
-                return;
-
-            // 未選択なら先頭から始める
-            var current = listView.SelectedIndex < 0 ? 0 : listView.SelectedIndex + delta;
-            var index = Math.Clamp(current, 0, listView.Items.Count - 1);
-
-            listView.SelectedIndex = index;
-            listView.ScrollIntoView(listView.SelectedItem);
-            FocusContainerAtIndex(index);
-        }
-
         // 選択を変えるだけではキーボードフォーカスは追従しないため、
         // 選択した項目のコンテナへ明示的にフォーカスを移す。
         // ListViewItemの既定テンプレートはFocusState.Keyboardのときだけ

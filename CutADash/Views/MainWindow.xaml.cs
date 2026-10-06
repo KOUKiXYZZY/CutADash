@@ -129,7 +129,7 @@ namespace CutADash.Views
             ApplyBackdropWithTintOverlay(Preferences.PreferencesGateway.GetWindowBackdrop());
             Preferences.PreferencesGateway.WindowBackdropChanged += kind =>
                 this.DispatcherQueue.TryEnqueue(() => ApplyBackdropWithTintOverlay(kind));
-            this.RemoveTitleBar(); // タイトルバーを消す
+            TitleBarRow.AttachTo(this); // システムのタイトルバーを消し、自前のタイトルバーを使う
 
             this.Activated += MainWindow_Activated;
             this.Closed += MainWindow_Hide;
@@ -157,17 +157,8 @@ namespace CutADash.Views
                 }
             };
 
-            // ウィンドウのDragHandleをドラッグすることでウィンドウの移動をさせる。
-            // またウィンドウサイズ変更時にはドラッグの領域を変更する
-            DragHandle.Loaded += (s, e) => { this.UpdateDragRegions(DragHandle); };
-            DragHandle.SizeChanged += (s, e) => { this.UpdateDragRegions(DragHandle); };
             AppWindow.Changed += (s, e) =>
             {
-                if (e.DidSizeChange)
-                {
-                    this.UpdateDragRegions(DragHandle);
-                }
-
                 // ドラッグ操作の途中経過を毎回保存する必要はないため、動きが止まって
                 // 一定時間タイマーが再始動しなかったタイミングでまとめて書き込む
                 if (e.DidPositionChange)
@@ -234,24 +225,16 @@ namespace CutADash.Views
                     ? new SolidColorBrush(Windows.UI.Color.FromArgb(80, 32, 32, 32))
                     : new SolidColorBrush(Windows.UI.Color.FromArgb(80, 243, 243, 243)),
 
-                // 猫テーマ: Micaの上に、暖色のパステル(クリーム/ピーチ)なティントを重ねる。
-                // 明/暗テーマで色を変えず同じ固定色にしているが、Mica自体の地の色は
-                // OSのテーマに応じて変わる(WinUIの仕様上ここでは打ち消せない)ため、
-                // 完全な統一はできない。alphaを上げてMicaの地をできるだけ覆い隠し、
-                // 差が目立たないようにしている
-                Common.Models.WindowBackdropKind.Cat
-                    => new SolidColorBrush(Windows.UI.Color.FromArgb(190, 255, 213, 179)),
+                // 猫テーマ: Micaの上に暖色のティントを重ねる
+                _ when Theming.CatTheme.IsActive(kind) => Theming.CatTheme.GetBackdropTint(kind),
 
                 _ => null
             };
 
-            var isCatTheme = kind == Common.Models.WindowBackdropKind.Cat;
-
             // 猫テーマの間は、設定(AppWindowCornerPreference)に関わらず
             // 一番丸いDWMWCP_ROUNDを強制する。それ以外は通常通り設定値に従う
-            this.SetWindowCornerPreference(isCatTheme
-                ? DwmAPI.DWM_WINDOW_CORNER_PREFERENCE.DWMWCP_ROUND
-                : ResolveWindowCornerPreference());
+            this.SetWindowCornerPreference(
+                Theming.CatTheme.ResolveCornerPreference(kind, ResolveWindowCornerPreference()));
         }
 
         /// <summary>
@@ -296,9 +279,29 @@ namespace CutADash.Views
             Utils.GarbageCollectionHelper.OnWindowShown();
         }
 
+        // コンパクト表示(Contentsを置く場所が無い)の間、一覧でマウスオーバーした項目の
+        // Contentsを出すポップアップ。初めて必要になった時に作る
+        private Contents.ContentsPopupWindow? _contentsPopup;
+
+        /// <summary>
+        /// コンパクト表示の時だけ、項目のContentsをポップアップで表示する。
+        /// 通常表示(Contentsが横に見えている時)や、Emojiタブでは何もしない。
+        /// </summary>
+        public void ShowContentsPopup(Models.ClipboardItem item)
+        {
+            if (!_isCompact || _currentTag == "emoji" || !Preferences.PreferencesGateway.IsContentsPopupEnabled())
+                return;
+
+            _contentsPopup ??= new Contents.ContentsPopupWindow(this);
+            _contentsPopup.ShowFor(item);
+        }
+
+        public void HideContentsPopup() => _contentsPopup?.HidePopup();
+
         /// <summary>パレットを隠し、各種監視も止める。次回表示に備えて状態をリセットする。</summary>
         public void HidePalette()
         {
+            HideContentsPopup();
             // TODO: 上記ShowActivateと同じ調査目的の一時ログ
             System.Diagnostics.Debug.WriteLine($"[MainWindow] HidePalette called{Environment.NewLine}{Environment.StackTrace}");
 
@@ -698,10 +701,11 @@ namespace CutADash.Views
 
             var tag = item.Tag.ToString();
             _currentTag = tag;
+            HideContentsPopup();
 
             // NavigationViewItem.Contentは"History"等の表示名そのものなので、
             // そのままタイトルバーにも出す
-            CurrentTabTitle.Text = item.Content?.ToString() ?? string.Empty;
+            TitleBarRow.Title = item.Content?.ToString() ?? string.Empty;
 
             if (pages.TryGetValue(tag, out var pageType))
             {
@@ -882,7 +886,7 @@ namespace CutADash.Views
             return null;
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void TitleBar_CloseRequested(UiLibrary.SlimTitleBar sender, EventArgs e)
         {
             HidePalette();
         }
@@ -912,6 +916,9 @@ namespace CutADash.Views
             var isEmojiTab = _currentTag == "emoji";
             var showContentFrame = !isCompact || isEmojiTab;
             var showListFrame = !isCompact || !isEmojiTab;
+
+            if (!isCompact)
+                HideContentsPopup();
 
             DividerBorder.Visibility = (!isCompact) ? Visibility.Visible : Visibility.Collapsed;
             ContentSizerControl.Visibility = (!isCompact) ? Visibility.Visible : Visibility.Collapsed;
@@ -973,7 +980,7 @@ namespace CutADash.Views
             }
 
             // レイアウトが変わったのでドラッグ領域も再計算する
-            this.UpdateDragRegions(DragHandle);
+            TitleBarRow.UpdateDragRegion();
         }
 
         // ContentSizerControl(区切り)のドラッグ処理。CommunityToolkit.WinUI.Controls.Sizersの

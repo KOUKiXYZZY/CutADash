@@ -34,6 +34,12 @@ namespace Preferences.ViewModels
         [ObservableProperty] private bool disableCaretPositioning;
         [ObservableProperty] private bool disableWindowsClipboardHistory;
 
+        // 「Windows標準のクリップボード履歴を無効にする」をチェックした直後だけ、赤字で
+        // 「再起動が必要」と知らせる。設定画面を開き直した時や、チェックを外した時は出さない
+        [ObservableProperty] private bool showClipboardHistoryRestartNote;
+        [ObservableProperty] private bool copyOnlyOnSelect;
+        [ObservableProperty] private bool contentsPopupEnabled;
+
         // ComboBoxのSelectedValuePath="Tag"に合わせ、WindowBackdropKindの
         // メンバー名の文字列("Mica"/"Acrylic"/"Blur"/"Cat")として保持する
         [ObservableProperty] private string selectedBackdropTag = nameof(WindowBackdropKind.Acrylic);
@@ -86,6 +92,8 @@ namespace Preferences.ViewModels
             LaunchAtLogin = StartupHelper.IsRegistered();
             DisableCaretPositioning = PreferencesGateway.IsCaretPositioningDisabled();
             DisableWindowsClipboardHistory = PreferencesGateway.IsWindowsClipboardHistoryDisabled();
+            CopyOnlyOnSelect = PreferencesGateway.IsCopyOnlyOnSelect();
+            ContentsPopupEnabled = PreferencesGateway.IsContentsPopupEnabled();
 
             SelectionToolbarEnabled = PreferencesGateway.IsSelectionToolbarEnabled();
             // 無効化中は実際の秒数(GetSelectionToolbarAutoHideSeconds)が0になっているため、
@@ -137,12 +145,38 @@ namespace Preferences.ViewModels
             HistorySettingsStore.SetCaretPositioningDisabled(value);
         }
 
-        partial void OnDisableWindowsClipboardHistoryChanged(bool value)
+        partial void OnContentsPopupEnabledChanged(bool value)
         {
             if (_isLoadingPreferences)
                 return;
 
-            HistorySettingsStore.SetWindowsClipboardHistoryDisabled(value);
+            HistorySettingsStore.SetContentsPopupEnabled(value);
+        }
+
+        partial void OnCopyOnlyOnSelectChanged(bool value)
+        {
+            if (_isLoadingPreferences)
+                return;
+
+            HistorySettingsStore.SetCopyOnlyOnSelect(value);
+        }
+
+        // HKLMへの書き込みで管理者権限の確認(UAC)が出る。キャンセルされた/失敗した場合は、
+        // チェックを元に戻す(戻す操作で、この処理が再度走らないようガードする)
+        async partial void OnDisableWindowsClipboardHistoryChanged(bool value)
+        {
+            if (_isLoadingPreferences)
+                return;
+
+            if (await HistorySettingsStore.SetWindowsClipboardHistoryDisabledAsync(value))
+            {
+                ShowClipboardHistoryRestartNote = value;
+                return;
+            }
+
+            _isLoadingPreferences = true;
+            DisableWindowsClipboardHistory = !value;
+            _isLoadingPreferences = false;
         }
 
         // メインウィンドウ(パレット)の背景素材(バックドロップ)。切り替えは即座に反映される

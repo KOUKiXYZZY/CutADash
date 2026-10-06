@@ -208,6 +208,10 @@
                  KeyDown="SearchBox_KeyDown"/>
         <ListView x:Name="ListView"
                   SelectionMode="Single"
+                  IsItemClickEnabled="True"
+                  ItemClick="ItemsListView_ItemClick"
+                  PointerMoved="ItemsList_PointerMoved"
+                  PointerExited="ItemsList_PointerExited"
                   ItemsSource="{Binding DisplayItems}"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
 

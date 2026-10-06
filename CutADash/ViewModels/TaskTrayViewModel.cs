@@ -26,11 +26,6 @@ namespace CutADash.ViewModels
         [ObservableProperty]
         private bool alwaysPastePlainText;
 
-        // 起動時に静かに確認した結果。trueなら「アップデートを確認」の代わりに
-        // 「アップデートを適用して再起動」のラベルを出す(TaskTray側で切り替える)
-        [ObservableProperty]
-        private bool isUpdateAvailable;
-
         public TaskTrayViewModel(ServiceProvider provider)
         {
             _provider = provider;
@@ -38,25 +33,6 @@ namespace CutADash.ViewModels
             var clipboardMonitor = _provider.GetService<ClipboardMonitor>();
             isMonitoring = clipboardMonitor?.IsMonitoring ?? true;
             alwaysPastePlainText = Preferences.PreferencesGateway.IsAlwaysPastePlainText();
-
-            // 起動時に一度だけ、更新の有無を静かに確認する(ダウンロード・適用まではしない)。
-            // 失敗(オフライン等)しても起動やメニュー表示は妨げない
-            _ = CheckForUpdatesQuietlyAsync();
-        }
-
-        private async Task CheckForUpdatesQuietlyAsync()
-        {
-            var updateService = _provider.GetService<UpdateService>();
-            if (updateService is null)
-                return;
-
-            var version = await updateService.GetAvailableVersionAsync();
-            IsUpdateAvailable = version is not null;
-
-            // 更新があれば、OK/キャンセルで尋ねる。キャンセルした場合は、そのままにしておき、
-            // トレイメニューの「アップデートを適用して再起動」から、いつでも適用できる
-            if (version is not null && await Utils.UpdatePrompt.ConfirmUpdateAsync(version))
-                await updateService.CheckDownloadAndApplyAsync();
         }
 
         [RelayCommand]
@@ -97,7 +73,7 @@ namespace CutADash.ViewModels
 
         /// <summary>
         /// 更新を確認し、あればダウンロード・適用して再起動する(成功時はここで
-        /// プロセスが終了する)。無かった場合はIsUpdateAvailableをfalseに戻すだけ。
+        /// プロセスが終了する)。更新は、OK/キャンセルで尋ねてから行う。
         /// </summary>
         [RelayCommand]
         private async Task CheckForUpdates()
@@ -107,10 +83,15 @@ namespace CutADash.ViewModels
                 return;
 
             var version = await updateService.GetAvailableVersionAsync();
-            IsUpdateAvailable = version is not null;
+            // 更新が無ければ、その旨を知らせる(押しても何も起きないように見えないよう)。
+            // あれば、OK/キャンセルで尋ねてから適用する
+            if (version is null)
+            {
+                await Utils.ConfirmPrompt.NotifyAsync(Common.Utils.AppStrings.Get("Update_UpToDate"));
+                return;
+            }
 
-            // 更新が無ければ何もしない。あれば、OK/キャンセルで尋ねてから適用する
-            if (version is null || !await Utils.UpdatePrompt.ConfirmUpdateAsync(version))
+            if (!await Utils.UpdatePrompt.ConfirmUpdateAsync(version))
                 return;
 
             await updateService.CheckDownloadAndApplyAsync();

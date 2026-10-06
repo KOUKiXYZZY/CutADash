@@ -207,17 +207,23 @@
   <data name="TrayIcon_CheckForUpdates" xml:space="preserve">
     <value>アップデートを確認</value>
   </data>
-  <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
-    <value>アップデートを適用して再起動</value>
-  </data>
   <data name="Update_ConfirmMessage" xml:space="preserve">
     <value>新しいバージョン {0} があります。&#10;ダウンロードして更新し、アプリを再起動しますか?</value>
+  </data>
+  <data name="Update_UpToDate" xml:space="preserve">
+    <value>お使いのバージョンは最新です。&#10;(開発版や、確認できなかった場合も、このメッセージになります)</value>
   </data>
   <data name="Dialog_Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Dialog_Cancel" xml:space="preserve">
     <value>キャンセル</value>
+  </data>
+  <data name="Favorite_DeleteConfirmItem" xml:space="preserve">
+    <value>お気に入りから削除しますか?</value>
+  </data>
+  <data name="Favorite_DeleteConfirmFolder" xml:space="preserve">
+    <value>フォルダ「{0}」と、その中のお気に入りをすべて削除しますか?</value>
   </data>
   <data name="EmojiSetup_Message" xml:space="preserve">
     <value>初回起動時にフォントからPNGを生成中…</value>

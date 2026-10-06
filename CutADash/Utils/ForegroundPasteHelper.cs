@@ -30,6 +30,32 @@ namespace CutADash.Utils
         /// trueの場合、リッチテキスト(Rtf/Html)を保持していてもプレーンテキストとしてのみ
         /// 貼り付ける(Contents画面の「プレーンテキストとして貼り付け」用)。
         /// </param>
+        /// <summary>
+        /// 直前のフォアグラウンドウィンドウへフォーカスを戻す(ペーストはしない)。
+        /// 「選択時にペーストしない」で、クリップボードへ移したあとに使う。
+        /// </summary>
+        public static async Task ActivatePreviousWindowAsync(MainWindow? mainWindow)
+        {
+            var targetHwnd = mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero;
+            if (targetHwnd == IntPtr.Zero)
+                return;
+
+            // ペーストと同じく、前面化の最中に起きるフォアグラウンドの変化で、
+            // パレットの自動クローズ等が割り込まないようにする
+            if (mainWindow is not null)
+                mainWindow.IsPasting = true;
+
+            try
+            {
+                await ForegroundPaster.ActivateAsync(targetHwnd, mainWindow?.PreviousFocusWindow ?? IntPtr.Zero);
+            }
+            finally
+            {
+                if (mainWindow is not null)
+                    mainWindow.IsPasting = false;
+            }
+        }
+
         public static async Task PasteToPreviousWindowAsync(
             MainWindow? mainWindow, ClipboardItem item, bool addToHistory = false, bool paste = true,
             bool plainTextOnly = false)

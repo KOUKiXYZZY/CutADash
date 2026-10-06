@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="UiLibrary.SlimTitleBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalContentAlignment="Stretch">
+
+    <!-- システムのタイトルバーを消したウィンドウ用の、細い(高さ32)タイトルバー。
+         左: LeftContent / 中央: タイトル文字(ここを掴んでウィンドウを移動できる) /
+         右: RightContent と、赤く光る閉じるボタン / 下端: 区切り線 -->
+    <Grid MinHeight="32">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentPresenter x:Name="LeftPresenter" Grid.Column="0" VerticalAlignment="Center"/>
+
+        <!-- ウィンドウを移動できるドラッグ領域 -->
+        <Grid x:Name="DragArea" Grid.Column="1" Height="32" Background="Transparent">
+            <TextBlock x:Name="TitleTextBlock"
+                       Margin="12,0,0,0"
+                       VerticalAlignment="Center"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                       IsHitTestVisible="False"/>
+        </Grid>
+
+        <ContentPresenter x:Name="RightPresenter" Grid.Column="2" VerticalAlignment="Center"/>
+
+        <Button x:Name="CloseButton"
+                Grid.Column="3"
+                Width="42" Height="32"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                BorderThickness="0"
+                CornerRadius="0"
+                IsTabStop="False"
+                Click="CloseButton_Click">
+            <Button.Resources>
+                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
+                <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
+                <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
+            </Button.Resources>
+            <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
+        </Button>
+
+        <Border x:Name="DividerBorder"
+                Grid.Column="0" Grid.ColumnSpan="4"
+                Height="1"
+                VerticalAlignment="Bottom"
+                IsHitTestVisible="False"
+                Background="{ThemeResource DividerStrokeColorDefaultBrush}"/>
+    </Grid>
+</UserControl>

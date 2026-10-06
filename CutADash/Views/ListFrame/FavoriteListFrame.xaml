@@ -216,6 +216,9 @@
                   AllowDrop="True"
                   ItemsSource="{Binding RootNodes}"
                   SelectionChanged="FolderTree_SelectionChanged"
+                  ItemInvoked="FolderTree_ItemInvoked"
+                  PointerMoved="ItemsList_PointerMoved"
+                  PointerExited="ItemsList_PointerExited"
                   DragItemsCompleted="FolderTree_DragItemsCompleted"
                   PreviewKeyDown="FolderTree_PreviewKeyDown"
                   KeyDown="FolderTree_KeyDown">
@@ -259,6 +262,10 @@
         <ListView x:Name="BaseExample"
                       Grid.Row="1"
                       SelectionMode="Single"
+                      IsItemClickEnabled="True"
+                      ItemClick="ItemsListView_ItemClick"
+                      PointerMoved="ItemsList_PointerMoved"
+                      PointerExited="ItemsList_PointerExited"
                       Visibility="Collapsed"
 
                       ItemsSource="{Binding DisplayItems}"

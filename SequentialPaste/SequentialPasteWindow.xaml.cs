@@ -85,17 +85,10 @@ namespace SequentialPaste
             // ティントは明/暗で色を変えているため、実行中にシステムのテーマが変わったら選び直す
             RootGrid.ActualThemeChanged += (s, e) =>
                 ApplyBackdropWithTintOverlay(Preferences.PreferencesGateway.GetWindowBackdrop());
-            this.RemoveTitleBar();
+            TitleBarRow.AttachTo(this);
 
-            // ドラッグハンドルでウィンドウを移動できるようにする。サイズが変わった時も
-            // ヒットテスト領域を更新する必要がある(MainWindowと同じ仕組み)
-            DragHandle.Loaded += (s, e) => this.UpdateDragRegions(DragHandle);
-            DragHandle.SizeChanged += (s, e) => this.UpdateDragRegions(DragHandle);
             AppWindow.Changed += (s, e) =>
             {
-                if (e.DidSizeChange)
-                    this.UpdateDragRegions(DragHandle);
-
                 if (e.DidSizeChange || e.DidPositionChange)
                 {
                     _windowSettingsSaveTimer.Stop();
@@ -148,8 +141,7 @@ namespace SequentialPaste
                     ? new SolidColorBrush(Windows.UI.Color.FromArgb(80, 32, 32, 32))
                     : new SolidColorBrush(Windows.UI.Color.FromArgb(80, 243, 243, 243)),
 
-                Common.Models.WindowBackdropKind.Cat
-                    => new SolidColorBrush(Windows.UI.Color.FromArgb(190, 255, 213, 179)),
+                _ when Theming.CatTheme.IsActive(kind) => Theming.CatTheme.GetBackdropTint(kind),
 
                 // Mica/Acrylic: ライトの時だけ薄く白を重ねて、もう少し明るく見せる
                 _ when !isDark => new SolidColorBrush(Windows.UI.Color.FromArgb(60, 255, 255, 255)),
@@ -193,7 +185,7 @@ namespace SequentialPaste
             await dialog.ShowAsync();
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e) => HideNoActivate();
+        private void TitleBar_CloseRequested(UiLibrary.SlimTitleBar sender, EventArgs e) => HideNoActivate();
 
         // 選択行(=次に貼り付けられる項目)が変わるたびに、次の項目も見えるよう常に
         // ビューポートの中央付近へスクロールする。貼り付けでキューの先頭が消費されて

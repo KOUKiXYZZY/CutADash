@@ -5,6 +5,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SequentialPaste"
+    xmlns:ui="using:UiLibrary"
     xmlns:models="using:CutADash.Models"
     mc:Ignorable="d"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,51 +26,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="TitleBarRow" Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- 閉じるボタンの左側を掴んでウィンドウを移動できるドラッグ領域 -->
-            <Grid x:Name="DragHandle"
-                  Grid.Column="0"
-                  Height="32"
-                  Background="Transparent">
-                <TextBlock Text="シーケンシャルペースト"
-                           Margin="12,0,0,0"
-                           VerticalAlignment="Center"
-                           FontSize="13"
-                           FontWeight="SemiBold"
-                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                           IsHitTestVisible="False"/>
-            </Grid>
-
-            <!-- ウィンドウ閉じるボタン(MainWindowと同じスタイル) -->
-            <Button Grid.Column="1"
-                Width="42" Height="32"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Right"
-                Background="Transparent"
-                BorderThickness="0"
-                CornerRadius="0"
-                IsTabStop="False"
-                Click="CloseButton_Click">
-                <Button.Resources>
-                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#E81123"/>
-                    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="#F1707A"/>
-                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="White"/>
-                </Button.Resources>
-                <FontIcon Glyph="&#xE8BB;" FontSize="10"/>
-            </Button>
-
-            <!-- タイトルバーと本体の境界線 -->
-            <Border Grid.Column="0" Grid.ColumnSpan="2"
-                    Height="1"
-                    VerticalAlignment="Bottom"
-                    Background="{StaticResource DividerBrushHorizontal}"/>
-        </Grid>
+        <ui:SlimTitleBar x:Name="TitleBarRow"
+                         Grid.Row="0"
+                         Title="シーケンシャルペースト"
+                         DividerBrush="{StaticResource DividerBrushHorizontal}"
+                         CloseRequested="TitleBar_CloseRequested"/>
 
         <Grid Grid.Row="1" Padding="8">
             <Grid.RowDefinitions>

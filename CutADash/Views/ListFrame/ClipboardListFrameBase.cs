@@ -1,8 +1,10 @@
 using CutADash.Models;
 using CutADash.Utils;
 using CutADash.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Threading.Tasks;
 
@@ -36,6 +38,12 @@ namespace CutADash.Views.ListFrame
             {
                 if (DataContext is IClipboardItemListViewModel viewModel && listView.SelectedItem is ClipboardItem item)
                 {
+                    if (!await ConfirmDeleteAsync(item))
+                    {
+                        e.Handled = true;
+                        return;
+                    }
+
                     var index = listView.SelectedIndex;
                     await viewModel.DeleteAsync(item);
 
@@ -53,6 +61,8 @@ namespace CutADash.Views.ListFrame
         // トンネリングするPreviewKeyDownで先に横取りする
         protected async void ItemsListView_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
+            MarkKeyboardNavigation();
+
             if (sender is not ListView listView)
                 return;
 
@@ -68,13 +78,29 @@ namespace CutADash.Views.ListFrame
         // 選択項目をOSクリップボードへ書き戻したうえで、このウィンドウを開く直前に
         // フォアグラウンドだったアプリへ戻し、Ctrl+Vを送ってペーストさせる。
         // 種別(Text/Image/リッチテキスト)を問わず、ペーストした項目は一覧の先頭へ上げる
-        private async Task PasteToPreviousWindowAsync(ClipboardItem item)
+        //
+        // 設定「選択時にペーストしない」がオンの間は、貼り付けずクリップボードへ移すだけにする
+        // (forcePasteがtrueなら、設定に関わらず貼り付ける。右クリックメニューの「ペースト」用)
+        private async Task PasteToPreviousWindowAsync(ClipboardItem item, bool forcePaste = false)
         {
-            await ForegroundPasteHelper.PasteToPreviousWindowAsync(MainWindowRef, item);
+            var paste = forcePaste || !Preferences.PreferencesGateway.IsCopyOnlyOnSelect();
+            await ForegroundPasteHelper.PasteToPreviousWindowAsync(MainWindowRef, item, paste: paste);
+
+            // 貼り付けない場合(クリップボードへ移すだけ)、ヘルパーはウィンドウを開いたままにするが、
+            // この設定では移し終えたらウィンドウを閉じ、元のウィンドウへフォーカスを戻す
+            // (貼り付けた場合は、ヘルパーが閉じて貼り付け先へ戻す)
+            if (!paste)
+            {
+                MainWindowRef?.HidePalette();
+                await ForegroundPasteHelper.ActivatePreviousWindowAsync(MainWindowRef);
+            }
 
             if (DataContext is IClipboardItemListViewModel viewModel)
                 await viewModel.BumpToTopAsync(item);
         }
+
+        /// <summary>削除してよいか確認する。既定は確認なし(履歴)。お気に入りは確認ダイアログを出す。</summary>
+        protected virtual Task<bool> ConfirmDeleteAsync(ClipboardItem item) => Task.FromResult(true);
 
         /// <summary>
         /// 選択中の項目を削除する(MainWindowが低レベルキーフックで受けたDeleteキーから呼ばれる)。
@@ -82,6 +108,9 @@ namespace CutADash.Views.ListFrame
         public async Task DeleteSelectedAsync()
         {
             if (DataContext is not IClipboardItemListViewModel viewModel || SelectedItem is null)
+                return;
+
+            if (!await ConfirmDeleteAsync(SelectedItem))
                 return;
 
             var listView = ItemsListView;
@@ -108,12 +137,124 @@ namespace CutADash.Views.ListFrame
         /// フォーカスが一覧の外にあり見た目上は選択解除されていても、直前まで選んでいた
         /// 項目をそのままペーストできるようにするため。
         /// </summary>
-        public Task PasteSelectedAsync()
+        public Task PasteSelectedAsync(bool forcePaste = false)
         {
             if (SelectedItem is null)
                 return Task.CompletedTask;
 
-            return PasteToPreviousWindowAsync(SelectedItem);
+            return PasteToPreviousWindowAsync(SelectedItem, forcePaste);
+        }
+
+        /// <summary>
+        /// 項目をクリックした時の処理。Enterと同じく、その項目を直前のウィンドウへ貼り付ける
+        /// (設定「選択時にペーストしない」がオンの間は、貼り付けず、クリップボードへ移して
+        /// 元のウィンドウへフォーカスを戻す。PasteToPreviousWindowAsync参照)。
+        /// </summary>
+        protected Task PasteItemOnClickAsync(ClipboardItem item)
+            => PasteToPreviousWindowAsync(item);
+
+        protected async void ItemsListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (e.ClickedItem is ClipboardItem item)
+                await PasteItemOnClickAsync(item);
+        }
+
+        // ---- マウスオーバーで、即座に選択する ----
+        // 重なっている項目を選択する(選択の変更に連動して、Contentsにも表示される)
+
+        private ClipboardItem? _hoverItem;
+
+        // キーボードで一覧を操作している間は、マウスオーバーでの選択を止める。
+        // キー操作で一覧がスクロールすると、動かしていないマウスの下の項目が変わり、見かけ上の
+        // ポインター移動(位置が同じままのPointerMoved)が発生して、選択を奪い返してしまうため、
+        // 次の2つで見分ける。
+        //  - 位置が前回と同じPointerMoved: 見かけ上の移動なので無視する
+        //  - キー操作の後は、マウスが実際に少し動くまで無効にする
+        private const double HoverResumeDistanceDip = 4;
+        private Windows.Foundation.Point? _lastPointerPosition;
+        private Windows.Foundation.Point? _pointerPositionAtKeyboard;
+        private bool _keyboardNavigating;
+
+        /// <summary>一覧をキーボードで操作し始めたことを記録する(マウスオーバーでの選択を止める)。</summary>
+        protected void MarkKeyboardNavigation()
+        {
+            _keyboardNavigating = true;
+            _pointerPositionAtKeyboard = _lastPointerPosition;
+            _hoverItem = null;
+            MainWindowRef?.HideContentsPopup();
+        }
+
+        protected void ItemsList_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            var position = e.GetCurrentPoint(null).Position;
+            if (_lastPointerPosition is { } last && last.X == position.X && last.Y == position.Y)
+                return;
+            _lastPointerPosition = position;
+
+            if (_keyboardNavigating)
+            {
+                if (_pointerPositionAtKeyboard is { } origin
+                    && Math.Abs(position.X - origin.X) < HoverResumeDistanceDip
+                    && Math.Abs(position.Y - origin.Y) < HoverResumeDistanceDip)
+                {
+                    return;
+                }
+
+                _keyboardNavigating = false;
+            }
+
+            var item = FindItemUnderPointer(e.OriginalSource as DependencyObject);
+            if (ReferenceEquals(item, _hoverItem))
+                return;
+
+            _hoverItem = item;
+            if (item is null || IsDetached)
+            {
+                MainWindowRef?.HideContentsPopup();
+                return;
+            }
+
+            SelectItemOnHover(item);
+
+            // コンパクト表示(Contentsを置く場所が無い)の時は、ポップアップで見せる
+            MainWindowRef?.ShowContentsPopup(item);
+        }
+
+        /// <summary>マウスオーバーされた項目を選択する。ツリー等、一覧の形が違う場合は上書きする。</summary>
+        protected virtual void SelectItemOnHover(ClipboardItem item)
+        {
+            if (!ReferenceEquals(ItemsListView.SelectedItem, item))
+                ItemsListView.SelectedItem = item;
+        }
+
+        protected void ItemsList_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            _hoverItem = null;
+            MainWindowRef?.HideContentsPopup();
+        }
+
+        // ポインターの下の要素から親をたどり、項目(ClipboardItem、またはお気に入りのアイテム)を探す。
+        // 項目のテンプレート内の要素はDataContextとして項目を引き継ぐため、最初に見つかったものが対象。
+        // フォルダや、項目の外(余白・スクロールバー)ではnullを返す
+        private static ClipboardItem? FindItemUnderPointer(DependencyObject? element)
+        {
+            while (element is not null)
+            {
+                if (element is FrameworkElement { DataContext: var context })
+                {
+                    switch (context)
+                    {
+                        case ClipboardItem item:
+                            return item;
+                        case FavoriteNode { IsFolder: false, Item: { } favoriteItem }:
+                            return favoriteItem;
+                    }
+                }
+
+                element = VisualTreeHelper.GetParent(element);
+            }
+
+            return null;
         }
 
         // 選択操作を(確認ダイアログのキャンセル等で)元に戻している間、

@@ -19,6 +19,19 @@ namespace Preferences.Models
         public bool DisableCaretPositioning { get; set; } = false;
 
         /// <summary>
+        /// 一覧(履歴/お気に入り)の項目をEnterで選んだ時、直前のウィンドウへ貼り付けず、
+        /// OSクリップボードへ移すだけにするかどうか。クリックした時も同様にクリップボードへ移す
+        /// (falseの間、クリックは選択(Contentsへの表示)だけを行う)。
+        /// </summary>
+        public bool CopyOnlyOnSelect { get; set; } = false;
+
+        /// <summary>
+        /// ウィンドウを縮めたコンパクト表示の時、一覧でマウスオーバーした項目の内容を
+        /// ポップアップで表示するかどうか。
+        /// </summary>
+        public bool ContentsPopupEnabled { get; set; } = true;
+
+        /// <summary>
         /// Windows標準のクリップボード履歴(Win+Vパネル)を無効にするかどうか。
         /// HKCU\Software\Policies\Microsoft\Windows\System\AllowClipboardHistory(DWORD)を
         /// 0にすることで無効化する(グループポリシー相当)。

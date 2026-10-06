@@ -50,7 +50,15 @@ namespace CutADash.Infra.Win32
             return foregroundWindow;
         }
 
-        public static async Task ActivateAndPasteAsync(IntPtr targetHwnd, IntPtr focusHwnd = default)
+        /// <summary>
+        /// 指定したウィンドウを前面化し、記憶しておいた子コントロールへフォーカスを戻す
+        /// (ペーストはしない)。
+        /// </summary>
+        public static Task ActivateAsync(IntPtr targetHwnd, IntPtr focusHwnd = default)
+            => ActivateAndPasteAsync(targetHwnd, focusHwnd, sendPaste: false);
+
+        /// <param name="sendPaste">falseの場合は、前面化とフォーカスの復元だけで、Ctrl+Vは送らない。</param>
+        public static async Task ActivateAndPasteAsync(IntPtr targetHwnd, IntPtr focusHwnd = default, bool sendPaste = true)
         {
             if (targetHwnd == IntPtr.Zero)
                 return;
@@ -98,6 +106,9 @@ namespace CutADash.Infra.Win32
                 // こちらの指定が上書きされ、編集領域にフォーカスが載らないままCtrl+Vが届いて
                 // 何も起きない。サクラエディタで実際にこれを踏んだ
                 RestoreFocus(targetHwnd, focusHwnd);
+
+                if (!sendPaste)
+                    return;
 
                 // 押下(Ctrl↓V↓)と解放(V↑Ctrl↑)は、それぞれ1回のSendInputでまとめて送る。
                 // SendInputは「まとめた分の間に他の入力が割り込まない」ことを保証するため、

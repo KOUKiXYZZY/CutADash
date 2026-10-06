@@ -20,7 +20,7 @@ namespace CutADash.Views.ListFrame
     ///
     /// J/K移動・グローバルキーフック経由のIsWithinList判定(ClipboardListFrameBase/
     /// ListFrameBase)は、検索中はItemsListView(=BaseExample)、通常時はFolderTreeを
-    /// 対象にするようMoveSelection/IsWithinListをオーバーライドして切り替える。
+    /// 対象にするようIsWithinListをオーバーライドして切り替える。
     /// </summary>
     public sealed partial class FavoriteListFrame : ClipboardListFrameBase
     {
@@ -230,7 +230,16 @@ namespace CutADash.Views.ListFrame
                 return;
 
             SelectedItem = node.Item;
-            await PasteSelectedAsync();
+            await PasteSelectedAsync(forcePaste: true);
+        }
+
+        // ツリーの項目をクリックした時。アイテムなら、Enterと同じく貼り付ける(設定「選択時に
+        // ペーストしない」がオンの間は、クリップボードへ移すだけ)。フォルダは何もせず、既定の
+        // 動作(選択・開閉)のままにする
+        private async void FolderTree_ItemInvoked(TreeView sender, TreeViewItemInvokedEventArgs args)
+        {
+            if (args.InvokedItem is FavoriteNode { IsFolder: false, Item: { } item })
+                await PasteItemOnClickAsync(item);
         }
 
         private async void DeleteNode_Click(object sender, RoutedEventArgs e)
@@ -268,9 +277,37 @@ namespace CutADash.Views.ListFrame
         /// ノード)」を選ぶ。下が無ければ「上(1つ前)」を選ぶ。兄弟が1つも残らなければ
         /// (その階層が空になったら)選択・フォーカスをTreeViewの外(検索欄)へ移す。
         /// </summary>
+        // 検索中のフラットな一覧からの削除(アイテムのみ)も、ツリーと同じ確認を出す
+        protected override System.Threading.Tasks.Task<bool> ConfirmDeleteAsync(CutADash.Models.ClipboardItem item)
+            => ConfirmDeleteDialogAsync(Common.Utils.AppStrings.Get("Favorite_DeleteConfirmItem"));
+
+        // 削除の確認。名前の変更と同じく、このページのXamlRootに出すContentDialog(モーダル)。
+        // 誤って押したEnterで消えないよう、既定のボタンはキャンセルにする
+        private async System.Threading.Tasks.Task<bool> ConfirmDeleteDialogAsync(string message)
+        {
+            var dialog = new ContentDialog
+            {
+                Content = message,
+                PrimaryButtonText = Common.Utils.AppStrings.Get("Dialog_Ok"),
+                CloseButtonText = Common.Utils.AppStrings.Get("Dialog_Cancel"),
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = this.XamlRoot,
+                RequestedTheme = ActualTheme
+            };
+
+            return await dialog.ShowAsync() == ContentDialogResult.Primary;
+        }
+
         private async System.Threading.Tasks.Task DeleteNodeAsync(FavoriteNode node)
         {
             if (_viewModel is null)
+                return;
+
+            // 削除は元に戻せないため、確認ダイアログで聞く(フォルダは中身ごと消える)
+            var message = node.IsFolder
+                ? string.Format(Common.Utils.AppStrings.Get("Favorite_DeleteConfirmFolder"), node.Name)
+                : Common.Utils.AppStrings.Get("Favorite_DeleteConfirmItem");
+            if (!await ConfirmDeleteDialogAsync(message))
                 return;
 
             var siblingsBefore = _viewModel.GetSiblings(node.ParentId);
@@ -364,6 +401,8 @@ namespace CutADash.Views.ListFrame
         // (ClipboardListFrameBase)と同じくトンネリングするPreviewKeyDownで先に横取りする
         private async void FolderTree_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
+            MarkKeyboardNavigation();
+
             if (e.Key != VirtualKey.Enter)
                 return;
 
@@ -522,6 +561,36 @@ namespace CutADash.Views.ListFrame
                     // DBの状態から読み直して見た目上の移動を取り消す
                     await _viewModel.ReloadAsync();
                 }
+            }
+        }
+
+        // マウスオーバーされた項目を選択する。通常はツリーのノードを、検索中のフラットな
+        // 一覧では項目そのものを選択する
+        protected override void SelectItemOnHover(CutADash.Models.ClipboardItem item)
+        {
+            if (FolderTree.Visibility != Visibility.Visible)
+            {
+                base.SelectItemOnHover(item);
+                return;
+            }
+
+            TreeViewNode? Search(System.Collections.Generic.IList<TreeViewNode> nodes)
+            {
+                foreach (var node in nodes)
+                {
+                    if (node.Content is FavoriteNode { Item: { } nodeItem } && ReferenceEquals(nodeItem, item))
+                        return node;
+
+                    if (Search(node.Children) is TreeViewNode found)
+                        return found;
+                }
+                return null;
+            }
+
+            if (Search(FolderTree.RootNodes) is TreeViewNode target
+                && !ReferenceEquals(FolderTree.SelectedNode, target))
+            {
+                FolderTree.SelectedNode = target;
             }
         }
 

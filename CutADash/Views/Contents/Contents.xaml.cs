@@ -54,7 +54,11 @@ namespace CutADash.Views.Contents
 
             // テキスト項目の文字色はActualThemeを見て決めている(ResetCodeEditorDefaultFormat)。
             // 表示中に実行時にシステムのテーマが変わった場合も、選び直してすぐ反映する
-            this.ActualThemeChanged += (_, _) => _ = DisplayItemAsync(ViewModel.Item, ++_displayToken);
+            this.ActualThemeChanged += (_, _) =>
+            {
+                ApplyCatContentsBackground();
+                _ = DisplayItemAsync(ViewModel.Item, ++_displayToken);
+            };
         }
 
         private void OnWindowBackdropChanged(Common.Models.WindowBackdropKind kind)
@@ -65,8 +69,16 @@ namespace CutADash.Views.Contents
         /// </summary>
         private void ApplyCatContentsBackground()
         {
-            var isCatTheme = Preferences.PreferencesGateway.GetWindowBackdrop() == Common.Models.WindowBackdropKind.Cat;
+            var isCatTheme = Theming.CatTheme.IsActive(Preferences.PreferencesGateway.GetWindowBackdrop());
             CatPawBackground.Visibility = isCatTheme ? Visibility.Visible : Visibility.Collapsed;
+
+            // 猫テーマはライトでもダークでも同じ暖色のティントを使うため、ライトの時も
+            // カードの背景色をダークの時の色に揃える(背景の面だけをDarkテーマで解決させる)
+            var cardTheme = isCatTheme && ActualTheme == ElementTheme.Light
+                ? ElementTheme.Dark
+                : ElementTheme.Default;
+            EditorCardBackground.RequestedTheme = cardTheme;
+            ImageCardBackground.RequestedTheme = cardTheme;
         }
 
         private void LocalizeUi()
@@ -104,6 +116,20 @@ namespace CutADash.Views.Contents
         {
             _ownerViewModel = ownerViewModel;
             ViewModel.Item = item;
+        }
+
+        /// <summary>
+        /// trueにすると、内容の表示部分だけにする(下部のペースト/エンコード等のボタン列を隠す)。
+        /// コンパクト表示のポップアップ(ContentsPopupWindow)用。
+        /// </summary>
+        public bool IsPreviewOnly
+        {
+            set
+            {
+                var visibility = value ? Visibility.Collapsed : Visibility.Visible;
+                ActionBar.Visibility = visibility;
+                ActionBarShadow.Visibility = visibility;
+            }
         }
 
         /// <summary>確認なしで即座に切り替える。</summary>

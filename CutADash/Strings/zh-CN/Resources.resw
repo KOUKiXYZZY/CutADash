@@ -102,17 +102,23 @@
   <data name="TrayIcon_CheckForUpdates" xml:space="preserve">
     <value>检查更新</value>
   </data>
-  <data name="TrayIcon_ApplyUpdate" xml:space="preserve">
-    <value>应用更新并重启</value>
-  </data>
   <data name="Update_ConfirmMessage" xml:space="preserve">
     <value>有新版本 {0}。&#10;是否下载并更新?应用将会重启。</value>
+  </data>
+  <data name="Update_UpToDate" xml:space="preserve">
+    <value>当前已是最新版本。&#10;(开发版本，或无法完成检查时，也会显示此消息。)</value>
   </data>
   <data name="Dialog_Ok" xml:space="preserve">
     <value>确定</value>
   </data>
   <data name="Dialog_Cancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="Favorite_DeleteConfirmItem" xml:space="preserve">
+    <value>要从收藏夹中删除此项吗?</value>
+  </data>
+  <data name="Favorite_DeleteConfirmFolder" xml:space="preserve">
+    <value>要删除文件夹“{0}”及其中的所有收藏项吗?</value>
   </data>
   <data name="EmojiSetup_Message" xml:space="preserve">
     <value>正在从字体生成表情符号图片(仅首次启动)…</value>

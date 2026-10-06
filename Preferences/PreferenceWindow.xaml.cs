@@ -39,26 +39,19 @@ namespace Preferences.Views
 
             // 明/暗の表示テーマ(Light/Dark)。バックドロップより先に適用する
             this.ApplyColorTheme(PreferencesGateway.GetColorTheme());
-            PreferencesGateway.ColorThemeChanged += theme =>
+            // 設定画面は開くたびに新しく作られ、閉じても購読が残ると、閉じた後のウィンドウに対して
+            // テーマ変更のたびに処理が走り、例外でアプリが落ちる。閉じる時に必ず解除する(OnClosed)
+            _colorThemeChangedHandler = theme =>
                 this.DispatcherQueue.TryEnqueue(() => this.ApplyColorTheme(theme));
+            PreferencesGateway.ColorThemeChanged += _colorThemeChangedHandler;
 
             // MainWindowと同様、境界線・タイトルバーを消して×ボタンだけにする
             this.EnableAcrylicBackdrop(); // アクリル素材を有効化
-            this.RemoveTitleBar(); // タイトルバーを消す
+            TitleBarRow.AttachTo(this); // システムのタイトルバーを消し、自前のタイトルバーを使う
 
-            // 前回のウィンドウサイズ・位置を復元する。MainWindowと同じwindow_settings.jsonに
-            // 保存するが、キー(PreferenceWindowKey)を分けているので互いを上書きしない。
-            // 初回起動などまだ保存が無ければ、画面中央に表示する
-            var restored = this.RestoreWindowSize<Common.Models.WindowSize>(PreferenceWindowKey);
-            if (restored is null)
-            {
-                this.CenterOnScreen();
-            }
-
-            // DragHandleをドラッグすることでウィンドウの移動をさせる(MainWindowと同じ仕組み)
-            DragHandle.Loaded += OnDragHandleLoadedOrSizeChanged;
-            DragHandle.SizeChanged += OnDragHandleLoadedOrSizeChanged;
-            AppWindow.Changed += OnAppWindowChanged;
+            // サイズは固定(748x487 DIP。XAMLのWidth/Heightとサイズ変更不可の指定)。
+            // 位置は毎回、画面中央に表示する
+            this.CenterOnScreen();
 
             this.Closed += OnClosed;
 
@@ -84,6 +77,8 @@ namespace Preferences.Views
         private void LocalizeUi()
         {
             GeneralTabItem.Text = PreferencesStrings.Get("Pref_Tab_General");
+            AppearanceTabItem.Text = PreferencesStrings.Get("Pref_Tab_Appearance");
+            AppearanceSectionTitle.Text = PreferencesStrings.Get("Pref_Tab_Appearance");
             HistoryTabItem.Text = PreferencesStrings.Get("Pref_Tab_History");
             ShortcutsTabItem.Text = PreferencesStrings.Get("Pref_Tab_Shortcuts");
             ExcludedAppsTabItem.Text = PreferencesStrings.Get("Pref_Tab_ExcludedApps");
@@ -94,6 +89,10 @@ namespace Preferences.Views
             LaunchAtLoginCheckBox.Content = PreferencesStrings.Get("Pref_LaunchAtLogin");
             DisableCaretPositioningCheckBox.Content = PreferencesStrings.Get("Pref_DisableCaretPositioning");
             DisableWindowsClipboardHistoryCheckBox.Content = PreferencesStrings.Get("Pref_DisableWindowsClipboardHistory");
+            ClipboardHistoryRestartNoteText.Text = PreferencesStrings.Get("Pref_DisableWindowsClipboardHistory_Restart");
+            ContentsPopupCheckBox.Content = PreferencesStrings.Get("Pref_ContentsPopup");
+            CopyOnlyOnSelectCheckBox.Content = PreferencesStrings.Get("Pref_CopyOnlyOnSelect");
+            CopyOnlyOnSelectNoteText.Text = PreferencesStrings.Get("Pref_CopyOnlyOnSelect_Note");
 
             LanguageSectionTitle.Text = PreferencesStrings.Get("Pref_Language_Title");
             LanguageDescriptionText.Text = PreferencesStrings.Get("Pref_Language_Description");
@@ -176,38 +175,19 @@ namespace Preferences.Views
             }
         }
 
-        // MainWindowと同じwindow_settings.jsonを使うため、キーを分けて上書きし合わないようにする
-        private const string PreferenceWindowKey = "PreferenceWindow";
+        private Action<Common.Models.AppColorTheme>? _colorThemeChangedHandler;
 
         private void OnClosed(object sender, WindowEventArgs args)
         {
-            // 次回も同じ位置・サイズで開けるよう保存する
-            this.SaveWindowSize<Common.Models.WindowSize>(key: PreferenceWindowKey, savePosition: true);
+            if (_colorThemeChangedHandler is not null)
+            {
+                PreferencesGateway.ColorThemeChanged -= _colorThemeChangedHandler;
+                _colorThemeChangedHandler = null;
+            }
 
             // 参照が残ってGCされなくなるのを防ぐため、購読したイベントを全て外す
-            DragHandle.Loaded -= OnDragHandleLoadedOrSizeChanged;
-            DragHandle.SizeChanged -= OnDragHandleLoadedOrSizeChanged;
-            AppWindow.Changed -= OnAppWindowChanged;
             this.Activated -= OnWindowActivated;
             this.Closed -= OnClosed;
-        }
-
-        private void OnDragHandleLoadedOrSizeChanged(object sender, object e)
-        {
-            this.UpdateDragRegions(DragHandle);
-        }
-
-        private void OnAppWindowChanged(AppWindow sender, AppWindowChangedEventArgs args)
-        {
-            if (args.DidSizeChange)
-            {
-                this.UpdateDragRegions(DragHandle);
-            }
-        }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         /// <summary>
@@ -239,11 +219,12 @@ namespace Preferences.Views
             var index = sender.Items.IndexOf(sender.SelectedItem);
 
             SettingsPanel.Visibility = index == 0 ? Visibility.Visible : Visibility.Collapsed;
-            HistoryPanel.Visibility = index == 1 ? Visibility.Visible : Visibility.Collapsed;
-            ShortcutsPanel.Visibility = index == 2 ? Visibility.Visible : Visibility.Collapsed;
-            ExcludedAppsPanel.Visibility = index == 3 ? Visibility.Visible : Visibility.Collapsed;
-            SelectionToolbarPanel.Visibility = index == 4 ? Visibility.Visible : Visibility.Collapsed;
-            AboutPanel.Visibility = index == 5 ? Visibility.Visible : Visibility.Collapsed;
+            AppearancePanel.Visibility = index == 1 ? Visibility.Visible : Visibility.Collapsed;
+            HistoryPanel.Visibility = index == 2 ? Visibility.Visible : Visibility.Collapsed;
+            ShortcutsPanel.Visibility = index == 3 ? Visibility.Visible : Visibility.Collapsed;
+            ExcludedAppsPanel.Visibility = index == 4 ? Visibility.Visible : Visibility.Collapsed;
+            SelectionToolbarPanel.Visibility = index == 5 ? Visibility.Visible : Visibility.Collapsed;
+            AboutPanel.Visibility = index == 6 ? Visibility.Visible : Visibility.Collapsed;
         }
 
         // Enterキーでも追加ボタンと同じ動作にする

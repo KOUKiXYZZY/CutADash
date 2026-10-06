@@ -446,6 +446,84 @@ picker.SelectedDate = new DateTime(2025, 8, 1);   // 設定(日は1日に丸め�
             return panel;
         }
 
+        // ---- SlimTitleBar ----
+
+        private FrameworkElement BuildTitleBarPage()
+        {
+            var panel = CreatePage(
+                "SlimTitleBar",
+                "システムのタイトルバーを消したウィンドウ用の、細いタイトルバー。タイトル文字(アクセントカラー)・閉じるボタン・区切り線を持ち、"
+                + "タイトル文字の領域を掴んでウィンドウを移動できる。左右に好きな要素(タブ・ボタン)を置ける。",
+                "(1)「サンプルウィンドウを開く」で、タイトルバーの無いウィンドウが開く (2)タイトル文字の部分を掴んで動かせる "
+                + "(3)閉じるボタンにマウスを乗せると赤くなる (4)ウィンドウの大きさを変えても、掴める範囲がずれない");
+
+            var open = new Button { Content = "サンプルウィンドウを開く" };
+            open.Click += (_, _) =>
+            {
+                var bar = new SlimTitleBar { Title = "Sample window" };
+                bar.RightContent = new Button { Content = "Menu", Margin = new Thickness(0, 0, 4, 0) };
+
+                var grid = new Grid();
+                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                grid.RowDefinitions.Add(new RowDefinition());
+                grid.Children.Add(bar);
+                var body = new TextBlock { Text = "ここに本文", Margin = new Thickness(16) };
+                Grid.SetRow(body, 1);
+                grid.Children.Add(body);
+
+                var window = new Window { Content = grid, Title = "Sample window" };
+                bar.AttachTo(window);
+                window.AppWindow.Resize(new Windows.Graphics.SizeInt32(480, 300));
+                window.Activate();
+            };
+
+            panel.Children.Add(SectionTitle("SlimTitleBar"));
+            panel.Children.Add(Sample(open));
+
+            panel.Children.Add(CodeBlock("ソース(XAML)", """
+<Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <ui:SlimTitleBar x:Name="TitleBar"
+                     Title="シーケンシャルペースト"
+                     DividerBrush="{StaticResource DividerBrushHorizontal}"
+                     CloseRequested="TitleBar_CloseRequested" />
+
+    <Frame Grid.Row="1" />
+</Grid>
+
+<!-- 左右に要素を置く(左のタブは、掴んで動かせる領域には含まれない) -->
+<ui:SlimTitleBar>
+    <ui:SlimTitleBar.LeftContent>
+        <SelectorBar>...</SelectorBar>
+    </ui:SlimTitleBar.LeftContent>
+    <ui:SlimTitleBar.RightContent>
+        <Button Content="Menu" />
+    </ui:SlimTitleBar.RightContent>
+</ui:SlimTitleBar>
+"""));
+            panel.Children.Add(CodeBlock("ソース(C#)", """
+public MainWindow()
+{
+    InitializeComponent();
+    TitleBar.AttachTo(this);   // システムのタイトルバーを消し、ドラッグ領域を登録する
+}
+
+TitleBar.Title = "履歴";        // タイトル文字を変える
+
+// 閉じるボタン。購読しなければ、ウィンドウをそのまま閉じる
+private void TitleBar_CloseRequested(SlimTitleBar sender, EventArgs e) => Hide();
+
+// タイトルバーの配置(行・列)をコードで変えたら、ドラッグ領域を計算し直す
+Grid.SetColumn(TitleBar, 0);
+TitleBar.UpdateDragRegion();
+"""));
+            return panel;
+        }
+
         // ---- ShortcutKeyBox ----
 
         private FrameworkElement BuildShortcutPage()

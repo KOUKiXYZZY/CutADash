@@ -93,6 +93,7 @@
     <ProjectReference Include="..\SelectionToolbar\090_SelectionToolbar.csproj" />
     <ProjectReference Include="..\SequentialPaste\110_SequentialPaste.csproj" />
     <ProjectReference Include="..\UiLibrary\130_UiLibrary.csproj" />
+    <ProjectReference Include="..\Theming\140_Theming.csproj" />
     <ProjectReference Include="..\Repositories\030_Repositories.csproj" />
     <ProjectReference Include="..\Preferences\040_Preferences.csproj" />
     <ProjectReference Include="..\WinAPI\100_WinAPI.csproj" />

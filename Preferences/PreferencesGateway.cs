@@ -98,10 +98,26 @@ namespace Preferences
             return HistorySettingsStore.Load().DisableCaretPositioning;
         }
 
+        /// <summary>
+        /// 一覧の項目を選んだ(Enter/クリック)時、貼り付けずにクリップボードへ移すだけにするかどうか。
+        /// </summary>
+        public static bool IsCopyOnlyOnSelect()
+        {
+            return HistorySettingsStore.Load().CopyOnlyOnSelect;
+        }
+
+        /// <summary>コンパクト表示の時、マウスオーバーした項目の内容をポップアップで表示するかどうか。</summary>
+        public static bool IsContentsPopupEnabled()
+        {
+            return HistorySettingsStore.Load().ContentsPopupEnabled;
+        }
+
         /// <summary>Windows標準のクリップボード履歴(Win+Vパネル)が無効化されているかどうか。</summary>
         public static bool IsWindowsClipboardHistoryDisabled()
         {
-            return HistorySettingsStore.Load().DisableWindowsClipboardHistory;
+            // 設定ファイルの値ではなく、HKLMの実際の状態を見る(管理者権限の確認を
+            // キャンセルした場合や、他のツールで変更された場合にも実態と食い違わないようにする)
+            return Utils.ClipboardHistoryHelper.IsDisabled();
         }
 
         /// <summary>テキスト選択ツールバー(試験的機能)が有効かどうか。</summary>

@@ -15,6 +15,9 @@
   <data name="Pref_Tab_General" xml:space="preserve">
     <value>General</value>
   </data>
+  <data name="Pref_Tab_Appearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
   <data name="Pref_Tab_History" xml:space="preserve">
     <value>History</value>
   </data>
@@ -41,6 +44,18 @@
   </data>
   <data name="Pref_DisableWindowsClipboardHistory" xml:space="preserve">
     <value>Disable Windows Clipboard History (Win+V)</value>
+  </data>
+  <data name="Pref_DisableWindowsClipboardHistory_Restart" xml:space="preserve">
+    <value>A restart is required.</value>
+  </data>
+  <data name="Pref_CopyOnlyOnSelect" xml:space="preserve">
+    <value>Don't paste on selection</value>
+  </data>
+  <data name="Pref_CopyOnlyOnSelect_Note" xml:space="preserve">
+    <value>On click, the clipboard is updated without pasting.</value>
+  </data>
+  <data name="Pref_ContentsPopup" xml:space="preserve">
+    <value>In compact view, show the contents in a popup on mouse over</value>
   </data>
   <data name="Pref_Language_Title" xml:space="preserve">
     <value>Language</value>

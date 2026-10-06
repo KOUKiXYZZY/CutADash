@@ -147,7 +147,7 @@ namespace CutADash
         {
             base.OnLaunched(args);
 
-            singleApp = new SingleApp("CutADash");
+            singleApp = new SingleApp("com.github.KOUKiXYZZY.CutADash");
             if (!singleApp.IsCurrent)
             {
                 // 既に起動している別プロセスへ「前面に出して」を通知し、自分は何も

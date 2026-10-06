@@ -77,7 +77,7 @@ namespace CutADash.Views.ListFrame
         /// </summary>
         private void ApplyCatListStyle()
         {
-            var isCatTheme = PreferencesGateway.GetWindowBackdrop() == Common.Models.WindowBackdropKind.Cat;
+            var isCatTheme = Theming.CatTheme.IsActive(PreferencesGateway.GetWindowBackdrop());
             ListView.ItemTemplateSelector = (Microsoft.UI.Xaml.Controls.DataTemplateSelector)
                 Resources[isCatTheme ? "ClipboardTemplateSelectorCat" : "ClipboardTemplateSelector"];
         }
@@ -190,7 +190,7 @@ namespace CutADash.Views.ListFrame
             pasteItem.Click += async (_, _) =>
             {
                 SelectedItem = item;
-                await PasteSelectedAsync();
+                await PasteSelectedAsync(forcePaste: true);
             };
             flyout.Items.Add(pasteItem);
 

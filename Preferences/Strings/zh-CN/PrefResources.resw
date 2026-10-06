@@ -15,6 +15,9 @@
   <data name="Pref_Tab_General" xml:space="preserve">
     <value>常规</value>
   </data>
+  <data name="Pref_Tab_Appearance" xml:space="preserve">
+    <value>外观</value>
+  </data>
   <data name="Pref_Tab_History" xml:space="preserve">
     <value>历史记录</value>
   </data>
@@ -41,6 +44,18 @@
   </data>
   <data name="Pref_DisableWindowsClipboardHistory" xml:space="preserve">
     <value>禁用Windows剪贴板历史记录(Win+V)</value>
+  </data>
+  <data name="Pref_DisableWindowsClipboardHistory_Restart" xml:space="preserve">
+    <value>需要重新启动。</value>
+  </data>
+  <data name="Pref_CopyOnlyOnSelect" xml:space="preserve">
+    <value>选择时不粘贴</value>
+  </data>
+  <data name="Pref_CopyOnlyOnSelect_Note" xml:space="preserve">
+    <value>单击时不粘贴，仅更新剪贴板</value>
+  </data>
+  <data name="Pref_ContentsPopup" xml:space="preserve">
+    <value>紧凑显示时，鼠标悬停弹出显示内容</value>
   </data>
   <data name="Pref_Language_Title" xml:space="preserve">
     <value>语言</value>
