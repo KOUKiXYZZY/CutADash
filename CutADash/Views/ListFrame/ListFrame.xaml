@@ -28,15 +28,14 @@
         <!-- Text表示。リッチテキスト(Rtf/Html)を持っていても種別バッジは出さず、
              常にプレーンテキストとして表示する(Contents側の常時プレーンテキスト表示と統一) -->
         <DataTemplate x:Key="TextTemplate">
-            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
                 <TextBlock
                     Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
-                    FontSize="16"
-                    MaxLines="1"
+                    FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                     TextWrapping="NoWrap"
                     TextTrimming="CharacterEllipsis" />
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
@@ -44,45 +43,43 @@
         <!-- Image表示: 一覧ではサムネイルを描画せず、角丸のタグ風表示にする。
              種別バッジ(GIF/Shape/Image)に加え、名前(未設定なら「名称未設定」)を表示する -->
         <DataTemplate x:Key="ImageTemplate">
-            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
-                            CornerRadius="12"
-                            Padding="10,4"
+                            CornerRadius="{Binding Source={StaticResource ListAppearance}, Path=BadgeCornerRadius}"
+                            Padding="{Binding Source={StaticResource ListAppearance}, Path=BadgePadding}"
                             HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Spacing="6">
-                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                            <FontIcon Glyph="&#xEB9F;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Border>
                     <TextBlock Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
                 </StackPanel>
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
         </DataTemplate>
         <!-- Files表示 -->
         <DataTemplate x:Key="FilesTemplate">
-            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent" ContextFlyout="{StaticResource ItemContextMenu}">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <FontIcon Glyph="&#xE7C3;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=FileIconSize}" VerticalAlignment="Center"/>
                     <TextBlock
                         Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
-                        FontSize="16"
-                        MaxLines="1"
+                        FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                         TextWrapping="NoWrap"
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Center" />
                 </StackPanel>
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
@@ -101,7 +98,7 @@
              明暗共通の少し濃いめの黒系半透明色に固定している -->
         <SolidColorBrush x:Key="CatCardBackgroundBrush" Color="#40000000"/>
         <DataTemplate x:Key="TextTemplateCat">
-            <Border Margin="8,4,8,0" Padding="10,10"
+            <Border Margin="8,4,8,0" Padding="{Binding Source={StaticResource ListAppearance}, Path=CatCardPadding}"
                     CornerRadius="14"
                     Background="{StaticResource CatCardBackgroundBrush}"
                     ContextFlyout="{StaticResource ItemContextMenu}">
@@ -111,17 +108,16 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0"
-                            Width="28" Height="28"
+                            Width="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}" Height="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}"
                             CornerRadius="14"
                             Background="#FFCBA4"
                             VerticalAlignment="Center">
-                        <TextBlock Text="&#x1F43E;" FontSize="15"
+                        <TextBlock Text="&#x1F43E;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=CatGlyphMidSize}"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Grid.Column="1"
                                Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
@@ -129,7 +125,7 @@
             </Border>
         </DataTemplate>
         <DataTemplate x:Key="ImageTemplateCat">
-            <Border Margin="8,4,8,0" Padding="10,10"
+            <Border Margin="8,4,8,0" Padding="{Binding Source={StaticResource ListAppearance}, Path=CatCardPadding}"
                     CornerRadius="14"
                     Background="{StaticResource CatCardBackgroundBrush}"
                     ContextFlyout="{StaticResource ItemContextMenu}">
@@ -139,17 +135,16 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0"
-                            Width="28" Height="28"
+                            Width="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}" Height="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}"
                             CornerRadius="14"
                             Background="#A7D8C0"
                             VerticalAlignment="Center">
-                        <FontIcon Glyph="&#xEB9F;" FontSize="13"
+                        <FontIcon Glyph="&#xEB9F;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=CatGlyphSmallSize}"
                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Grid.Column="1"
                                Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
@@ -157,7 +152,7 @@
             </Border>
         </DataTemplate>
         <DataTemplate x:Key="FilesTemplateCat">
-            <Border Margin="8,4,8,0" Padding="10,10"
+            <Border Margin="8,4,8,0" Padding="{Binding Source={StaticResource ListAppearance}, Path=CatCardPadding}"
                     CornerRadius="14"
                     Background="{StaticResource CatCardBackgroundBrush}"
                     ContextFlyout="{StaticResource ItemContextMenu}">
@@ -167,17 +162,16 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="0"
-                            Width="28" Height="28"
+                            Width="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}" Height="{Binding Source={StaticResource ListAppearance}, Path=CatCircleSize}"
                             CornerRadius="14"
                             Background="#B7C9F2"
                             VerticalAlignment="Center">
-                        <FontIcon Glyph="&#xE7C3;" FontSize="13"
+                        <FontIcon Glyph="&#xE7C3;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=CatGlyphSmallSize}"
                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <TextBlock Grid.Column="1"
                                Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
@@ -234,6 +228,7 @@
                  BasedOnを付けないと選択時のアクセント表示等、既定テンプレート全体が失われるので注意 -->
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="MinHeight" Value="0"/>
                     <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
                     <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
                 </Style>

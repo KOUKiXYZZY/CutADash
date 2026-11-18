@@ -27,6 +27,8 @@ namespace CutADash.Views.ListFrame
     {
         public ListFrame()
         {
+            // 文字サイズ・行の余白はDataTemplateからListAppearanceリソースを参照するため、読み込み前に登録する
+            ListAppearance.EnsureResources();
             InitializeComponent();
 
             EmptyText.Text = AppStrings.Get("Empty_Text");
@@ -37,6 +39,8 @@ namespace CutADash.Views.ListFrame
             // ケースを拾うにはこのイベント購読が別途必要
             Preferences.PreferencesGateway.WindowBackdropChanged += OnWindowBackdropChanged;
             this.Unloaded += (_, _) => Preferences.PreferencesGateway.WindowBackdropChanged -= OnWindowBackdropChanged;
+
+            // 本文のFontSizeはXAMLでは固定せず、ここで設定値を反映する(理由はListAppearance.WithFontSize参照)
         }
 
         private void OnWindowBackdropChanged(Common.Models.WindowBackdropKind kind)

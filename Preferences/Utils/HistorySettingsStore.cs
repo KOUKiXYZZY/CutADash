@@ -173,6 +173,32 @@ namespace Preferences.Utils
             WindowBackdropChanged?.Invoke(backdrop);
         }
 
+        /// <summary>ListFontSizeが変更された時に発火する。</summary>
+        public static event Action<double>? ListFontSizeChanged;
+
+        /// <summary>履歴・お気に入り一覧の文字サイズ(px)を設定する。</summary>
+        public static void SetListFontSize(double size)
+        {
+            var settings = Load();
+            settings.ListFontSize = size;
+            Save(settings);
+
+            ListFontSizeChanged?.Invoke(size);
+        }
+
+        /// <summary>ListRowPaddingが変更された時に発火する。</summary>
+        public static event Action<double>? ListRowPaddingChanged;
+
+        /// <summary>履歴・お気に入り一覧の、各行の上下の余白(px)を設定する。</summary>
+        public static void SetListRowPadding(double padding)
+        {
+            var settings = Load();
+            settings.ListRowPadding = padding;
+            Save(settings);
+
+            ListRowPaddingChanged?.Invoke(padding);
+        }
+
         /// <summary>ColorThemeが変更された時に発火する。</summary>
         public static event Action<AppColorTheme>? ColorThemeChanged;
 

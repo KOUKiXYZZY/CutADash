@@ -87,6 +87,24 @@
   <data name="Pref_Backdrop_Description" xml:space="preserve">
     <value>メインウィンドウ(パレット)の背景素材を選べます。</value>
   </data>
+  <data name="Pref_Font_Title" xml:space="preserve">
+    <value>フォント</value>
+  </data>
+  <data name="Pref_Font_Description" xml:space="preserve">
+    <value>履歴・お気に入り一覧の文字の大きさを選べます。</value>
+  </data>
+  <data name="Pref_ListFontSize" xml:space="preserve">
+    <value>文字サイズ: {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding" xml:space="preserve">
+    <value>行の余白(縦幅): {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding_Note" xml:space="preserve">
+    <value>行の上下の余白です。すぐに一覧へ反映されます。</value>
+  </data>
+  <data name="Pref_ListAppearance_Reset" xml:space="preserve">
+    <value>文字サイズと余白を既定に戻す</value>
+  </data>
   <data name="Pref_History_Title" xml:space="preserve">
     <value>履歴</value>
   </data>

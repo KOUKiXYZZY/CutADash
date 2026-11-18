@@ -54,6 +54,18 @@ namespace Preferences.Models
         public WindowBackdropKind WindowBackdrop { get; set; } = WindowBackdropKind.Acrylic;
 
         /// <summary>
+        /// 履歴・お気に入り一覧の文字サイズ(px)。既定は従来の見た目と同じ16。
+        /// 設定画面のスライダーの範囲(10〜24)に収まらない値は読み出し側で丸める。
+        /// </summary>
+        public double ListFontSize { get; set; } = 16;
+
+        /// <summary>
+        /// 履歴・お気に入り一覧の、各行の上下の余白(px)。行の縦幅は「文字の高さ + 余白×2」で決まる。
+        /// 既定の9は、従来の行の高さ(約40px)に近い値。読み出し側で0〜20に丸める。
+        /// </summary>
+        public double ListRowPadding { get; set; } = 9;
+
+        /// <summary>
         /// アプリ全体の明/暗の表示テーマ。Defaultの時だけOSのテーマに合わせる
         /// (バックドロップの種類とは別の設定)。
         /// </summary>

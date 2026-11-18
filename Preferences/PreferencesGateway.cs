@@ -39,6 +39,8 @@ namespace Preferences
             HistorySettingsStore.SelectionToolbarEnabledChanged += v => SelectionToolbarEnabledChanged?.Invoke(v);
             HistorySettingsStore.AlwaysPastePlainTextChanged += v => AlwaysPastePlainTextChanged?.Invoke(v);
             HistorySettingsStore.WindowBackdropChanged += v => WindowBackdropChanged?.Invoke(v);
+            HistorySettingsStore.ListFontSizeChanged += v => ListFontSizeChanged?.Invoke(v);
+            HistorySettingsStore.ListRowPaddingChanged += v => ListRowPaddingChanged?.Invoke(v);
             HistorySettingsStore.ColorThemeChanged += v => ColorThemeChanged?.Invoke(v);
             HistorySettingsStore.SelectionToolbarAutoHideSecondsChanged += v => SelectionToolbarAutoHideSecondsChanged?.Invoke(v);
             HistorySettingsStore.ExcludedAppNamesChanged += v => ExcludedAppNamesChanged?.Invoke(v);
@@ -54,6 +56,8 @@ namespace Preferences
         public static event Action<bool>? SelectionToolbarEnabledChanged;
         public static event Action<bool>? AlwaysPastePlainTextChanged;
         public static event Action<WindowBackdropKind>? WindowBackdropChanged;
+        public static event Action<double>? ListFontSizeChanged;
+        public static event Action<double>? ListRowPaddingChanged;
         public static event Action<AppColorTheme>? ColorThemeChanged;
         public static event Action<double>? SelectionToolbarAutoHideSecondsChanged;
         public static event Action<List<string>>? ExcludedAppNamesChanged;
@@ -146,6 +150,30 @@ namespace Preferences
         public static WindowBackdropKind GetWindowBackdrop()
         {
             return HistorySettingsStore.Load().WindowBackdrop;
+        }
+
+        /// <summary>履歴・お気に入り一覧の文字サイズ(px)。10〜24の範囲に丸めて返す。</summary>
+        public static double GetListFontSize()
+        {
+            return Math.Clamp(HistorySettingsStore.Load().ListFontSize, 10, 24);
+        }
+
+        /// <summary>履歴・お気に入り一覧の文字サイズ(px)を設定する。</summary>
+        public static void SetListFontSize(double size)
+        {
+            HistorySettingsStore.SetListFontSize(size);
+        }
+
+        /// <summary>履歴・お気に入り一覧の、各行の上下の余白(px)。0〜20の範囲に丸めて返す。</summary>
+        public static double GetListRowPadding()
+        {
+            return Math.Clamp(HistorySettingsStore.Load().ListRowPadding, 0, 20);
+        }
+
+        /// <summary>履歴・お気に入り一覧の、各行の上下の余白(px)を設定する。</summary>
+        public static void SetListRowPadding(double padding)
+        {
+            HistorySettingsStore.SetListRowPadding(padding);
         }
 
         /// <summary>アプリ全体の明/暗の表示テーマ。</summary>

@@ -17,58 +17,55 @@
         <!-- 検索結果一覧(フラット、アイテムのみ)用。ListFrameと同じClipboardItem直接バインド。
              種別バッジは出さず、常にプレーンテキストとして表示する -->
         <DataTemplate x:Key="SearchTextTemplate">
-            <Grid Padding="8" Background="Transparent">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent">
                 <TextBlock
                     Text="{Binding Text, Converter={StaticResource TruncateTextConverter}}"
-                    FontSize="16"
-                    MaxLines="1"
+                    FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                     TextWrapping="NoWrap"
                     TextTrimming="CharacterEllipsis" />
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SearchImageTemplate">
-            <Grid Padding="8" Background="Transparent">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
-                            CornerRadius="12"
-                            Padding="10,4"
+                            CornerRadius="{Binding Source={StaticResource ListAppearance}, Path=BadgeCornerRadius}"
+                            Padding="{Binding Source={StaticResource ListAppearance}, Path=BadgePadding}"
                             HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Spacing="6">
-                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                            <FontIcon Glyph="&#xEB9F;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Converter={StaticResource ImageBadgeTextConverter}}" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Border>
                     <TextBlock Text="{Binding Name, Converter={StaticResource NameOrPlaceholderConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
                 </StackPanel>
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="SearchFilesTemplate">
-            <Grid Padding="8" Background="Transparent">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent">
                 <StackPanel Orientation="Horizontal" Spacing="8">
-                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <FontIcon Glyph="&#xE7C3;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=FileIconSize}" VerticalAlignment="Center"/>
                     <TextBlock
                         Text="{Binding Files, Converter={StaticResource FilesSummaryConverter}}"
-                        FontSize="16"
-                        MaxLines="1"
+                        FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                         TextWrapping="NoWrap"
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Center" />
                 </StackPanel>
                 <Border Height="1"
-                        Margin="-8,0,-8,-8"
+                        Margin="{Binding Source={StaticResource ListAppearance}, Path=DividerMargin}"
                         VerticalAlignment="Bottom"
                         Background="{StaticResource DividerBrushHorizontal}"/>
             </Grid>
@@ -130,14 +127,13 @@
              1つのDataTemplateの中でIsFolder/IsTextItem/IsImageItem/IsFilesItem(FavoriteNode側の
              bool計算プロパティ)に応じてVisibilityを切り替える方式にしている -->
         <DataTemplate x:Key="FavoriteNodeTemplate">
-            <Grid Padding="8" Background="Transparent" ContextFlyout="{StaticResource FolderContextMenu}">
+            <Grid Padding="{Binding Source={StaticResource ListAppearance}, Path=RowPadding}" Background="Transparent" ContextFlyout="{StaticResource FolderContextMenu}">
                 <!-- フォルダ -->
                 <StackPanel Orientation="Horizontal" Spacing="8"
                             Visibility="{Binding IsFolder, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <FontIcon Glyph="&#xE8B7;" FontSize="16" VerticalAlignment="Center"/>
+                    <FontIcon Glyph="&#xE8B7;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=FolderIconSize}" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Name}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
@@ -147,8 +143,7 @@
                 <Grid Visibility="{Binding IsTextItem, Converter={StaticResource BoolToVisibilityConverter}}">
                     <TextBlock
                         Text="{Binding Item.Text, Converter={StaticResource TruncateTextConverter}}"
-                        FontSize="16"
-                        MaxLines="1"
+                        FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                         TextWrapping="NoWrap"
                         TextTrimming="CharacterEllipsis" />
                 </Grid>
@@ -157,17 +152,16 @@
                 <StackPanel Orientation="Horizontal" Spacing="8"
                             Visibility="{Binding IsImageItem, Converter={StaticResource BoolToVisibilityConverter}}">
                     <Border Background="{ThemeResource ControlFillColorSecondaryBrush}"
-                            CornerRadius="12"
-                            Padding="10,4"
+                            CornerRadius="{Binding Source={StaticResource ListAppearance}, Path=BadgeCornerRadius}"
+                            Padding="{Binding Source={StaticResource ListAppearance}, Path=BadgePadding}"
                             HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" Spacing="6">
-                            <FontIcon Glyph="&#xEB9F;" FontSize="14" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Item, Converter={StaticResource ImageBadgeTextConverter}}" FontSize="14" VerticalAlignment="Center"/>
+                            <FontIcon Glyph="&#xEB9F;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Item, Converter={StaticResource ImageBadgeTextConverter}}" FontSize="{Binding Source={StaticResource ListAppearance}, Path=BadgeFontSize}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Border>
                     <TextBlock Text="{Binding Item.Name, Converter={StaticResource NameOrPlaceholderConverter}}"
-                               FontSize="16"
-                               MaxLines="1"
+                               FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                VerticalAlignment="Center"/>
@@ -176,11 +170,10 @@
                 <!-- ファイル -->
                 <StackPanel Orientation="Horizontal" Spacing="8"
                             Visibility="{Binding IsFilesItem, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <FontIcon Glyph="&#xE7C3;" FontSize="18" VerticalAlignment="Center"/>
+                    <FontIcon Glyph="&#xE7C3;" FontSize="{Binding Source={StaticResource ListAppearance}, Path=FileIconSize}" VerticalAlignment="Center"/>
                     <TextBlock
                         Text="{Binding Item.Files, Converter={StaticResource FilesSummaryConverter}}"
-                        FontSize="16"
-                        MaxLines="1"
+                        FontSize="{Binding Source={StaticResource ListAppearance}, Path=FontSize}" MaxLines="1"
                         TextWrapping="NoWrap"
                         TextTrimming="CharacterEllipsis"
                         VerticalAlignment="Center" />
@@ -228,6 +221,12 @@
                      左端の余白として持つ。既定値は正の余白のため、ここを負にしてシェブロンごと
                      行全体を左端へ寄せる -->
                 <Thickness x:Key="TreeViewItemMultiSelectSelectedItemBorderMargin">-14,0,0,0</Thickness>
+                <!-- 既定テンプレートのContentPresenterGridは、Margin=4,2 / Padding=0,3,0,5 の
+                     固定の上下余白(合計12px)を持つ。これが残ると設定の「行の余白」を0にしても
+                     詰まらないため、上下を0にして、余白は一覧のテンプレート側(ListAppearance)
+                     だけで決まるようにする -->
+                <Thickness x:Key="TreeViewItemPresenterMargin">4,0</Thickness>
+                <Thickness x:Key="TreeViewItemPresenterPadding">0</Thickness>
             </TreeView.Resources>
             <!-- RootNodesをコードビハインドでTreeViewNodeへ手動変換する方式は実機で
                  正しく描画されなかったため、ItemsSourceへ直接FavoriteNodeのコレクションを
@@ -246,6 +245,7 @@
             </TreeView.ItemTemplate>
             <TreeView.ItemContainerStyle>
                 <Style TargetType="TreeViewItem">
+                    <Setter Property="MinHeight" Value="0"/>
                     <!-- 既定テンプレートは展開シェブロン自体にPadding="14,0"を持ち、
                          その右にContentPresenter(Margin=このPadding)が続く構造になっている。
                          シェブロンとフォルダ/アイテムの間隔を詰めるため、Paddingを負にして
@@ -288,6 +288,7 @@
                  BasedOnを付けないと選択時のアクセント表示等、既定テンプレート全体が失われるので注意 -->
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem" BasedOn="{StaticResource DefaultListViewItemStyle}">
+                    <Setter Property="MinHeight" Value="0"/>
                     <Setter Property="FocusVisualPrimaryThickness" Value="{StaticResource AppFocusVisualPrimaryThickness}"/>
                     <Setter Property="FocusVisualSecondaryThickness" Value="{StaticResource AppFocusVisualSecondaryThickness}"/>
                 </Style>

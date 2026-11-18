@@ -44,16 +44,6 @@
 	  <AllowedReferenceRelatedFileExtensions>.dll</AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Services - コピー\**" />
-    <Compile Remove="Views\Favorite\**" />
-    <EmbeddedResource Remove="Services - コピー\**" />
-    <EmbeddedResource Remove="Views\Favorite\**" />
-    <None Remove="Services - コピー\**" />
-    <None Remove="Views\Favorite\**" />
-    <Page Remove="Services - コピー\**" />
-    <Page Remove="Views\Favorite\**" />
-  </ItemGroup>
-  <ItemGroup>
 	  <Content Remove="Assets\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -180,21 +170,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DevDebug|ARM64'">
     <DefineConstants>$(DefineConstants);DEVDEBUG</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.runtime\1.8.260416003\buildTransitive\..\include\WindowsAppSDK-VersionInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="C:\Users\kouki\.nuget\packages\microsoft.windowsappsdk.foundation\1.8.260415000\buildTransitive\..\include\MddBootstrapAutoInitializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Remove="Services - コピー\**" />
-  </ItemGroup>
 
   <!-- Preferencesプロジェクト配下のPrefResources.resw(実体はPreferences/Strings/にある)を、
        CutADash本体のresources.priにリンクとして取り込む。ファイル自体は移動せず、
@@ -222,7 +197,4 @@
     </ItemGroup>
     <Delete Files="@(_PublishPdb)" Condition="'@(_PublishPdb)' != ''" />
   </Target>
-  <ItemGroup>
-    <PRIResource Remove="Views\Favorite\**" />
-  </ItemGroup>
 </Project>

@@ -96,7 +96,7 @@ namespace CutADash.Services
 
             // フォーカスを奪わずに表示する。Explorerのファイル名変更中でも
             // 名前変更が確定されず、そのままペーストできるようにするため。
-            // ペースト先の記憶(RememberPasteTarget)はMainWindow.Activate()が自動的に行う
+            // ペースト先の記憶(PasteTargetTracker.Remember)はMainWindow.Activate()が自動的に行う
             mainWindow.ShowActivate();
 
             // 履歴をショートカットキーで開いた場合、直前にコピーした項目(先頭)ではなく

@@ -369,3 +369,6 @@ window_settings.json
 
 # ビルド成果物のzip(誤ってアップロードしないよう明示的に除外)
 *.zip
+
+# Claude Code のローカル設定(個人用)
+.claude/settings.local.json

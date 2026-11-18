@@ -30,6 +30,53 @@ namespace CutADash.Views.TaskTray
         {
             _viewModel = new TaskTrayViewModel(provider);
 
+            // アイコンを作り直しても購読が重複しないよう、アイコン自体ではなく
+            // システムの変更通知はここで一度だけ登録する
+
+            // ColorValuesChangedはバックグラウンドスレッドから飛んでくるため、
+            // アイコン差し替え(内部でHICONを作り直す)はUIスレッドへ戻してから行う
+            _uiSettings.ColorValuesChanged += (s, e) =>
+                _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
+
+            // 表示スケール(DPI)の変更(モニタ間の移動・設定画面での変更)に追従する。
+            // WinUIExのTrayIcon.SetIcon(string)は呼び出し時点のDPIでHICONのサイズを
+            // 決めるため、初回作成時のDPIのまま放置すると、後からスケールが変わっても
+            // 古いサイズのアイコンのままになり、特に100%のような小さいサイズ側で
+            // 潰れて見えることがあった(実際に踏んだ不具合)。SystemEvents.
+            // DisplaySettingsChangedは解像度変更等でも飛んでくるが、再生成のコストは
+            // 軽いため区別せずまとめて呼び直す。バックグラウンドスレッドから飛んでくるため
+            // ColorValuesChangedと同じくUIスレッドへ戻す
+            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += (s, e) =>
+                _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
+
+            CreateTrayIcon();
+        }
+
+        /// <summary>
+        /// Explorerの再起動(クラッシュ・再起動、タスクバーの作り直し)に対応して、
+        /// タスクトレイのアイコンを作り直す。Explorerが再起動すると、通知領域に登録済みの
+        /// アイコンは全て消える。OSはその時にTaskbarCreatedメッセージを全トップレベル
+        /// ウィンドウへ送るので、受け取った側で登録し直す必要がある
+        /// (WinUIExのTrayIconはこのメッセージを処理しない)。
+        /// 呼び出し元はウィンドウプロシージャ内のため、UIスレッドのキューへ積んで後で行う。
+        /// </summary>
+        public void OnTaskbarCreated()
+        {
+            _dispatcherQueue.TryEnqueue(RecreateTrayIcon);
+        }
+
+        private void RecreateTrayIcon()
+        {
+            // 古いアイコンはExplorerごと消えているため、削除の失敗は無視してよい
+            try
+            {
+                Dispose();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[TaskTray] 旧アイコンの破棄に失敗: {ex}");
+            }
+
             CreateTrayIcon();
         }
 
@@ -47,22 +94,6 @@ namespace CutADash.Views.TaskTray
         {
             _icon = new TrayIcon(1, "Assets/AppIcon.ico", AppStrings.Get("TrayIcon_Tooltip")) { IsVisible = true };
             UpdateTrayIconForTheme();
-
-            // ColorValuesChangedはバックグラウンドスレッドから飛んでくるため、
-            // アイコン差し替え(内部でHICONを作り直す)はUIスレッドへ戻してから行う
-            _uiSettings.ColorValuesChanged += (s, e) =>
-                _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
-
-            // 表示スケール(DPI)の変更(モニタ間の移動・設定画面での変更)に追従する。
-            // WinUIExのTrayIcon.SetIcon(string)は呼び出し時点のDPIでHICONのサイズを
-            // 決めるため、初回作成時のDPIのまま放置すると、後からスケールが変わっても
-            // 古いサイズのアイコンのままになり、特に100%のような小さいサイズ側で
-            // 潰れて見えることがあった(実際に踏んだ不具合)。SystemEvents.
-            // DisplaySettingsChangedは解像度変更等でも飛んでくるが、再生成のコストは
-            // 軽いため区別せずまとめて呼び直す。バックグラウンドスレッドから飛んでくるため
-            // ColorValuesChangedと同じくUIスレッドへ戻す
-            Microsoft.Win32.SystemEvents.DisplaySettingsChanged += (s, e) =>
-                _dispatcherQueue.TryEnqueue(UpdateTrayIconForTheme);
 
             _icon.Selected += (s, e) => _viewModel.OpenCommand.Execute(null);
             _icon.ContextMenu += (w, e) => e.Flyout = BuildContextMenu();

@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Width="748"
-    Height="487"
+    Height="680"
     IsResizable="False"
     IsMaximizable="False"
     Title="Settings">
@@ -45,7 +45,9 @@
             </ui:SlimTitleBar.LeftContent>
         </ui:SlimTitleBar>
 
-        <Grid Grid.Row="1" Background="Transparent">
+        
+        <Grid x:Name="ContentArea" Grid.Row="1" Background="Transparent">
+            <!-- 設定-->
             <StackPanel x:Name="SettingsPanel" Padding="12" Spacing="16">
                 <TextBlock x:Name="GeneralSectionTitle" FontSize="18" FontWeight="Bold"/>
 
@@ -93,6 +95,7 @@
                 </ComboBox>
             </StackPanel>
 
+            <!-- アピアランス -->
             <StackPanel x:Name="AppearancePanel" Padding="12" Spacing="16" Visibility="Collapsed">
                 <TextBlock x:Name="AppearanceSectionTitle" FontSize="18" FontWeight="Bold"/>
 
@@ -130,8 +133,46 @@
                     <ComboBoxItem Content="Blur" Tag="Blur"/>
                     <ComboBoxItem Content="&#x1F431; Cat and Dash!?" Tag="Cat"/>
                 </ComboBox>
+
+                <TextBlock x:Name="FontSectionTitle" FontSize="18" FontWeight="Bold"/>
+                <TextBlock x:Name="FontDescriptionText"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           FontSize="12"/>
+
+                <StackPanel Spacing="4">
+                    <TextBlock x:Name="ListFontSizeLabel"
+                               Text="{x:Bind ViewModel.ListFontSizeLabel, Mode=OneWay}"/>
+                    <Slider x:Name="ListFontSizeSlider"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            Minimum="10"
+                            Maximum="24"
+                            StepFrequency="1"
+                            Value="{x:Bind ViewModel.ListFontSize, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock x:Name="ListRowPaddingLabel"
+                               Text="{x:Bind ViewModel.ListRowPaddingLabel, Mode=OneWay}"/>
+                    <Slider x:Name="ListRowPaddingSlider"
+                            Width="240"
+                            HorizontalAlignment="Left"
+                            Minimum="0"
+                            Maximum="20"
+                            StepFrequency="1"
+                            Value="{x:Bind ViewModel.ListRowPadding, Mode=TwoWay}"/>
+                    <TextBlock x:Name="ListRowPaddingNoteText"
+                               TextWrapping="Wrap"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               FontSize="12"/>
+                </StackPanel>
+
+                <Button x:Name="ListAppearanceResetButton"
+                        Command="{x:Bind ViewModel.ResetListAppearanceCommand}"/>
             </StackPanel>
 
+            <!-- 履歴 -->
             <StackPanel x:Name="HistoryPanel" Padding="12" Spacing="16" Visibility="Collapsed">
                 <TextBlock x:Name="HistorySectionTitle" FontSize="18" FontWeight="Bold"/>
 
@@ -170,6 +211,7 @@
                 </StackPanel>
             </StackPanel>
 
+            <!-- ショートカット -->
             <StackPanel x:Name="ShortcutsPanel" Padding="12" Spacing="16" Visibility="Collapsed">
                 <TextBlock x:Name="ShortcutsSectionTitle" FontSize="18" FontWeight="Bold"/>
 
@@ -217,6 +259,7 @@
                            FontSize="12"/>
             </StackPanel>
 
+            <!-- 除外アプリ -->
             <Grid x:Name="ExcludedAppsPanel" Padding="12" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -266,6 +309,7 @@
                 </ListView>
             </Grid>
 
+            <!-- 選択ツールバー-->
             <StackPanel x:Name="SelectionToolbarPanel" Padding="12" Spacing="16" Visibility="Collapsed">
                 <TextBlock x:Name="SelectionToolbarSectionTitle" FontSize="18" FontWeight="Bold"/>
                 <TextBlock x:Name="SelectionToolbarDescriptionText"
@@ -305,6 +349,7 @@
                 </StackPanel>
             </StackPanel>
 
+            <!-- アバウト -->
             <Grid x:Name="AboutPanel" Padding="24" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

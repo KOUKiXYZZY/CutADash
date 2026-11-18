@@ -28,7 +28,7 @@ namespace SequentialPaste
     /// WS_EX_NOACTIVATE(SelectionToolbar/MainWindowと同じ仕組み)を付けているため、
     /// このウィンドウをクリックしてもフォアグラウンドは変わらない。そのため貼り付け時の
     /// GetForegroundWindow()が、常に実際にペーストしたい相手のウィンドウになる
-    /// (MainWindowのPreviousForegroundWindowのような記憶が不要)。
+    /// (MainWindow.PasteTargetのような記憶が不要)。
     /// </summary>
     public sealed partial class SequentialPasteWindow : WindowEx
     {

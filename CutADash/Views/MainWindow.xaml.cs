@@ -61,17 +61,9 @@ namespace CutADash.Views
         // 複数箇所で共有したいサービスをここから解決する。
         public ServiceProvider? Provider { get; set; }
 
-        // このウィンドウをアクティブ化する直前にフォアグラウンドだったウィンドウ。
-        // History一覧でEnterを押したときのペースト先として使う(App.xaml.cs側でセットする)。
-        public IntPtr PreviousForegroundWindow { get; set; }
-
-        /// <summary>
-        /// PreviousForegroundWindow内で実際にキーボードフォーカスを持っていた子コントロール
-        /// (MDI/タブ構成のアプリではフレームウィンドウ自体とは別)。サクラエディタ等、
-        /// フレームをフォアグラウンド化しただけでは編集領域にフォーカスが戻らないアプリのために、
-        /// ペースト時に明示的にSetFocusし直す(Dittoのm_focusWndと同じ発想)
-        /// </summary>
-        public IntPtr PreviousFocusWindow { get; set; }
+        // History一覧でEnterを押したときのペースト先(直前にフォアグラウンドだった外部アプリ)と
+        // ペースト実行中の状態。Activate()が自動的に記憶する
+        public Utils.PasteTargetTracker PasteTarget { get; } = new();
 
         // ContentFrame表示中の最小幅(DIP)。これを下回ったらListFrame+NavigationViewのみの
         // コンパクトレイアウトに切り替える
@@ -310,18 +302,6 @@ namespace CutADash.Views
             Utils.GarbageCollectionHelper.OnWindowHidden();
         }
 
-        // 他アプリがフォアグラウンドになったらパレットを閉じる。
-        // パレットを出した時点の相手(ペースト先)は前面のままなので、そのままなら閉じない。
-        // 自分自身(検索モードでフォーカスを取った場合)も対象外
-        /// <summary>
-        /// ペースト実行中(ForegroundPasteHelper.PasteToPreviousWindowAsync)はtrue。
-        /// サクラエディタ等のMDIアプリでは、フォアグラウンド復帰時に想定先とは別の
-        /// ウィンドウハンドルでEVENT_SYSTEM_FOREGROUNDが発火することがあり、
-        /// OnForegroundChangedが誤ってHidePalette()を呼んでCtrl+V送信を
-        /// 中断させてしまう。ペースト中はこの監視を無視する
-        /// </summary>
-        public bool IsPasting { get; set; }
-
         /// <summary>
         /// アクティブ化する直前のフォアグラウンドウィンドウを、ペースト先として自動的に
         /// 記憶してからアクティブ化する。以前はこれをApp.xaml.cs側のActivateMainWindow
@@ -337,39 +317,8 @@ namespace CutADash.Views
         /// </summary>
         public new void Activate()
         {
-            RememberPasteTarget(WinAPI.WinUser.GetForegroundWindow());
+            PasteTarget.Remember(WinAPI.WinUser.GetForegroundWindow());
             base.Activate();
-        }
-
-        /// <summary>
-        /// アクティブ化する時点のフォアグラウンドウィンドウを、ペースト先として記憶する。
-        ///
-        /// 自分自身のウィンドウは記憶しない。ホットキー連打やタブ切り替えでの再呼び出し時は
-        /// フォアグラウンドが既にMainWindow自身になっていることがあり、それを記憶すると
-        /// 貼り付け先が自分自身になってEnterを押しても何も起きなくなるため。
-        ///
-        /// 以前はこれを「非表示→表示の遷移の時だけ記憶する」という表示状態での判定で
-        /// 回避していたが、表示済みの状態から呼ばれ続けると一度も記憶されないまま
-        /// PreviousForegroundWindowがIntPtr.Zeroで固定され、クリップボードへの書き戻しは
-        /// 成功するのにキー送信が一切行われない(=コピーはされるが貼り付かない)状態に
-        /// 陥っていた。表示状態ではなく「自分のプロセスのウィンドウか」で判定することで、
-        /// 自己記憶を防ぎつつ、外部アプリが前面にいる限り常に最新の相手を記憶できる
-        /// (Dittoも同様に、自分のウィンドウがフォアグラウンドの間は追跡を更新しない)
-        /// </summary>
-        private void RememberPasteTarget(IntPtr foregroundWindow)
-        {
-            if (foregroundWindow == IntPtr.Zero || IsOwnWindow(foregroundWindow))
-                return;
-
-            PreviousForegroundWindow = foregroundWindow;
-            PreviousFocusWindow = ForegroundPaster.GetFocusedChildWindow(foregroundWindow);
-        }
-
-        /// <summary>指定したウィンドウが自分のプロセスのものかどうか。</summary>
-        private static bool IsOwnWindow(IntPtr hWnd)
-        {
-            WinAPI.WinUser.GetWindowThreadProcessId(hWnd, out var processId);
-            return processId == (uint)Environment.ProcessId;
         }
 
         /// <summary>タブ切り替えをキャンセルして戻す際に、Tag文字列から元のNavigationViewItemを探す。</summary>

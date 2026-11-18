@@ -41,7 +41,9 @@ namespace CutADash
         // 試験的機能。既定は無効(オプトイン)で、PreferenceWindowのチェックボックスから
         // ON/OFFできる。プロセス生存中、有効な間だけマウスフックとUI Automationで
         // テキスト選択を監視する
-        private readonly SelectionToolbar.SelectionToolbarService _selectionToolbarService = new();
+        // 設定が無効の間は生成しない(SelectionToolbar.dllも読み込まれないままにする)。
+        // この型に触れるコードは、JIT時に読み込みが起きないようStart/StopSelectionToolbarへ隔離してある
+        private SelectionToolbar.SelectionToolbarService? _selectionToolbarService;
 
         public ServiceProvider? provider {  get; private set; }
 
@@ -199,15 +201,15 @@ namespace CutADash
             {
                 // TODO: ショートカット表示直後に一瞬だけ消える不具合の調査用の一時ログ。
                 // 原因が分かったら上のMainWindow側のログと合わせて削除する
-                System.Diagnostics.Debug.WriteLine($"[App] WM_ACTIVATEAPP wParam={wParam} IsPasting={window.IsPasting}");
+                System.Diagnostics.Debug.WriteLine($"[App] WM_ACTIVATEAPP wParam={wParam} IsPasting={window.PasteTarget.IsPasting}");
 #if !DEVDEBUG
                 // wParamが0なら、他アプリのウィンドウがアクティブになった(こちらは非アクティブ)
-                if (wParam == IntPtr.Zero && !window.IsPasting)
+                if (wParam == IntPtr.Zero && !window.PasteTarget.IsPasting)
                 {
                     // ペースト中は閉じない。ペーストは貼り付け先アプリへ意図的に
                     // フォアグラウンドを渡すため、ここが必ず発火する。その最中に
                     // Hide()するとフォアグラウンドの受け渡しをかき乱し、Ctrl+Vが
-                    // 貼り付け先へ届かなくなる(MainWindow.IsPastingのコメント参照)。
+                    // 貼り付け先へ届かなくなる(PasteTargetTracker.IsPastingのコメント参照)。
                     // ペースト後の後始末はForegroundPasteHelperが自分でHidePaletteを呼ぶ
                     window.HidePalette();
                 }
@@ -324,7 +326,15 @@ namespace CutADash
                 provider.GetRequiredService<ClipboardListViewModel>().Enqueue(clipboardItem);
             });
 
-            _ = new Views.TaskTray.TaskTray(provider);
+            var taskTray = new Views.TaskTray.TaskTray(provider);
+
+            // Explorerが再起動するとトレイのアイコンが全て消えるため、OSが送ってくる
+            // TaskbarCreatedを受け取って登録し直す。他のハンドラも動かすため握りつぶさない
+            windowMessageDispatcher.AddHandler((int)RegisterWindowMessage("TaskbarCreated"), (wParam, lParam) =>
+            {
+                taskTray.OnTaskbarCreated();
+                return false;
+            });
 
 #if DEBUG || DEVDEBUG
             // 動作確認用: 環境変数CUTADASH_OPEN_UI_GALLERY=1で起動すると、UIライブラリのギャラリー画面を
@@ -351,7 +361,7 @@ namespace CutADash
 
                 // SelectionToolbarはグローバルなフックを張ったままになるため、
                 // 明示的に止めないとアプリ終了後もプロセスが残ってしまう
-                _selectionToolbarService.Stop();
+                StopSelectionToolbar();
             };
 
 #if DEVDEBUG
@@ -364,15 +374,31 @@ namespace CutADash
         private void InitializeSelectionToolbar()
         {
             if (Preferences.PreferencesGateway.IsSelectionToolbarEnabled())
-                _selectionToolbarService.Start();
+                StartSelectionToolbar();
 
             PreferencesGateway.SelectionToolbarEnabledChanged += enabled =>
             {
                 if (enabled)
-                    _selectionToolbarService.Start();
+                    StartSelectionToolbar();
                 else
-                    _selectionToolbarService.Stop();
+                    StopSelectionToolbar();
             };
+        }
+
+        // NoInliningを付けないと、呼び出し元にインライン展開されて、呼び出し元のJIT時に
+        // SelectionToolbarのアセンブリが読み込まれてしまう
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private void StartSelectionToolbar()
+        {
+            _selectionToolbarService ??= new SelectionToolbar.SelectionToolbarService();
+            _selectionToolbarService.Start();
+        }
+
+        // 一度も有効にしていなければ何もしない(_selectionToolbarServiceがnullのまま)
+        [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+        private void StopSelectionToolbar()
+        {
+            _selectionToolbarService?.Stop();
         }
 
         // 全プロセスで同じ番号になる(RegisterWindowMessageがOSに問い合わせて発行する)

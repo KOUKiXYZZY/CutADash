@@ -44,6 +44,14 @@ namespace Preferences.ViewModels
         // メンバー名の文字列("Mica"/"Acrylic"/"Blur"/"Cat")として保持する
         [ObservableProperty] private string selectedBackdropTag = nameof(WindowBackdropKind.Acrylic);
 
+        // 履歴・お気に入り一覧の文字サイズ(px)。ラベルはスライダー値の表示用
+        [ObservableProperty] private double listFontSize = 16;
+        [ObservableProperty] private string listFontSizeLabel = string.Empty;
+
+        // 履歴・お気に入り一覧の行の上下の余白(px)。設定画面で変えるとすぐ一覧へ反映される(ListAppearance経由)
+        [ObservableProperty] private double listRowPadding = 9;
+        [ObservableProperty] private string listRowPaddingLabel = string.Empty;
+
         // ComboBoxのSelectedValuePath="Tag"に合わせ、AppColorThemeのメンバー名の文字列
         // ("Light"/"Dark")として保持する
         [ObservableProperty] private string selectedColorThemeTag = nameof(AppColorTheme.Default);
@@ -104,6 +112,10 @@ namespace Preferences.ViewModels
             SelectedToolbarPlacementTag = PreferencesGateway.GetSelectionToolbarPlacement().ToString();
             SelectedBackdropTag = PreferencesGateway.GetWindowBackdrop().ToString();
             SelectedColorThemeTag = PreferencesGateway.GetColorTheme().ToString();
+            ListFontSize = PreferencesGateway.GetListFontSize();
+            UpdateListFontSizeLabel();
+            ListRowPadding = PreferencesGateway.GetListRowPadding();
+            UpdateListRowPaddingLabel();
             var savedLanguage = PreferencesGateway.GetLanguage();
             SelectedLanguageTag = savedLanguage.Length == 0 ? SystemLanguageTag : savedLanguage;
 
@@ -188,6 +200,55 @@ namespace Preferences.ViewModels
 
             if (Enum.TryParse<WindowBackdropKind>(value, out var backdrop))
                 HistorySettingsStore.SetWindowBackdrop(backdrop);
+        }
+
+        // 一覧の文字サイズを保存する。ListFontSizeChangedで一覧側へ通知される
+        partial void OnListFontSizeChanged(double value)
+        {
+            UpdateListFontSizeLabel();
+
+            if (_isLoadingPreferences || double.IsNaN(value))
+                return;
+
+            HistorySettingsStore.SetListFontSize(value);
+        }
+
+        // 行の余白を保存する。ListFrame側はListAppearance経由で即座に反映される
+        partial void OnListRowPaddingChanged(double value)
+        {
+            UpdateListRowPaddingLabel();
+
+            if (_isLoadingPreferences || double.IsNaN(value))
+                return;
+
+            HistorySettingsStore.SetListRowPadding(value);
+        }
+
+        // 一覧の文字サイズ・行の余白の既定値(HistorySettingsの既定値と揃えること)
+        private const double DefaultListFontSize = 16;
+        private const double DefaultListRowPadding = 9;
+
+        /// <summary>一覧の文字サイズと行の余白を、既定値に戻す。</summary>
+        [RelayCommand]
+        private void ResetListAppearance()
+        {
+            ListFontSize = DefaultListFontSize;
+            ListRowPadding = DefaultListRowPadding;
+        }
+
+
+        private void UpdateListRowPaddingLabel()
+        {
+            ListRowPaddingLabel = string.Format(
+                PreferencesStrings.Get("Pref_ListRowPadding"),
+                (int)ListRowPadding);
+        }
+
+        private void UpdateListFontSizeLabel()
+        {
+            ListFontSizeLabel = string.Format(
+                PreferencesStrings.Get("Pref_ListFontSize"),
+                (int)ListFontSize);
         }
 
         // 次にツールバーが表示される時から反映される(表示のたびに設定を読み直す)

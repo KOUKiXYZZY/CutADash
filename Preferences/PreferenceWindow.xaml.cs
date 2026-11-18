@@ -10,7 +10,11 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Windowing;
+using Microsoft.UI.Dispatching;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Windows.Foundation;
+using Windows.Graphics;
 using Windows.System;
 using WinRT.Interop;
 using WinUIEx;
@@ -49,11 +53,14 @@ namespace Preferences.Views
             this.EnableAcrylicBackdrop(); // アクリル素材を有効化
             TitleBarRow.AttachTo(this); // システムのタイトルバーを消し、自前のタイトルバーを使う
 
-            // サイズは固定(748x487 DIP。XAMLのWidth/Heightとサイズ変更不可の指定)。
+            // 幅は固定(748 DIP)、高さは表示中のタブに合わせて変わる(FitToPanel)。XAMLのHeightは起動直後の仮の値。
             // 位置は毎回、画面中央に表示する
             this.CenterOnScreen();
 
             this.Closed += OnClosed;
+
+            // 起動時は、最初のタブの内容に合わせた高さへアニメーションなしで合わせる
+            RootGrid.Loaded += (_, _) => FitToPanel(SettingsPanel, animate: false);
 
             // 生成コード(PreferenceWindow.g.cs)を確認したところ、x:Bindはウィンドウの
             // Activatedイベントのたびに Initialize()→Update_ViewModel_SelectedLanguageTag
@@ -106,6 +113,11 @@ namespace Preferences.Views
 
             BackdropSectionTitle.Text = PreferencesStrings.Get("Pref_Backdrop_Title");
             BackdropDescriptionText.Text = PreferencesStrings.Get("Pref_Backdrop_Description");
+
+            FontSectionTitle.Text = PreferencesStrings.Get("Pref_Font_Title");
+            FontDescriptionText.Text = PreferencesStrings.Get("Pref_Font_Description");
+            ListRowPaddingNoteText.Text = PreferencesStrings.Get("Pref_ListRowPadding_Note");
+            ListAppearanceResetButton.Content = PreferencesStrings.Get("Pref_ListAppearance_Reset");
 
             HistorySectionTitle.Text = PreferencesStrings.Get("Pref_History_Title");
             MaxHistoryCountLabel.Text = PreferencesStrings.Get("Pref_MaxHistoryCount");
@@ -179,6 +191,8 @@ namespace Preferences.Views
 
         private void OnClosed(object sender, WindowEventArgs args)
         {
+            _resizeTimer?.Stop();
+
             if (_colorThemeChangedHandler is not null)
             {
                 PreferencesGateway.ColorThemeChanged -= _colorThemeChangedHandler;
@@ -225,6 +239,121 @@ namespace Preferences.Views
             ExcludedAppsPanel.Visibility = index == 4 ? Visibility.Visible : Visibility.Collapsed;
             SelectionToolbarPanel.Visibility = index == 5 ? Visibility.Visible : Visibility.Collapsed;
             AboutPanel.Visibility = index == 6 ? Visibility.Visible : Visibility.Collapsed;
+
+            // 起動時の初期選択(IsSelected="True")でも呼ばれるが、レイアウト前は何もしない
+            // (起動時のサイズ合わせはRootGrid.Loadedで行う)
+            if (RootGrid.IsLoaded && index >= 0)
+                FitToPanel(SectionPanels[index], animate: true);
+        }
+
+        // 表示中のタブに合わせたウィンドウの高さ(DIP)の範囲。上限は従来の固定サイズ
+        private const double MinWindowHeightDip = 400;
+        private const double MaxWindowHeightDip = 680;
+        private const double ResizeDurationMs = 220;
+        private const double FadeDurationMs = 150;
+
+        private FrameworkElement[] SectionPanels => new FrameworkElement[]
+        {
+            SettingsPanel, AppearancePanel, HistoryPanel, ShortcutsPanel,
+            ExcludedAppsPanel, SelectionToolbarPanel, AboutPanel
+        };
+
+        private Microsoft.UI.Dispatching.DispatcherQueueTimer? _resizeTimer;
+        private readonly Stopwatch _resizeStopwatch = new();
+        private FrameworkElement? _fadingPanel;
+        private double _chromePx = double.NaN; // ウィンドウ外枠の高さ - RootGridの高さ(物理px)
+        private double _currentHeightPx;
+        private double _fromHeightPx;
+        private double _toHeightPx;
+
+        /// <summary>
+        /// 表示するパネルの内容の高さに合わせて、ウィンドウの高さを変える。
+        /// ウィンドウの上端は固定し、下方向にだけ伸縮する(画面の作業領域からはみ出す場合だけ上へ寄せる)。
+        /// WinUI 3のウィンドウサイズにはStoryboardが使えないため、タイマーで
+        /// AppWindowのサイズを毎フレーム更新して、イージング付きで補間している。
+        /// </summary>
+        /// <param name="panel">これから表示するパネル(Visibleにした後で呼ぶ)。</param>
+        /// <param name="animate">falseなら即座に最終サイズへ合わせ、フェードもしない。</param>
+        private void FitToPanel(FrameworkElement panel, bool animate)
+        {
+            if (RootGrid.XamlRoot is null)
+                return;
+
+            var scale = RootGrid.XamlRoot.RasterizationScale;
+            var running = _resizeTimer?.IsRunning == true;
+
+            // 外枠(枠線・システム領域)の分は環境で違う可能性があるため、アニメーション前の
+            // 実測で求めておく。以後はこの差分を使うので、途中のサイズに影響されない
+            if (double.IsNaN(_chromePx) && !running)
+                _chromePx = AppWindow.Size.Height - RootGrid.ActualHeight * scale;
+
+            // Collapsedの要素はMeasureしても0になるため、Visibleにしてから測る
+            panel.Opacity = animate ? 0 : 1;
+            panel.Measure(new Size(ContentArea.ActualWidth, double.PositiveInfinity));
+            var rootDip = TitleBarRow.ActualHeight + panel.DesiredSize.Height;
+
+            _toHeightPx = Math.Round(Math.Clamp(
+                _chromePx + rootDip * scale,
+                MinWindowHeightDip * scale,
+                MaxWindowHeightDip * scale));
+
+            // 連打された時は、途中のサイズからそのまま新しい目標へ向かう
+            if (!running)
+                _currentHeightPx = AppWindow.Size.Height;
+            _fromHeightPx = _currentHeightPx;
+
+            if (_fadingPanel is not null && _fadingPanel != panel)
+                _fadingPanel.Opacity = 1;
+            _fadingPanel = panel;
+
+            if (!animate)
+            {
+                _resizeTimer?.Stop();
+                ApplyWindowHeight(_toHeightPx);
+                panel.Opacity = 1;
+                return;
+            }
+
+            _resizeTimer ??= DispatcherQueue.CreateTimer();
+            _resizeTimer.Interval = TimeSpan.FromMilliseconds(16);
+            _resizeTimer.Tick -= OnResizeTick;
+            _resizeTimer.Tick += OnResizeTick;
+            _resizeStopwatch.Restart();
+            _resizeTimer.Start();
+        }
+
+        private void OnResizeTick(Microsoft.UI.Dispatching.DispatcherQueueTimer sender, object args)
+        {
+            var elapsed = _resizeStopwatch.Elapsed.TotalMilliseconds;
+
+            var progress = Math.Min(1, elapsed / ResizeDurationMs);
+            var eased = 1 - Math.Pow(1 - progress, 3); // ease-out
+            ApplyWindowHeight(_fromHeightPx + (_toHeightPx - _fromHeightPx) * eased);
+
+            if (_fadingPanel is not null)
+                _fadingPanel.Opacity = Math.Min(1, elapsed / FadeDurationMs);
+
+            if (progress >= 1 && elapsed >= FadeDurationMs)
+            {
+                sender.Stop();
+                if (_fadingPanel is not null)
+                    _fadingPanel.Opacity = 1;
+            }
+        }
+
+        private void ApplyWindowHeight(double heightPx)
+        {
+            _currentHeightPx = heightPx;
+
+            var position = AppWindow.Position;
+            var size = AppWindow.Size;
+            var height = (int)Math.Round(heightPx);
+
+            // 上端は固定。下が作業領域(タスクバーを除く)を超える場合だけ上へ寄せる
+            var work = DisplayArea.GetFromWindowId(AppWindow.Id, DisplayAreaFallback.Nearest).WorkArea;
+            var y = Math.Max(work.Y, Math.Min(position.Y, work.Y + work.Height - height));
+
+            AppWindow.MoveAndResize(new RectInt32(position.X, y, size.Width, height));
         }
 
         // Enterキーでも追加ボタンと同じ動作にする

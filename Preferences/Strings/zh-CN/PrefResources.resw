@@ -87,6 +87,24 @@
   <data name="Pref_Backdrop_Description" xml:space="preserve">
     <value>选择主窗口(面板)的背景材质。</value>
   </data>
+  <data name="Pref_Font_Title" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="Pref_Font_Description" xml:space="preserve">
+    <value>选择历史记录和收藏列表的文字大小。</value>
+  </data>
+  <data name="Pref_ListFontSize" xml:space="preserve">
+    <value>字号: {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding" xml:space="preserve">
+    <value>行边距(高度): {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding_Note" xml:space="preserve">
+    <value>每行的上下边距。会立即应用到列表。</value>
+  </data>
+  <data name="Pref_ListAppearance_Reset" xml:space="preserve">
+    <value>将字号和边距恢复为默认值</value>
+  </data>
   <data name="Pref_History_Title" xml:space="preserve">
     <value>历史记录</value>
   </data>

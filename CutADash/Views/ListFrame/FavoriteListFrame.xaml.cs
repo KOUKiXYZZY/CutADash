@@ -28,9 +28,12 @@ namespace CutADash.Views.ListFrame
 
         public FavoriteListFrame()
         {
+            // 文字サイズ・行の余白はDataTemplateからListAppearanceリソースを参照するため、読み込み前に登録する
+            ListAppearance.EnsureResources();
             InitializeComponent();
 
             EmptyText.Text = AppStrings.Get("Empty_Text");
+
         }
 
         protected override ListView ItemsListView => BaseExample;

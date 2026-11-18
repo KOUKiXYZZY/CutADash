@@ -87,6 +87,24 @@
   <data name="Pref_Backdrop_Description" xml:space="preserve">
     <value>Choose the background material for the main window (palette).</value>
   </data>
+  <data name="Pref_Font_Title" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="Pref_Font_Description" xml:space="preserve">
+    <value>Choose the text size of the history and favorites lists.</value>
+  </data>
+  <data name="Pref_ListFontSize" xml:space="preserve">
+    <value>Font size: {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding" xml:space="preserve">
+    <value>Row padding (height): {0}</value>
+  </data>
+  <data name="Pref_ListRowPadding_Note" xml:space="preserve">
+    <value>Vertical padding of each row. Applied to the lists immediately.</value>
+  </data>
+  <data name="Pref_ListAppearance_Reset" xml:space="preserve">
+    <value>Reset font size and padding to default</value>
+  </data>
   <data name="Pref_History_Title" xml:space="preserve">
     <value>History</value>
   </data>

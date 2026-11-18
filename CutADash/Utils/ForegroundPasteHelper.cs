@@ -36,23 +36,23 @@ namespace CutADash.Utils
         /// </summary>
         public static async Task ActivatePreviousWindowAsync(MainWindow? mainWindow)
         {
-            var targetHwnd = mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero;
+            var targetHwnd = mainWindow?.PasteTarget.ForegroundWindow ?? IntPtr.Zero;
             if (targetHwnd == IntPtr.Zero)
                 return;
 
             // ペーストと同じく、前面化の最中に起きるフォアグラウンドの変化で、
             // パレットの自動クローズ等が割り込まないようにする
             if (mainWindow is not null)
-                mainWindow.IsPasting = true;
+                mainWindow.PasteTarget.IsPasting = true;
 
             try
             {
-                await ForegroundPaster.ActivateAsync(targetHwnd, mainWindow?.PreviousFocusWindow ?? IntPtr.Zero);
+                await ForegroundPaster.ActivateAsync(targetHwnd, mainWindow?.PasteTarget.FocusWindow ?? IntPtr.Zero);
             }
             finally
             {
                 if (mainWindow is not null)
-                    mainWindow.IsPasting = false;
+                    mainWindow.PasteTarget.IsPasting = false;
             }
         }
 
@@ -63,7 +63,7 @@ namespace CutADash.Utils
             PasteDiagnosticsLog.Write(
                 $"[Helper] Called paste={paste} addToHistory={addToHistory} plainTextOnly={plainTextOnly} " +
                 $"hasMainWindow={mainWindow is not null} " +
-                $"pasteTarget={PasteDiagnosticsLog.Describe(mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero)}");
+                $"pasteTarget={PasteDiagnosticsLog.Describe(mainWindow?.PasteTarget.ForegroundWindow ?? IntPtr.Zero)}");
 
             // これから書き戻すクリップボード変更を、新規コピーとして履歴に再登録して
             // しまわないようにする。1回の書き込みで変更通知が複数回来るため、
@@ -94,16 +94,16 @@ namespace CutADash.Utils
 
             if (paste)
             {
-                var targetHwnd = mainWindow?.PreviousForegroundWindow ?? IntPtr.Zero;
+                var targetHwnd = mainWindow?.PasteTarget.ForegroundWindow ?? IntPtr.Zero;
 
                 if (targetHwnd != IntPtr.Zero)
                 {
                     if (mainWindow is not null)
-                        mainWindow.IsPasting = true;
+                        mainWindow.PasteTarget.IsPasting = true;
 
                     try
                     {
-                        var focusHwnd = mainWindow?.PreviousFocusWindow ?? IntPtr.Zero;
+                        var focusHwnd = mainWindow?.PasteTarget.FocusWindow ?? IntPtr.Zero;
                         await ForegroundPaster.ActivateAndPasteAsync(targetHwnd, focusHwnd);
                     }
                     catch (Exception ex)
@@ -118,14 +118,14 @@ namespace CutADash.Utils
                     finally
                     {
                         if (mainWindow is not null)
-                            mainWindow.IsPasting = false;
+                            mainWindow.PasteTarget.IsPasting = false;
                     }
                 }
                 else
                 {
                     // ここに来ると、クリップボードへの書き戻しは成功しているのにキーは
                     // 一切送られない(コピーはされるが貼り付かない)状態になる
-                    PasteDiagnosticsLog.Write("[Helper] Paste target not remembered (PreviousForegroundWindow=0); key send skipped");
+                    PasteDiagnosticsLog.Write("[Helper] Paste target not remembered (PasteTarget.ForegroundWindow=0); key send skipped");
                 }
 
                 // ペーストが完了してからウィンドウを隠す(すぐに消えないようにする)。
