@@ -87,6 +87,9 @@
   <data name="ListFrame_AddToSequentialPaste" xml:space="preserve">
     <value>Add to Sequential Paste</value>
   </data>
+  <data name="ListFrame_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="TrayIcon_PauseMonitoring" xml:space="preserve">
     <value>Pause Clipboard Monitoring</value>
   </data>

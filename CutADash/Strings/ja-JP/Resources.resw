@@ -192,6 +192,9 @@
   <data name="ListFrame_AddToSequentialPaste" xml:space="preserve">
     <value>シーケンシャルペーストに追加</value>
   </data>
+  <data name="ListFrame_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
   <data name="TrayIcon_PauseMonitoring" xml:space="preserve">
     <value>クリップボード監視を一時停止</value>
   </data>

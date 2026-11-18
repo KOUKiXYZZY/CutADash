@@ -188,6 +188,20 @@ namespace CutADash.Views.ListFrame
                 flyout.Items.Add(renameItem);
             }
 
+            // 履歴の項目を削除する。Deleteキーと同じ処理(確認なし、削除後は次の項目を選択)を、
+            // 右クリックした項目に対して行う
+            var deleteItem = new MenuFlyoutItem
+            {
+                Text = Common.Utils.AppStrings.Get("ListFrame_Delete"),
+                Icon = new FontIcon { Glyph = "" }
+            };
+            deleteItem.Click += async (_, _) =>
+            {
+                SelectedItem = item;
+                await DeleteSelectedAsync();
+            };
+            flyout.Items.Add(deleteItem);
+
             flyout.Items.Add(new MenuFlyoutSeparator());
 
             var pasteItem = new MenuFlyoutItem { Text = "ペースト", Icon = new FontIcon { Glyph = "" } };

@@ -87,6 +87,9 @@
   <data name="ListFrame_AddToSequentialPaste" xml:space="preserve">
     <value>添加到顺序粘贴</value>
   </data>
+  <data name="ListFrame_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
   <data name="TrayIcon_PauseMonitoring" xml:space="preserve">
     <value>暂停剪贴板监控</value>
   </data>

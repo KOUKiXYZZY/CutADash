@@ -2,8 +2,8 @@ using Common.Utils;
 using CutADash.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Collections.Generic;
 using WinUIEx;
 
 namespace CutADash.Views.TaskTray
@@ -11,8 +11,8 @@ namespace CutADash.Views.TaskTray
     /// <summary>
     /// タスクトレイアイコンと右クリックメニュー。状態(監視の一時停止/再開、常にプレーン
     /// テキストでペースト)と、画面を開く操作(メインウィンドウ/設定/シーケンシャルペースト/
-    /// 終了)のコマンドはすべてTaskTrayViewModelが持ち、ここはTrayIcon/MenuFlyoutの生成と、
-    /// Click→ViewModelのコマンド実行の橋渡しだけを行う。Windowは一切保持しない
+    /// 終了)のコマンドはすべてTaskTrayViewModelが持ち、ここはTrayIconの生成と、Windows標準の
+    /// メニュー(NativeTrayMenu)で選ばれた項目→ViewModelのコマンド実行の橋渡しだけを行う。Windowは一切保持しない
     /// (画面を開く実際の処理はWindowServiceがMessenger経由で引き受ける)。
     /// </summary>
     internal sealed class TaskTray
@@ -92,65 +92,64 @@ namespace CutADash.Views.TaskTray
 
         private void CreateTrayIcon()
         {
-            _icon = new TrayIcon(1, "Assets/AppIcon.ico", AppStrings.Get("TrayIcon_Tooltip")) { IsVisible = true };
+            // WinUIEx 2.9.2以降は、相対パスを渡すとPackage.Currentでパッケージの場所を調べるが、
+            // パッケージ化していないこのアプリではそれが例外になり、トレイのアイコンが作られなかった。
+            // 絶対パスならその処理を通らないため、絶対パスで渡す
+            var iconPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "AppIcon.ico");
+            _icon = new TrayIcon(1, iconPath, AppStrings.Get("TrayIcon_Tooltip")) { IsVisible = true };
             UpdateTrayIconForTheme();
 
             _icon.Selected += (s, e) => _viewModel.OpenCommand.Execute(null);
-            _icon.ContextMenu += (w, e) => e.Flyout = BuildContextMenu();
+
+            // メニューはWinUIExのMenuFlyoutではなく、Windows標準のメニューで出す
+            // (Flyoutを設定しなければ、WinUIExはメニューを出さない)
+            _icon.ContextMenu += (w, e) => ShowNativeContextMenu();
         }
 
-        // メニューを開くたびに作り直すことで、チェック状態やラベルを常に最新にする
-        private MenuFlyout BuildContextMenu()
+        // 右クリックメニュー。選ばれた項目は、メニューが完全に閉じてから実行する
+        private void ShowNativeContextMenu()
         {
-            var flyout = new MenuFlyout();
-
-            var openItem = new MenuFlyoutItem { Text = AppStrings.Get("TrayIcon_Open") };
-            var sequentialPasteItem = new MenuFlyoutItem { Text = AppStrings.Get("TrayIcon_SequentialPaste") };
-            var settingsItem = new MenuFlyoutItem { Text = AppStrings.Get("TrayIcon_Settings") };
-            var monitorToggleItem = new MenuFlyoutItem
+            var items = new List<NativeTrayMenu.Item>
             {
-                Text = AppStrings.Get(_viewModel.IsMonitoring ? "TrayIcon_PauseMonitoring" : "TrayIcon_ResumeMonitoring")
-            };
-            var alwaysPlainTextItem = new ToggleMenuFlyoutItem
-            {
-                Text = AppStrings.Get("TrayIcon_AlwaysPastePlainText"),
-                IsChecked = _viewModel.AlwaysPastePlainText
-            };
-            var checkForUpdatesItem = new MenuFlyoutItem
-            {
-                Text = AppStrings.Get("TrayIcon_CheckForUpdates")
-            };
-            var quitItem = new MenuFlyoutItem { Text = AppStrings.Get("TrayIcon_Quit") };
-
-            flyout.Items.Add(monitorToggleItem);
-            flyout.Items.Add(alwaysPlainTextItem);
-            flyout.Items.Add(new MenuFlyoutSeparator());
-            flyout.Items.Add(openItem);
-            flyout.Items.Add(sequentialPasteItem);
-            flyout.Items.Add(settingsItem);
-            flyout.Items.Add(new MenuFlyoutSeparator());
-            flyout.Items.Add(checkForUpdatesItem);
-            flyout.Items.Add(new MenuFlyoutSeparator());
-            flyout.Items.Add(quitItem);
-
-            openItem.Click += (s, e) => _viewModel.OpenCommand.Execute(null);
-            sequentialPasteItem.Click += (s, e) => _viewModel.OpenSequentialPasteCommand.Execute(null);
-            settingsItem.Click += (s, e) => _viewModel.OpenSettingsCommand.Execute(null);
-            monitorToggleItem.Click += (s, e) => _viewModel.ToggleMonitoringCommand.Execute(null);
-            alwaysPlainTextItem.Click += (s, e) => _viewModel.ToggleAlwaysPastePlainTextCommand.Execute(null);
-            checkForUpdatesItem.Click += (s, e) => _viewModel.CheckForUpdatesCommand.Execute(null);
-            quitItem.Click += (s, e) => _viewModel.QuitCommand.Execute(null);
-
+                new(1, AppStrings.Get(_viewModel.IsMonitoring ? "TrayIcon_PauseMonitoring" : "TrayIcon_ResumeMonitoring")),
+                new(2, AppStrings.Get("TrayIcon_AlwaysPastePlainText"), _viewModel.AlwaysPastePlainText),
+                NativeTrayMenu.Item.Separator,
+                new(3, AppStrings.Get("TrayIcon_Open")),
+                new(4, AppStrings.Get("TrayIcon_SequentialPaste")),
+                new(5, AppStrings.Get("TrayIcon_Settings")),
+                NativeTrayMenu.Item.Separator,
+                new(6, AppStrings.Get("TrayIcon_CheckForUpdates")),
+                NativeTrayMenu.Item.Separator,
 #if DEBUG || DEVDEBUG
-            // デバッグビルドだけ、UIライブラリ(UiLibrary)の部品を一覧で試せる
-            // 画面を開く項目を出す。リリースビルドには含まれない
-            var uiTestItem = new MenuFlyoutItem { Text = "Debug: UI Gallery" };
-            uiTestItem.Click += (s, e) => new UiLibrary.GalleryWindow().Activate();
-            flyout.Items.Insert(flyout.Items.Count - 1, uiTestItem);
-            flyout.Items.Insert(flyout.Items.Count - 1, new MenuFlyoutSeparator());
+                // デバッグビルドだけ、UIライブラリ(UiLibrary)の部品を一覧で試せる画面を開く項目を出す
+                new(8, "Debug: UI Gallery"),
+                NativeTrayMenu.Item.Separator,
 #endif
+                new(7, AppStrings.Get("TrayIcon_Quit")),
+            };
 
-            return flyout;
+            var selected = NativeTrayMenu.Show(items);
+            if (selected == 0)
+                return;
+
+            _dispatcherQueue.TryEnqueue(() => ExecuteMenuCommand(selected));
+        }
+
+        private void ExecuteMenuCommand(int id)
+        {
+            switch (id)
+            {
+                case 1: _viewModel.ToggleMonitoringCommand.Execute(null); break;
+                case 2: _viewModel.ToggleAlwaysPastePlainTextCommand.Execute(null); break;
+                case 3: _viewModel.OpenCommand.Execute(null); break;
+                case 4: _viewModel.OpenSequentialPasteCommand.Execute(null); break;
+                case 5: _viewModel.OpenSettingsCommand.Execute(null); break;
+                case 6: _viewModel.CheckForUpdatesCommand.Execute(null); break;
+                case 7: _viewModel.QuitCommand.Execute(null); break;
+#if DEBUG || DEVDEBUG
+                case 8: new UiLibrary.GalleryWindow().Activate(); break;
+#endif
+            }
         }
 
         private bool IsSystemThemeDark()
